@@ -47,43 +47,43 @@ const Footer = () => {
         <div className="footer-links">
           <div className="footer-column">
             <h4>ABOUT ZOMATO</h4>
-            <a href="#">who we are</a>
-            <a href="#">blog</a>
-            <a href="#">work with us</a>
-            <a href="#">Investor Relations</a>
-            <a href="#">Report Fraud</a>
-            <a href="#">Contact Us</a>
+            <a href="https://www.zomato.com/about">who we are</a>
+            <a href="https://www.zomato.com/blog">blog</a>
+            <a href="https://www.zomato.com/careers">work with us</a>
+            <a href="https://www.zomato.com/investor-relations">Investor Relations</a>
+            <a href="https://www.zomato.com/report-fraud">Report Fraud</a>
+            <a href="https://www.zomato.com/contact">Contact Us</a>
           </div>
           <div className="footer-column">
             <h4>ZOMAVERSE</h4>
-            <a href="#">Zomato</a>
-            <a href="#">Blinkit</a>
-            <a href="#">Feeding India</a>
-            <a href="#">HyperPure</a>
-            <a href="#">Zomaland</a>
+            <a href="https://www.zomato.com">Zomato</a>
+            <a href="https://blinkit.com">Blinkit</a>
+            <a href="https://feedingindia.org">Feeding India</a>
+            <a href="https://www.zomato.com/hyperpure">HyperPure</a>
+            <a href="https://www.zomato.com/zomaland">Zomaland</a>
           </div>
           <div className="footer-column">
             <h4>FOR RESTAURANTS</h4>
-            <a href="#">Partner with Us</a>
-            <a href="#">Apps For you</a>
+            <a href="https://www.zomato.com/partner-with-us">Partner with Us</a>
+            <a href="https://www.zomato.com/apps">Apps For you</a>
             <h4 className="mt-20">For Enterprises</h4>
-            <a href="#">Zomato for work</a>
+            <a href="https://www.zomato.com/work">Zomato for work</a>
           </div>
           <div className="footer-column">
             <h4>LEARN MORE</h4>
-            <a href="#">Privacy</a>
-            <a href="#">Security</a>
-            <a href="#">Terms</a>
-            <a href="#">Sitemap</a>
+            <a href="https://www.zomato.com/privacy">Privacy</a>
+            <a href="https://www.zomato.com/security">Security</a>
+            <a href="https://www.zomato.com/terms">Terms</a>
+            <a href="https://www.zomato.com/sitemap">Sitemap</a>
           </div>
           <div className="footer-column social-column">
             <h4>SOCIAL LINKS</h4>
             <div className="social-icons">
-              <a href="#" className="social-icon"><LinkedInIcon /></a>
-              <a href="#" className="social-icon"><InstagramIcon /></a>
-              <a href="#" className="social-icon"><TwitterIcon /></a>
-              <a href="#" className="social-icon"><YouTubeIcon /></a>
-              <a href="#" className="social-icon"><FacebookIcon /></a>
+              <a href="https://www.linkedin.com/company/zomato" className="social-icon" aria-label="LinkedIn"><LinkedInIcon /></a>
+              <a href="https://www.instagram.com/zomato" className="social-icon" aria-label="Instagram"><InstagramIcon /></a>
+              <a href="https://twitter.com/zomato" className="social-icon" aria-label="Twitter"><TwitterIcon /></a>
+              <a href="https://www.youtube.com/zomato" className="social-icon" aria-label="YouTube"><YouTubeIcon /></a>
+              <a href="https://www.facebook.com/zomato" className="social-icon" aria-label="Facebook"><FacebookIcon /></a>
             </div>
             <img src={App} alt="app" className="store-img" />
             <img src={Phone} alt="app" className="store-img" />

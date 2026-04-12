@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useNavigate, useLocation } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./Header.scss";
 import Logo from "../../assets/images/Zomato-Logo.png";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -17,7 +17,6 @@ const Header = () => {
   const [searchFocused, setSearchFocused] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const navigate = useNavigate();
-  const location = useLocation();
   const { city, getCartItemCount, setSearchQuery: setContextSearchQuery } = useApp();
   const cartCount = getCartItemCount();
 
@@ -28,8 +27,6 @@ const Header = () => {
       navigate("/restaurants");
     }
   };
-
-  const isHomePage = location.pathname === "/" || location.pathname === "/home";
 
   return (
     <div className="header">

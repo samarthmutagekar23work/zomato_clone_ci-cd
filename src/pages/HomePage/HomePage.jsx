@@ -8,7 +8,7 @@ import Cities from "../../components/Cities/Cities";
 import CTA from "../../components/CTA/CTA";
 import AccContainer from "../../components/AccContainer/AccContainer";
 import RestaurantCard from "../../components/RestaurantCard/RestaurantCard";
-import { restaurants, collections } from "../../data/restaurantData";
+import { restaurants } from "../../data/restaurantData";
 import "./HomePage.scss";
 
 const HomePage = () => {
