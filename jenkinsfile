@@ -35,7 +35,7 @@ pipeline {
         // ✅ ADD COVERAGE (VERY IMPORTANT)
         stage("Run Tests with Coverage") {
             steps {
-                sh "CI=true npm test -- --coverage --coverageReporters=lcov"
+                sh "CI=true npm run test:ci"
                 sh "ls -la coverage"   // debug check
             }
         }
