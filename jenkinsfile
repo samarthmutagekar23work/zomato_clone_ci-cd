@@ -49,9 +49,8 @@ pipeline {
                     -Dsonar.projectKey=zomato \
                     -Dsonar.sources=src \
                     -Dsonar.tests=src \
-                    -Dsonar.test.inclusions=**/*.test.js,**/*.test.jsx,**/__tests__/**/*.js,**/__tests__/**/*.jsx \
-                    -Dsonar.test.exclusions=**/setupTests.js,**/reportWebVitals.js \
-                    -Dsonar.exclusions=**/setupTests.js,**/reportWebVitals.js,coverage/** \
+                    -Dsonar.test.inclusions=**/*.test.js,**/*.test.jsx \
+                    -Dsonar.exclusions=**/node_modules/**,**/coverage/** \
                     -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info \
                     -Dsonar.sourceEncoding=UTF-8
                     """
