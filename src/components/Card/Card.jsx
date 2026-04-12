@@ -40,7 +40,7 @@ const Card = () => {
         {cards.map((card, index) => (
           <div 
             className="cardImg section-animate" 
-            key={index}
+            key={card.title}
             style={{ animationDelay: `${index * 0.2}s` }}
           >
             <div className="card-image-wrapper">

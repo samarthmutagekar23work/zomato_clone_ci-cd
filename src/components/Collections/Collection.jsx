@@ -49,7 +49,7 @@ const Collection = () => {
       </div>
       <div className="collectionCard">
         {collections.map((collection, index) => (
-          <div className="collectionImg" key={index}>
+          <div className="collectionImg" key={collection.title}>
             <div className="image-container">
               <img src={collection.image} alt={collection.title} />
               <div className="overlay" style={{ background: collection.gradient }}></div>

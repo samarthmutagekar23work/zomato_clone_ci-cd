@@ -24,8 +24,8 @@ const Cities = () => {
         </h1>
       </div>
       <div className="cityContainer">
-        {cityData.map((city, index) => (
-          <div className="city" key={index}>
+        {cityData.map((city) => (
+          <div className="city" key={city.name}>
             <div className="cityLeft">
               <LocationOnIcon className="location-icon" />
               <div className="city-info">
