@@ -1,5 +1,5 @@
 import '@testing-library/jest-dom';
-import { render, screen } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 import HomePage from '../pages/HomePage/HomePage';
 import { AppProvider } from '../context/AppContext';
@@ -62,5 +62,77 @@ describe('HomePage Component', () => {
   test('renders faq section', () => {
     const { container } = renderWithProviders(<HomePage />);
     expect(container.querySelector('.faq-section')).toBeInTheDocument();
+  });
+
+  test('renders section container', () => {
+    const { container } = renderWithProviders(<HomePage />);
+    expect(container.querySelector('.section-container')).toBeInTheDocument();
+  });
+
+  test('renders section header', () => {
+    const { container } = renderWithProviders(<HomePage />);
+    expect(container.querySelector('.section-header')).toBeInTheDocument();
+  });
+
+  test('renders restaurant grid', () => {
+    const { container } = renderWithProviders(<HomePage />);
+    expect(container.querySelector('.restaurant-grid')).toBeInTheDocument();
+  });
+
+  test('renders restaurant cards', () => {
+    const { container } = renderWithProviders(<HomePage />);
+    expect(container.querySelector('.restaurant-card')).toBeInTheDocument();
+  });
+
+  test('renders view all button with correct class', () => {
+    const { container } = renderWithProviders(<HomePage />);
+    expect(container.querySelector('.view-all-btn')).toBeInTheDocument();
+  });
+
+  test('section header contains h2', () => {
+    const { container } = renderWithProviders(<HomePage />);
+    const header = container.querySelector('.section-header');
+    expect(header.querySelector('h2')).toBeInTheDocument();
+  });
+
+  test('featured section contains restaurant cards', () => {
+    const { container } = renderWithProviders(<HomePage />);
+    const cards = container.querySelectorAll('.restaurant-card');
+    expect(cards.length).toBeGreaterThan(0);
+  });
+
+  test('renders categories card component', () => {
+    const { container } = renderWithProviders(<HomePage />);
+    expect(container.querySelector('.categories-section')).toBeInTheDocument();
+  });
+
+  test('renders collections component', () => {
+    const { container } = renderWithProviders(<HomePage />);
+    expect(container.querySelector('.collections-section')).toBeInTheDocument();
+  });
+
+  test('renders cities component', () => {
+    const { container } = renderWithProviders(<HomePage />);
+    expect(container.querySelector('.cities-section')).toBeInTheDocument();
+  });
+
+  test('renders CTA component', () => {
+    const { container } = renderWithProviders(<HomePage />);
+    expect(container.querySelector('.app-promo-section')).toBeInTheDocument();
+  });
+
+  test('renders accordion container', () => {
+    const { container } = renderWithProviders(<HomePage />);
+    expect(container.querySelector('.faq-section')).toBeInTheDocument();
+  });
+
+  test('renders footer', () => {
+    const { container } = renderWithProviders(<HomePage />);
+    expect(container.querySelector('.footer')).toBeInTheDocument();
+  });
+
+  test('renders header', () => {
+    const { container } = renderWithProviders(<HomePage />);
+    expect(container.querySelector('.header')).toBeInTheDocument();
   });
 });
