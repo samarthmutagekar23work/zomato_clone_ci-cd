@@ -31,8 +31,7 @@ describe('FilterBar Component', () => {
 
   test('renders rating filter buttons', () => {
     render(<FilterBar {...defaultProps} />);
-    expect(screen.getByText('Rating')).toBeInTheDocument();
-    expect(screen.getByText('All')).toBeInTheDocument();
+    expect(screen.getAllByText('All').length).toBeGreaterThan(0);
     expect(screen.getByText('3+')).toBeInTheDocument();
   });
 

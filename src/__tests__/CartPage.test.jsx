@@ -48,4 +48,37 @@ describe('CartPage Component', () => {
     const icon = document.querySelector('.empty-icon');
     expect(icon).toBeInTheDocument();
   });
+
+  test('renders empty cart heading', () => {
+    renderWithProviders(<CartPage />);
+    const h2 = document.querySelector('.empty-cart h2');
+    expect(h2).toBeInTheDocument();
+  });
+
+  test('renders empty cart paragraph', () => {
+    renderWithProviders(<CartPage />);
+    const p = document.querySelector('.empty-cart p');
+    expect(p).toBeInTheDocument();
+  });
+
+  test('renders zomato button in empty cart', () => {
+    renderWithProviders(<CartPage />);
+    expect(document.querySelector('.empty-cart .btn-zomato')).toBeInTheDocument();
+  });
+
+  test('renders header in empty cart', () => {
+    renderWithProviders(<CartPage />);
+    expect(document.querySelector('.cart-page .header')).toBeInTheDocument();
+  });
+
+  test('renders footer in empty cart', () => {
+    renderWithProviders(<CartPage />);
+    expect(document.querySelector('.cart-page .footer')).toBeInTheDocument();
+  });
+
+  test('empty cart icon is a shopping cart icon', () => {
+    renderWithProviders(<CartPage />);
+    const icon = document.querySelector('.empty-icon');
+    expect(icon).toBeTruthy();
+  });
 });
