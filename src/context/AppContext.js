@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useReducer } from "react";
+import React, { createContext, useContext, useReducer, useMemo } from "react";
 
 const AppContext = createContext();
 
@@ -145,22 +145,25 @@ export const AppProvider = ({ children }) => {
     dispatch({ type: "RESET_FILTERS" });
   };
 
+  const value = useMemo(
+    () => ({
+      ...state,
+      addToCart,
+      removeFromCart,
+      updateQuantity,
+      clearCart,
+      getCartTotal,
+      getCartItemCount,
+      setCity,
+      setSearchQuery,
+      setFilters,
+      resetFilters,
+    }),
+    [state]
+  );
+
   return (
-    <AppContext.Provider
-      value={{
-        ...state,
-        addToCart,
-        removeFromCart,
-        updateQuantity,
-        clearCart,
-        getCartTotal,
-        getCartItemCount,
-        setCity,
-        setSearchQuery,
-        setFilters,
-        resetFilters,
-      }}
-    >
+    <AppContext.Provider value={value}>
       {children}
     </AppContext.Provider>
   );
