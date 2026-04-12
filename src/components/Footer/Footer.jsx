@@ -7,80 +7,91 @@ import InstagramIcon from "@mui/icons-material/Instagram";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import YouTubeIcon from "@mui/icons-material/YouTube";
 import FacebookIcon from "@mui/icons-material/Facebook";
+import RestaurantIcon from "@mui/icons-material/Restaurant";
+import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 
 const Footer = () => {
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   return (
     <div className="footer">
-      <div className="top">
-        <div className="top1">
-          <h2>Zomato</h2>
-          <div className="lang">
-            <select>
-              <option value="India">India</option>
-              <option value="Australia">Australia</option>
-              <option value="London">London</option>
-              <option value="America">America</option>
-              <option value="France">France</option>
-              <option value="Brazil">Brazil</option>
-              <option value="England">England</option>
-              <option value="South Africa">South Africa</option>
-              <option value="Rusia">Rusia</option>
-            </select>
-            <select>
-              <option value="English">English</option>
-              <option value="Hindi">Hindi</option>
-              <option value="Polish">Polish</option>
-            </select>
+      <div className="footer-main">
+        <div className="footer-top">
+          <div className="top-left">
+            <h2 className="logo-text">
+              <RestaurantIcon className="logo-icon" />
+              Zomato
+            </h2>
+            <div className="lang">
+              <select className="select-wrapper">
+                <option value="India">🇮🇳 India</option>
+                <option value="Australia">🇦🇺 Australia</option>
+                <option value="London">🇬🇧 London</option>
+                <option value="America">🇺🇸 America</option>
+                <option value="France">🇫🇷 France</option>
+                <option value="Brazil">🇧🇷 Brazil</option>
+                <option value="England">🇬🇧 England</option>
+                <option value="South Africa">🇿🇦 South Africa</option>
+                <option value="Rusia">🇷🇺 Rusia</option>
+              </select>
+              <select className="select-wrapper">
+                <option value="English">🌐 English</option>
+                <option value="Hindi">🌐 Hindi</option>
+                <option value="Polish">🌐 Polish</option>
+              </select>
+            </div>
           </div>
         </div>
-        <div className="bottom1">
-          <div className="bottomContent">
+        <div className="footer-links">
+          <div className="footer-column">
             <h4>ABOUT ZOMATO</h4>
-            <p>who we are</p>
-            <p>blog</p>
-            <p>work with us</p>
-            <p>Investor Relations</p>
-            <p>Report Fraud</p>
-            <p>Contact Us</p>
+            <a href="#">who we are</a>
+            <a href="#">blog</a>
+            <a href="#">work with us</a>
+            <a href="#">Investor Relations</a>
+            <a href="#">Report Fraud</a>
+            <a href="#">Contact Us</a>
           </div>
-          <div className="bottomContent">
+          <div className="footer-column">
             <h4>ZOMAVERSE</h4>
-            <p>Zomato</p>
-            <p>Blinkit</p>
-            <p>Feeding India</p>
-            <p>HyperPure</p>
-            <p>Zomaland</p>
+            <a href="#">Zomato</a>
+            <a href="#">Blinkit</a>
+            <a href="#">Feeding India</a>
+            <a href="#">HyperPure</a>
+            <a href="#">Zomaland</a>
           </div>
-          <div className="bottomContent">
+          <div className="footer-column">
             <h4>FOR RESTAURANTS</h4>
-            <p>Patner with Us</p>
-            <p>Apps For you</p>
-            <h4>For Enterprises</h4>
-            <p>Zomato for work</p>
+            <a href="#">Partner with Us</a>
+            <a href="#">Apps For you</a>
+            <h4 className="mt-20">For Enterprises</h4>
+            <a href="#">Zomato for work</a>
           </div>
-          <div className="bottomContent">
+          <div className="footer-column">
             <h4>LEARN MORE</h4>
-            <p>Privecy</p>
-            <p>Security</p>
-            <p>Terms</p>
-            <p>Sitemap</p>
+            <a href="#">Privacy</a>
+            <a href="#">Security</a>
+            <a href="#">Terms</a>
+            <a href="#">Sitemap</a>
           </div>
-          <div className="bottomContent">
+          <div className="footer-column social-column">
             <h4>SOCIAL LINKS</h4>
-            <div className="links">
-              <LinkedInIcon />
-              <TwitterIcon />
-              <InstagramIcon />
-              <YouTubeIcon />
-              <FacebookIcon />
+            <div className="social-icons">
+              <a href="#" className="social-icon"><LinkedInIcon /></a>
+              <a href="#" className="social-icon"><InstagramIcon /></a>
+              <a href="#" className="social-icon"><TwitterIcon /></a>
+              <a href="#" className="social-icon"><YouTubeIcon /></a>
+              <a href="#" className="social-icon"><FacebookIcon /></a>
             </div>
-            <img src={App} alt="app" />
-            <img src={Phone} alt="app" />
+            <img src={App} alt="app" className="store-img" />
+            <img src={Phone} alt="app" className="store-img" />
           </div>
         </div>
       </div>
-      <hr />
-      <div className="bottom">
+      <hr className="footer-divider" />
+      <div className="footer-bottom">
         <p>
           By continuing past this page, you agree to our Terms of Service,
           Cookie Policy, Privacy Policy and Content Policies. All trademarks are
@@ -88,6 +99,9 @@ const Footer = () => {
           rights reserved.
         </p>
       </div>
+      <button className="scroll-top-btn" onClick={scrollToTop}>
+        <ExpandLessIcon />
+      </button>
     </div>
   );
 };

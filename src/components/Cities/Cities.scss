@@ -1,5 +1,14 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap");
 
+:root {
+  --zomato-red: #e23744;
+  --zomato-dark-red: #c11d30;
+  --zomato-pink: #ffebef;
+  --shadow-soft: 0 10px 40px rgba(226, 55, 68, 0.15);
+  --shadow-hover: 0 20px 60px rgba(226, 55, 68, 0.25);
+  --transition-smooth: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
 @mixin mobile {
   @media screen and (max-width: 480px) {
     @content;
@@ -16,83 +25,177 @@
   }
 }
 
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
 .cities {
   width: 100%;
-  padding: 50px 200px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 50px;
+  padding: 80px 200px;
+  background: linear-gradient(180deg, #ffffff 0%, #fafafa 100%);
 
   @include mobile {
-    padding: 10px;
+    padding: 40px 15px;
   }
 
   @include tablet {
-    padding: 10px;
-    gap: 10px;
+    padding: 40px 30px;
   }
 
-  h1 {
-    font-size: 2rem;
-    color: #333;
-    font-weight: normal;
+  .cities-header {
+    margin-bottom: 40px;
+    animation: fadeInUp 0.8s ease;
 
-    span {
-      font-size: 2.5rem;
-      font-weight: 500;
+    h1 {
+      font-size: 2.2rem;
+      color: #1a1a2e;
+      font-weight: 600;
+      line-height: 1.4;
+
+      @include mobile {
+        font-size: 1.5rem;
+      }
+
+      .highlight {
+        font-size: 2.5rem;
+        font-weight: 700;
+        background: linear-gradient(135deg, var(--zomato-red) 0%, #ff6b6b 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+
+        @include mobile {
+          font-size: 1.8rem;
+        }
+      }
     }
   }
 
   .cityContainer {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    grid-gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    grid-gap: 18px;
 
     @include mobile {
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      grid-template-columns: 1fr;
+      gap: 12px;
     }
+
+    @include tablet {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
     .city {
-      width: 350px;
-      min-width: 200px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 15px 10px;
-      border: 1px solid lightgray;
-      border-radius: 5px;
+      padding: 22px 20px;
+      border: 2px solid #f0f0f0;
+      border-radius: 12px;
       cursor: pointer;
-      background-color: white;
+      background: white;
+      transition: var(--transition-smooth);
+      animation: slideIn 0.6s ease backwards;
 
-      @include mobile {
-        padding: 10px;
-        width: 300px;
+      @for $i from 1 through 9 {
+        &:nth-child(#{$i}) {
+          animation-delay: #{$i * 0.05}s;
+        }
       }
 
       &:hover {
-        box-shadow: 10px 10px 5px -2px rgba(242, 222, 222, 0.75);
-        -webkit-box-shadow: 10px 10px 5px -2px rgba(242, 222, 222, 0.75);
-        -moz-box-shadow: 10px 10px 5px -2px rgba(242, 222, 222, 0.75);
-      }
-      .cityLeft {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
+        border-color: var(--zomato-red);
+        box-shadow: 0 15px 40px rgba(226, 55, 68, 0.12);
+        transform: translateY(-4px);
 
-        h3 {
-          font-size: 20px;
-          letter-spacing: 0.05rem;
-          font-weight: normal;
+        .icon {
+          transform: translateX(5px);
+          color: var(--zomato-red);
         }
 
-        span {
-          font-size: 16px;
-          color: gray;
+        .location-icon {
+          color: var(--zomato-red);
+          transform: scale(1.2);
+        }
+      }
+
+      &.see-more {
+        border-style: dashed;
+        background: linear-gradient(135deg, var(--zomato-pink) 0%, #fff 100%);
+        
+        &:hover {
+          background: var(--zomato-red);
+          
+          h3 {
+            color: white;
+          }
+          
+          .icon {
+            color: white;
+          }
+        }
+
+        h3 {
+          font-size: 1.1rem;
+          color: var(--zomato-red);
+          font-weight: 600;
+          transition: color 0.3s ease;
+        }
+      }
+
+      .cityLeft {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+
+        .location-icon {
+          font-size: 1.8rem;
+          color: #999;
+          transition: var(--transition-smooth);
+        }
+
+        .city-info {
+          display: flex;
+          flex-direction: column;
+          gap: 5px;
+
+          h3 {
+            font-size: 1.15rem;
+            letter-spacing: 0.02rem;
+            font-weight: 600;
+            color: #1a1a2e;
+          }
+
+          span {
+            font-size: 0.95rem;
+            color: #777;
+            font-weight: 400;
+          }
         }
       }
 
       .icon {
-        color: gray;
+        color: #999;
+        font-size: 1.5rem;
+        transition: var(--transition-smooth);
       }
     }
   }

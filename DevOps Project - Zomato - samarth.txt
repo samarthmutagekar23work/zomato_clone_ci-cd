@@ -1,7 +1,7 @@
-DevOps Project - Dr. Kastro Kiran
+DevOps Project - samarth
 Deployment of ZOMATO Project - DevSecOps Approach
 --------------------------------------------
-Repo URL: https://github.com/KastroVKiran/DevOps-Project-Zomato-Kastro.git
+
 
 
 1. Launch an Instance (Ubuntu, 24.04, t2.large, 30 GB)

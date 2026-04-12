@@ -1,5 +1,14 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap");
 
+:root {
+  --zomato-red: #e23744;
+  --zomato-dark-red: #c11d30;
+  --zomato-pink: #ffebef;
+  --shadow-soft: 0 10px 40px rgba(226, 55, 68, 0.15);
+  --shadow-hover: 0 20px 60px rgba(226, 55, 68, 0.25);
+  --transition-smooth: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
 @mixin mobile {
   @media screen and (max-width: 480px) {
     @content;
@@ -16,6 +25,88 @@
   }
 }
 
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-20px);
+  }
+  60% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s ease forwards;
+}
+
+.slide-enter {
+  opacity: 0;
+  transform: translateX(-100%);
+}
+
+.slide-enter-active {
+  opacity: 1;
+  transform: translateX(0);
+  transition: all 0.3s ease;
+}
+
+.slide-exit {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.slide-exit-active {
+  opacity: 0;
+  transform: translateX(-100%);
+  transition: all 0.3s ease;
+}
+
 .header {
   position: relative;
   background: url("../../assets/images/BackGround.png");
@@ -23,17 +114,37 @@
   background-size: cover;
   background-repeat: no-repeat;
   width: 100%;
-  height: 65vh;
+  height: 85vh;
+  overflow: hidden;
 
   @include mobile {
-    height: 50vh;
+    height: 70vh;
   }
 
-  nav {
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.6) 0%,
+      rgba(0, 0, 0, 0.3) 50%,
+      rgba(0, 0, 0, 0.6) 100%
+    );
+    z-index: 1;
+  }
+
+  .header-nav {
+    position: relative;
+    z-index: 10;
     display: flex;
     align-items: center;
-    justify-content: space-around;
-    padding: 15px 10px;
+    justify-content: space-between;
+    padding: 20px 60px;
+    animation: slideDown 0.8s ease;
 
     @include mobile {
       display: none;
@@ -47,29 +158,80 @@
       display: flex;
     }
 
-    span {
+    .nav-link {
       color: white;
       font-size: 16px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: var(--transition-smooth);
+      position: relative;
+
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: var(--zomato-red);
+        transition: width 0.3s ease;
+      }
+
+      &:hover::after {
+        width: 100%;
+      }
+
+      &:hover {
+        color: #ffb3b3;
+      }
+    }
+
+    .get-app {
+      font-weight: 600;
+      letter-spacing: 0.5px;
     }
 
     .right {
       display: flex;
-      justify-content: center;
-      gap: 20px;
+      align-items: center;
+      gap: 35px;
 
-      span {
-        color: white;
+      .nav-link {
         font-size: 18px;
+        font-weight: 400;
+      }
+
+      .nav-btn {
+        background: transparent;
+        border: 2px solid white;
+        padding: 10px 24px;
+        border-radius: 8px;
+        font-size: 16px;
+        font-weight: 600;
+        color: white;
+        cursor: pointer;
+        transition: var(--transition-smooth);
+
+        &:hover {
+          background: var(--zomato-red);
+          border-color: var(--zomato-red);
+          transform: scale(1.05);
+          box-shadow: 0 10px 30px rgba(226, 55, 68, 0.4);
+        }
       }
     }
   }
 
   .hamburger {
-    padding: 30px 10px;
-    color: white;
+    padding: 30px 20px;
     z-index: 999;
     cursor: pointer;
     position: relative;
+    transition: var(--transition-smooth);
+
+    &:hover {
+      transform: scale(1.1);
+    }
 
     @include laptop {
       display: none;
@@ -77,20 +239,25 @@
   }
 
   .sideMenu {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100vh;
-    background-color: white;
-    z-index: 3;
-    transition: all 0.4s ease;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    z-index: 100;
+    animation: slideDown 0.4s ease;
 
-    img {
-      width: 200px;
+    .side-logo {
+      width: 180px;
       position: absolute;
       top: 25px;
-      right: 10px;
+      right: 20px;
+      transition: var(--transition-smooth);
+
+      &:hover {
+        transform: scale(1.1);
+      }
     }
 
     .innerMenu {
@@ -102,10 +269,34 @@
       gap: 30px;
       top: 20%;
 
-      span {
-        font-size: 18px;
-        color: gray;
-        font-weight: normal;
+      .menu-item {
+        font-size: 20px;
+        color: white;
+        font-weight: 500;
+        cursor: pointer;
+        transition: var(--transition-smooth);
+        position: relative;
+        padding: 10px 0;
+
+        &::before {
+          content: '';
+          position: absolute;
+          left: 0;
+          bottom: 0;
+          width: 0;
+          height: 3px;
+          background: var(--zomato-red);
+          transition: width 0.3s ease;
+        }
+
+        &:hover {
+          color: var(--zomato-red);
+          padding-left: 20px;
+
+          &::before {
+            width: 100%;
+          }
+        }
       }
     }
   }
@@ -113,73 +304,206 @@
   .headerContent {
     position: absolute;
     width: 100%;
-    top: 30%;
+    top: 25%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 20px;
+    gap: 30px;
+    z-index: 2;
+    padding: 0 20px;
 
-    img {
-      max-width: 400px;
+    .hero-logo {
+      max-width: 450px;
+      filter: drop-shadow(0 10px 40px rgba(0, 0, 0, 0.3));
+      transition: var(--transition-smooth);
+
+      &:hover {
+        filter: drop-shadow(0 15px 50px rgba(226, 55, 68, 0.5));
+      }
 
       @include mobile {
-        width: 200px;
+        max-width: 250px;
       }
 
       @include tablet {
-        width: 300px;
+        max-width: 320px;
       }
     }
 
     h3 {
       color: white;
-      font-size: 2rem;
-      font-weight: normal;
-      letter-spacing: 0.2rem;
+      font-size: 2.2rem;
+      font-weight: 400;
+      letter-spacing: 0.1rem;
+      text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+      animation: fadeInUp 0.8s ease 0.3s backwards;
+
       @include mobile {
         letter-spacing: normal;
-        font-size: 1rem;
+        font-size: 1.1rem;
+        text-align: center;
       }
 
       @include tablet {
         letter-spacing: normal;
-        font-size: 1.5rem;
+        font-size: 1.6rem;
+        text-align: center;
       }
     }
 
-    .input {
-      min-width: 50%;
-      height: 55px;
-      border: none;
+    .input-container {
+      min-width: 55%;
+      height: 60px;
       background-color: white;
-      border-radius: 5px;
+      border-radius: 12px;
       overflow: hidden;
       display: flex;
       align-items: center;
+      box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3);
+      animation: fadeInUp 0.8s ease 0.6s backwards;
+      transition: var(--transition-smooth);
+      border: 3px solid transparent;
 
-      select {
-        flex: 1;
-        border: none;
-        outline: none;
-        scroll-behavior: smooth;
-        font-size: 16px;
-        font-weight: normal;
-        color: gray;
-        padding: 8px;
+      &.focused {
+        border-color: var(--zomato-red);
+        box-shadow: 0 20px 60px rgba(226, 55, 68, 0.3);
+        transform: scale(1.02);
       }
 
-      input {
-        flex: 2;
-        padding: 8px;
-        border: none;
-        outline: none;
+      @include mobile {
+        min-width: 95%;
+        height: 55px;
+        flex-direction: column;
+        height: auto;
+        gap: 0;
+      }
 
-        &::placeholder {
-          font-size: 16px;
-          font-weight: normal;
+      .location-select {
+        flex: 1.2;
+        display: flex;
+        align-items: center;
+        padding: 0 20px;
+        gap: 10px;
+
+        @include mobile {
+          padding: 12px 15px;
+          border-bottom: 1px solid #eee;
+        }
+
+        .location-icon {
+          font-size: 1.5rem;
+        }
+
+        select {
+          flex: 1;
+          border: none;
+          outline: none;
+          font-size: 17px;
+          font-weight: 500;
+          color: #333;
+          padding: 8px;
+          background: transparent;
+          cursor: pointer;
+          transition: var(--transition-smooth);
+
+          &:hover {
+            color: var(--zomato-red);
+          }
         }
       }
+
+      .divider {
+        width: 2px;
+        height: 35px;
+        background: #e0e0e0;
+
+        @include mobile {
+          display: none;
+        }
+      }
+
+      .search-input {
+        flex: 2.5;
+        display: flex;
+        align-items: center;
+        padding: 0 20px;
+        gap: 12px;
+
+        @include mobile {
+          padding: 12px 15px;
+        }
+
+        .search-icon {
+          color: var(--zomato-red);
+          font-size: 1.5rem;
+        }
+
+        input {
+          flex: 1;
+          padding: 8px;
+          border: none;
+          outline: none;
+          font-size: 17px;
+          color: #333;
+
+          &::placeholder {
+            font-size: 17px;
+            font-weight: 400;
+            color: #999;
+          }
+
+          &:focus {
+            color: #222;
+          }
+        }
+      }
+    }
+
+    .quick-tags {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+      justify-content: center;
+      animation: fadeInUp 0.8s ease 0.9s backwards;
+
+      @include mobile {
+        gap: 10px;
+      }
+
+      .tag {
+        background: rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(10px);
+        padding: 10px 20px;
+        border-radius: 25px;
+        color: white;
+        font-size: 15px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: var(--transition-smooth);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+
+        &:hover {
+          background: var(--zomato-red);
+          transform: translateY(-3px);
+          box-shadow: 0 10px 25px rgba(226, 55, 68, 0.4);
+        }
+      }
+    }
+  }
+
+  .scroll-indicator {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    animation: bounce 2s infinite;
+
+    .scroll-arrow {
+      color: white;
+      font-size: 2rem;
+      opacity: 0.8;
     }
   }
 }

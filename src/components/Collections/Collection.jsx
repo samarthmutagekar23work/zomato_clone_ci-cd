@@ -7,47 +7,61 @@ import collection3 from "../../assets/images/collection3.webp";
 import collection4 from "../../assets/images/collection4.webp";
 
 const Collection = () => {
+  const collections = [
+    {
+      image: collection1,
+      title: "10 Must-Visit Places for Christmas",
+      places: 9,
+      gradient: "linear-gradient(135deg, rgba(226, 55, 68, 0.8) 0%, rgba(255, 107, 107, 0.8) 100%)"
+    },
+    {
+      image: collection2,
+      title: "7 Finest Buffet Places",
+      places: 7,
+      gradient: "linear-gradient(135deg, rgba(102, 126, 234, 0.8) 0%, rgba(118, 75, 162, 0.8) 100%)"
+    },
+    {
+      image: collection3,
+      title: "Top 8 Picturesque Cafes",
+      places: 7,
+      gradient: "linear-gradient(135deg, rgba(240, 147, 251, 0.8) 0%, rgba(245, 87, 108, 0.8) 100%)"
+    },
+    {
+      image: collection4,
+      title: "10 Best Luxury Dining Places",
+      places: 10,
+      gradient: "linear-gradient(135deg, rgba(79, 172, 254, 0.8) 0%, rgba(0, 242, 254, 0.8) 100%)"
+    }
+  ];
+
   return (
     <div className="collection">
-      <h1>Collection</h1>
-      <div className="collectionText">
-        <p>
-          Explore curated lists of top restaurants, cafes, pubs, and bars in
-          Ahmedabad, based on trends
-        </p>
-        <span>
-          All collection in Ahmedabad <ArrowRightIcon />
-        </span>
+      <div className="collection-header">
+        <div className="header-content">
+          <h1>Collections</h1>
+          <div className="header-subtitle">
+            <p>Explore curated lists of top restaurants, cafes, pubs, and bars in Ahmedabad, based on trends</p>
+            <span className="view-all">
+              All collection in Ahmedabad <ArrowRightIcon className="arrow" />
+            </span>
+          </div>
+        </div>
       </div>
       <div className="collectionCard">
-        <div className="collectionImg">
-          <img src={collection1} alt="img" />
-          <h3>10 Must-Visit Places for Christmas</h3>
-          <span>
-            9 Places <ArrowRightIcon />
-          </span>
-        </div>
-        <div className="collectionImg">
-          <img src={collection2} alt="img2" />
-          <h3>7 Finest Buffet Places</h3>
-          <span>
-            7 Places <ArrowRightIcon />
-          </span>
-        </div>
-        <div className="collectionImg">
-          <img src={collection3} alt="img4" />
-          <h3>Top 8 Picturesque Cafes</h3>
-          <span>
-            7 Places <ArrowRightIcon />
-          </span>
-        </div>
-        <div className="collectionImg">
-          <img src={collection4} alt="img4" />
-          <h3>10 Best Luxury Dining Places</h3>
-          <span>
-            10 Places <ArrowRightIcon />
-          </span>
-        </div>
+        {collections.map((collection, index) => (
+          <div className="collectionImg" key={index}>
+            <div className="image-container">
+              <img src={collection.image} alt={collection.title} />
+              <div className="overlay" style={{ background: collection.gradient }}></div>
+            </div>
+            <div className="content">
+              <h3>{collection.title}</h3>
+              <span>
+                {collection.places} Places <ArrowRightIcon className="arrow-small" />
+              </span>
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   );
