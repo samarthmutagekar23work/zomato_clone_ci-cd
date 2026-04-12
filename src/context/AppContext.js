@@ -2,9 +2,19 @@ import React, { createContext, useContext, useReducer, useMemo, useCallback } fr
 
 const AppContext = createContext();
 
+const getStorageItem = (key, defaultValue, isJson = false) => {
+  try {
+    const item = localStorage.getItem(key);
+    if (item === null) return defaultValue;
+    return isJson ? JSON.parse(item) : item;
+  } catch {
+    return defaultValue;
+  }
+};
+
 const initialState = {
-  city: localStorage.getItem("selectedCity") || "",
-  cart: JSON.parse(localStorage.getItem("cart")) || [],
+  city: getStorageItem("selectedCity", ""),
+  cart: getStorageItem("cart", [], true),
   searchQuery: "",
   searchResults: [],
   filters: {
@@ -24,19 +34,14 @@ const appReducer = (state, action) => {
       return { ...state, city: action.payload };
 
     case "ADD_TO_CART": {
-      const existingItem = state.cart.find(
-        (item) => item.id === action.payload.id && item.restaurantId === action.payload.restaurantId
-      );
-      let newCart;
-      if (existingItem) {
-        newCart = state.cart.map((item) =>
-          item.id === action.payload.id && item.restaurantId === action.payload.restaurantId
-            ? { ...item, quantity: item.quantity + 1 }
-            : item
-        );
-      } else {
-        newCart = [...state.cart, { ...action.payload, quantity: 1 }];
-      }
+      const matchesItem = (item) =>
+        item.id === action.payload.id && item.restaurantId === action.payload.restaurantId;
+      const existingItem = state.cart.find(matchesItem);
+      const newCart = existingItem
+        ? state.cart.map((item) =>
+            matchesItem(item) ? { ...item, quantity: item.quantity + 1 } : item
+          )
+        : [...state.cart, { ...action.payload, quantity: 1 }];
       localStorage.setItem("cart", JSON.stringify(newCart));
       return { ...state, cart: newCart };
     }

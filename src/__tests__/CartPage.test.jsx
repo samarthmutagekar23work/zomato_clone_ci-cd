@@ -1,4 +1,5 @@
 import '@testing-library/jest-dom';
+import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 import CartPage from '../pages/CartPage/CartPage';
@@ -8,24 +9,16 @@ jest.mock('react-transition-group', () => ({
   CSSTransition: ({ children }) => children,
 }));
 
-const mockCartItem = {
-  id: 1,
-  restaurantId: 'r1',
-  restaurantName: 'Test Restaurant',
-  name: 'Test Item',
-  price: 250,
-  quantity: 2,
-  isVeg: true,
-};
+const TestWrapper = ({ children }) => (
+  <AppProvider>
+    <BrowserRouter>
+      {children}
+    </BrowserRouter>
+  </AppProvider>
+);
 
-const renderWithProviders = (ui, { initialCart = [] } = {}) => {
-  return render(
-    <AppProvider initialCart={initialCart}>
-      <BrowserRouter>
-        {ui}
-      </BrowserRouter>
-    </AppProvider>
-  );
+const renderWithProviders = (ui) => {
+  return render(ui, { wrapper: TestWrapper });
 };
 
 describe('CartPage Component', () => {
