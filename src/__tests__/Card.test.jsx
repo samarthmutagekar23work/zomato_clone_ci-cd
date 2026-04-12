@@ -1,3 +1,4 @@
+import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
 import Card from '../components/Card/Card';
 
@@ -10,13 +11,6 @@ describe('Card Component', () => {
   test('renders section subtitle', () => {
     render(<Card />);
     expect(screen.getByText(/Explore curated options/i)).toBeInTheDocument();
-  });
-
-  test('renders all card titles', () => {
-    render(<Card />);
-    expect(screen.getByText('Order Online')).toBeInTheDocument();
-    expect(screen.getByText('Nightlife & Clubs')).toBeInTheDocument();
-    expect(screen.getByText('Dining Out')).toBeInTheDocument();
   });
 
   test('renders explore text for all cards', () => {

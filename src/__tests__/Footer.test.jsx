@@ -1,25 +1,35 @@
+import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
 import Footer from '../components/Footer/Footer';
 
 describe('Footer Component', () => {
-  test('renders footer logo', () => {
+  test('renders footer with correct class', () => {
     render(<Footer />);
-    expect(screen.getByText('zomato')).toBeInTheDocument();
+    expect(document.querySelector('.footer')).toBeInTheDocument();
   });
 
-  test('renders about section', () => {
+  test('renders social links section', () => {
     render(<Footer />);
-    expect(screen.getByText('About Zomato')).toBeTheDocument();
+    expect(screen.getByText('SOCIAL LINKS')).toBeInTheDocument();
   });
 
-  test('renders restaurant categories', () => {
+  test('renders footer sections', () => {
     render(<Footer />);
-    expect(screen.getByText('Restaurant'));
+    expect(screen.getByText('ABOUT ZOMATO')).toBeInTheDocument();
+    expect(screen.getByText('ZOMAVERSE')).toBeInTheDocument();
+    expect(screen.getByText('LEARN MORE')).toBeInTheDocument();
   });
 
-  test('renders social links', () => {
+  test('renders footer links', () => {
     render(<Footer />);
-    const socialSection = screen.getByText(/Follow us/i);
-    expect(socialSection).toBeInTheDocument();
+    expect(screen.getByText('Privacy')).toBeInTheDocument();
+    expect(screen.getByText('Security')).toBeInTheDocument();
+    expect(screen.getByText('Terms')).toBeInTheDocument();
+  });
+
+  test('renders scroll to top button', () => {
+    render(<Footer />);
+    const buttons = document.querySelectorAll('button');
+    expect(buttons.length).toBeGreaterThan(0);
   });
 });
