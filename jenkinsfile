@@ -18,32 +18,44 @@ pipeline {
                 git 'https://github.com/KastroVKiran/Zomato-Project-Kastro.git'
             }
         }
+        stage("Install NPM Dependencies") {
+            steps {
+                sh "npm install"
+            }
+        }
+        stage("Run Tests with Coverage") {
+            steps {
+                sh "CI=true npm test -- --coverage --coverageReporters=lcov"
+            }
+        }
         stage("Sonarqube Analysis"){
             steps{
                 withSonarQubeEnv('sonar-server') {
-                    sh ''' $SCANNER_HOME/bin/sonar-scanner -Dsonar.projectName=zomato \
-                    -Dsonar.projectKey=zomato '''
+                    sh ''' $SCANNER_HOME/bin/sonar-scanner \
+                    -Dsonar.projectName=zomato \
+                    -Dsonar.projectKey=zomato \
+                    -Dsonar.sources=src \
+                    -Dsonar.tests=src/__tests__ \
+                    -Dsonar.test.inclusions="**/*.test.js,**/*.test.jsx" \
+                    -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info \
+                    -Dsonar.sourceEncoding=UTF-8 \
+                    -Dsonar.exclusions="**/*.test.js,**/*.test.jsx,**/setupTests.js,**/reportWebVitals.js,**/index.js"'''
                 }
             }
         }
         stage("Code Quality Gate"){
            steps {
                 script {
-                    waitForQualityGate abortPipeline: false, credentialsId: 'Sonar-token' 
+                    waitForQualityGate abortPipeline: true, credentialsId: 'Sonar-token' 
                 }
             } 
-        }
-        stage("Install NPM Dependencies") {
-            steps {
-                sh "npm install"
-            }
         }
         stage('OWASP FS SCAN') {
             steps {
                 dependencyCheck additionalArguments: '--scan ./ --disableYarnAudit --disableNodeAudit -n', odcInstallation: 'DP-Check'
                 dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
-    }
-}
+            }
+        }
         stage ("Trivy File Scan") {
             steps {
                 sh "trivy fs . > trivy.txt"
@@ -82,27 +94,33 @@ pipeline {
         }
     }
     post {
-    always {
-        emailext attachLog: true,
-            subject: "'${currentBuild.result}'",
-            body: """
-                <html>
-                <body>
-                    <div style="background-color: #FFA07A; padding: 10px; margin-bottom: 10px;">
-                        <p style="color: white; font-weight: bold;">Project: ${env.JOB_NAME}</p>
-                    </div>
-                    <div style="background-color: #90EE90; padding: 10px; margin-bottom: 10px;">
-                        <p style="color: white; font-weight: bold;">Build Number: ${env.BUILD_NUMBER}</p>
-                    </div>
-                    <div style="background-color: #87CEEB; padding: 10px; margin-bottom: 10px;">
-                        <p style="color: white; font-weight: bold;">URL: ${env.BUILD_URL}</p>
-                    </div>
-                </body>
-                </html>
-            """,
-            to: 'kastrokiran@gmail.com',
-            mimeType: 'text/html',
-            attachmentsPattern: 'trivy.txt'
+        success {
+            echo "Pipeline completed successfully!"
+        }
+        failure {
+            echo "Pipeline failed. Check SonarQube dashboard for details."
+        }
+        always {
+            emailext attachLog: true,
+                subject: "'${currentBuild.result}'",
+                body: """
+                    <html>
+                    <body>
+                        <div style="background-color: #FFA07A; padding: 10px; margin-bottom: 10px;">
+                            <p style="color: white; font-weight: bold;">Project: ${env.JOB_NAME}</p>
+                        </div>
+                        <div style="background-color: #90EE90; padding: 10px; margin-bottom: 10px;">
+                            <p style="color: white; font-weight: bold;">Build Number: ${env.BUILD_NUMBER}</p>
+                        </div>
+                        <div style="background-color: #87CEEB; padding: 10px; margin-bottom: 10px;">
+                            <p style="color: white; font-weight: bold;">URL: ${env.BUILD_URL}</p>
+                        </div>
+                    </body>
+                    </html>
+                """,
+                to: 'kastrokiran@gmail.com',
+                mimeType: 'text/html',
+                attachmentsPattern: 'trivy.txt'
         }
     }
 }
