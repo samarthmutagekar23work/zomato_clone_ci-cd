@@ -159,7 +159,7 @@ export const AppProvider = ({ children }) => {
       setFilters,
       resetFilters,
     }),
-    [state]
+    [state, addToCart, removeFromCart, updateQuantity, clearCart, getCartTotal, getCartItemCount, setCity, setSearchQuery, setFilters, resetFilters]
   );
 
   return (
