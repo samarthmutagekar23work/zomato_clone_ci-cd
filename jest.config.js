@@ -4,9 +4,7 @@ module.exports = {
     '!src/**/*.test.{js,jsx}',
     '!src/**/index.{js,jsx}',
     '!src/reportWebVitals.js',
-    '!src/setupTests.js',
-    '!src/pages/CheckoutPage/**',
-    '!src/pages/RestaurantDetailPage/**'
+    '!src/setupTests.js'
   ],
   coverageThreshold: {
     global: {
