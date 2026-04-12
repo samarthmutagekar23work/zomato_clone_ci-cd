@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useReducer, useMemo } from "react";
+import React, { createContext, useContext, useReducer, useMemo, useCallback } from "react";
 
 const AppContext = createContext();
 
@@ -99,51 +99,51 @@ const appReducer = (state, action) => {
 export const AppProvider = ({ children }) => {
   const [state, dispatch] = useReducer(appReducer, initialState);
 
-  const addToCart = (item, restaurantId, restaurantName) => {
+  const addToCart = useCallback((item, restaurantId, restaurantName) => {
     dispatch({
       type: "ADD_TO_CART",
       payload: { ...item, restaurantId, restaurantName },
     });
-  };
+  }, []);
 
-  const removeFromCart = (item) => {
+  const removeFromCart = useCallback((item) => {
     dispatch({ type: "REMOVE_FROM_CART", payload: item });
-  };
+  }, []);
 
-  const updateQuantity = (item, quantity) => {
+  const updateQuantity = useCallback((item, quantity) => {
     dispatch({
       type: "UPDATE_QUANTITY",
       payload: { ...item, quantity },
     });
-  };
+  }, []);
 
-  const clearCart = () => {
+  const clearCart = useCallback(() => {
     dispatch({ type: "CLEAR_CART" });
-  };
+  }, []);
 
-  const getCartTotal = () => {
+  const getCartTotal = useCallback(() => {
     return state.cart.reduce((total, item) => total + item.price * item.quantity, 0);
-  };
+  }, [state.cart]);
 
-  const getCartItemCount = () => {
+  const getCartItemCount = useCallback(() => {
     return state.cart.reduce((count, item) => count + item.quantity, 0);
-  };
+  }, [state.cart]);
 
-  const setCity = (city) => {
+  const setCity = useCallback((city) => {
     dispatch({ type: "SET_CITY", payload: city });
-  };
+  }, []);
 
-  const setSearchQuery = (query) => {
+  const setSearchQuery = useCallback((query) => {
     dispatch({ type: "SET_SEARCH_QUERY", payload: query });
-  };
+  }, []);
 
-  const setFilters = (filters) => {
+  const setFilters = useCallback((filters) => {
     dispatch({ type: "SET_FILTERS", payload: filters });
-  };
+  }, []);
 
-  const resetFilters = () => {
+  const resetFilters = useCallback(() => {
     dispatch({ type: "RESET_FILTERS" });
-  };
+  }, []);
 
   const value = useMemo(
     () => ({
