@@ -199,6 +199,31 @@
       .nav-link {
         font-size: 18px;
         font-weight: 400;
+        text-decoration: none;
+      }
+
+      .cart-link {
+        position: relative;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+      }
+
+      .cart-badge {
+        position: absolute;
+        top: -8px;
+        right: -10px;
+        background: var(--zomato-red);
+        color: white;
+        font-size: 11px;
+        font-weight: 700;
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        animation: pulse 0.5s ease;
       }
 
       .nav-btn {
@@ -277,6 +302,14 @@
         transition: var(--transition-smooth);
         position: relative;
         padding: 10px 0;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+
+        svg {
+          font-size: 24px;
+        }
 
         &::before {
           content: '';
@@ -455,6 +488,28 @@
           &:focus {
             color: #222;
           }
+        }
+      }
+
+      .search-btn {
+        background: var(--zomato-red);
+        border: none;
+        padding: 8px 15px;
+        margin-right: 8px;
+        border-radius: 6px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background 0.3s ease;
+        color: white;
+
+        &:hover {
+          background: var(--zomato-dark-red);
+        }
+
+        @include mobile {
+          display: none;
         }
       }
     }

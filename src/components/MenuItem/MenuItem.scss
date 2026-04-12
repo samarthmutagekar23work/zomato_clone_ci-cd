@@ -1,0 +1,154 @@
+.menu-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  border: 1px solid #e8e8e8;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+  background: white;
+}
+
+.menu-item:hover {
+  border-color: #e23744;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+.item-details {
+  flex: 1;
+}
+
+.item-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.veg-indicator {
+  width: 18px;
+  height: 18px;
+  border: 2px solid;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 3px;
+}
+
+.veg-indicator.veg {
+  border-color: #2ecc71;
+}
+
+.veg-indicator.non-veg {
+  border-color: #e74c3c;
+}
+
+.veg-indicator .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.veg-indicator.veg .dot {
+  background: #2ecc71;
+}
+
+.veg-indicator.non-veg .dot {
+  background: #e74c3c;
+}
+
+.item-name {
+  font-size: 17px;
+  font-weight: 600;
+  color: #1c1c1c;
+  margin: 0;
+}
+
+.item-description {
+  font-size: 14px;
+  color: #696969;
+  margin: 0 0 8px;
+  line-height: 1.4;
+}
+
+.item-price {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1c1c1c;
+  margin: 0;
+}
+
+.item-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+  margin-left: 20px;
+}
+
+.quantity-control {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: white;
+  border: 2px solid #e23744;
+  border-radius: 8px;
+  padding: 5px;
+}
+
+.qty-btn {
+  background: none;
+  border: none;
+  color: #e23744;
+  cursor: pointer;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease;
+}
+
+.qty-btn:hover {
+  transform: scale(1.1);
+}
+
+.qty-value {
+  font-weight: 700;
+  color: #1c1c1c;
+  min-width: 24px;
+  text-align: center;
+}
+
+.add-btn {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 10px 20px;
+  background: white;
+  border: 2px solid #e23744;
+  border-radius: 8px;
+  color: #e23744;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 14px;
+}
+
+.add-btn:hover {
+  background: #e23744;
+  color: white;
+}
+
+@media (max-width: 768px) {
+  .menu-item {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .item-actions {
+    flex-direction: row;
+    justify-content: flex-end;
+    margin-left: 0;
+    margin-top: 15px;
+  }
+}

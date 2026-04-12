@@ -1,25 +1,37 @@
 import '@testing-library/jest-dom';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
+import { BrowserRouter } from 'react-router-dom';
 import Header from '../components/Header/Header';
+import { AppProvider } from '../context/AppContext';
 
 jest.mock('react-transition-group', () => ({
   CSSTransition: ({ children }) => children,
 }));
 
+const renderWithProviders = (ui) => {
+  return render(
+    <AppProvider>
+      <BrowserRouter>
+        {ui}
+      </BrowserRouter>
+    </AppProvider>
+  );
+};
+
 describe('Header Component', () => {
   test('renders header', () => {
-    render(<Header />);
+    renderWithProviders(<Header />);
     expect(document.querySelector('.header')).toBeInTheDocument();
   });
 
   test('renders logo', () => {
-    render(<Header />);
+    renderWithProviders(<Header />);
     const logos = document.querySelectorAll('img');
     expect(logos.length).toBeGreaterThan(0);
   });
 
   test('renders navigation links', () => {
-    render(<Header />);
+    renderWithProviders(<Header />);
     expect(screen.getByText('Get the App')).toBeInTheDocument();
     expect(screen.getAllByText('Investor Relations').length).toBeGreaterThan(0);
     expect(screen.getByText('Add restaurant')).toBeInTheDocument();
@@ -28,36 +40,36 @@ describe('Header Component', () => {
   });
 
   test('renders search input', () => {
-    render(<Header />);
+    renderWithProviders(<Header />);
     expect(screen.getByPlaceholderText(/Search for restaurant/i)).toBeInTheDocument();
   });
 
   test('renders location select', () => {
-    render(<Header />);
+    renderWithProviders(<Header />);
     const selects = document.querySelectorAll('select');
     expect(selects.length).toBeGreaterThan(0);
   });
 
   test('renders quick tags', () => {
-    render(<Header />);
+    renderWithProviders(<Header />);
     expect(screen.getByText('🍕 Pizza')).toBeInTheDocument();
     expect(screen.getByText('🍔 Burger')).toBeInTheDocument();
-    expect(screen.getByText('🍣 Sushi')).toBeInTheDocument();
+    expect(screen.getByText('🍗 Biryani')).toBeInTheDocument();
   });
 
   test('renders scroll indicator', () => {
-    render(<Header />);
+    renderWithProviders(<Header />);
     expect(screen.getByText('↓')).toBeInTheDocument();
   });
 
   test('renders hamburger menu', () => {
-    render(<Header />);
+    renderWithProviders(<Header />);
     const hamburger = document.querySelector('.hamburger');
     expect(hamburger).toBeInTheDocument();
   });
 
   test('renders hero title', () => {
-    render(<Header />);
+    renderWithProviders(<Header />);
     expect(screen.getByText(/Discover the best food/i)).toBeInTheDocument();
   });
 });
