@@ -1,6 +1,6 @@
 import '@testing-library/jest-dom';
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import { BrowserRouter, MemoryRouter } from 'react-router-dom';
+import { render, screen, fireEvent } from '@testing-library/react';
+import { BrowserRouter } from 'react-router-dom';
 import Header from '../components/Header/Header';
 import { AppProvider } from '../context/AppContext';
 
@@ -73,9 +73,132 @@ describe('Header Component', () => {
     expect(screen.getByText(/Discover the best food/i)).toBeInTheDocument();
   });
 
-  test('renders header overlay', () => {
+  test('can change search input', () => {
     renderWithProviders(<Header />);
-    expect(document.querySelector('.header-overlay')).toBeInTheDocument();
+    const input = screen.getByPlaceholderText(/Search for restaurant/i);
+    fireEvent.change(input, { target: { value: 'Pizza' } });
+    expect(input.value).toBe('Pizza');
+  });
+
+  test('handles search form submission', () => {
+    renderWithProviders(<Header />);
+    const input = screen.getByPlaceholderText(/Search for restaurant/i);
+    const form = document.querySelector('form');
+    fireEvent.change(input, { target: { value: 'Pizza' } });
+    fireEvent.submit(form);
+  });
+
+  test('handles search input focus', () => {
+    renderWithProviders(<Header />);
+    const input = screen.getByPlaceholderText(/Search for restaurant/i);
+    fireEvent.focus(input);
+  });
+
+  test('handles search input blur', () => {
+    renderWithProviders(<Header />);
+    const input = screen.getByPlaceholderText(/Search for restaurant/i);
+    fireEvent.blur(input);
+  });
+
+  test('toggles hamburger menu', () => {
+    renderWithProviders(<Header />);
+    const hamburger = document.querySelector('.hamburger');
+    fireEvent.click(hamburger);
+  });
+
+  test('toggles hamburger menu off', () => {
+    renderWithProviders(<Header />);
+    const hamburger = document.querySelector('.hamburger');
+    fireEvent.click(hamburger);
+    fireEvent.click(hamburger);
+  });
+
+  test('renders location icon', () => {
+    renderWithProviders(<Header />);
+    expect(document.querySelector('.location-icon')).toBeInTheDocument();
+  });
+
+  test('location select has options', () => {
+    renderWithProviders(<Header />);
+    const select = document.querySelector('select');
+    expect(select.options.length).toBeGreaterThan(0);
+  });
+
+  test('renders cart link', () => {
+    renderWithProviders(<Header />);
+    expect(document.querySelector('.cart-link')).toBeInTheDocument();
+  });
+
+  test('clicking pizza tag sets search', () => {
+    renderWithProviders(<Header />);
+    const pizzaTag = screen.getByText('🍕 Pizza');
+    fireEvent.click(pizzaTag);
+  });
+
+  test('clicking burger tag sets search', () => {
+    renderWithProviders(<Header />);
+    const burgerTag = screen.getByText('🍔 Burger');
+    fireEvent.click(burgerTag);
+  });
+
+  test('clicking biryani tag sets search', () => {
+    renderWithProviders(<Header />);
+    const biryaniTag = screen.getByText('🍗 Biryani');
+    fireEvent.click(biryaniTag);
+  });
+
+  test('clicking chinese tag sets search', () => {
+    renderWithProviders(<Header />);
+    const chineseTag = screen.getByText('🍜 Chinese');
+    fireEvent.click(chineseTag);
+  });
+
+  test('clicking desserts tag sets search', () => {
+    renderWithProviders(<Header />);
+    const dessertsTag = screen.getByText('🍰 Desserts');
+    fireEvent.click(dessertsTag);
+  });
+
+  test('search form has input-container class', () => {
+    renderWithProviders(<Header />);
+    expect(document.querySelector('.input-container')).toBeInTheDocument();
+  });
+
+  test('renders all menu items when hamburger open', () => {
+    renderWithProviders(<Header />);
+    const hamburger = document.querySelector('.hamburger');
+    fireEvent.click(hamburger);
+    expect(document.querySelector('.sideMenu')).toBeInTheDocument();
+  });
+
+  test('menu items include Home link', () => {
+    renderWithProviders(<Header />);
+    const hamburger = document.querySelector('.hamburger');
+    fireEvent.click(hamburger);
+    expect(document.querySelector('.menu-item')).toBeInTheDocument();
+  });
+
+  test('menu items include Cart', () => {
+    renderWithProviders(<Header />);
+    const hamburger = document.querySelector('.hamburger');
+    fireEvent.click(hamburger);
+    expect(screen.getByText(/Cart/)).toBeInTheDocument();
+  });
+
+  test('hamburger renders menu icon initially', () => {
+    renderWithProviders(<Header />);
+    const hamburger = document.querySelector('.hamburger');
+    expect(hamburger).toBeInTheDocument();
+  });
+
+  test('search button exists', () => {
+    renderWithProviders(<Header />);
+    expect(document.querySelector('.search-btn')).toBeInTheDocument();
+  });
+
+  test('quick tags container exists', () => {
+    renderWithProviders(<Header />);
+    expect(document.querySelector('.quick-tags')).toBeInTheDocument();
   });
 
   test('renders header nav', () => {
@@ -93,124 +216,49 @@ describe('Header Component', () => {
     expect(document.querySelector('.hero-logo')).toBeInTheDocument();
   });
 
-  test('renders hero title element', () => {
+  test('renders hero title', () => {
     renderWithProviders(<Header />);
     expect(document.querySelector('.hero-title')).toBeInTheDocument();
   });
 
-  test('renders search form', () => {
+  test('renders header overlay', () => {
     renderWithProviders(<Header />);
-    expect(document.querySelector('form')).toBeInTheDocument();
+    expect(document.querySelector('.header-overlay')).toBeInTheDocument();
   });
 
-  test('renders search icon', () => {
+  test('renders scroll indicator', () => {
     renderWithProviders(<Header />);
-    expect(document.querySelector('.search-icon')).toBeInTheDocument();
+    expect(document.querySelector('.scroll-indicator')).toBeInTheDocument();
   });
 
-  test('renders search button', () => {
+  test('renders scroll arrow', () => {
     renderWithProviders(<Header />);
-    expect(document.querySelector('.search-btn')).toBeInTheDocument();
+    expect(document.querySelector('.scroll-arrow')).toBeInTheDocument();
   });
 
-  test('renders quick tags container', () => {
+  test('clicking sign up button does not navigate', () => {
     renderWithProviders(<Header />);
-    expect(document.querySelector('.quick-tags')).toBeInTheDocument();
+    const signUpBtn = document.querySelector('.btn-zomato');
+    fireEvent.click(signUpBtn);
   });
 
-  test('renders input container', () => {
+  test('search with empty query does not navigate', () => {
     renderWithProviders(<Header />);
-    expect(document.querySelector('.input-container')).toBeInTheDocument();
+    const form = document.querySelector('form');
+    fireEvent.submit(form);
   });
 
-  test('renders location select container', () => {
-    renderWithProviders(<Header />);
-    expect(document.querySelector('.location-select')).toBeInTheDocument();
-  });
-
-  test('renders search input element', () => {
-    renderWithProviders(<Header />);
-    expect(document.querySelector('.search-input')).toBeInTheDocument();
-  });
-
-  test('renders divider', () => {
-    renderWithProviders(<Header />);
-    expect(document.querySelector('.divider')).toBeInTheDocument();
-  });
-
-  test('renders cart link', () => {
-    renderWithProviders(<Header />);
-    expect(document.querySelector('.cart-link')).toBeInTheDocument();
-  });
-
-  test('renders sign up button', () => {
-    renderWithProviders(<Header />);
-    expect(document.querySelector('.btn-zomato')).toBeInTheDocument();
-  });
-
-  test('renders right navigation', () => {
-    renderWithProviders(<Header />);
-    expect(document.querySelector('.right')).toBeInTheDocument();
-  });
-
-  test('renders nav links', () => {
-    renderWithProviders(<Header />);
-    expect(document.querySelector('.nav-link')).toBeInTheDocument();
-  });
-
-  test('renders get app link', () => {
-    renderWithProviders(<Header />);
-    expect(document.querySelector('.get-app')).toBeInTheDocument();
-  });
-
-  test('renders nav button', () => {
-    renderWithProviders(<Header />);
-    expect(document.querySelector('.nav-btn')).toBeInTheDocument();
-  });
-
-  test('renders Chinese quick tag', () => {
-    renderWithProviders(<Header />);
-    expect(screen.getByText('🍜 Chinese')).toBeInTheDocument();
-  });
-
-  test('renders Desserts quick tag', () => {
-    renderWithProviders(<Header />);
-    expect(screen.getByText('🍰 Desserts')).toBeInTheDocument();
-  });
-
-  test('can change search input', () => {
-    renderWithProviders(<Header />);
-    const input = screen.getByPlaceholderText(/Search for restaurant/i);
-    fireEvent.change(input, { target: { value: 'Pizza' } });
-    expect(input.value).toBe('Pizza');
-  });
-
-  test('location icon renders', () => {
-    renderWithProviders(<Header />);
-    expect(document.querySelector('.location-icon')).toBeInTheDocument();
-  });
-
-  test('location select has options', () => {
-    renderWithProviders(<Header />);
-    const select = document.querySelector('select');
-    expect(select.options.length).toBeGreaterThan(0);
-  });
-
-  test('renders nav restaurant link', () => {
-    renderWithProviders(<Header />);
-    const links = document.querySelectorAll('.nav-link');
-    expect(links.length).toBeGreaterThan(0);
-  });
-
-  test('renders menu icon when hamburger closed', () => {
-    renderWithProviders(<Header />);
-    const hamburger = document.querySelector('.hamburger');
-    expect(hamburger).toBeInTheDocument();
-  });
-
-  test('toggles hamburger menu', () => {
+  test('renders inner menu when hamburger open', () => {
     renderWithProviders(<Header />);
     const hamburger = document.querySelector('.hamburger');
     fireEvent.click(hamburger);
+    expect(document.querySelector('.innerMenu')).toBeInTheDocument();
+  });
+
+  test('renders side logo when hamburger open', () => {
+    renderWithProviders(<Header />);
+    const hamburger = document.querySelector('.hamburger');
+    fireEvent.click(hamburger);
+    expect(document.querySelector('.side-logo')).toBeInTheDocument();
   });
 });

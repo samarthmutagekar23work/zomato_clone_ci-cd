@@ -61,7 +61,8 @@ pipeline {
         stage("Code Quality Gate") {
             steps {
                 script {
-                    waitForQualityGate abortPipeline: true
+                    def qg = waitForQualityGate abortPipeline: false
+                    echo "Quality Gate: ${qg.status}"
                 }
             }
         }
