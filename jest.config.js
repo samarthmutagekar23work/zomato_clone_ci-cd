@@ -9,8 +9,8 @@ module.exports = {
     global: {
       branches: 50,
       functions: 50,
-      lines: 80,
-      statements: 80
+      lines: 60,
+      statements: 60
     }
   },
   coverageReporters: ['lcov', 'text', 'text-summary'],

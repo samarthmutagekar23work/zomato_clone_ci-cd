@@ -1,7 +1,7 @@
 import '@testing-library/jest-dom';
 
 describe('CheckoutPage Component', () => {
-  test('checkout page renders without crashing', () => {
+  test('placeholder test for checkout page', () => {
     expect(true).toBe(true);
   });
 });
