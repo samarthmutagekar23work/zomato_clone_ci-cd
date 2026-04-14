@@ -1,23 +1,17 @@
-# Use Node.js 16 slim as the base image
-FROM node:16-slim
+FROM node:18-alpine
 
-# Set the working directory
 WORKDIR /app
 
-# Copy package.json and package-lock.json to the working directory
 COPY package*.json ./
 
-# Install dependencies
-RUN npm install
+RUN npm ci --production && npm cache clean --force
 
-# Copy the rest of the application code
-COPY . .
+COPY build ./build
 
-# Build the React app
-RUN npm run build
+RUN addgroup -g 1001 -S nodejs && adduser -S reactapp -u 1001
 
-# Expose port 3000 (or the port your app is configured to listen on)
+USER reactapp
+
 EXPOSE 3000
 
-# Start your Node.js server (assuming it serves the React app)  
-CMD ["npm", "start"]
+CMD ["npx", "serve", "-s", "build", "-l", "3000"]
