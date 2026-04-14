@@ -1,14 +1,12 @@
 {
-  "name": "zomato_clone",
-  "version": "0.1.0",
+  "name": "zomato-clone",
+  "version": "1.0.0",
   "private": true,
-  "engines": {
-    "node": ">=18.0.0"
-  },
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "lucide-react": "^0.294.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",
@@ -18,7 +16,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --coverage --watchAll=false",
-    "test:ci": "react-scripts test --coverage --watchAll=false && node scripts/cleanup-coverage.js",
+    "test:ci": "react-scripts test --coverage --watchAll=false",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
