@@ -1,0 +1,1332 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://unpkg.com https://cdn.tailwindcss.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://unpkg.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://source.unsplash.com https://images.unsplash.com https://www.themealdb.com https://api.dicebear.com; connect-src 'self' https://nominatim.openstreetmap.org https://overpass-api.de https://www.themealdb.com https://ipapi.co; frame-src 'none'; object-src 'none';">
+    <title>Zomato — Discover the best food</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://unpkg.com/fuse.js@6.6.2"></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+    <style>
+        :root {
+            --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-display: 'Playfair Display', Georgia, serif;
+            --font-accent: 'Poppins', sans-serif;
+            --text-hero: clamp(36px, 6vw, 64px);
+            --text-section: clamp(24px, 4vw, 40px);
+            --red-500: #E23744; --red-600: #CB202D; --red-700: #9F1239;
+            --gold: #F59E0B; --green-500: #22C55E; --green-600: #16A34A;
+            --gray-50: #F9FAFB; --gray-100: #F3F4F6; --gray-200: #E5E7EB;
+            --gray-500: #6B7280; --gray-700: #374151; --gray-800: #1F2937; --gray-900: #111827;
+            --shadow-sm: 0 2px 8px rgba(0,0,0,0.06), 0 1px 3px rgba(0,0,0,0.1);
+            --shadow-md: 0 4px 16px rgba(0,0,0,0.08), 0 2px 6px rgba(0,0,0,0.12);
+            --shadow-lg: 0 8px 32px rgba(0,0,0,0.10), 0 4px 12px rgba(0,0,0,0.15);
+            --shadow-xl: 0 20px 60px rgba(0,0,0,0.12), 0 8px 24px rgba(0,0,0,0.18);
+            --shadow-red: 0 8px 32px rgba(226,55,68,0.35);
+            --shadow-card-hover: 0 24px 64px rgba(0,0,0,0.18), 0 8px 24px rgba(0,0,0,0.12);
+            --radius-xs: 4px; --radius-sm: 8px; --radius-md: 12px; --radius-lg: 16px;
+            --radius-xl: 24px; --radius-2xl: 32px; --radius-full: 9999px;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: var(--font-primary); background-color: var(--gray-50); color: var(--gray-800); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+        h1, h2, h3, h4, h5, h6 { font-family: var(--font-accent); }
+        @keyframes fadeSlideUp { from { opacity: 0; transform: translateY(32px) scale(0.97); } to { opacity: 1; transform: translateY(0) scale(1); } }
+        @keyframes fadeSlideDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes zoomIn { from { opacity: 0; transform: scale(0.85); } to { opacity: 1; transform: scale(1); } }
+        @keyframes shimmer { 0% { background-position: -400% 0; } 100% { background-position: 400% 0; } }
+        @keyframes float { 0%, 100% { transform: translateY(0px) rotate(0deg); } 33% { transform: translateY(-18px) rotate(5deg); } 66% { transform: translateY(-8px) rotate(-3deg); } }
+        @keyframes pulse { 0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(226,55,68,0.4); } 50% { transform: scale(1.03); box-shadow: 0 0 0 12px rgba(226,55,68,0); } }
+        @keyframes cartBounce { 0% { transform: scale(1) rotate(0deg); } 20% { transform: scale(1.35) rotate(-8deg); } 40% { transform: scale(1.2) rotate(6deg); } 60% { transform: scale(1.1) rotate(-4deg); } 80% { transform: scale(1.05) rotate(2deg); } 100% { transform: scale(1) rotate(0deg); } }
+        @keyframes gradientShift { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+        @keyframes numberCount { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .animate-fadeSlideUp { animation: fadeSlideUp 0.5s cubic-bezier(0.16,1,0.3,1) both; }
+        .animate-zoomIn { animation: zoomIn 0.4s cubic-bezier(0.34,1.56,0.64,1) both; }
+        .stagger-children > *:nth-child(1) { animation-delay: 0.05s; }
+        .stagger-children > *:nth-child(2) { animation-delay: 0.10s; }
+        .stagger-children > *:nth-child(3) { animation-delay: 0.15s; }
+        .stagger-children > *:nth-child(4) { animation-delay: 0.20s; }
+        .stagger-children > *:nth-child(5) { animation-delay: 0.25s; }
+        .stagger-children > *:nth-child(6) { animation-delay: 0.30s; }
+        .stagger-children > *:nth-child(7) { animation-delay: 0.35s; }
+        .stagger-children > *:nth-child(8) { animation-delay: 0.40s; }
+        .stagger-children > *:nth-child(n+9){ animation-delay: 0.45s; }        .navbar { position: sticky; top: 0; z-index: 1000; background: white; border-bottom: 1px solid var(--gray-100); box-shadow: var(--shadow-sm); animation: fadeSlideDown 0.4s ease; }
+        .nav-logo { font-family: var(--font-display); font-size: 24px; font-weight: 900; color: var(--red-500); letter-spacing: -0.04em; cursor: pointer; }
+        .nav-search { flex: 1; max-width: 420px; background: var(--gray-50); border: 1.5px solid var(--gray-200); border-radius: var(--radius-full); display: flex; align-items: center; gap: 8px; padding: 10px 16px; }
+        .hero { min-height: 520px; background: linear-gradient(135deg, #1a0a0b 0%, #3d0f15 20%, #E23744 50%, #f87171 75%, #fbbf24 100%); background-size: 300% 300%; animation: gradientShift 8s ease infinite; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+        .hero-title { font-family: var(--font-display); font-size: var(--text-hero); font-weight: 900; color: white; text-align: center; line-height: 1.2; letter-spacing: -0.03em; text-shadow: 0 4px 32px rgba(0,0,0,0.3); animation: fadeSlideUp 0.7s cubic-bezier(0.16,1,0.3,1) 0.2s both; }
+        .hero-search { background: rgba(255,255,255,0.12); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border: 1.5px solid rgba(255,255,255,0.3); border-radius: var(--radius-full); display: flex; align-items: center; width: min(600px, 90vw); padding: 6px 6px 6px 20px; margin-top: 32px; box-shadow: 0 8px 40px rgba(0,0,0,0.2); animation: fadeSlideUp 0.7s cubic-bezier(0.16,1,0.3,1) 0.35s both; }
+        .hero-search input { background: none; border: none; outline: none; color: white; font-size: 15px; flex: 1; padding: 10px 12px; }
+        .hero-search-btn { background: white; color: var(--red-500); border: none; border-radius: var(--radius-full); padding: 12px 28px; font-weight: 700; cursor: pointer; }
+        .restaurant-card { background: white; border-radius: var(--radius-xl); overflow: hidden; cursor: pointer; box-shadow: var(--shadow-sm); border: 1px solid var(--gray-100); animation: fadeSlideUp 0.5s cubic-bezier(0.16,1,0.3,1) both; transition: transform 0.35s ease, box-shadow 0.35s ease; }
+        .restaurant-card:hover { transform: translateY(-8px) scale(1.01); box-shadow: var(--shadow-card-hover); }
+        .card-image-wrapper { position: relative; overflow: hidden; height: 200px; }
+        .card-image { width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 0.4s ease, transform 0.5s ease; }
+        .card-image.loaded { opacity: 1; }
+        .restaurant-card:hover .card-image { transform: scale(1.08); }
+        .card-skeleton { position: absolute; inset: 0; background: linear-gradient(90deg, #f0f0f0 25%, #e8e8e8 50%, #f0f0f0 75%); background-size: 400% 100%; animation: shimmer 1.5s ease infinite; }
+        .card-offer-badge { position: absolute; top: 12px; left: 12px; background: linear-gradient(135deg, #E23744, #CB202D); color: white; font-size: 11px; font-weight: 700; padding: 5px 10px; border-radius: var(--radius-full); box-shadow: 0 3px 12px rgba(226,55,68,0.5); animation: fadeSlideDown 0.4s ease 0.2s both; }
+        .card-promoted-tag { position: absolute; top: 12px; right: 12px; background: rgba(0,0,0,0.6); backdrop-filter: blur(8px); color: #FFD700; font-size: 9px; font-weight: 800; padding: 3px 8px; border-radius: var(--radius-full); }
+        .card-favorite-btn { position: absolute; bottom: 12px; right: 12px; background: rgba(255,255,255,0.2); backdrop-filter: blur(12px); border: none; border-radius: 50%; width: 34px; height: 34px; display: flex; align-items: center; justify-content: center; cursor: pointer; }
+        .card-body { padding: 16px; }
+        .card-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 6px; }
+        .card-name { font-size: 16px; font-weight: 700; color: var(--gray-900); letter-spacing: -0.02em; }
+        .card-cuisines { font-size: 13px; color: var(--gray-500); margin-bottom: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .card-location { font-size: 12px; color: var(--gray-500); margin-bottom: 12px; }
+        .card-divider { height: 1px; background: var(--gray-100); margin-bottom: 12px; }
+        .card-footer { display: flex; justify-content: space-between; align-items: center; }
+        .card-cost { font-size: 13px; font-weight: 600; color: var(--gray-700); }
+        .card-rating { display: inline-flex; align-items: center; gap: 3px; padding: 4px 10px; border-radius: var(--radius-full); font-size: 13px; font-weight: 700; }
+        .rating-green { background: #E8F5E9; color: #2E7D32; }
+        .rating-yellow { background: #FFF8E1; color: #F59E0B; }
+        .rating-red { background: #FFEBEE; color: #E23744; }
+        .cuisine-card { display: flex; flex-direction: column; align-items: center; gap: 10px; cursor: pointer; padding: 16px 12px; border-radius: var(--radius-lg); border: 2px solid transparent; transition: all 0.25s ease; min-width: 90px; animation: fadeSlideUp 0.4s ease both; }
+        .cuisine-card:hover { border-color: var(--gray-200); background: var(--gray-50); transform: translateY(-6px) scale(1.05); }
+        .cuisine-icon { width: 72px; height: 72px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 32px; box-shadow: var(--shadow-md); }
+        .collection-card { position: relative; border-radius: var(--radius-xl); overflow: hidden; height: 200px; cursor: pointer; animation: fadeSlideUp 0.5s ease both; }
+        .collection-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+        .collection-card:hover img { transform: scale(1.12); }
+        .collection-card-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.2) 60%, transparent 100%); }
+        .collection-card-title { font-family: var(--font-display); font-size: 20px; font-weight: 800; color: white; text-shadow: 0 2px 8px rgba(0,0,0,0.5); }
+        .add-btn { border: 2px solid var(--green-500); color: var(--green-500); background: white; font-size: 14px; font-weight: 700; padding: 8px 20px; border-radius: var(--radius-full); cursor: pointer; transition: all 0.2s ease; }
+        .add-btn:hover { background: var(--green-500); color: white; transform: scale(1.06); }
+        .qty-counter { display: flex; align-items: center; gap: 12px; border: 2px solid var(--green-500); border-radius: var(--radius-full); animation: zoomIn 0.4s ease; }
+        .qty-btn { background: var(--green-500); color: white; border: none; width: 32px; height: 32px; font-size: 18px; font-weight: 700; cursor: pointer; }
+        .qty-value { font-size: 15px; font-weight: 700; color: var(--green-600); min-width: 20px; text-align: center; animation: numberCount 0.2s ease; }
+        .cart-badge { position: absolute; top: -6px; right: -6px; background: var(--red-500); color: white; font-size: 11px; font-weight: 800; min-width: 20px; height: 20px; border-radius: var(--radius-full); display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(226,55,68,0.5); animation: zoomIn 0.35s ease; }
+        .toast { position: fixed; bottom: 24px; right: 24px; display: flex; align-items: center; gap: 12px; padding: 14px 20px; background: var(--gray-900); color: white; border-radius: var(--radius-lg); box-shadow: var(--shadow-xl); font-size: 14px; z-index: 99999; max-width: 360px; animation: fadeSlideUp 0.4s ease; }
+        .toast.success { border-left: 4px solid var(--green-500); }
+        .toast.error { border-left: 4px solid var(--red-500); }
+        .section-title { font-size: var(--text-section); font-weight: 700; letter-spacing: -0.02em; color: var(--gray-900); }
+        .city-card { border-radius: var(--radius-xl); overflow: hidden; cursor: pointer; box-shadow: var(--shadow-sm); border: 1px solid var(--gray-100); transition: transform 0.3s ease; animation: fadeSlideUp 0.5s ease both; }
+        .city-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+        .menu-item { display: flex; gap: 16px; padding: 16px; border-bottom: 1px solid var(--gray-100); animation: fadeSlideUp 0.4s ease both; }
+        .menu-item-img { width: 120px; height: 90px; border-radius: var(--radius-md); object-fit: cover; }
+        .menu-item-name { font-size: 15px; font-weight: 600; color: var(--gray-900); margin-bottom: 4px; }
+        .menu-item-desc { font-size: 13px; color: var(--gray-500); margin-bottom: 8px; line-height: 1.4; }
+        .menu-item-price { font-size: 14px; font-weight: 700; color: var(--red-500); }
+        .btn-red { background: var(--red-500); color: white; border: none; padding: 12px 24px; border-radius: var(--radius-full); font-weight: 700; cursor: pointer; box-shadow: var(--shadow-red); }
+        .btn-outline { background: white; color: var(--red-500); border: 2px solid var(--red-500); padding: 10px 22px; border-radius: var(--radius-full); font-weight: 700; cursor: pointer; }
+        .footer { background: var(--gray-900); color: white; padding: 48px 0 24px; margin-top: 48px; }
+        @media (max-width: 768px) { .hero { min-height: 400px; } .hero-title { font-size: 32px; } .card-image-wrapper { height: 160px; } }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+const { useState, useEffect, useMemo, useCallback } = React;
+
+const RATING_THRESHOLDS = { EXCELLENT: 4.5, GOOD: 4.0, AVERAGE: 3.5 };
+
+const ALLOWED_API_DOMAINS = [
+    'nominatim.openstreetmap.org', 'overpass-api.de', 'www.themealdb.com',
+    'source.unsplash.com', 'api.dicebear.com', 'ipapi.co'
+];
+
+const CUISINE_KEYWORDS = {
+    'Biryani': 'biryani-rice-indian', 'Pizza': 'pizza-italian-cheese',
+    'Burger': 'burger-american-food', 'Chinese': 'chinese-noodles-asian',
+    'South Indian': 'dosa-idli-sambar', 'North Indian': 'curry-naan-paneer',
+    'Seafood': 'fish-curry-seafood', 'Desserts': 'gulab-jamun-dessert',
+    'Beverages': 'lassi-chai-drink', 'Fast Food': 'sandwich-snack-food',
+    'Cafe': 'coffee-cafe-pastry', 'default': 'indian-food-restaurant'
+};
+
+const CUISINE_EMOJIS = {
+    'Biryani': '🍚', 'Pizza': '🍕', 'Burger': '🍔', 'Chinese': '🥡', 'South Indian': '🥘',
+    'North Indian': '🍛', 'Japanese': '🍣', 'Desserts': '🍰', 'Salads': '🥗', 'Beverages': '🥤',
+    'Seafood': '🦞', 'Fast Food': '🍟', 'Continental': '🍽', 'Italian': '🍝', 'Mughlai': '🍖',
+    'Parsi': '🥘', 'American': '🍔', 'Thai': '🍜', 'Hyderabadi': '🍚', 'BBQ': '🔥',
+    'Bakery': '🥖', 'Coffee': '☕', 'Brewery': '🍺', 'Bar': '🍸', 'Asian': '🍜', 'Beer': '🍺',
+    'Punjabi': '🍛', 'Coastal': '🦐', 'Cafe': '☕', 'Buffet': '🍽', 'Molecular': '🧪', 'Paratha': '🥘',
+    'Kebab': '🍢', 'Vegetarian': '🥗', 'Street Food': '🍟', 'Sweets': '🍬', 'Ice Cream': '🍨',
+};
+
+const CITIES = ['Bangalore', 'Mumbai', 'Delhi', 'Pune', 'Hyderabad', 'Chennai', 'Kolkata', 'Ahmedabad'];
+
+const isAllowedDomain = (url) => {
+    try { return ALLOWED_API_DOMAINS.includes(new URL(url).hostname); } catch { return false; }
+};
+
+const sanitizeSearchQuery = (input) => input.replace(/[<>\"&]/g, '').trim().slice(0, 100);
+
+const safeStorage = {
+    get: (key) => { try { return localStorage.getItem(key); } catch { return null; } },
+    set: (key, value) => { try { localStorage.setItem(key, value); } catch { } },
+    getJSON: (key, fallback) => { try { return JSON.parse(localStorage.getItem(key) || JSON.stringify(fallback)); } catch { return fallback; } },
+    setJSON: (key, value) => { try { localStorage.setItem(key, JSON.stringify(value)); } catch { } }
+};
+
+const getRatingColor = (rating) => {
+    if (rating >= RATING_THRESHOLDS.EXCELLENT) return 'green';
+    if (rating >= RATING_THRESHOLDS.GOOD) return 'yellow';
+    return 'red';
+};
+
+const getRestaurantImage = (restaurant) => {
+    const keyword = CUISINE_KEYWORDS[restaurant.cuisines[0]] || CUISINE_KEYWORDS['default'];
+    return 'https://source.unsplash.com/600x400/?restaurant,' + keyword + '&sig=' + restaurant.id;
+};
+
+const getCityImage = (cityName) => 'https://source.unsplash.com/600x400/?city,' + cityName.toLowerCase() + ',india&sig=' + cityName;
+const RESTAURANTS = [
+    {id:'r1',name:'Meghana Foods',cuisines:['Biryani','North Indian'],city:'Bangalore',locality:'Koramangala',rating:4.5,totalRatings:12453,deliveryTime:30,costForTwo:400,isVeg:false,isOpen:true,isPromoted:true,offers:['50% off up to ₹100'],imageKeyword:'biryani',phone:'080-12345678'},
+    {id:'r2',name:'Truffles',cuisines:['Italian','American'],city:'Bangalore',locality:'Indiranagar',rating:4.2,totalRatings:8921,deliveryTime:25,costForTwo:600,isVeg:false,isOpen:true,isPromoted:true,offers:['20% off'],imageKeyword:'pizza',phone:'080-23456789'},
+    {id:'r3',name:'MTR 1924',cuisines:['South Indian','Breakfast'],city:'Bangalore',locality:'Lalbagh',rating:4.7,totalRatings:15672,deliveryTime:20,costForTwo:300,isVeg:true,isOpen:true,isPromoted:false,offers:[],imageKeyword:'dosa',phone:'080-34567890'},
+    {id:'r4',name:'Vidyarthi Bhavan',cuisines:['South Indian'],city:'Bangalore',locality:'Gandhi Bazaar',rating:4.6,totalRatings:11234,deliveryTime:15,costForTwo:250,isVeg:true,isOpen:true,isPromoted:false,offers:[],imageKeyword:'idli',phone:'080-45678901'},
+    {id:'r5',name:'Empire Restaurant',cuisines:['North Indian','Biryani'],city:'Bangalore',locality:'Koramangala',rating:4.3,totalRatings:9876,deliveryTime:35,costForTwo:500,isVeg:false,isOpen:true,isPromoted:true,offers:['30% off'],imageKeyword:'curry',phone:'080-56789012'},
+    {id:'r6',name:'Koshy''s',cuisines:['Continental','Bakery'],city:'Bangalore',locality:'St. Marks Road',rating:4.4,totalRatings:7654,deliveryTime:30,costForTwo:450,isVeg:false,isOpen:true,isPromoted:false,offers:[],imageKeyword:'bakery',phone:'080-67890123'},
+    {id:'r7',name:'The Fatty Bao',cuisines:['Asian','Japanese'],city:'Bangalore',locality:'Indiranagar',rating:4.5,totalRatings:5432,deliveryTime:40,costForTwo:1200,isVeg:false,isOpen:true,isPromoted:true,offers:['15% off'],imageKeyword:'sushi',phone:'080-78901234'},
+    {id:'r8',name:'Social Koramangala',cuisines:['Continental','American'],city:'Bangalore',locality:'Koramangala',rating:4.1,totalRatings:6543,deliveryTime:30,costForTwo:800,isVeg:false,isOpen:true,isPromoted:false,offers:['Happy Hours'],imageKeyword:'burger',phone:'080-89012345'},
+    {id:'r9',name:'Nandhana Palace',cuisines:['Andhra','Biryani'],city:'Bangalore',locality:'BTM Layout',rating:4.3,totalRatings:8765,deliveryTime:35,costForTwo:450,isVeg:false,isOpen:true,isPromoted:false,offers:['40% off'],imageKeyword:'biryani',phone:'080-90123456'},
+    {id:'r10',name:'Brahmin''s Coffee Bar',cuisines:['South Indian','Coffee'],city:'Bangalore',locality:'Basavanagudi',rating:4.8,totalRatings:13456,deliveryTime:15,costForTwo:200,isVeg:true,isOpen:true,isPromoted:false,offers:[],imageKeyword:'coffee',phone:'080-01234567'},
+    {id:'r11',name:'Udupi Palace',cuisines:['South Indian','Vegetarian'],city:'Bangalore',locality:'Jayanagar',rating:4.4,totalRatings:7654,deliveryTime:20,costForTwo:280,isVeg:true,isOpen:true,isPromoted:false,offers:['Free delivery'],imageKeyword:'thali',phone:'080-11223344'},
+    {id:'r12',name:'Barbeque Nation',cuisines:['North Indian','BBQ'],city:'Bangalore',locality:'Indiranagar',rating:4.2,totalRatings:9876,deliveryTime:45,costForTwo:1200,isVeg:false,isOpen:true,isPromoted:true,offers:['10% off'],imageKeyword:'barbeque',phone:'080-22334455'},
+    {id:'r13',name:'Toit Brewpub',cuisines:['Continental','Beer'],city:'Bangalore',locality:'Indiranagar',rating:4.6,totalRatings:7654,deliveryTime:40,costForTwo:1000,isVeg:false,isOpen:true,isPromoted:false,offers:[],imageKeyword:'beer',phone:'080-33445566'},
+    {id:'r14',name:'The Humming Tree',cuisines:['Continental','Cafe'],city:'Bangalore',locality:'Indiranagar',rating:4.3,totalRatings:5432,deliveryTime:35,costForTwo:700,isVeg:false,isOpen:true,isPromoted:false,offers:[],imageKeyword:'pasta',phone:'080-44556677'},
+    {id:'r15',name:'Hole in the Wall Cafe',cuisines:['Continental','Cafe'],city:'Bangalore',locality:'Koramangala',rating:4.5,totalRatings:6543,deliveryTime:30,costForTwo:500,isVeg:false,isOpen:true,isPromoted:false,offers:['20% off'],imageKeyword:'cafe',phone:'080-55667788'},
+    {id:'r16',name:'Punjabi Rasoi',cuisines:['North Indian','Punjabi'],city:'Bangalore',locality:'Marathahalli',rating:4.1,totalRatings:4321,deliveryTime:35,costForTwo:350,isVeg:false,isOpen:true,isPromoted:false,offers:['50% off'],imageKeyword:'punjabi',phone:'080-66778899'},
+    {id:'r17',name:'Chutney Chang',cuisines:['Chinese','Thai'],city:'Bangalore',locality:'Koramangala',rating:4.2,totalRatings:5432,deliveryTime:35,costForTwo:600,isVeg:false,isOpen:true,isPromoted:false,offers:['30% off'],imageKeyword:'noodles',phone:'080-77889900'},
+    {id:'r18',name:'Byg Brewski',cuisines:['Continental','Brewery'],city:'Bangalore',locality:'HSR Layout',rating:4.4,totalRatings:7654,deliveryTime:40,costForTwo:1100,isVeg:false,isOpen:true,isPromoted:true,offers:[],imageKeyword:'brewery',phone:'080-88990011'},
+    {id:'r19',name:'Glen''s Bakehouse',cuisines:['Bakery','Continental'],city:'Bangalore',locality:'Lavelle Road',rating:4.3,totalRatings:6543,deliveryTime:25,costForTwo:400,isVeg:false,isOpen:true,isPromoted:false,offers:['Buy 2 Get 1'],imageKeyword:'cake',phone:'080-99001122'},
+    {id:'r20',name:'Nasi and Mee',cuisines:['Chinese','Thai'],city:'Bangalore',locality:'Indiranagar',rating:4.2,totalRatings:4321,deliveryTime:35,costForTwo:650,isVeg:false,isOpen:true,isPromoted:false,offers:[],imageKeyword:'noodles',phone:'080-00112233'},
+    {id:'r21',name:'Karavalli',cuisines:['Coastal','Seafood'],city:'Bangalore',locality:'Race Course Road',rating:4.6,totalRatings:5432,deliveryTime:40,costForTwo:900,isVeg:false,isOpen:true,isPromoted:false,offers:['15% off'],imageKeyword:'seafood',phone:'080-11223344'},
+    {id:'r22',name:'The Permit Room',cuisines:['American','Bar'],city:'Bangalore',locality:'Lavelle Road',rating:4.3,totalRatings:3210,deliveryTime:35,costForTwo:850,isVeg:false,isOpen:true,isPromoted:false,offers:[],imageKeyword:'bar',phone:'080-22334455'},
+    {id:'r23',name:'AB''s Absolute Barbecues',cuisines:['North Indian','BBQ'],city:'Bangalore',locality:'Whitefield',rating:4.1,totalRatings:7654,deliveryTime:45,costForTwo:1100,isVeg:false,isOpen:true,isPromoted:true,offers:['10% off'],imageKeyword:'barbeque',phone:'080-33445566'},
+    {id:'r24',name:'Hoppipola',cuisines:['Continental','Bar'],city:'Bangalore',locality:'Koramangala',rating:4.0,totalRatings:4321,deliveryTime:35,costForTwo:750,isVeg:false,isOpen:true,isPromoted:false,offers:['Happy Hours'],imageKeyword:'cocktail',phone:'080-44556677'},
+    {id:'r25',name:'Arbor Brewing Company',cuisines:['Continental','Brewery'],city:'Bangalore',locality:'Whitefield',rating:4.2,totalRatings:5432,deliveryTime:40,costForTwo:1050,isVeg:false,isOpen:true,isPromoted:false,offers:[],imageKeyword:'beer',phone:'080-55667788'},
+    {id:'r26',name:'Bade Miyan',cuisines:['Mughlai','Kebabs'],city:'Mumbai',locality:'Colaba',rating:4.6,totalRatings:15672,deliveryTime:30,costForTwo:500,isVeg:false,isOpen:true,isPromoted:true,offers:['Buy 1 Get 1'],imageKeyword:'kebab',phone:'022-12345678'},
+    {id:'r27',name:'Britannia & Co',cuisines:['Parsi','Continental'],city:'Mumbai',locality:'Fort',rating:4.7,totalRatings:8765,deliveryTime:35,costForTwo:400,isVeg:false,isOpen:true,isPromoted:false,offers:[],imageKeyword:'parsi',phone:'022-23456789'},
+    {id:'r28',name:'Leopold Cafe',cuisines:['Continental','Chinese'],city:'Mumbai',locality:'Colaba',rating:4.3,totalRatings:11234,deliveryTime:30,costForTwo:600,isVeg:false,isOpen:true,isPromoted:false,offers:[],imageKeyword:'cafe',phone:'022-34567890'},
+    {id:'r29',name:'Trishna',cuisines:['Seafood','Coastal'],city:'Mumbai',locality:'Fort',rating:4.5,totalRatings:9876,deliveryTime:40,costForTwo:1200,isVeg:false,isOpen:true,isPromoted:true,offers:['15% off'],imageKeyword:'crab',phone:'022-45678901'},
+    {id:'r30',name:'Kyani & Co',cuisines:['Parsi','Bakery'],city:'Mumbai',locality:'Marine Lines',rating:4.4,totalRatings:6543,deliveryTime:25,costForTwo:350,isVeg:false,isOpen:true,isPromoted:false,offers:[],imageKeyword:'irani-cafe',phone:'022-56789012'},
+    {id:'r31',name:'Cafe Mondegar',cuisines:['Continental','Cafe'],city:'Mumbai',locality:'Colaba',rating:4.2,totalRatings:7654,deliveryTime:30,costForTwo:500,isVeg:false,isOpen:true,isPromoted:false,offers:[],imageKeyword:'cafe',phone:'022-67890123'},
+    {id:'r32',name:'Mahesh Lunch Home',cuisines:['Seafood','Mangalorean'],city:'Mumbai',locality:'Juhu',rating:4.5,totalRatings:8765,deliveryTime:40,costForTwo:900,isVeg:false,isOpen:true,isPromoted:false,offers:['10% off'],imageKeyword:'fish',phone:'022-78901234'},
+    {id:'r33',name:'Papa Pancho da Dhaba',cuisines:['Punjabi','North Indian'],city:'Mumbai',locality:'Andheri',rating:4.3,totalRatings:5432,deliveryTime:35,costForTwo:450,isVeg:false,isOpen:true,isPromoted:false,offers:['50% off'],imageKeyword:'dhaba',phone:'022-89012345'},
+    {id:'r34',name:'Bastian',cuisines:['Seafood','Continental'],city:'Mumbai',locality:'Bandra',rating:4.6,totalRatings:4321,deliveryTime:45,costForTwo:1500,isVeg:false,isOpen:true,isPromoted:true,offers:[],imageKeyword:'seafood-platter',phone:'022-90123456'},
+    {id:'r35',name:'The Table',cuisines:['Continental','European'],city:'Mumbai',locality:'Bandra',rating:4.4,totalRatings:3210,deliveryTime:40,costForTwo:1300,isVeg:false,isOpen:true,isPromoted:false,offers:[],imageKeyword:'pasta',phone:'022-01234567'},
+    {id:'r36',name:'Bombay Cafe',cuisines:['Continental','American'],city:'Mumbai',locality:'Kala Ghoda',rating:4.2,totalRatings:5432,deliveryTime:30,costForTwo:700,isVeg:false,isOpen:true,isPromoted:false,offers:['20% off'],imageKeyword:'cafe',phone:'022-11223344'},
+    {id:'r37',name:'Pali Village Cafe',cuisines:['Continental','Italian'],city:'Mumbai',locality:'Bandra',rating:4.3,totalRatings:4321,deliveryTime:35,costForTwo:800,isVeg:false,isOpen:true,isPromoted:false,offers:[],imageKeyword:'pasta',phone:'022-22334455'},
+    {id:'r38',name:'Prithvi Cafe',cuisines:['Continental','Cafe'],city:'Mumbai',locality:'Juhu',rating:4.5,totalRatings:6543,deliveryTime:30,costForTwo:500,isVeg:false,isOpen:true,isPromoted:false,offers:[],imageKeyword:'cafe',phone:'022-33445566'},
+    {id:'r39',name:'Masala Library',cuisines:['Modern Indian','Molecular'],city:'Mumbai',locality:'Bandra Kurla Complex',rating:4.7,totalRatings:3210,deliveryTime:45,costForTwo:2000,isVeg:false,isOpen:true,isPromoted:true,offers:[],imageKeyword:'molecular',phone:'022-44556677'},
+    {id:'r40',name:'Jamjar Diner',cuisines:['American','Continental'],city:'Mumbai',locality:'Versova',rating:4.2,totalRatings:4321,deliveryTime:35,costForTwo:700,isVeg:false,isOpen:true,isPromoted:false,offers:['Buy 1 Get 1'],imageKeyword:'burger',phone:'022-55667788'},
+    {id:'r41',name:'Paranthe Wali Gali',cuisines:['North Indian','Paratha'],city:'Delhi',locality:'Chandni Chowk',rating:4.6,totalRatings:15672,deliveryTime:20,costForTwo:300,isVeg:true,isOpen:true,isPromoted:true,offers:['Free delivery'],imageKeyword:'paratha',phone:'011-12345678'},
+    {id:'r42',name:'Karim''s',cuisines:['Mughlai','North Indian'],city:'Delhi',locality:'Jama Masjid',rating:4.7,totalRatings:18765,deliveryTime:30,costForTwo:500,isVeg:false,isOpen:true,isPromoted:true,offers:['30% off'],imageKeyword:'mughlai',phone:'011-23456789'},
+    {id:'r43',name:'Indian Accent',cuisines:['Modern Indian','Fine Dining'],city:'Delhi',locality:'Chanakyapuri',rating:4.8,totalRatings:5432,deliveryTime:45,costForTwo:2500,isVeg:false,isOpen:true,isPromoted:false,offers:[],imageKeyword:'modern-indian',phone:'011-34567890'},
+    {id:'r44',name:'Bukhara',cuisines:['North Indian','Mughlai'],city:'Delhi',locality:'Diplomatic Enclave',rating:4.9,totalRatings:7654,deliveryTime:45,costForTwo:3000,isVeg:false,isOpen:true,isPromoted:false,offers:[],imageKeyword:'dal',phone:'011-45678901'},
+    {id:'r45',name:'Saravana Bhavan',cuisines:['South Indian','Vegetarian'],city:'Delhi',locality:'Connaught Place',rating:4.4,totalRatings:11234,deliveryTime:20,costForTwo:350,isVeg:true,isOpen:true,isPromoted:false,offers:['Free delivery'],imageKeyword:'thali',phone:'011-56789012'},
+    {id:'r46',name:'Al Jawahar',cuisines:['Mughlai','North Indian'],city:'Delhi',locality:'Jama Masjid',rating:4.5,totalRatings:8765,deliveryTime:30,costForTwo:450,isVeg:false,isOpen:true,isPromoted:false,offers:['40% off'],imageKeyword:'mughlai',phone:'011-67890123'},
+    {id:'r47',name:'Lodi Garden Restaurant',cuisines:['Continental','Italian'],city:'Delhi',locality:'Lodi Road',rating:4.3,totalRatings:4321,deliveryTime:40,costForTwo:1000,isVeg:false,isOpen:true,isPromoted:false,offers:[],imageKeyword:'italian',phone:'011-78901234'},
+    {id:'r48',name:'Threesixtyone Degrees',cuisines:['Buffet','Multi-Cuisine'],city:'Delhi',locality:'Gurgaon',rating:4.4,totalRatings:5432,deliveryTime:45,costForTwo:1500,isVeg:false,isOpen:true,isPromoted:true,offers:['10% off'],imageKeyword:'buffet',phone:'011-89012345'},
+    {id:'r49',name:'The Big Chill',cuisines:['Italian','Continental'],city:'Delhi',locality:'East of Kailash',rating:4.5,totalRatings:7654,deliveryTime:35,costForTwo:800,isVeg:false,isOpen:true,isPromoted:false,offers:['20% off'],imageKeyword:'lasagna',phone:'011-90123456'},
+    {id:'r50',name:'Farzi Cafe',cuisines:['Modern Indian','Molecular'],city:'Delhi',locality:'Connaught Place',rating:4.3,totalRatings:6543,deliveryTime:40,costForTwo:1200,isVeg:false,isOpen:true,isPromoted:true,offers:['15% off'],imageKeyword:'molecular',phone:'011-01234567'},
+    {id:'r51',name:'Paradise Biryani',cuisines:['Biryani','Hyderabadi'],city:'Hyderabad',locality:'Secunderabad',rating:4.6,totalRatings:15672,deliveryTime:35,costForTwo:400,isVeg:false,isOpen:true,isPromoted:true,offers:['50% off'],imageKeyword:'biryani',phone:'040-12345678'},
+    {id:'r52',name:'Shah Ghouse',cuisines:['Biryani','Hyderabadi'],city:'Hyderabad',locality:'Tolichowki',rating:4.5,totalRatings:12345,deliveryTime:35,costForTwo:350,isVeg:false,isOpen:true,isPromoted:false,offers:['40% off'],imageKeyword:'biryani',phone:'040-23456789'},
+    {id:'r53',name:'Bawarchi',cuisines:['Biryani','North Indian'],city:'Hyderabad',locality:'RTC X Roads',rating:4.4,totalRatings:9876,deliveryTime:30,costForTwo:300,isVeg:false,isOpen:true,isPromoted:false,offers:['Free delivery'],imageKeyword:'biryani',phone:'040-34567890'},
+    {id:'r54',name:'Cafe Bahar',cuisines:['Biryani','North Indian'],city:'Hyderabad',locality:'Nampally',rating:4.3,totalRatings:7654,deliveryTime:35,costForTwo:350,isVeg:false,isOpen:true,isPromoted:false,offers:['30% off'],imageKeyword:'biryani',phone:'040-45678901'},
+    {id:'r55',name:'Chutneys',cuisines:['South Indian','Vegetarian'],city:'Hyderabad',locality:'Banjara Hills',rating:4.5,totalRatings:6543,deliveryTime:25,costForTwo:300,isVeg:true,isOpen:true,isPromoted:false,offers:['Free delivery'],imageKeyword:'idli',phone:'040-56789012'},
+    {id:'r56',name:'Hotel Naveen',cuisines:['North Indian','Biryani'],city:'Pune',locality:'FC Road',rating:4.3,totalRatings:6543,deliveryTime:30,costForTwo:350,isVeg:false,isOpen:true,isPromoted:false,offers:['50% off'],imageKeyword:'biryani',phone:'020-12345678'},
+    {id:'r57',name:'Sagar Gaire',cuisines:['Fast Food','Continental'],city:'Pune',locality:'Koregaon Park',rating:4.2,totalRatings:5432,deliveryTime:25,costForTwo:400,isVeg:false,isOpen:true,isPromoted:false,offers:['Buy 1 Get 1'],imageKeyword:'sandwich',phone:'020-23456789'},
+    {id:'r58',name:'Ramki Bandi',cuisines:['South Indian','Street Food'],city:'Hyderabad',locality:'Nampally',rating:4.7,totalRatings:8765,deliveryTime:15,costForTwo:150,isVeg:true,isOpen:true,isPromoted:false,offers:[],imageKeyword:'dosa',phone:'040-67890123'},
+    {id:'r59',name:'Cafe Hopper',cuisines:['Continental','Cafe'],city:'Chennai',locality:'T Nagar',rating:4.2,totalRatings:4321,deliveryTime:30,costForTwo:500,isVeg:false,isOpen:true,isPromoted:false,offers:[],imageKeyword:'cafe',phone:'044-12345678'},
+    {id:'r60',name:'A2B',cuisines:['South Indian','Vegetarian'],city:'Chennai',locality:'Mylapore',rating:4.5,totalRatings:7654,deliveryTime:20,costForTwo:300,isVeg:true,isOpen:true,isPromoted:false,offers:['Free delivery'],imageKeyword:'thali',phone:'044-23456789'},
+    {id:'r61',name:'Shree Mithai',cuisines:['Sweets','Vegetarian'],city:'Hyderabad',locality:'Punjagutta',rating:4.4,totalRatings:5432,deliveryTime:20,costForTwo:250,isVeg:true,isOpen:true,isPromoted:false,offers:['10% off'],imageKeyword:'sweets',phone:'040-78901234'},
+    {id:'r62',name:'Irani Cafe',cuisines:['Parsi','Bakery'],city:'Pune',locality:'Camp',rating:4.3,totalRatings:4321,deliveryTime:25,costForTwo:300,isVeg:false,isOpen:true,isPromoted:false,offers:[],imageKeyword:'chai',phone:'020-34567890'},
+    {id:'r63',name:'Kwality Walls',cuisines:['Ice Cream','Desserts'],city:'Delhi',locality:'Rajouri Garden',rating:4.1,totalRatings:3210,deliveryTime:20,costForTwo:200,isVeg:true,isOpen:true,isPromoted:false,offers:['Buy 1 Get 1'],imageKeyword:'icecream',phone:'011-45678901'},
+    {id:'r64',name:'Burger Singh',cuisines:['Burger','Fast Food'],city:'Bangalore',locality:'HSR Layout',rating:4.2,totalRatings:5432,deliveryTime:25,costForTwo:350,isVeg:false,isOpen:true,isPromoted:false,offers:['50% off'],imageKeyword:'burger',phone:'080-01234567'}
+];
+const MENU_DATA = {};
+const getMenuForRestaurant = (restaurantId) => {
+    if (MENU_DATA[restaurantId]) {
+        return MENU_DATA[restaurantId];
+    }
+    // Return default menu if restaurant-specific menu not found
+    const allItems = [];
+    Object.values(MENU_DATA).forEach(items => allItems.push(...items));
+    return allItems.length > 0 ? allItems : [];
+};
+const menuCategories = [
+    { name: 'Recommended', items: [
+        { id:'m1', name:'Dal Makhani', price:280, isVeg:true, description:'Creamy black lentils slow cooked', imageKeyword:'dal', isBestseller:true },
+        { id:'m2', name:'Paneer Butter Masala', price:320, isVeg:true, description:'Rich tomato gravy with cottage cheese', imageKeyword:'paneer', isBestseller:true },
+        { id:'m3', name:'Chicken Biryani', price:380, isVeg:false, description:'Fragrant basmati rice with chicken', imageKeyword:'biryani', isBestseller:true },
+        { id:'m4', name:'Butter Naan', price:60, isVeg:true, description:'Soft bread with butter', imageKeyword:'naan', isBestseller:false },
+        { id:'m5', name:'Gulab Jamun', price:120, isVeg:true, description:'Deep fried milk solids in syrup', imageKeyword:'gulab-jamun', isBestseller:true },
+    ]},
+    { name: 'Starters', items: [
+        { id:'m6', name:'Paneer Tikka', price:350, isVeg:true, description:'Grilled cottage cheese with spices', imageKeyword:'paneer-tikka', isBestseller:false },
+        { id:'m7', name:'Chicken Tikka', price:400, isVeg:false, description:'Boneless chicken marinated in spices', imageKeyword:'chicken-tikka', isBestseller:true },
+        { id:'m8', name:'Veg Spring Rolls', price:220, isVeg:true, description:'Crispy rolls with vegetable filling', imageKeyword:'spring-rolls', isBestseller:false },
+        { id:'m9', name:'Tandoori Chicken', price:420, isVeg:false, description:'Whole chicken marinated and grilled', imageKeyword:'tandoori', isBestseller:false },
+        { id:'m10', name:'Seekh Kebab', price:380, isVeg:false, description:'Minced meat kebabs with spices', imageKeyword:'kebab', isBestseller:false },
+        { id:'m11', name:'Crispy Corn', price:240, isVeg:true, description:'Sweet corn kernels with spices', imageKeyword:'corn', isBestseller:false },
+    ]},
+    { name: 'Main Course', items: [
+        { id:'m12', name:'Mutton Rogan Josh', price:480, isVeg:false, description:'Kashmiri style mutton curry', imageKeyword:'mutton', isBestseller:false },
+        { id:'m13', name:'Palak Paneer', price:300, isVeg:true, description:'Cottage cheese in spinach gravy', imageKeyword:'palak-paneer', isBestseller:true },
+        { id:'m14', name:'Fish Curry', price:420, isVeg:false, description:'Fresh fish in coconut curry', imageKeyword:'fish-curry', isBestseller:false },
+        { id:'m15', name:'Kadai Chicken', price:380, isVeg:false, description:'Chicken cooked with bell peppers', imageKeyword:'chicken', isBestseller:false },
+        { id:'m16', name:'Chole Masala', price:260, isVeg:true, description:'Chickpeas in spicy gravy', imageKeyword:'chole', isBestseller:false },
+        { id:'m17', name:'Lamb Keema', price:420, isVeg:false, description:'Minced lamb with peas', imageKeyword:'keema', isBestseller:false },
+        { id:'m18', name:'Malai Kofta', price:320, isVeg:true, description:'Potato and cottage cheese dumplings', imageKeyword:'kofta', isBestseller:false },
+        { id:'m19', name:'Dal Tadka', price:220, isVeg:true, description:'Yellow lentils with tempering', imageKeyword:'dal', isBestseller:false },
+    ]},
+    { name: 'Breads & Rice', items: [
+        { id:'m20', name:'Butter Roti', price:40, isVeg:true, description:'Whole wheat bread with butter', imageKeyword:'roti', isBestseller:false },
+        { id:'m21', name:'Garlic Naan', price:80, isVeg:true, description:'Naan bread with garlic topping', imageKeyword:'naan', isBestseller:true },
+        { id:'m22', name:'Peshwari Naan', price:100, isVeg:true, description:'Sweet naan with nuts and raisins', imageKeyword:'naan', isBestseller:false },
+        { id:'m23', name:'Steamed Rice', price:100, isVeg:true, description:'Plain steamed basmati rice', imageKeyword:'rice', isBestseller:false },
+        { id:'m24', name:'Jeera Rice', price:140, isVeg:true, description:'Rice tempered with cumin seeds', imageKeyword:'rice', isBestseller:false },
+        { id:'m25', name:'Biryani Rice', price:380, isVeg:false, description:'Special biryani rice', imageKeyword:'biryani', isBestseller:false },
+    ]},
+    { name: 'Desserts', items: [
+        { id:'m26', name:'Gulab Jamun (2 pcs)', price:120, isVeg:true, description:'Deep fried milk solids in syrup', imageKeyword:'gulab-jamun', isBestseller:true },
+        { id:'m27', name:'Rasmalai (2 pcs)', price:150, isVeg:true, description:'Cottage cheese in sweetened milk', imageKeyword:'rasmalai', isBestseller:false },
+        { id:'m28', name:'Kulfi', price:140, isVeg:true, description:'Traditional Indian ice cream', imageKeyword:'kulfi', isBestseller:false },
+        { id:'m29', name:'Phirni', price:130, isVeg:true, description:'Ground rice pudding with nuts', imageKeyword:'phirni', isBestseller:false },
+    ]},
+    { name: 'Beverages', items: [
+        { id:'m30', name:'Masala Lassi', price:120, isVeg:true, description:'Yogurt drink with spices', imageKeyword:'lassi', isBestseller:true },
+        { id:'m31', name:'Cold Coffee', price:150, isVeg:true, description:'Chilled coffee with ice cream', imageKeyword:'coffee', isBestseller:false },
+        { id:'m32', name:'Masala Chai', price:60, isVeg:true, description:'Traditional Indian spiced tea', imageKeyword:'chai', isBestseller:false },
+        { id:'m33', name:'Fresh Lime Soda', price:80, isVeg:true, description:'Refreshing lime with soda', imageKeyword:'lime-soda', isBestseller:false },
+        { id:'m34', name:'Mango Milkshake', price:160, isVeg:true, description:'Seasonal mango milkshake', imageKeyword:'mango', isBestseller:false },
+    ]},
+];
+RESTAURANTS.forEach(r => { MENU_DATA[r.id] = JSON.parse(JSON.stringify(menuCategories)); });
+
+const fuse = new Fuse(RESTAURANTS, {
+    keys: [
+        { name: 'name', weight: 0.5 },
+        { name: 'cuisines', weight: 0.3 },
+        { name: 'locality', weight: 0.1 },
+        { name: 'city', weight: 0.1 }
+    ],
+    threshold: 0.4,
+    includeScore: true,
+    minMatchCharLength: 2
+});
+const ToastContext = React.createContext();
+
+const ToastProvider = ({ children }) => {
+    const [toasts, setToasts] = useState([]);
+    const addToast = useCallback((message, type) => {
+        const id = Date.now();
+        setToasts(prev => [...prev, { id, message, type: type || 'info' }]);
+        setTimeout(() => { setToasts(prev => prev.filter(t => t.id !== id)); }, 3000);
+    }, []);
+    return React.createElement(ToastContext.Provider, { value: addToast },
+        children,
+        React.createElement('div', {},
+            toasts.map(t =>
+                React.createElement('div', { key: t.id, className: 'toast ' + t.type },
+                    React.createElement('span', { className: 'toast-icon' }, t.type === 'success' ? '✅' : t.type === 'error' ? '❌' : 'ℹ️'),
+                    React.createElement('span', { className: 'toast-msg' }, t.message)
+                )
+            )
+        )
+    );
+};
+
+
+const NavBar = () => {
+    const [city, setCity] = useState(safeStorage.get('zomato_city') || 'Bangalore');
+    const [searchQuery, setSearchQuery] = useState('');
+    const [showLocation, setShowLocation] = useState(false);
+    const [detecting, setDetecting] = useState(false);
+    const [scrolled, setScrolled] = useState(false);
+
+    useEffect(() => {
+        const onScroll = () => setScrolled(window.scrollY > 10);
+        window.addEventListener('scroll', onScroll);
+        return () => window.removeEventListener('scroll', onScroll);
+    }, []);
+
+    const detectLocation = () => {
+        setDetecting(true);
+        if (!navigator.geolocation) { setCity('Bangalore'); setDetecting(false); return; }
+        navigator.geolocation.getCurrentPosition(
+            async ({ coords }) => {
+                try {
+                    const res = await fetch('https://nominatim.openstreetmap.org/reverse?format=json&lat=' + coords.latitude + '&lon=' + coords.longitude, {
+                        headers: { 'Accept-Language': 'en' }
+                    });
+                    const data = await res.json();
+                    const detectedCity = data.address?.city || data.address?.town || data.address?.state_district || 'Bangalore';
+                    setCity(detectedCity);
+                    safeStorage.set('zomato_city', detectedCity);
+                } catch { setCity('Bangalore'); }
+                setDetecting(false);
+            },
+            () => { setCity('Bangalore'); setDetecting(false); },
+            { timeout: 8000, maximumAge: 600000 }
+        );
+    };
+
+    const handleSearch = (e) => {
+        if (e.key === 'Enter' && searchQuery.trim()) {
+            window.location.hash = '#/search';
+            setSearchQuery('');
+        }
+    };
+
+    const cartData = safeStorage.getJSON('zomato_cart', { restaurantId: null, restaurantName: '', items: [], coupon: null });
+    const cartCount = cartData.items.reduce((sum, item) => sum + item.qty, 0);
+
+    return React.createElement('nav', { className: 'navbar' + (scrolled ? ' scrolled' : '') },
+        React.createElement('div', { className: 'max-w-7xl mx-auto px-4 py-3 flex items-center justify-between' },
+            React.createElement('div', { className: 'flex items-center gap-2 cursor-pointer', onClick: () => window.location.hash = '#/' },
+                React.createElement('span', { className: 'nav-logo' }, 'Zomato')
+            ),
+            React.createElement('div', { className: 'hidden md:flex flex-1 max-w-xl mx-8' },
+                React.createElement('div', { className: 'nav-search' },
+                    React.createElement('span', { className: 'text-red-500 mr-2' }, '📍'),
+                    React.createElement('span', { className: 'text-gray-400 mr-2 text-sm border-r pr-2', style: { color: 'var(--red-500)' } }, city),
+                    React.createElement('input', {
+                        type: 'text', value: searchQuery, onChange: (e) => setSearchQuery(sanitizeSearchQuery(e.target.value)),
+                        onKeyPress: handleSearch, placeholder: 'Search for restaurant, cuisine or a dish',
+                        className: 'flex-1 outline-none text-sm', style: { minWidth: '200px' }
+                    }),
+                    React.createElement('button', {
+                        onClick: () => { if (searchQuery.trim()) { window.location.hash = '#/search'; setSearchQuery(''); } },
+                        className: 'text-gray-400 hover:text-red-500'
+                    }, '🔍')
+                )
+            ),
+            React.createElement('div', { className: 'flex items-center gap-4' },
+                React.createElement('button', { onClick: () => setShowLocation(true), className: 'text-sm text-gray-600 hover:text-red-500 flex items-center gap-1' },
+                    detecting ? '📡 Detecting...' : '📍 Detect'),
+                React.createElement('button', {
+                    onClick: () => window.location.hash = '#/cart',
+                    className: 'relative text-2xl hover:scale-110 transition-transform cart-icon' + (cartCount > 0 ? ' has-items' : '')
+                }, '🛒',
+                    cartCount > 0 && React.createElement('span', { className: 'cart-badge' }, cartCount)
+                ),
+                React.createElement('button', {
+                    onClick: () => window.location.hash = '#/profile',
+                    className: 'w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center text-sm hover:bg-gray-300'
+                }, '👤')
+            )
+        ),
+        showLocation && React.createElement('div', { className: 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50', onClick: () => setShowLocation(false) },
+            React.createElement('div', { className: 'bg-white rounded-2xl p-6 max-w-md w-full mx-4', onClick: (e) => e.stopPropagation() },
+                React.createElement('h3', { className: 'text-lg font-bold mb-4' }, 'Select your city'),
+                React.createElement('div', { className: 'grid grid-cols-2 gap-3 mb-4' },
+                    CITIES.map(c =>
+                        React.createElement('button', {
+                            key: c, onClick: () => { setCity(c); safeStorage.set('zomato_city', c); setShowLocation(false); },
+                            className: 'p-3 rounded-xl border-2 transition-all' + (city === c ? ' border-red-500 bg-red-50' : ' border-gray-200 hover:border-red-300')
+                        }, c)
+                    )
+                ),
+                React.createElement('button', { onClick: detectLocation, disabled: detecting, className: 'w-full btn-red py-3 rounded-xl font-semibold flex items-center justify-center gap-2' },
+                    detecting ? '📡 Detecting...' : '📍 Detect my location')
+            )
+        )
+    );
+};
+const HomePage = () => {
+    const [city, setCity] = useState(safeStorage.get('zomato_city') || 'Bangalore');
+    const cityRestaurants = useMemo(() => RESTAURANTS.filter(r => r.city === city).slice(0, 20), [city]);
+    useEffect(() => { safeStorage.set('zomato_city', city); }, [city]);
+
+    const heroEmojis = ['🍕', '🍔', '🍛', '🍚', '☕', '🍰', '🍺', '🥘'];
+
+    return React.createElement('div', { className: 'min-h-screen' },
+        React.createElement('div', { className: 'hero' },
+            React.createElement('div', { className: 'max-w-7xl mx-auto text-center text-white relative z-10 px-4' },
+                React.createElement('h1', { className: 'hero-title' }, 'Discover the best food & drinks in ', city),
+                React.createElement('p', { className: 'text-xl mb-8 opacity-90' }, 'Order from 7000+ restaurants'),
+                React.createElement('div', { className: 'hero-search' },
+                    React.createElement('span', { className: 'text-red-500 text-xl mr-3' }, '📍'),
+                    React.createElement('span', { className: 'text-gray-700 mr-3 font-medium border-r pr-3', style: { color: 'rgba(255,255,255,0.9)' } }, city),
+                    React.createElement('input', {
+                        type: 'text', placeholder: 'Search for restaurant, cuisine or a dish...',
+                        className: 'flex-1 outline-none text-lg',
+                        onKeyPress: (e) => { if (e.key === 'Enter' && e.target.value.trim()) { window.location.hash = '#/search'; } }
+                    }),
+                    React.createElement('button', {
+                        onClick: (e) => { const input = e.target.closest('div').querySelector('input'); if (input.value.trim()) window.location.hash = '#/search'; },
+                        className: 'hero-search-btn'
+                    }, '🔍')
+                )
+            ),
+            React.createElement('div', { className: 'absolute inset-0 overflow-hidden pointer-events-none' },
+                heroEmojis.map((emoji, i) =>
+                    React.createElement('div', {
+                        key: i, className: 'hero-emoji',
+                        style: {
+                            left: (10 + i * 12) + '%', top: (20 + (i % 3) * 25) + '%',
+                            '--duration': (4 + (i % 3)) + 's',
+                            '--delay': (i * 0.5) + 's'
+                        }
+                    }, emoji)
+                )
+        ),
+        React.createElement('div', { className: 'max-w-7xl mx-auto px-4 py-12' },
+            React.createElement('h2', { className: 'section-title mb-6' }, 'Popular cities'),
+            React.createElement('div', { className: 'grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-4' },
+                CITIES.map((cityName, idx) =>
+                    React.createElement('div', {
+                        key: cityName, onClick: () => setCity(cityName),
+                        className: 'city-card',
+                        style: { animationDelay: (idx * 0.05) + 's' }
+                    },
+                        React.createElement('img', {
+                            src: getCityImage(cityName), alt: cityName, className: 'w-full',
+                            style: { height: '128px', objectFit: 'cover' }
+                        }),
+                        React.createElement('div', { className: 'p-3 font-semibold text-center' }, cityName)
+                    )
+                )
+            )
+        ),
+        React.createElement('div', { className: 'max-w-7xl mx-auto px-4 py-8' },
+            React.createElement('h2', { className: 'section-title mb-6' }, \"What's on your mind?\"),
+            React.createElement('div', { className: 'flex gap-4 overflow-x-auto pb-4 hide-scrollbar stagger-children' },
+                Object.entries(CUISINE_EMOJIS).slice(0, 12).map(([cuisine, emoji], idx) =>
+                    React.createElement('div', {
+                        key: cuisine, onClick: () => { safeStorage.set('zomato_city', city); window.location.hash = '#/restaurants'; },
+                        className: 'cuisine-card',
+                        style: { animationDelay: (idx * 0.05) + 's' }
+                    },
+                        React.createElement('div', {
+                            className: 'cuisine-icon',
+                            style: { background: 'linear-gradient(135deg, hsl(' + (idx * 30) + ', 70%, 85%) 0%, hsl(' + (idx * 30 + 20) + ', 70%, 75%) 100%)' }
+                        }, emoji),
+                        React.createElement('span', { className: 'cuisine-name' }, cuisine)
+                    )
+                )
+            )
+        ),
+        React.createElement('div', { className: 'max-w-7xl mx-auto px-4 py-8' },
+            React.createElement('h2', { className: 'section-title mb-2' }, 'Collections'),
+            React.createElement('p', { className: 'text-gray-600 mb-6' }, 'Explore curated lists of top restaurants'),
+            React.createElement('div', { className: 'grid grid-cols-1 md:grid-cols-3 gap-6' },
+                ['Newly Opened', 'Trending This Week', 'Top Rated', 'Budget Friendly'].map((title, i) =>
+                    React.createElement('div', {
+                        key: title, onClick: () => window.location.hash = '#/restaurants',
+                        className: 'collection-card',
+                        style: { animationDelay: (i * 0.1) + 's' }
+                    },
+                        React.createElement('img', {
+                            src: 'https://source.unsplash.com/400x300/?' + ['new-restaurant','trending-food','top-rated','budget-food'][i] + '&sig=' + title,
+                            alt: title, className: 'w-full h-full',
+                            style: { objectFit: 'cover' }
+                        }),
+                        React.createElement('div', { className: 'collection-card-overlay' },
+                            React.createElement('div', { className: 'collection-card-text' },
+                                React.createElement('h3', { className: 'collection-card-title' }, title),
+                                React.createElement('p', { className: 'collection-card-count' }, 'Explore now →')
+                            )
+                        )
+                    )
+                )
+            )
+        ),
+        React.createElement('div', { className: 'max-w-7xl mx-auto px-4 py-8' },
+            React.createElement('div', { className: 'flex items-center justify-between mb-6' },
+                React.createElement('h2', { className: 'section-title' }, 'Restaurants in ' + city),
+                React.createElement('button', {
+                    onClick: () => window.location.hash = '#/restaurants',
+                    className: 'text-red-500 font-medium hover:underline'
+                }, 'See all →')
+            ),
+            React.createElement('div', { className: 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 stagger-children' },
+                cityRestaurants.map((r, idx) =>
+                    React.createElement('div', {
+                        key: r.id, onClick: () => window.location.hash = '#/restaurant/' + r.id,
+                        className: 'restaurant-card',
+                        style: { animationDelay: (idx * 0.08) + 's' }
+                    },
+                        React.createElement('div', { className: 'card-image-wrapper' },
+                            React.createElement('div', { className: 'card-skeleton' }),
+                            React.createElement('img', {
+                                src: getRestaurantImage(r), alt: r.name, keyword: r.imageKeyword,
+                                className: 'card-image loaded'
+                            }),
+                            React.createElement('div', { className: 'card-image-gradient' }),
+                            r.isPromoted && React.createElement('div', { className: 'card-promoted-tag' }, 'PROMOTED'),
+                            r.offers.length > 0 && React.createElement('div', { className: 'card-offer-badge' }, '🏷️ ', r.offers[0]),
+                            React.createElement('button', {
+                                className: 'card-favorite-btn',
+                                onClick: (e) => { e.stopPropagation(); }
+                            }, React.createElement('svg', { viewBox: '0 0 24 24', fill: 'none', stroke: 'white', width: '18', height: '18' },
+                                React.createElement('path', { d: 'M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z' })
+                            ))
+                        ),
+                        React.createElement('div', { className: 'card-body' },
+                            React.createElement('div', { className: 'card-header' },
+                                React.createElement('h3', { className: 'card-name' }, r.name),
+                                React.createElement('div', { className: 'card-rating rating-' + getRatingColor(r.rating) }, '★ ', r.rating)
+                            ),
+                            React.createElement('p', { className: 'card-cuisines' }, r.cuisines.slice(0, 3).join(' • ')),
+                            React.createElement('p', { className: 'card-location' }, '📍 ', r.locality),
+                            React.createElement('div', { className: 'card-divider' }),
+                            React.createElement('div', { className: 'card-footer' },
+                                React.createElement('span', { className: 'card-cost' }, '₹' + r.costForTwo + ' for two'),
+                                React.createElement('div', { className: 'card-tags' },
+                                    r.isVeg && React.createElement('span', { className: 'veg-tag' }, '🟢 Pure Veg'),
+                                    r.totalRatings > 1000 && React.createElement('span', { className: 'popular-tag' }, '🔥 Popular')
+                                )
+                            )
+                        )
+                    )
+                )
+            )
+        ),
+        React.createElement('footer', { className: 'footer' },
+            React.createElement('div', { className: 'max-w-7xl mx-auto px-4' },
+                React.createElement('div', { className: 'grid grid-cols-1 md:grid-cols-4 gap-8 mb-8' },
+                    React.createElement('div', {},
+                        React.createElement('h4', {}, 'Company'),
+                        ['About Us', 'Careers', 'Blog', 'Contact'].map(link =>
+                            React.createElement('p', { key: link, className: 'footer-link' }, link)
+                        )
+                    ),
+                    React.createElement('div', {},
+                        React.createElement('h4', {}, 'For Restaurants'),
+                        ['Partner with us', 'Restaurant App', 'Guidelines'].map(link =>
+                            React.createElement('p', { key: link, className: 'footer-link' }, link)
+                        )
+                    ),
+                    React.createElement('div', {},
+                        React.createElement('h4', {}, 'Learn More'),
+                        ['Privacy', 'Terms', 'FAQ'].map(link =>
+                            React.createElement('p', { key: link, className: 'footer-link' }, link)
+                        )
+                    ),
+                    React.createElement('div', {},
+                        React.createElement('h4', {}, 'Social'),
+                        React.createElement('div', { className: 'flex gap-4 text-2xl' },
+                            React.createElement('span', { className: 'cursor-pointer hover:scale-110 transition-transform' }, '📘'),
+                            React.createElement('span', { className: 'cursor-pointer hover:scale-110 transition-transform' }, '📸'),
+                            React.createElement('span', { className: 'cursor-pointer hover:scale-110 transition-transform' }, '📷')
+                        )
+                    )
+                ),
+                React.createElement('div', { className: 'border-t border-gray-700 pt-8 text-center text-gray-400' },
+                    React.createElement('p', {}, '© 2026 Zomato Clone - Built with React + Security Best Practices')
+                )
+            )
+        )
+    );
+};
+const RestaurantsList = () => {
+    const [city] = useState(safeStorage.get('zomato_city') || 'Bangalore');
+    const [sort, setSort] = useState('relevance');
+    const [filters, setFilters] = useState({ minRating: 0, maxCost: 9999, cuisines: [], pureVeg: false, openNow: false, hasOffer: false });
+    const [displayCount, setDisplayCount] = useState(20);
+
+    const filtered = useMemo(() => {
+        let result = RESTAURANTS.filter(r => r.city === city);
+        if (filters.minRating) result = result.filter(r => r.rating >= filters.minRating);
+        if (filters.maxCost < 9999) result = result.filter(r => r.costForTwo <= filters.maxCost);
+        if (filters.cuisines.length) result = result.filter(r => r.cuisines.some(c => filters.cuisines.includes(c)));
+        if (filters.pureVeg) result = result.filter(r => r.isVeg);
+        if (filters.openNow) result = result.filter(r => r.isOpen);
+        if (filters.hasOffer) result = result.filter(r => r.offers.length > 0);
+        if (sort === 'rating') result.sort((a, b) => b.rating - a.rating);
+        if (sort === 'delivery') result.sort((a, b) => a.deliveryTime - b.deliveryTime);
+        if (sort === 'costLow') result.sort((a, b) => a.costForTwo - b.costForTwo);
+        if (sort === 'costHigh') result.sort((a, b) => b.costForTwo - a.costForTwo);
+        return result;
+    }, [city, sort, filters]);
+
+    const displayed = filtered.slice(0, displayCount);
+
+    useEffect(() => {
+        const onScroll = () => {
+            if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 500) {
+                setDisplayCount(prev => Math.min(prev + 20, filtered.length));
+            }
+        };
+        window.addEventListener('scroll', onScroll);
+        return () => window.removeEventListener('scroll', onScroll);
+    }, [filtered.length]);
+
+    const allCuisines = [...new Set(RESTAURANTS.filter(r => r.city === city).flatMap(r => r.cuisines))];
+
+    return React.createElement('div', { className: 'max-w-7xl mx-auto px-4 py-8 flex gap-6' },
+        React.createElement('div', { className: 'hidden lg:block w-70 flex-shrink-0' },
+            React.createElement('div', { className: 'sticky top-24 bg-white rounded-2xl p-6 shadow-sm border border-gray-100' },
+                React.createElement('h3', { className: 'font-bold text-lg mb-4' }, 'Filters'),
+                React.createElement('div', { className: 'mb-6' },
+                    React.createElement('h4', { className: 'font-semibold mb-3 text-sm' }, 'Rating'),
+                    [4.5, 4.0, 3.5].map(rating =>
+                        React.createElement('button', {
+                            key: rating, onClick: () => setFilters(f => ({ ...f, minRating: f.minRating === rating ? 0 : rating })),
+                            className: 'block w-full text-left px-4 py-2 rounded-lg mb-2 text-sm transition-colors ' + (filters.minRating === rating ? 'bg-red-50 text-red-500 font-semibold' : 'hover:bg-gray-50')
+                        }, '★ ' + rating + '+')
+                    )
+                ),
+                React.createElement('div', { className: 'mb-6' },
+                    React.createElement('h4', { className: 'font-semibold mb-3 text-sm' }, 'Cost for Two'),
+                    [
+                        { label: 'Under ₹200', value: 200 },
+                        { label: '₹200-500', value: 500 },
+                        { label: '₹500-1000', value: 1000 },
+                        { label: '₹1000+', value: 9999 }
+                    ].map(opt =>
+                        React.createElement('button', {
+                            key: opt.value, onClick: () => setFilters(f => ({ ...f, maxCost: f.maxCost === opt.value ? 9999 : opt.value })),
+                            className: 'block w-full text-left px-4 py-2 rounded-lg mb-2 text-sm transition-colors ' + (filters.maxCost === opt.value ? 'bg-red-50 text-red-500 font-semibold' : 'hover:bg-gray-50')
+                        }, opt.label)
+                    )
+                ),
+                React.createElement('div', { className: 'mb-6' },
+                    React.createElement('h4', { className: 'font-semibold mb-3 text-sm' }, 'Cuisines'),
+                    allCuisines.slice(0, 15).map(cuisine =>
+                        React.createElement('label', {
+                            key: cuisine, className: 'flex items-center gap-2 mb-2 text-sm cursor-pointer hover:bg-gray-50 p-2 rounded'
+                        },
+                            React.createElement('input', {
+                                type: 'checkbox', checked: filters.cuisines.includes(cuisine),
+                                onChange: (e) => setFilters(f => ({
+                                    ...f, cuisines: e.target.checked ? [...f.cuisines, cuisine] : f.cuisines.filter(c => c !== cuisine)
+                                }))
+                            }),
+                            cuisine
+                        )
+                    )
+                ),
+                React.createElement('div', { className: 'space-y-3' },
+                    React.createElement('label', { className: 'flex items-center gap-2 cursor-pointer' },
+                        React.createElement('input', {
+                            type: 'checkbox', checked: filters.pureVeg,
+                            onChange: (e) => setFilters(f => ({ ...f, pureVeg: e.target.checked }))
+                        }),
+                        React.createElement('span', { className: 'w-4 h-4 rounded-full bg-green-500 inline-block' }),
+                        'Pure Veg'
+                    ),
+                    React.createElement('label', { className: 'flex items-center gap-2 cursor-pointer' },
+                        React.createElement('input', {
+                            type: 'checkbox', checked: filters.openNow,
+                            onChange: (e) => setFilters(f => ({ ...f, openNow: e.target.checked }))
+                        }),
+                        'Open Now'
+                    ),
+                    React.createElement('label', { className: 'flex items-center gap-2 cursor-pointer' },
+                        React.createElement('input', {
+                            type: 'checkbox', checked: filters.hasOffer,
+                            onChange: (e) => setFilters(f => ({ ...f, hasOffer: e.target.checked }))
+                        }),
+                        'Offers Available'
+                    )
+                )
+            )
+        ),
+        React.createElement('div', { className: 'flex-1' },
+            React.createElement('div', { className: 'flex items-center justify-between mb-6' },
+                React.createElement('p', { className: 'text-gray-600' }, 'Showing ' + filtered.length + ' restaurants in ' + city),
+                React.createElement('div', { className: 'flex gap-2' },
+                    ['Relevance', 'Rating ↓', 'Delivery Time', 'Cost: Low to High', 'Cost: High to Low'].map(s =>
+                        React.createElement('button', {
+                            key: s, onClick: () => {
+                                const map = { 'Relevance': 'relevance', 'Rating ↓': 'rating', 'Delivery Time': 'delivery', 'Cost: Low to High': 'costLow', 'Cost: High to Low': 'costHigh' };
+                                setSort(map[s]);
+                            },
+                            className: 'px-4 py-2 rounded-full text-sm transition-all ' + (sort === { 'Relevance': 'relevance', 'Rating ↓': 'rating', 'Delivery Time': 'delivery', 'Cost: Low to High': 'costLow', 'Cost: High to Low': 'costHigh' }[s] ? 'bg-red-500 text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200')
+                        }, s)
+                    )
+                )
+            ),
+            React.createElement('div', { className: 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6' },
+                displayed.map((r, idx) =>
+                    React.createElement('div', {
+                        key: r.id, onClick: () => window.location.hash = '#/restaurant/' + r.id,
+                        className: 'restaurant-card',
+                        style: { animationDelay: (idx * 0.05) + 's' }
+                    },
+                        React.createElement('div', { className: 'card-image-wrapper' },
+                            React.createElement('img', {
+                                src: getRestaurantImage(r), alt: r.name, keyword: r.imageKeyword,
+                                className: 'card-image loaded'
+                            }),
+                            React.createElement('div', { className: 'card-image-gradient' })
+                        ),
+                        React.createElement('div', { className: 'card-body' },
+                            React.createElement('div', { className: 'card-header' },
+                                React.createElement('h3', { className: 'card-name' }, r.name),
+                                React.createElement('div', { className: 'card-rating rating-' + getRatingColor(r.rating) }, '★ ', r.rating)
+                            ),
+                            React.createElement('p', { className: 'card-cuisines' }, r.cuisines.join(' • ')),
+                            React.createElement('p', { className: 'card-location' }, '📍 ', r.locality)
+                        )
+                    )
+                )
+            )
+        )
+    );
+};
+const SearchPage = () => {
+    const [query, setQuery] = useState('');
+    const results = useMemo(() => {
+        if (!query.trim() || query.length < 2) return [];
+        return fuse.search(sanitizeSearchQuery(query)).map(r => r.item);
+    }, [query]);
+
+    return React.createElement('div', { className: 'max-w-7xl mx-auto px-4 py-8' },
+        React.createElement('h1', { className: 'section-title mb-6' }, 'Search Restaurants'),
+        React.createElement('div', { className: 'max-w-2xl mx-auto mb-8' },
+            React.createElement('div', { className: 'nav-search' },
+                React.createElement('span', { className: 'text-red-500' }, '🔍'),
+                React.createElement('input', {
+                    type: 'text', value: query, onChange: (e) => setQuery(e.target.value),
+                    placeholder: 'Search for restaurant, cuisine or a dish...',
+                    className: 'flex-1 outline-none text-sm', style: { minWidth: '200px' },
+                    autoFocus: true
+                })
+            )
+        ),
+        React.createElement('div', { className: 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6' },
+            results.map((r, idx) =>
+                React.createElement('div', {
+                    key: r.id, onClick: () => window.location.hash = '#/restaurant/' + r.id,
+                    className: 'restaurant-card',
+                    style: { animationDelay: (idx * 0.05) + 's' }
+                },
+                    React.createElement('div', { className: 'card-image-wrapper' },
+                        React.createElement('img', {
+                            src: getRestaurantImage(r), alt: r.name, keyword: r.imageKeyword,
+                            className: 'card-image loaded'
+                        }),
+                        React.createElement('div', { className: 'card-image-gradient' })
+                    ),
+                    React.createElement('div', { className: 'card-body' },
+                        React.createElement('div', { className: 'card-header' },
+                            React.createElement('h3', { className: 'card-name' }, r.name),
+                            React.createElement('div', { className: 'card-rating rating-' + getRatingColor(r.rating) }, '★ ', r.rating)
+                        ),
+                        React.createElement('p', { className: 'card-cuisines' }, r.cuisines.join(' • ')),
+                        React.createElement('p', { className: 'card-location' }, '📍 ', r.locality)
+                    )
+                )
+            )
+        ),
+        results.length === 0 && query.length >= 2 && React.createElement('p', { className: 'text-center text-gray-500 mt-8' }, 'No restaurants found.')
+    );
+};
+const CartPage = () => {
+    const [cart, setCart] = useState(() => safeStorage.getJSON('zomato_cart', { restaurantId: null, restaurantName: '', items: [], coupon: null }));
+    const addToast = React.useContext(ToastContext);
+
+    const total = cart.items.reduce((sum, item) => sum + (item.price * item.qty), 0);
+
+    const addItem = (item) => {
+        const newCart = { ...cart };
+        const existing = newCart.items.find(i => i.id === item.id);
+        if (existing) { existing.qty += 1; }
+        else { newCart.items.push({ ...item, qty: 1 }); }
+        newCart.restaurantId = item.restaurantId || newCart.restaurantId;
+        newCart.restaurantName = item.restaurantName || newCart.restaurantName;
+        setCart(newCart);
+        safeStorage.setJSON('zomato_cart', newCart);
+        if (addToast) addToast('Item added to cart!', 'success');
+    };
+
+    const removeItem = (id) => {
+        const newCart = { ...cart, items: cart.items.filter(i => i.id !== id) };
+        if (newCart.items.length === 0) { newCart.restaurantId = null; newCart.restaurantName = ''; }
+        setCart(newCart);
+        safeStorage.setJSON('zomato_cart', newCart);
+    };
+
+    const updateQty = (id, delta) => {
+        const newCart = { ...cart };
+        const item = newCart.items.find(i => i.id === id);
+        if (item) {
+            item.qty += delta;
+            if (item.qty <= 0) { newCart.items = newCart.items.filter(i => i.id !== id); }
+        }
+        if (newCart.items.length === 0) { newCart.restaurantId = null; newCart.restaurantName = ''; }
+        setCart(newCart);
+        safeStorage.setJSON('zomato_cart', newCart);
+    };
+
+    return React.createElement('div', { className: 'max-w-4xl mx-auto px-4 py-8' },
+        React.createElement('h1', { className: 'section-title mb-6' }, 'Your Cart'),
+        cart.items.length === 0
+            ? React.createElement('div', { className: 'text-center py-16' },
+                React.createElement('p', { className: 'text-6xl mb-4' }, '🛒'),
+                React.createElement('p', { className: 'text-gray-500' }, 'Your cart is empty')
+            : React.createElement('div', {},
+                React.createElement('div', { className: 'bg-white rounded-2xl shadow p-6 mb-6' },
+                    React.createElement('h3', { className: 'font-bold mb-4' }, cart.restaurantName || 'Cart'),
+                    cart.items.map(item =>
+                        React.createElement('div', { key: item.id, className: 'flex items-center justify-between py-4 border-b border-gray-100' },
+                            React.createElement('div', { className: 'flex-1' },
+                                React.createElement('p', { className: 'font-semibold' }, item.name),
+                                React.createElement('p', { className: 'text-sm text-gray-500' }, '₹', item.price, ' each')
+                            ),
+                            React.createElement('div', { className: 'qty-counter' },
+                                React.createElement('button', { className: 'qty-btn', onClick: () => updateQty(item.id, -1) }, '−'),
+                                React.createElement('span', { className: 'qty-value' }, item.qty),
+                                React.createElement('button', { className: 'qty-btn', onClick: () => updateQty(item.id, 1) }, '+')
+                            ),
+                            React.createElement('span', { className: 'font-bold px-4' }, '₹', item.price * item.qty),
+                            React.createElement('button', { className: 'text-red-500 hover:text-red-700', onClick: () => removeItem(item.id) }, '✕')
+                        )
+                    ),
+                    React.createElement('div', { className: 'flex justify-between items-center mt-6 pt-6 border-t border-gray-200' },
+                        React.createElement('span', { className: 'text-lg font-bold' }, 'Total:'),
+                        React.createElement('span', { className: 'text-2xl font-bold text-red-500' }, '₹', total)
+                    )
+                ),
+                React.createElement('button', {
+                    className: 'btn-red w-full py-3',
+                    onClick: () => window.location.hash = '#/checkout'
+                }, 'Proceed to Checkout →')
+            )
+    );
+};
+const RestaurantDetail = () => {
+    const [hash] = useState(() => window.location.hash);
+    const id = hash.split('/')[2];
+    const restaurant = restaurants.find(r => r.id === id);
+    const [activeCategory, setActiveCategory] = useState('Recommended');
+    const [cart, setCart] = useState(() => safeStorage.getJSON('zomato_cart', { restaurantId: null, restaurantName: '', items: [] }));
+    const addToast = React.useContext(ToastContext);
+
+    if (!restaurant) {
+        return React.createElement('div', { className: 'text-center py-20' },
+            React.createElement('p', { className: 'text-2xl' }, 'Restaurant not found'),
+            React.createElement('a', { href: '#/restaurants', className: 'btn-red mt-4 inline-block' }, 'Back to Restaurants')
+        );
+    }
+
+    const menuItems = getMenuForRestaurant(id);
+    const categories = ['Recommended', ...new Set(menuItems.map(m => m.category))];
+    const filteredItems = activeCategory === 'Recommended' ? menuItems.filter(m => m.recommended) : menuItems.filter(m => m.category === activeCategory);
+
+    const addToCart = (item) => {
+        const newCart = { ...cart };
+        if (newCart.restaurantId && newCart.restaurantId !== id) {
+            if (!confirm('Adding from a different restaurant will clear your cart. Continue?')) return;
+            newCart.items = [];
+        }
+        newCart.restaurantId = id;
+        newCart.restaurantName = restaurant.name;
+        const existing = newCart.items.find(i => i.id === item.id);
+        if (existing) { existing.qty += 1; }
+        else { newCart.items.push({ ...item, qty: 1, restaurantId: id, restaurantName: restaurant.name }); }
+        setCart(newCart);
+        safeStorage.setJSON('zomato_cart', newCart);
+        if (addToast) addToast(item.name + ' added to cart!', 'success');
+    };
+
+    const cartCount = cart.items.reduce((sum, i) => sum + i.qty, 0);
+
+    return React.createElement('div', { className: 'min-h-screen bg-gray-50' },
+        React.createElement('div', { className: 'restaurant-header' },
+            React.createElement('div', { className: 'max-w-7xl mx-auto px-4 py-8 relative z-10' },
+                React.createElement('div', { className: 'flex flex-col md:flex-row gap-6 items-start' },
+                    React.createElement('img', {
+                        src: getRestaurantImage(restaurant), alt: restaurant.name, keyword: restaurant.imageKeyword,
+                        className: 'w-32 h-32 md:w-40 md:h-40 rounded-2xl object-cover shadow-lg border-4 border-white'
+                    }),
+                    React.createElement('div', { className: 'flex-1' },
+                        React.createElement('h1', { className: 'text-3xl md:text-4xl font-display font-bold text-white mb-2' }, restaurant.name),
+                        React.createElement('p', { className: 'text-white/90 mb-1' }, restaurant.cuisines.join(', ')),
+                        React.createElement('p', { className: 'text-white/80 text-sm' }, '📍 ', restaurant.locality, ', ', restaurant.city),
+                        React.createElement('div', { className: 'flex items-center gap-4 mt-3' },
+                            React.createElement('span', { className: 'inline-flex items-center gap-1 bg-white/20 backdrop-blur text-white px-3 py-1 rounded-full text-sm font-bold' }, '★ ', restaurant.rating),
+                            React.createElement('span', { className: 'text-white/80 text-sm' }, restaurant.votes, ' votes'),
+                            restaurant.hasOnlineDelivery && React.createElement('span', { className: 'bg-green-500 text-white text-xs px-2 py-1 rounded' }, 'Delivery')
+                        )
+                    )
+                )
+            )
+        ),
+        React.createElement('div', { className: 'max-w-7xl mx-auto px-4 py-6' },
+            React.createElement('div', { className: 'flex gap-2 overflow-x-auto pb-4 scrollbar-hide' },
+                categories.map(cat =>
+                    React.createElement('button', {
+                        key: cat, onClick: () => setActiveCategory(cat),
+                        className: 'category-pill' + (activeCategory === cat ? ' active' : '')
+                    }, cat)
+                )
+            ),
+            React.createElement('div', { className: 'grid grid-cols-1 md:grid-cols-2 gap-4 mt-4' },
+                filteredItems.map((item, idx) =>
+                    React.createElement('div', {
+                        key: item.id, className: 'menu-item',
+                        style: { animationDelay: (idx * 0.05) + 's' }
+                    },
+                        React.createElement('div', { className: 'flex-1' },
+                            React.createElement('h4', { className: 'font-semibold text-gray-900' }, item.name),
+                            item.recommended && React.createElement('span', { className: 'badge-recommended' }, 'Recommended'),
+                            React.createElement('p', { className: 'text-sm text-gray-500 mt-1' }, item.description),
+                            React.createElement('div', { className: 'flex items-center gap-3 mt-2' },
+                                React.createElement('span', { className: 'font-bold text-gray-900' }, '₹', item.price),
+                                item.isVeg && React.createElement('span', { className: 'badge-veg' }, '🟢 Veg'),
+                                item.isBestSeller && React.createElement('span', { className: 'badge-bestseller' }, '🔥 Bestseller')
+                            )
+                        ),
+                        React.createElement('div', { className: 'relative' },
+                            React.createElement('img', {
+                                src: getRestaurantImage({ imageKeyword: item.imageKeyword || 'indian food' }),
+                                alt: item.name, keyword: item.imageKeyword || 'indian food',
+                                className: 'w-24 h-24 rounded-xl object-cover'
+                            }),
+                            React.createElement('button', {
+                                className: 'add-btn',
+                                onClick: () => addToCart(item)
+                            }, '+ ADD')
+                        )
+                    )
+                )
+            )
+        ),
+        cartCount > 0 && React.createElement('div', { className: 'fixed bottom-4 left-1/2 -translate-x-1/2 bg-red-500 text-white px-6 py-3 rounded-full shadow-lg flex items-center gap-4 z-50 cursor-pointer hover:bg-red-600 transition-colors', onClick: () => window.location.hash = '#/cart' },
+            React.createElement('span', { className: 'font-bold' }, cartCount, ' items in cart'),
+            React.createElement('span', {}, '₹', cart.items.reduce((s, i) => s + i.price * i.qty, 0)),
+            React.createElement('span', {}, '→')
+        )
+    );
+};
+const CheckoutPage = () => {
+    const [cart, setCart] = useState(() => safeStorage.getJSON('zomato_cart', { restaurantId: null, restaurantName: '', items: [], coupon: null }));
+    const [step, setStep] = useState(1);
+    const [orderPlaced, setOrderPlaced] = useState(false);
+    const [orderId, setOrderId] = useState('');
+    const [form, setForm] = useState({ name: '', phone: '', address: '', city: '', pincode: '' });
+    const [errors, setErrors] = useState({});
+    const [couponCode, setCouponCode] = useState('');
+    const [appliedCoupon, setAppliedCoupon] = useState(cart.coupon || null);
+    const addToast = React.useContext(ToastContext);
+
+    const subtotal = cart.items.reduce((sum, item) => sum + (item.price * item.qty), 0);
+    const discount = appliedCoupon ? Math.round(subtotal * appliedCoupon.discount) : 0;
+    const deliveryFee = subtotal > 199 ? 0 : 40;
+    const taxes = Math.round((subtotal - discount) * 0.05);
+    const total = subtotal - discount + deliveryFee + taxes;
+
+    const validate = () => {
+        const errs = {};
+        if (!form.name.trim()) errs.name = 'Name is required';
+        if (!/^[6-9]\\d{9}$/.test(form.phone)) errs.phone = 'Valid 10-digit mobile required';
+        if (!form.address.trim()) errs.address = 'Address is required';
+        if (!form.city.trim()) errs.city = 'City is required';
+        if (!/^\\d{6}$/.test(form.pincode)) errs.pincode = 'Valid 6-digit pincode required';
+        setErrors(errs);
+        return Object.keys(errs).length === 0;
+    };
+
+    const applyCoupon = () => {
+        const code = couponCode.toUpperCase().trim();
+        if (COUPONS[code]) {
+            const coupon = COUPONS[code];
+            setAppliedCoupon(coupon);
+            const newCart = { ...cart, coupon };
+            setCart(newCart);
+            safeStorage.setJSON('zomato_cart', newCart);
+            if (addToast) addToast('Coupon applied: ' + coupon.label, 'success');
+        } else {
+            if (addToast) addToast('Invalid coupon code', 'error');
+        }
+    };
+
+    const placeOrder = () => {
+        if (!validate()) return;
+        const id = 'ZM' + Date.now().toString(36).toUpperCase();
+        setOrderId(id);
+        setOrderPlaced(true);
+        safeStorage.setJSON('zomato_order', { id, cart: { ...cart }, form, status: 'confirmed', timestamp: Date.now() });
+        safeStorage.setJSON('zomato_cart', { restaurantId: null, restaurantName: '', items: [], coupon: null });
+        if (addToast) addToast('Order placed successfully!', 'success');
+        setTimeout(() => { window.location.hash = '#/track/' + id; }, 1500);
+    };
+
+    if (cart.items.length === 0 && !orderPlaced) {
+        return React.createElement('div', { className: 'text-center py-20' },
+            React.createElement('p', { className: 'text-6xl mb-4' }, '🛒'),
+            React.createElement('p', { className: 'text-gray-500' }, 'Your cart is empty'),
+            React.createElement('a', { href: '#/restaurants', className: 'btn-red mt-4 inline-block' }, 'Browse Restaurants')
+        );
+    }
+
+    if (orderPlaced) {
+        return React.createElement('div', { className: 'text-center py-20 animate-fadeSlideUp' },
+            React.createElement('div', { className: 'text-6xl mb-4' }, '🎉'),
+            React.createElement('h2', { className: 'text-2xl font-bold mb-2' }, 'Order Placed Successfully!'),
+            React.createElement('p', { className: 'text-gray-600 mb-4' }, 'Order ID: ', React.createElement('span', { className: 'font-mono font-bold' }, orderId)),
+            React.createElement('p', { className: 'text-gray-500' }, 'Redirecting to order tracking...')
+        );
+    }
+
+    return React.createElement('div', { className: 'max-w-4xl mx-auto px-4 py-8' },
+        React.createElement('div', { className: 'flex gap-2 mb-8' },
+            [1, 2, 3].map(s =>
+                React.createElement('div', {
+                    key: s, className: 'flex-1 py-2 text-center rounded-full text-sm font-semibold ' +
+                    (s < step ? 'bg-green-500 text-white' : s === step ? 'bg-red-500 text-white' : 'bg-gray-200 text-gray-500')
+                }, s === 1 ? 'Delivery' : s === 2 ? 'Payment' : 'Review')
+            )
+        ),
+        step === 1 && React.createElement('div', { className: 'bg-white rounded-2xl shadow p-6' },
+            React.createElement('h3', { className: 'text-xl font-bold mb-4' }, 'Delivery Details'),
+            React.createElement('div', { className: 'grid grid-cols-1 md:grid-cols-2 gap-4' },
+                ['name', 'phone', 'address', 'city', 'pincode'].map(field =>
+                    React.createElement('div', { key: field, className: field === 'address' ? 'md:col-span-2' : '' },
+                        React.createElement('label', { className: 'form-label' }, field.charAt(0).toUpperCase() + field.slice(1)),
+                        React.createElement('input', {
+                            type: 'text', value: form[field], onChange: (e) => setForm({ ...form, [field]: e.target.value }),
+                            placeholder: 'Enter ' + field, className: 'form-input' + (errors[field] ? ' border-red-500' : '')
+                        }),
+                        errors[field] && React.createElement('p', { className: 'form-error' }, errors[field])
+                    )
+                )
+            ),
+            React.createElement('button', { className: 'btn-red w-full mt-6', onClick: () => validate() && setStep(2) }, 'Continue to Payment →')
+        ),
+        step === 2 && React.createElement('div', { className: 'bg-white rounded-2xl shadow p-6' },
+            React.createElement('h3', { className: 'text-xl font-bold mb-4' }, 'Payment Method'),
+            React.createElement('div', { className: 'space-y-3' },
+                ['Cash on Delivery', 'UPI', 'Credit/Debit Card'].map(method =>
+                    React.createElement('div', { key: method, className: 'p-4 border-2 border-gray-200 rounded-xl cursor-pointer hover:border-red-500 transition-colors' },
+                        React.createElement('span', { className: 'font-semibold' }, method)
+                    )
+                )
+            ),
+            React.createElement('div', { className: 'flex gap-4 mt-6' },
+                React.createElement('button', { className: 'btn-outline flex-1', onClick: () => setStep(1) }, '← Back'),
+                React.createElement('button', { className: 'btn-red flex-1', onClick: () => setStep(3) }, 'Review Order →')
+            )
+        ),
+        step === 3 && React.createElement('div', { className: 'bg-white rounded-2xl shadow p-6' },
+            React.createElement('h3', { className: 'text-xl font-bold mb-4' }, 'Order Summary'),
+            cart.items.map(item =>
+                React.createElement('div', { key: item.id, className: 'flex justify-between py-3 border-b border-gray-100' },
+                    React.createElement('span', {}, item.qty, 'x ', item.name),
+                    React.createElement('span', { className: 'font-semibold' }, '₹', item.price * item.qty)
+                )
+            ),
+            React.createElement('div', { className: 'my-4 p-4 bg-gray-50 rounded-xl' },
+                React.createElement('div', { className: 'flex gap-2' },
+                    React.createElement('input', { type: 'text', value: couponCode, onChange: (e) => setCouponCode(e.target.value), placeholder: 'Coupon code', className: 'form-input flex-1' }),
+                    React.createElement('button', { className: 'btn-outline', onClick: applyCoupon }, 'Apply')
+                ),
+                appliedCoupon && React.createElement('p', { className: 'text-green-600 text-sm mt-2' }, '✓ ', appliedCoupon.label, ' applied!')
+            ),
+            React.createElement('div', { className: 'space-y-2 py-4' },
+                React.createElement('div', { className: 'flex justify-between' }, React.createElement('span', {}, 'Subtotal'), React.createElement('span', {}, '₹', subtotal)),
+                discount > 0 && React.createElement('div', { className: 'flex justify-between text-green-600' }, React.createElement('span', {}, 'Discount'), React.createElement('span', {}, '-₹', discount)),
+                React.createElement('div', { className: 'flex justify-between' }, React.createElement('span', {}, 'Delivery Fee'), React.createElement('span', {}, deliveryFee === 0 ? 'FREE' : '₹' + deliveryFee)),
+                React.createElement('div', { className: 'flex justify-between' }, React.createElement('span', {}, 'Taxes & Charges'), React.createElement('span', {}, '₹', taxes)),
+                React.createElement('div', { className: 'flex justify-between font-bold text-lg pt-2 border-t border-gray-200' }, React.createElement('span', {}, 'Total'), React.createElement('span', {}, '₹', total))
+            ),
+            React.createElement('div', { className: 'flex gap-4' },
+                React.createElement('button', { className: 'btn-outline flex-1', onClick: () => setStep(2) }, '← Back'),
+                React.createElement('button', { className: 'btn-red flex-1', onClick: placeOrder }, 'Place Order • ₹', total)
+            )
+        )
+    );
+};
+const TrackOrder = () => {
+    const [hash] = useState(() => window.location.hash);
+    const orderId = hash.split('/')[2];
+    const [order, setOrder] = useState(() => safeStorage.getJSON('zomato_order', null));
+    const [status, setStatus] = useState(order ? order.status : 'confirmed');
+    const [mapLoaded, setMapLoaded] = useState(false);
+
+    const statusSteps = [
+        { key: 'confirmed', label: 'Order Confirmed', icon: '✅' },
+        { key: 'preparing', label: 'Preparing Food', icon: '👨‍🍳' },
+        { key: 'out_for_delivery', label: 'Out for Delivery', icon: '🛵' },
+        { key: 'delivered', label: 'Delivered', icon: '🎉' }
+    ];
+
+    useEffect(() => {
+        if (!order) { window.location.hash = '#/'; return; }
+        const interval = setInterval(() => {
+            setStatus(prev => {
+                const order = safeStorage.getJSON('zomato_order', null);
+                return order ? order.status : prev;
+            });
+        }, 3000);
+        return () => clearInterval(interval);
+    }, [order]);
+
+    useEffect(() => {
+        if (typeof L !== 'undefined' && order && !mapLoaded) {
+            try {
+                const map = L.map('map-container').setView([12.9716, 77.5946], 13);
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    attribution: '&copy; OpenStreetMap',
+                    maxZoom: 18
+                }).addTo(map);
+                L.marker([12.9716, 77.5946]).addTo(map).bindPopup('Delivery Partner').openPopup();
+                L.marker([12.9352, 77.6245]).addTo(map).bindPopup('Restaurant');
+                setMapLoaded(true);
+            } catch (e) { console.warn('Map init failed:', e); }
+        }
+    }, [order, mapLoaded]);
+
+    if (!order) return React.createElement('div', { className: 'text-center py-20' }, 'Loading...');
+
+    const currentStep = statusSteps.findIndex(s => s.key === status);
+
+    return React.createElement('div', { className: 'max-w-4xl mx-auto px-4 py-8' },
+        React.createElement('h1', { className: 'section-title mb-6' }, 'Track Order: ', React.createElement('span', { className: 'font-mono' }, orderId)),
+        React.createElement('div', { className: 'bg-white rounded-2xl shadow p-6 mb-6' },
+            React.createElement('div', { className: 'flex justify-between mb-8' },
+                statusSteps.map((step, idx) =>
+                    React.createElement('div', { key: step.key, className: 'flex flex-col items-center flex-1 ' + (idx <= currentStep ? 'text-green-600' : 'text-gray-400') },
+                        React.createElement('div', { className: 'text-2xl mb-2' }, step.icon),
+                        React.createElement('span', { className: 'text-xs font-semibold text-center' }, step.label),
+                        idx < statusSteps.length - 1 && React.createElement('div', { className: 'hidden md:block h-1 flex-1 mt-4 ' + (idx < currentStep ? 'bg-green-500' : 'bg-gray-200'), style: { width: '100%', position: 'relative', left: '50%' } })
+                    )
+                )
+            ),
+            React.createElement('div', { id: 'map-container', className: 'map-container', style: { height: '300px', borderRadius: '12px' } }),
+            React.createElement('div', { className: 'mt-6 p-4 bg-green-50 rounded-xl text-center' },
+                React.createElement('p', { className: 'font-bold text-green-800' }, 'Estimated Delivery: 25-30 mins'),
+                React.createElement('p', { className: 'text-sm text-green-600' }, 'Your food is being prepared with love! 🍽️')
+            )
+        ),
+        React.createElement('a', { href: '#/restaurants', className: 'btn-outline w-full text-center block' }, 'Order More Food')
+    );
+};
+const ProfilePage = () => {
+    const [user, setUser] = useState(() => safeStorage.getJSON('zomato_user', { name: 'Food Lover', phone: '', email: '', addresses: [] }));
+    const [orderHistory] = useState(() => {
+        const order = safeStorage.getJSON('zomato_order', null);
+        return order ? [order] : [];
+    });
+    const addToast = React.useContext(ToastContext);
+
+    const handleSave = () => {
+        safeStorage.setJSON('zomato_user', user);
+        if (addToast) addToast('Profile updated!', 'success');
+    };
+
+    return React.createElement('div', { className: 'max-w-4xl mx-auto px-4 py-8' },
+        React.createElement('h1', { className: 'section-title mb-6' }, 'My Profile'),
+        React.createElement('div', { className: 'grid grid-cols-1 md:grid-cols-3 gap-6' },
+            React.createElement('div', { className: 'md:col-span-1' },
+                React.createElement('div', { className: 'bg-white rounded-2xl shadow p-6 text-center' },
+                    React.createElement('div', { className: 'w-24 h-24 bg-red-100 rounded-full flex items-center justify-center text-4xl mx-auto mb-4' }, '👤'),
+                    React.createElement('h3', { className: 'font-bold text-lg' }, user.name),
+                    React.createElement('p', { className: 'text-gray-500 text-sm' }, user.email || 'Add your email'),
+                    React.createElement('button', { className: 'btn-outline w-full mt-4 text-sm' }, 'Edit Profile')
+                )
+            ),
+            React.createElement('div', { className: 'md:col-span-2 space-y-6' },
+                React.createElement('div', { className: 'bg-white rounded-2xl shadow p-6' },
+                    React.createElement('h3', { className: 'font-bold mb-4' }, 'Personal Information'),
+                    React.createElement('div', { className: 'space-y-4' },
+                        ['name', 'phone', 'email'].map(field =>
+                            React.createElement('div', { key: field },
+                                React.createElement('label', { className: 'form-label' }, field.charAt(0).toUpperCase() + field.slice(1)),
+                                React.createElement('input', {
+                                    type: 'text', value: user[field] || '', onChange: (e) => setUser({ ...user, [field]: e.target.value }),
+                                    className: 'form-input'
+                                })
+                            )
+                        ),
+                        React.createElement('button', { className: 'btn-red', onClick: handleSave }, 'Save Changes')
+                    )
+                ),
+                React.createElement('div', { className: 'bg-white rounded-2xl shadow p-6' },
+                    React.createElement('h3', { className: 'font-bold mb-4' }, 'Order History'),
+                    orderHistory.length === 0
+                        ? React.createElement('p', { className: 'text-gray-500 text-center py-8' }, 'No orders yet. Start ordering! 🍕')
+                        : orderHistory.map((order, idx) =>
+                            React.createElement('div', { key: idx, className: 'border-b border-gray-100 py-4 last:border-0' },
+                                React.createElement('div', { className: 'flex justify-between items-start' },
+                                    React.createElement('div', {},
+                                        React.createElement('p', { className: 'font-semibold' }, 'Order ', order.id),
+                                        React.createElement('p', { className: 'text-sm text-gray-500' }, new Date(order.timestamp).toLocaleDateString()),
+                                        React.createElement('span', { className: 'badge-' + (order.status === 'delivered' ? 'veg' : 'nonveg') }, order.status)
+                                    ),
+                                    React.createElement('span', { className: 'font-bold' }, '₹', order.cart.items.reduce((s, i) => s + i.price * i.qty, 0))
+                                )
+                            )
+                        )
+                )
+            )
+        )
+    );
+};
+
+
+const FoodImage = ({ src, alt, keyword, className, ...props }) => {
+    const [imgSrc, setImgSrc] = useState(() => {
+        if (src) return src;
+        return getRestaurantImage({ imageKeyword: keyword || 'indian food' });
+    });
+    const [loaded, setLoaded] = useState(false);
+    const [fallbackLevel, setFallbackLevel] = useState(0);
+
+    const handleError = () => {
+        const nextLevel = fallbackLevel + 1;
+        setFallbackLevel(nextLevel);
+        if (nextLevel === 1) {
+            setImgSrc('https://source.unsplash.com/400x300/?' + encodeURIComponent(keyword || 'indian food'));
+        } else if (nextLevel === 2) {
+            setImgSrc('https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=400&h=300&fit=crop');
+        } else {
+            setImgSrc('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjRjNGNEY2Ii8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIiBmb250LXNpemU9IjI0IiBmaWxsPSIjOUI5QkE0IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkeT0iMC4zNWVtIj7wn5KpINKcINQzIOKVgeKUtTwvdGV4dD48L3N2Zz4=');
+        }
+    };
+
+    return React.createElement('div', { className: 'relative overflow-hidden ' + (className || '') },
+        !loaded && React.createElement('div', { className: 'skeleton absolute inset-0' }),
+        React.createElement('img', {
+            src: imgSrc, alt: alt || 'Food', onLoad: () => setLoaded(true),
+            onError: handleError, className: 'w-full h-full object-cover transition-opacity duration-300 ' + (loaded ? 'opacity-100' : 'opacity-0'),
+            ...props
+        })
+    );
+};
+
+
+
+const Router = () => {
+    const [hash, setHash] = useState(() => window.location.hash || '#/');
+    useEffect(() => {
+        const onHashChange = () => setHash(window.location.hash);
+        window.addEventListener('hashchange', onHashChange);
+        return () => window.removeEventListener('hashchange', onHashChange);
+    }, []);
+
+    const getComponent = () => {
+        if (hash.startsWith('#/restaurant/')) return RestaurantDetail;
+        if (hash === '#/restaurants') return RestaurantsList;
+        if (hash === '#/search') return SearchPage;
+        if (hash === '#/cart') return CartPage;
+        if (hash === '#/checkout') return CheckoutPage;
+        if (hash.startsWith('#/track/')) return TrackOrder;
+        if (hash === '#/profile') return ProfilePage;
+        return HomePage;
+    };
+
+    const Component = getComponent();
+    return React.createElement(Component, null);
+};
+
+const App = () => {
+    return React.createElement(ToastProvider, null,
+        React.createElement(NavBar, null),
+        React.createElement(Router, null)
+    );
+};
+
+ReactDOM.render(React.createElement(App), document.getElementById('root'));
+
+        </script>
+    </body>
+</html>
+
+
+
+

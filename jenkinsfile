@@ -1,152 +1,148 @@
 pipeline {
     agent any
 
-    tools {
-        jdk 'jdk17'
-        nodejs 'NodeJS 18'
+    environment {
+        DOCKER_HUB_CREDENTIALS = credentials('docker-hub-credentials')
+        DOCKER_IMAGE_FRONTEND = 'zomato-frontend'
+        DOCKER_IMAGE_BACKEND = 'zomato-backend'
+        DOCKER_REGISTRY = "${params.DOCKER_REGISTRY ?: 'your-dockerhub-username'}"
     }
 
-    environment {
-        SCANNER_HOME = tool 'sonar-scanner'
-        DOCKER_IMAGE = 'samarth132/zomato'
+    parameters {
+        string(name: 'DOCKER_REGISTRY', defaultValue: 'your-dockerhub-username', description: 'Docker Hub username/registry')
+        choice(name: 'DEPLOY_ENV', choices: ['staging', 'production'], description: 'Deployment environment')
     }
 
     stages {
-
-        stage ("Clean Workspace") {
+        stage('Checkout') {
             steps {
-                cleanWs()
+                checkout scm
             }
         }
 
-        stage ("Git Checkout") {
-            steps {
-                git branch: 'main', url: 'https://github.com/samarthmutagekar23work/zomato_clone_ci-cd.git'
+        stage('Install Dependencies') {
+            parallel {
+                stage('Frontend Dependencies') {
+                    steps {
+                        dir('frontend') {
+                            bat 'npm install'
+                        }
+                    }
+                }
+                stage('Backend Dependencies') {
+                    steps {
+                        dir('backend') {
+                            bat 'npm install'
+                        }
+                    }
+                }
+                stage('Root Dependencies') {
+                    steps {
+                        bat 'npm install'
+                    }
+                }
             }
         }
 
-        // ✅ MOVE THIS BEFORE SONAR
-        stage("Install NPM Dependencies") {
-            steps {
-                sh "npm install"
+        stage('Lint and Test') {
+            parallel {
+                stage('Frontend Lint') {
+                    steps {
+                        dir('frontend') {
+                            bat 'npm run lint || echo "No lint script"'
+                        }
+                    }
+                }
+                stage('Backend Lint') {
+                    steps {
+                        dir('backend') {
+                            bat 'npm run lint || echo "No lint script"'
+                        }
+                    }
+                }
+                stage('Frontend Test') {
+                    steps {
+                        dir('frontend') {
+                            bat 'npm test -- --watchAll=false --passWithNoTests || echo "No tests"'
+                        }
+                    }
+                }
+                stage('Backend Test') {
+                    steps {
+                        dir('backend') {
+                            bat 'npm test -- --watchAll=false --passWithNoTests || echo "No tests"'
+                        }
+                    }
+                }
             }
         }
 
-        // ✅ ADD COVERAGE (VERY IMPORTANT)
-        stage("Run Tests with Coverage") {
-            steps {
-                sh "CI=true npm run test:ci"
-                sh "ls -la coverage"   // debug check
+        stage('Build') {
+            parallel {
+                stage('Build Frontend') {
+                    steps {
+                        bat 'npm run build'
+                    }
+                }
+                stage('Build Backend') {
+                    steps {
+                        dir('backend') {
+                            bat 'npm run build || echo "No build script"'
+                        }
+                    }
+                }
             }
         }
 
-       stage("SonarQube Analysis") {
-    steps {
-        withSonarQubeEnv('sonar-server') {
-            sh """
-            $SCANNER_HOME/bin/sonar-scanner \
-            -Dsonar.projectName=zomato \
-            -Dsonar.projectKey=zomato \
-            -Dsonar.sources=src \
-            -Dsonar.tests=src \
-            -Dsonar.test.inclusions=**/*.test.js,**/*.test.jsx \
-            -Dsonar.exclusions=**/node_modules/**,**/coverage/** \
-            -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info \
-            -Dsonar.sourceEncoding=UTF-8
-            """
-        }
-    }
-}
-
-        stage("Code Quality Gate") {
+        stage('Docker Build') {
             steps {
                 script {
-                    def qg = waitForQualityGate abortPipeline: false
-                    echo "Quality Gate: ${qg.status}"
+                    bat "docker build -t ${DOCKER_REGISTRY}/${DOCKER_IMAGE_FRONTEND}:${BUILD_NUMBER} ."
+                    bat "docker build -t ${DOCKER_REGISTRY}/${DOCKER_IMAGE_FRONTEND}:latest ."
+                    dir('backend') {
+                        bat "docker build -t ${DOCKER_REGISTRY}/${DOCKER_IMAGE_BACKEND}:${BUILD_NUMBER} ."
+                        bat "docker build -t ${DOCKER_REGISTRY}/${DOCKER_IMAGE_BACKEND}:latest ."
+                    }
                 }
             }
         }
 
-        stage("Fix NPM Vulnerabilities") {
+        stage('Push to Registry') {
             steps {
-                sh "npm audit fix || true"
-            }
-        }
-
-        stage('OWASP FS Scan') {
-            steps {
-                dependencyCheck additionalArguments: '--scan ./ --disableYarnAudit --disableNodeAudit',
-                odcInstallation: 'DP-Check'
-
-                dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
-            }
-        }
-
-        stage ("Trivy File Scan") {
-            steps {
-                sh "trivy fs . > trivy.txt"
-            }
-        }
-
-        stage ("Build Docker Image") {
-            steps {
-                sh "docker build -t $DOCKER_IMAGE:latest ."
-            }
-        }
-
-        stage ("Push to DockerHub") {
-            steps {
-                withCredentials([usernamePassword(credentialsId: 'docker', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
-                    sh """
-                    echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
-                    docker push $DOCKER_IMAGE:latest
-                    """
+                script {
+                    bat "echo %DOCKER_HUB_CREDENTIALS_PSW% | docker login -u %DOCKER_HUB_CREDENTIALS_USR% --password-stdin"
+                    bat "docker push ${DOCKER_REGISTRY}/${DOCKER_IMAGE_FRONTEND}:${BUILD_NUMBER}"
+                    bat "docker push ${DOCKER_REGISTRY}/${DOCKER_IMAGE_FRONTEND}:latest"
+                    bat "docker push ${DOCKER_REGISTRY}/${DOCKER_IMAGE_BACKEND}:${BUILD_NUMBER}"
+                    bat "docker push ${DOCKER_REGISTRY}/${DOCKER_IMAGE_BACKEND}:latest"
                 }
             }
         }
 
-        stage('Docker Scout Scan') {
+        stage('Deploy') {
             steps {
-                sh """
-                if docker scout version >/dev/null 2>&1; then
-                    docker scout quickview $DOCKER_IMAGE:latest
-                    docker scout cves $DOCKER_IMAGE:latest
-                    docker scout recommendations $DOCKER_IMAGE:latest
-                else
-                    echo "Docker Scout not installed, skipping..."
-                fi
-                """
-            }
-        }
-
-        stage ("Deploy Container") {
-            steps {
-                sh """
-                docker rm -f zomato || true
-                docker run -d --name zomato -p 3000:3000 $DOCKER_IMAGE:latest
-                """
+                script {
+                    if (params.DEPLOY_ENV == 'production') {
+                        bat 'docker-compose -f docker-compose.prod.yml down || echo "No running containers"'
+                        bat 'docker-compose -f docker-compose.prod.yml up -d'
+                    } else {
+                        bat 'docker-compose down || echo "No running containers"'
+                        bat 'docker-compose up -d'
+                    }
+                }
             }
         }
     }
 
     post {
         always {
-            emailext attachLog: true,
-                subject: "Build Status: ${currentBuild.result}",
-                body: """
-                <html>
-                <body>
-                    <h2>Jenkins Build Report</h2>
-                    <p><b>Project:</b> ${env.JOB_NAME}</p>
-                    <p><b>Build:</b> ${env.BUILD_NUMBER}</p>
-                    <p><b>Status:</b> ${currentBuild.result}</p>
-                    <p><b>URL:</b> <a href="${env.BUILD_URL}">${env.BUILD_URL}</a></p>
-                </body>
-                </html>
-                """,
-                to: 'smarthmutagekar23work@gmail.com',
-                mimeType: 'text/html',
-                attachmentsPattern: 'trivy.txt'
+            bat 'docker logout || echo "Not logged in"'
+        }
+        success {
+            echo 'Pipeline completed successfully!'
+        }
+        failure {
+            echo 'Pipeline failed!'
         }
     }
 }

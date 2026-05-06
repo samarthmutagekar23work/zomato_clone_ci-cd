@@ -1,0 +1,83 @@
+services:
+  zomato-frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: zomato-frontend
+    ports:
+      - "80:80"
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "-q", "http://localhost:80"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+    depends_on:
+      zomato-backend:
+        condition: service_healthy
+    networks:
+      - zomato-network
+
+  zomato-backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: zomato-backend
+    ports:
+      - "3000:3000"
+    restart: unless-stopped
+    environment:
+      - MONGO_URI=mongodb://mongo:27017/zomato
+      - NODE_ENV=production
+      - PORT=3000
+      - JWT_SECRET=${JWT_SECRET:-changeme-in-production}
+      - REDIS_URL=redis://redis:6379
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "-q", "http://localhost:3000/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+    depends_on:
+      mongo:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    networks:
+      - zomato-network
+
+  mongo:
+    image: mongo:6
+    container_name: zomato-mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+    networks:
+      - zomato-network
+
+  redis:
+    image: redis:7-alpine
+    container_name: zomato-redis
+    ports:
+      - "6379:6379"
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+    networks:
+      - zomato-network
+
+networks:
+  zomato-network:
+    driver: bridge
+
+volumes:
+  mongo-data:
