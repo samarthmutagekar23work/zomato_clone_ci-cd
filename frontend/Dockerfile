@@ -1,24 +1,18 @@
-FROM node:20-alpine AS builder
-
-RUN addgroup -g 1001 -S appgroup && adduser -S appuser -u 1001 -G appgroup
+FROM oven/bun:1 AS builder
 
 WORKDIR /app
 
-COPY --chown=appuser:appgroup package*.json ./
+COPY . .
 
-RUN npm ci
+RUN bun install
 
-COPY --chown=appuser:appgroup . .
-
-RUN npm run build
+RUN bunx turbo build
 
 FROM nginx:alpine AS production
 
-RUN apk update && apk upgrade --no-cache
+COPY --from=builder /app/dist /usr/share/nginx/html
 
-COPY --chown=nginx:nginx --from=builder /app/dist /usr/share/nginx/html
-
-COPY --chown=nginx:nginx nginx.conf /etc/nginx/nginx.conf
+COPY nginx.conf /etc/nginx/nginx.conf
 
 RUN chmod -R 755 /usr/share/nginx/html
 
