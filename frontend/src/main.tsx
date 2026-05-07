@@ -1314,7 +1314,7 @@ const App: React.FC = () => {
           </div>
         </div>
       </div>
-    );
+  );
   };
 
   // Home Page
@@ -1472,6 +1472,7 @@ const App: React.FC = () => {
         </div>
       </div>
     </div>
+  </div>
   );
 
   // Restaurant Menu Page
