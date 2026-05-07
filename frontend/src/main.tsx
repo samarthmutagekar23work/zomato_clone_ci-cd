@@ -545,6 +545,114 @@ const App: React.FC = () => {
       boxShadow: '0 4px 20px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.1)',
       transition: 'all 0.3s ease',
     },
+    heroCard: {
+      background: 'linear-gradient(135deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.02) 100%)',
+      borderRadius: '32px',
+      padding: '60px 40px 48px',
+      border: '1px solid rgba(255,255,255,0.1)',
+      backdropFilter: 'blur(24px)',
+      WebkitBackdropFilter: 'blur(24px)',
+      boxShadow: '0 20px 60px rgba(0,0,0,0.5), 0 0 40px rgba(226,55,68,0.08)',
+      position: 'relative',
+      overflow: 'hidden',
+      animation: 'heroCardFloat 6s ease-in-out infinite',
+    },
+    heroTitle: {
+      fontSize: '48px',
+      fontWeight: 800,
+      margin: '0 0 12px',
+      background: 'linear-gradient(135deg, #E23744, #ff6b6b, #fbbf24, #E23744)',
+      backgroundSize: '300% 300%',
+      WebkitBackgroundClip: 'text',
+      WebkitTextFillColor: 'transparent',
+      backgroundClip: 'text',
+      animation: 'titleGradient 4s ease infinite',
+      lineHeight: 1.2,
+      letterSpacing: '-1px',
+    },
+    heroSubtitle: {
+      color: 'rgba(255,255,255,0.6)',
+      fontSize: '18px',
+      margin: '0 0 28px',
+      fontWeight: 400,
+    },
+    heroSearchWrapper: {
+      display: 'flex',
+      alignItems: 'center',
+      background: 'rgba(255,255,255,0.06)',
+      borderRadius: '20px',
+      border: '2px solid rgba(255,255,255,0.1)',
+      padding: '4px 6px 4px 20px',
+      maxWidth: '600px',
+      margin: '0 auto',
+      boxShadow: '0 4px 20px rgba(0,0,0,0.2)',
+    },
+    heroSearchInput: {
+      flex: 1,
+      padding: '16px 14px',
+      fontSize: '16px',
+      border: 'none',
+      outline: 'none',
+      background: 'transparent',
+      color: 'white',
+    },
+    heroFoodPill: {
+      padding: '10px 22px',
+      background: 'rgba(255,255,255,0.06)',
+      borderRadius: '24px',
+      fontSize: '15px',
+      cursor: 'pointer',
+      color: '#e5e7eb',
+      border: '1px solid rgba(255,255,255,0.08)',
+      transition: 'all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
+      backdropFilter: 'blur(10px)',
+      animation: 'pillPulse 3s ease-in-out infinite',
+    },
+    citiesGrid: {
+      display: 'grid',
+      gridTemplateColumns: 'repeat(3, 1fr)',
+      gap: '14px',
+      maxWidth: '780px',
+      margin: '0 auto',
+    },
+    cityCard: {
+      position: 'relative',
+      borderRadius: '16px',
+      overflow: 'hidden',
+      height: '130px',
+      cursor: 'pointer',
+      border: '1px solid rgba(255,255,255,0.08)',
+      boxShadow: '0 4px 16px rgba(0,0,0,0.2)',
+      transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
+    },
+    cityCardOverlay: {
+      position: 'absolute',
+      inset: 0,
+      background: 'linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.25) 50%, transparent 100%)',
+      zIndex: 1,
+    },
+    cityCardContent: {
+      position: 'absolute',
+      bottom: 0,
+      left: 0,
+      right: 0,
+      padding: '16px',
+      zIndex: 2,
+      display: 'flex',
+      flexDirection: 'column',
+      gap: '2px',
+    },
+    cityCardName: {
+      color: 'white',
+      fontSize: '16px',
+      fontWeight: 700,
+      textShadow: '0 2px 4px rgba(0,0,0,0.3)',
+    },
+    cityCardCount: {
+      color: 'rgba(255,255,255,0.75)',
+      fontSize: '12px',
+      fontWeight: 500,
+    },
     restaurantGrid: {
       display: 'grid',
       gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
@@ -813,6 +921,45 @@ const App: React.FC = () => {
       @keyframes dash {
         to { stroke-dashoffset: 0; }
       }
+      @keyframes heroCardFloat {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-8px); }
+      }
+      @keyframes heroFloat1 {
+        0%, 100% { transform: translate(0, 0) rotate(0deg); }
+        25% { transform: translate(10px, -15px) rotate(5deg); }
+        50% { transform: translate(-5px, -25px) rotate(-3deg); }
+        75% { transform: translate(8px, -10px) rotate(4deg); }
+      }
+      @keyframes heroFloat2 {
+        0%, 100% { transform: translate(0, 0) rotate(0deg); }
+        33% { transform: translate(-15px, -10px) rotate(-8deg); }
+        66% { transform: translate(5px, -20px) rotate(5deg); }
+      }
+      @keyframes titleGradient {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+      }
+      @keyframes pillPulse {
+        0%, 100% { transform: scale(1); box-shadow: 0 0 10px rgba(226,55,68,0.1); }
+        50% { transform: scale(1.05); box-shadow: 0 0 20px rgba(226,55,68,0.2); }
+      }
+      @keyframes fadeSlideUp {
+        from { opacity: 0; transform: translateY(30px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      .hero-search-wrapper { transition: all 0.4s ease !important; }
+      .hero-search-wrapper:focus-within { border-color: #E23744 !important; box-shadow: 0 0 30px rgba(226,55,68,0.15), 0 4px 20px rgba(0,0,0,0.3) !important; }
+      .hero-search-input::placeholder { color: rgba(255,255,255,0.35); }
+      .city-card-image { transition: transform 0.5s ease !important; }
+      .city-card-image:hover { transform: scale(1.1) !important; }
+      @media (max-width: 640px) { .cities-grid { grid-template-columns: repeat(2, 1fr) !important; } }
+      @media (max-width: 420px) { .cities-grid { grid-template-columns: 1fr !important; } }
+      @keyframes heroShimmer {
+        0% { background-position: -200% center; }
+        100% { background-position: 200% center; }
+      }
       * { scrollbar-width: thin; scrollbar-color: #E23744 #f1f1f1; }
       ::-webkit-scrollbar { width: 6px; }
       ::-webkit-scrollbar-track { background: #f1f1f1; }
@@ -1017,41 +1164,98 @@ const App: React.FC = () => {
   // Home Page
   const HomePage = () => (
     <div style={styles.searchContainer}>
-      <div style={{ textAlign: 'center', marginBottom: '32px' }}>
-        <h1 style={{ fontSize: '32px', color: '#1f2937', margin: '0 0 8px' }}>Discover the best food & drinks</h1>
-        <p style={{ color: '#6b7280', fontSize: '16px', margin: 0 }}>Order from your favorite restaurants near you</p>
+      {/* Hero Card */}
+      <div style={styles.heroCard}>
+        {/* Decorative floating food emojis */}
+        <span style={{ position: 'absolute', top: '10px', left: '20px', fontSize: '42px', opacity: 0.5, animation: 'heroFloat1 7s ease-in-out infinite', filter: 'drop-shadow(0 0 15px rgba(255,100,100,0.2))', zIndex: 1 }}>🍕</span>
+        <span style={{ position: 'absolute', top: '15px', right: '25px', fontSize: '36px', opacity: 0.4, animation: 'heroFloat2 8s ease-in-out infinite 1s', filter: 'drop-shadow(0 0 15px rgba(255,200,50,0.2))', zIndex: 1 }}>🍔</span>
+        <span style={{ position: 'absolute', bottom: '20px', left: '30px', fontSize: '38px', opacity: 0.4, animation: 'heroFloat1 9s ease-in-out infinite 2s', filter: 'drop-shadow(0 0 15px rgba(50,200,100,0.2))', zIndex: 1 }}>🌮</span>
+        <span style={{ position: 'absolute', bottom: '10px', right: '20px', fontSize: '34px', opacity: 0.5, animation: 'heroFloat2 6.5s ease-in-out infinite 0.5s', filter: 'drop-shadow(0 0 15px rgba(255,150,200,0.2))', zIndex: 1 }}>🥗</span>
+        <span style={{ position: 'absolute', top: '45%', left: '2%', fontSize: '28px', opacity: 0.3, animation: 'heroFloat1 10s ease-in-out infinite 3s', zIndex: 1 }}>🍣</span>
+        <span style={{ position: 'absolute', top: '38%', right: '3%', fontSize: '26px', opacity: 0.3, animation: 'heroFloat2 8.5s ease-in-out infinite 1.5s', zIndex: 1 }}>🍜</span>
+
+        {/* Gradient glow overlay */}
+        <div style={{
+          position: 'absolute', inset: 0,
+          background: 'radial-gradient(ellipse at 30% 20%, rgba(226,55,68,0.1) 0%, transparent 60%), radial-gradient(ellipse at 70% 80%, rgba(251,191,36,0.06) 0%, transparent 50%)',
+          zIndex: 0,
+        }} />
+
+        {/* Content */}
+        <div style={{ textAlign: 'center', position: 'relative', zIndex: 2 }}>
+          <h1 style={styles.heroTitle}>Discover the best food & drinks</h1>
+          <p style={styles.heroSubtitle}>Order from your favorite restaurants near you</p>
+
+          <div className="hero-search-wrapper" style={styles.heroSearchWrapper}>
+            <span style={{ fontSize: '20px', lineHeight: 1 }}>🔍</span>
+            <input
+              type="text"
+              placeholder="Search for restaurants, cuisines, or localities..."
+              value={searchQuery}
+              onChange={e => setSearchQuery(e.target.value)}
+              className="hero-search-input"
+              style={styles.heroSearchInput}
+            />
+          </div>
+
+          <div style={{ display: 'flex', gap: '12px', marginTop: '28px', flexWrap: 'wrap', justifyContent: 'center' }}>
+            {['Pizza', 'Burger', 'Chinese', 'Biryani', 'Dosa', 'Sushi'].filter(t =>
+              t.toLowerCase().includes(searchQuery.toLowerCase()) || searchQuery === ''
+            ).map((tag, idx) => (
+              <span
+                key={tag}
+                style={{ ...styles.heroFoodPill, animationDelay: `${idx * 0.3}s` }}
+                onClick={() => setSearchQuery(tag)}
+              >
+                {tag === 'Pizza' ? '🍕 ' : tag === 'Burger' ? '🍔 ' : tag === 'Chinese' ? '🥟 ' : tag === 'Biryani' ? '🍛 ' : tag === 'Dosa' ? '🥞 ' : '🍣 '}
+                {tag}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        {/* Cities Section */}
+        <div style={{ marginTop: '40px', position: 'relative', zIndex: 2 }}>
+          <h3 style={{ color: 'rgba(255,255,255,0.8)', fontSize: '18px', fontWeight: 600, margin: '0 0 16px', textAlign: 'center' }}>
+            🌆 Popular localities
+          </h3>
+          <div className="cities-grid" style={styles.citiesGrid}>
+            {[
+              { name: 'Koramangala', img: 'https://images.unsplash.com/photo-1599761230913-1ec5c01255d4?w=300&h=180&fit=crop&q=80', count: restaurants.filter(r => r.locality === 'Koramangala').length },
+              { name: 'Indiranagar', img: 'https://images.unsplash.com/photo-1587474260584-136574528ed5?w=300&h=180&fit=crop&q=80', count: restaurants.filter(r => r.locality === 'Indiranagar').length },
+              { name: 'HSR Layout', img: 'https://images.unsplash.com/photo-1577415124269-fc114f0f4c2e?w=300&h=180&fit=crop&q=80', count: restaurants.filter(r => r.locality === 'HSR Layout').length },
+              { name: 'Whitefield', img: 'https://images.unsplash.com/photo-1523731407965-2430cd12f5e4?w=300&h=180&fit=crop&q=80', count: restaurants.filter(r => r.locality === 'Whitefield').length },
+              { name: 'Jayanagar', img: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=300&h=180&fit=crop&q=80', count: restaurants.filter(r => r.locality === 'Jayanagar').length },
+              { name: 'MG Road', img: 'https://images.unsplash.com/photo-1580584127374-9276b1e9959b?w=300&h=180&fit=crop&q=80', count: restaurants.filter(r => r.locality === 'MG Road').length },
+            ].map((city, idx) => (
+              <div
+                key={city.name}
+                style={{
+                  ...styles.cityCard,
+                  animation: `fadeSlideUp 0.5s ease-out ${0.1 + idx * 0.08}s both`,
+                }}
+                onClick={() => setSearchQuery(city.name)}
+              >
+                <div style={{
+                  position: 'absolute', inset: 0,
+                  backgroundImage: `url(${city.img})`,
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center',
+                  transition: 'transform 0.5s ease',
+                }} className="city-card-image" />
+                <div style={styles.cityCardOverlay} />
+                <div style={styles.cityCardContent}>
+                  <span style={styles.cityCardName}>{city.name}</span>
+                  <span style={styles.cityCardCount}>{city.count} {city.count === 1 ? 'place' : 'places'} ›</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
 
-      <input
-        type="text"
-        placeholder="Search for restaurants, cuisines, or localities..."
-        value={searchQuery}
-        onChange={e => setSearchQuery(e.target.value)}
-        style={styles.searchInput}
-      />
-
-      <div style={{ display: 'flex', gap: '12px', marginTop: '20px', flexWrap: 'wrap' }}>
-        {['Pizza', 'Burger', 'Chinese', 'Biryani', 'Dosa', 'Sushi'].filter(t =>
-          t.toLowerCase().includes(searchQuery.toLowerCase()) || searchQuery === ''
-        ).map(tag => (
-          <span
-            key={tag}
-            style={{
-              padding: '8px 16px',
-              background: 'white',
-              borderRadius: '20px',
-              fontSize: '14px',
-              cursor: 'pointer',
-              boxShadow: '0 2px 4px rgba(0,0,0,0.08)',
-            }}
-            onClick={() => setSearchQuery(tag)}
-          >
-            {tag}
-          </span>
-        ))}
-      </div>
-
-      <h2 style={{ color: '#1f2937', marginTop: '32px' }}>
+      {/* Restaurants section */}
+      <h2 style={{ color: '#e5e7eb', marginTop: '48px', fontSize: '22px', fontWeight: 700, animation: 'fadeSlideUp 0.6s ease-out' }}>
         Restaurants near you ({filteredRestaurants.length})
       </h2>
 
