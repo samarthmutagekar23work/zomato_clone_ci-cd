@@ -542,6 +542,7 @@ const App: React.FC = () => {
       boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
       cursor: 'pointer',
       transition: 'transform 0.2s, box-shadow 0.2s',
+      animation: 'cardFadeIn 0.4s ease-out',
     },
     restaurantImage: {
       width: '100%',
@@ -623,6 +624,7 @@ const App: React.FC = () => {
       borderRadius: '12px',
       marginBottom: '12px',
       boxShadow: '0 2px 8px rgba(0,0,0,0.06)',
+      animation: 'cardFadeIn 0.4s ease-out',
     },
     menuItemImage: {
       width: '120px',
@@ -638,6 +640,7 @@ const App: React.FC = () => {
       background: 'white',
       borderRadius: '10px',
       marginBottom: '10px',
+      animation: 'cardFadeIn 0.4s ease-out',
     },
     trackingContainer: {
       maxWidth: '800px',
@@ -653,6 +656,7 @@ const App: React.FC = () => {
       gap: '16px',
       alignItems: 'center',
       marginBottom: '20px',
+      animation: 'cardFadeIn 0.4s ease-out',
     },
     driverImage: {
       width: '70px',
@@ -675,6 +679,19 @@ const App: React.FC = () => {
       marginBottom: '20px',
     },
   };
+
+  // Inject keyframe animations
+  useEffect(() => {
+    const styleEl = document.createElement('style');
+    styleEl.textContent = `
+      @keyframes cardFadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+    `;
+    document.head.appendChild(styleEl);
+    return () => { document.head.removeChild(styleEl); };
+  }, []);
 
   // Login Modal
   const LoginModal = () => showLoginModal ? (
@@ -1293,6 +1310,7 @@ const App: React.FC = () => {
           borderRadius: '16px',
           padding: '20px',
           boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
+          animation: 'cardFadeIn 0.4s ease-out',
         }}>
           <h3 style={{ margin: '0 0 12px', color: '#1f2937' }}>Order Summary</h3>
           {currentOrder.items.map(item => (
