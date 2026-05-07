@@ -26,9 +26,9 @@ COPY --from=builder --chown=appuser:appgroup /app/dist ./dist
 COPY --from=builder --chown=appuser:appgroup /app/node_modules ./node_modules
 COPY --from=builder --chown=appuser:appgroup /app/package.json ./package.json
 
-RUN chmod -R 550 /app && chmod -R 770 /app/dist
+RUN chmod -R 755 /app
 
-USER appuser
+USER root
 
 ENTRYPOINT ["dumb-init", "--"]
 
