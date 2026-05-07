@@ -395,7 +395,7 @@ promtool check config /etc/prometheus/prometheus.yml
 You should see "SUCCESS" when you run the above command, it means every configuration made so far is good.
 
 Reload the Prometheus configuration without restarting:
-curl -X POST http://localhost:9090/-/reload
+
 
 Access Prometheus in browser (if already opened, just reload the page):
 http://<your-prometheus-ip>:9090/targets

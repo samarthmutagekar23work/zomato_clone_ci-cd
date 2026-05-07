@@ -479,24 +479,25 @@ const App: React.FC = () => {
       background: 'linear-gradient(135deg, #0f0f0f 0%, #1a0a0a 25%, #0a1a0a 50%, #1a1a0a 75%, #0f0f0f 100%)',
       backgroundSize: '400% 400%',
       animation: 'gradientShift 20s ease infinite',
-      fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+      fontFamily: '"Inter", system-ui, -apple-system, sans-serif',
       position: 'relative' as const,
       overflow: 'hidden',
     },
     header: {
-      background: 'rgba(8, 8, 12, 0.85)',
-      backdropFilter: 'blur(24px) saturate(180%)',
-      WebkitBackdropFilter: 'blur(24px) saturate(180%)',
-      borderBottom: '1px solid rgba(255,255,255,0.06)',
+      background: 'linear-gradient(180deg, rgba(16,14,22,0.98) 0%, rgba(10,10,16,0.92) 100%)',
+      backdropFilter: 'blur(24px) saturate(200%)',
+      WebkitBackdropFilter: 'blur(24px) saturate(200%)',
+      borderBottom: '1px solid rgba(226,55,68,0.2)',
       color: 'white',
-      padding: '10px 40px',
+      padding: '12px 40px',
       display: 'flex',
       justifyContent: 'space-between',
       alignItems: 'center',
-      boxShadow: '0 1px 0 rgba(255,255,255,0.05), 0 8px 32px rgba(0,0,0,0.4)',
+      boxShadow: '0 1px 0 rgba(255,255,255,0.03), 0 8px 32px rgba(0,0,0,0.5), 0 0 20px rgba(226,55,68,0.06)',
       position: 'sticky' as const,
       top: 0,
       zIndex: 100,
+      animation: 'navSlideIn 0.5s ease-out',
     },
     logo: {
       fontSize: '28px',
@@ -505,8 +506,9 @@ const App: React.FC = () => {
       letterSpacing: '-1px',
       display: 'flex',
       alignItems: 'center',
-      gap: '10px',
-      transition: 'opacity 0.2s ease',
+      gap: '12px',
+      transition: 'all 0.3s ease',
+      position: 'relative',
     },
     navButtons: {
       display: 'flex',
@@ -516,22 +518,23 @@ const App: React.FC = () => {
     navButton: {
       background: 'transparent',
       border: 'none',
-      color: 'rgba(255,255,255,0.7)',
-      padding: '8px 18px',
-      borderRadius: '10px',
+      color: 'rgba(255,255,255,0.65)',
+      padding: '10px 22px',
+      borderRadius: '12px',
       cursor: 'pointer',
-      fontSize: '13px',
+      fontSize: '14px',
       fontWeight: 500,
       display: 'flex',
       alignItems: 'center',
       gap: '8px',
-      transition: 'all 0.2s ease',
-      letterSpacing: '0.2px',
+      transition: 'all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
+      letterSpacing: '0.3px',
       position: 'relative' as const,
     },
     navButtonActive: {
-      background: 'rgba(226,55,68,0.15)',
+      background: 'rgba(226,55,68,0.12)',
       color: '#fff',
+      boxShadow: '0 0 12px rgba(226,55,68,0.15)',
     },
     searchContainer: {
       maxWidth: '1200px',
@@ -675,6 +678,7 @@ const App: React.FC = () => {
       cursor: 'pointer',
       transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
       animation: 'cardFadeIn 0.5s ease-out',
+      position: 'relative',
     },
     restaurantImage: {
       width: '100%',
@@ -759,32 +763,54 @@ const App: React.FC = () => {
     },
     menuItem: {
       display: 'flex',
-      gap: '16px',
-      padding: '18px',
-      background: 'rgba(255,255,255,0.04)',
-      borderRadius: '16px',
-      marginBottom: '12px',
+      gap: '20px',
+      padding: '22px',
+      background: 'linear-gradient(135deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.02) 100%)',
+      borderRadius: '20px',
+      marginBottom: '14px',
+      backdropFilter: 'blur(16px)',
+      WebkitBackdropFilter: 'blur(16px)',
       border: '1px solid rgba(255,255,255,0.06)',
-      backdropFilter: 'blur(12px)',
-      boxShadow: '0 4px 16px rgba(0,0,0,0.2)',
+      boxShadow: '0 4px 20px rgba(0,0,0,0.2)',
       animation: 'cardFadeIn 0.4s ease-out',
+      transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
+      cursor: 'default',
+      position: 'relative' as const,
+      overflow: 'hidden',
     },
     menuItemImage: {
       width: '120px',
-      height: '100px',
-      borderRadius: '14px',
+      height: '110px',
+      borderRadius: '16px',
       objectFit: 'cover' as const,
+      flexShrink: 0,
     },
     cartItem: {
       display: 'flex',
       justifyContent: 'space-between',
       alignItems: 'center',
-      padding: '14px',
-      background: 'rgba(255,255,255,0.04)',
-      borderRadius: '14px',
-      marginBottom: '10px',
+      padding: '18px 22px',
+      background: 'linear-gradient(135deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.02) 100%)',
+      borderRadius: '18px',
+      marginBottom: '12px',
+      backdropFilter: 'blur(16px)',
+      WebkitBackdropFilter: 'blur(16px)',
       border: '1px solid rgba(255,255,255,0.06)',
+      boxShadow: '0 4px 20px rgba(0,0,0,0.2), 0 0 1px rgba(255,255,255,0.05)',
       animation: 'cardFadeIn 0.4s ease-out',
+      transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
+    },
+    cartBillCard: {
+      background: 'linear-gradient(135deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.02) 100%)',
+      borderRadius: '20px',
+      padding: '24px',
+      height: 'fit-content' as const,
+      backdropFilter: 'blur(16px)',
+      WebkitBackdropFilter: 'blur(16px)',
+      border: '1px solid rgba(255,255,255,0.06)',
+      boxShadow: '0 8px 32px rgba(0,0,0,0.3), 0 0 1px rgba(255,255,255,0.05)',
+      position: 'sticky' as const,
+      top: '100px',
     },
     trackingContainer: {
       maxWidth: '800px',
@@ -824,6 +850,83 @@ const App: React.FC = () => {
       border: '1px solid rgba(255,255,255,0.06)',
       boxShadow: '0 8px 32px rgba(0,0,0,0.3)',
       marginBottom: '20px',
+    },
+    callInfoSection: {
+      marginTop: '64px',
+      position: 'relative' as const,
+      zIndex: 2,
+    },
+    callInfoCard: {
+      background: 'linear-gradient(135deg, rgba(255,255,255,0.07) 0%, rgba(255,255,255,0.02) 100%)',
+      borderRadius: '28px',
+      padding: '48px 40px',
+      border: '1px solid rgba(255,255,255,0.06)',
+      backdropFilter: 'blur(20px)',
+      WebkitBackdropFilter: 'blur(20px)',
+      boxShadow: '0 20px 60px rgba(0,0,0,0.4), 0 0 40px rgba(226,55,68,0.05)',
+      display: 'grid',
+      gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
+      gap: '32px',
+      transition: 'all 0.4s ease',
+    },
+    callInfoItem: {
+      display: 'flex',
+      alignItems: 'flex-start',
+      gap: '16px',
+      padding: '20px',
+      borderRadius: '18px',
+      background: 'rgba(255,255,255,0.03)',
+      border: '1px solid rgba(255,255,255,0.05)',
+      transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
+      cursor: 'default',
+    },
+    callInfoIcon: {
+      width: '48px',
+      height: '48px',
+      borderRadius: '16px',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      fontSize: '22px',
+      flexShrink: 0,
+    },
+    callInfoTitle: {
+      color: 'rgba(255,255,255,0.5)',
+      fontSize: '12px',
+      fontWeight: 600,
+      textTransform: 'uppercase' as const,
+      letterSpacing: '1px',
+      marginBottom: '6px',
+    },
+    callInfoValue: {
+      color: '#fff',
+      fontSize: '16px',
+      fontWeight: 600,
+      lineHeight: 1.4,
+    },
+    callInfoSub: {
+      color: 'rgba(255,255,255,0.45)',
+      fontSize: '13px',
+      marginTop: '4px',
+    },
+    sectionTitle: {
+      textAlign: 'center' as const,
+      color: 'rgba(255,255,255,0.6)',
+      fontSize: '13px',
+      fontWeight: 600,
+      textTransform: 'uppercase' as const,
+      letterSpacing: '2px',
+      marginBottom: '8px',
+    },
+    sectionHeading: {
+      textAlign: 'center' as const,
+      fontSize: '32px',
+      fontWeight: 800,
+      margin: '0 0 32px',
+      background: 'linear-gradient(135deg, #fff, rgba(255,255,255,0.7))',
+      WebkitBackgroundClip: 'text',
+      WebkitTextFillColor: 'transparent',
+      backgroundClip: 'text',
     },
   };
 
@@ -955,6 +1058,53 @@ const App: React.FC = () => {
         from { opacity: 0; transform: translateY(30px); }
         to { opacity: 1; transform: translateY(0); }
       }
+      @keyframes navGlow {
+        0%, 100% { box-shadow: 0 0 6px rgba(226,55,68,0.15); }
+        50% { box-shadow: 0 0 20px rgba(226,55,68,0.35); }
+      }
+      @keyframes logoShine {
+        0% { background-position: -200% center; }
+        100% { background-position: 200% center; }
+      }
+      @keyframes badgeBounce {
+        0% { transform: scale(0.8); }
+        40% { transform: scale(1.25); }
+        60% { transform: scale(0.95); }
+        100% { transform: scale(1); }
+      }
+      @keyframes navSlideIn {
+        from { opacity: 0; transform: translateY(-15px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      @keyframes headerBorderPulse {
+        0%, 100% { border-bottom-color: rgba(226,55,68,0.15); }
+        50% { border-bottom-color: rgba(226,55,68,0.4); }
+      }
+      @keyframes slideInRight {
+        from { opacity: 0; transform: translateX(40px); }
+        to { opacity: 1; transform: translateX(0); }
+      }
+      @keyframes slideInLeft {
+        from { opacity: 0; transform: translateX(-40px); }
+        to { opacity: 1; transform: translateX(0); }
+      }
+      @keyframes pulseOnce {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.06); box-shadow: 0 0 30px rgba(226,55,68,0.12); }
+        100% { transform: scale(1); }
+      }
+      @keyframes shimmerSlide {
+        0% { background-position: 200% center; }
+        100% { background-position: -200% center; }
+      }
+      @keyframes menuItemFloat {
+        0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.15; }
+        50% { transform: translateY(-12px) rotate(4deg); opacity: 0.35; }
+      }
+      .nav-btn-active::after { content: ''; position: absolute; bottom: -1px; left: 50%; transform: translateX(-50%); width: 50%; height: 2px; background: #E23744; border-radius: 1px; box-shadow: 0 0 10px rgba(226,55,68,0.5); }
+      .logo-z { background-size: 200% 100% !important; animation: logoShine 3s linear infinite !important; }
+      .badge-pop { animation: badgeBounce 0.4s ease-in-out !important; }
+      .header-border::after { content: ''; position: absolute; bottom: 0; left: 5%; width: 90%; height: 1px; background: linear-gradient(90deg, transparent, rgba(226,55,68,0.4), transparent); pointer-events: none; }
       .hero-search-wrapper { transition: all 0.4s ease !important; }
       .hero-search-wrapper:focus-within { border-color: #E23744 !important; box-shadow: 0 0 30px rgba(226,55,68,0.15), 0 4px 20px rgba(0,0,0,0.3) !important; }
       .hero-search-input::placeholder { color: rgba(255,255,255,0.35); }
@@ -966,14 +1116,17 @@ const App: React.FC = () => {
         0% { background-position: -200% center; }
         100% { background-position: 200% center; }
       }
-      * { scrollbar-width: thin; scrollbar-color: #E23744 #f1f1f1; }
-      ::-webkit-scrollbar { width: 6px; }
-      ::-webkit-scrollbar-track { background: #f1f1f1; }
-      ::-webkit-scrollbar-thumb { background: #E23744; border-radius: 3px; }
+      * { scrollbar-width: thin; scrollbar-color: #E23744 #1a1a1a; }
+      ::-webkit-scrollbar { width: 8px; }
+      ::-webkit-scrollbar-track { background: #1a1a1a; border-left: 1px solid rgba(255,255,255,0.04); }
+      ::-webkit-scrollbar-thumb { background: linear-gradient(180deg, #E23744, #ff6b6b); border-radius: 4px; border: 2px solid #1a1a1a; }
+      ::-webkit-scrollbar-thumb:hover { background: linear-gradient(180deg, #ff6b6b, #E23744); box-shadow: 0 0 12px rgba(226,55,68,0.4); }
       .btn-glow:hover { animation: pulseGlow 1.5s ease-in-out infinite !important; }
       .btn-glow-green:hover { animation: pulseGlowGreen 1.5s ease-in-out infinite !important; }
       .card-hover { transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important; }
       .card-hover:hover { transform: translateY(-8px) scale(1.02) !important; }
+      .card-glow { transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important; }
+      .card-glow:hover { transform: translateY(-8px) scale(1.02) !important; box-shadow: 0 0 30px rgba(226,55,68,0.25), 0 8px 32px rgba(0,0,0,0.3) !important; border-color: rgba(226,55,68,0.25) !important; }
       .text-gradient { background: linear-gradient(135deg, #E23744, #ff6b6b, #E23744); background-size: 200% 200%; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; animation: gradientShift 3s ease infinite; }
     `;
     document.head.appendChild(styleEl);
@@ -1050,18 +1203,11 @@ const App: React.FC = () => {
   const RestaurantCard: React.FC<{ restaurant: Restaurant }> = ({ restaurant }) => (
     <div
       style={styles.restaurantCard}
+      className="card-glow"
       onClick={() => {
         setSelectedRestaurant(restaurant);
         setSelectedCategory('All');
         setCurrentPage('restaurant');
-      }}
-      onMouseEnter={e => {
-        e.currentTarget.style.transform = 'translateY(-8px)';
-        e.currentTarget.style.boxShadow = '0 12px 24px rgba(0,0,0,0.15)';
-      }}
-      onMouseLeave={e => {
-        e.currentTarget.style.transform = 'translateY(0)';
-        e.currentTarget.style.boxShadow = '0 4px 12px rgba(0,0,0,0.1)';
       }}
     >
       <img src={restaurant.image} alt={restaurant.name} style={styles.restaurantImage} />
@@ -1092,76 +1238,80 @@ const App: React.FC = () => {
     const quantity = cartItem?.quantity || 0;
 
     return (
-      <div style={styles.menuItem}>
+      <div style={styles.menuItem}
+        className="card-glow"
+        onMouseEnter={e => { }}
+        onMouseLeave={e => { }}
+      >
         <img src={item.image} alt={item.name} style={styles.menuItemImage} />
         <div style={{ flex: 1 }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '4px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '6px' }}>
             <VegIndicator isVeg={item.isVeg} />
-            <h4 style={{ margin: 0, fontSize: '16px', color: '#1f2937' }}>{item.name}</h4>
+            <h4 style={{ margin: 0, fontSize: '17px', fontWeight: 600, color: '#fff' }}>{item.name}</h4>
           </div>
-          <p style={{ margin: '4px 0', color: '#6b7280', fontSize: '13px' }}>{item.description}</p>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '8px' }}>
-            <span style={{ fontWeight: 700, fontSize: '18px', color: '#1f2937' }}>{formatPrice(item.price)}</span>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
-              <span style={{ background: '#f0fdf4', padding: '2px 8px', borderRadius: '6px', fontSize: '12px', color: '#166534' }}>
+          <p style={{ margin: '0 0 10px', color: 'rgba(255,255,255,0.45)', fontSize: '13px', lineHeight: 1.5 }}>{item.description}</p>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+              <span style={{ fontWeight: 700, fontSize: '20px', background: 'linear-gradient(135deg, #fff, rgba(255,255,255,0.8))', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>{formatPrice(item.price)}</span>
+              <span style={{ background: 'rgba(255,255,255,0.05)', padding: '3px 10px', borderRadius: '8px', fontSize: '12px', color: 'rgba(255,255,255,0.5)', border: '1px solid rgba(255,255,255,0.04)' }}>
                 ⭐ {item.rating}
               </span>
             </div>
           </div>
-          {quantity === 0 ? (
-            <button
-              style={{
-                marginTop: '10px',
-                padding: '8px 24px',
-                background: 'white',
-                border: '2px solid #22c55e',
-                color: '#22c55e',
-                borderRadius: '8px',
-                fontWeight: 600,
-                cursor: 'pointer',
-                fontSize: '14px',
-              }}
-              onClick={() => selectedRestaurant && addToCart(selectedRestaurant, item)}
-            >
-              ADD
-            </button>
-          ) : (
-            <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginTop: '10px' }}>
+          <div style={{ marginTop: '12px' }}>
+            {quantity === 0 ? (
               <button
                 style={{
-                  width: '32px',
-                  height: '32px',
-                  borderRadius: '8px',
-                  border: '2px solid #ff5c5c',
-                  background: 'white',
-                  color: '#ff5c5c',
-                  fontWeight: 'bold',
-                  cursor: 'pointer',
-                  fontSize: '18px',
-                }}
-                onClick={() => removeFromCart(item.id)}
-              >
-                -
-              </button>
-              <span style={{ fontWeight: 600, fontSize: '16px' }}>{quantity}</span>
-              <button
-                style={{
-                  width: '32px',
-                  height: '32px',
-                  borderRadius: '8px',
+                  padding: '10px 32px',
+                  background: 'linear-gradient(135deg, #22c55e, #16a34a)',
                   border: 'none',
-                  background: '#22c55e',
                   color: 'white',
-                  fontWeight: 'bold',
+                  borderRadius: '12px',
+                  fontWeight: 700,
                   cursor: 'pointer',
-                  fontSize: '18px',
+                  fontSize: '14px',
+                  letterSpacing: '0.3px',
+                  boxShadow: '0 4px 16px rgba(34,197,94,0.25)',
+                  transition: 'all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
                 }}
                 onClick={() => selectedRestaurant && addToCart(selectedRestaurant, item)}
+                onMouseEnter={e => { e.currentTarget.style.transform = 'scale(1.05)'; e.currentTarget.style.boxShadow = '0 6px 24px rgba(34,197,94,0.4)'; }}
+                onMouseLeave={e => { e.currentTarget.style.transform = 'scale(1)'; e.currentTarget.style.boxShadow = '0 4px 16px rgba(34,197,94,0.25)'; }}
               >
-                +
+                + ADD
               </button>
-            </div>
-          )}
+            ) : (
+              <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
+                <button
+                  style={{
+                    width: '36px', height: '36px', borderRadius: '10px', border: '1px solid rgba(226,55,68,0.3)',
+                    background: 'rgba(226,55,68,0.1)', color: '#ff6b6b', cursor: 'pointer', fontWeight: 'bold',
+                    fontSize: '18px', transition: 'all 0.2s ease', display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  }}
+                  onClick={() => removeFromCart(item.id)}
+                  onMouseEnter={e => { e.currentTarget.style.background = 'rgba(226,55,68,0.25)'; }}
+                  onMouseLeave={e => { e.currentTarget.style.background = 'rgba(226,55,68,0.1)'; }}
+                >
+                  -
+                </button>
+                <span style={{ fontWeight: 700, fontSize: '17px', color: '#fff', minWidth: '20px', textAlign: 'center' }}>{quantity}</span>
+                <button
+                  style={{
+                    width: '36px', height: '36px', borderRadius: '10px', border: 'none',
+                    background: 'linear-gradient(135deg, #22c55e, #16a34a)', color: 'white', cursor: 'pointer',
+                    fontWeight: 'bold', fontSize: '18px', transition: 'all 0.2s ease',
+                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                    boxShadow: '0 2px 8px rgba(34,197,94,0.3)',
+                  }}
+                  onClick={() => selectedRestaurant && addToCart(selectedRestaurant, item)}
+                  onMouseEnter={e => { e.currentTarget.style.transform = 'scale(1.1)'; e.currentTarget.style.boxShadow = '0 4px 16px rgba(34,197,94,0.5)'; }}
+                  onMouseLeave={e => { e.currentTarget.style.transform = 'scale(1)'; e.currentTarget.style.boxShadow = '0 2px 8px rgba(34,197,94,0.3)'; }}
+                >
+                  +
+                </button>
+              </div>
+            )}
+          </div>
         </div>
       </div>
     );
@@ -1240,6 +1390,7 @@ const App: React.FC = () => {
                   ...styles.cityCard,
                   animation: `fadeSlideUp 0.5s ease-out ${0.1 + idx * 0.08}s both`,
                 }}
+                className="card-glow"
                 onClick={() => setSearchQuery(city.name)}
               >
                 <div style={{
@@ -1261,126 +1412,216 @@ const App: React.FC = () => {
       </div>
 
       {/* Restaurants section */}
-      <h2 style={{ color: '#e5e7eb', marginTop: '48px', fontSize: '22px', fontWeight: 700, animation: 'fadeSlideUp 0.6s ease-out' }}>
-        Restaurants near you ({filteredRestaurants.length})
-      </h2>
+      <div style={{ position: 'relative' as const }}>
+        <span style={{ position: 'absolute', top: '-10%', left: '-2%', fontSize: '28px', animation: 'menuItemFloat 8s ease-in-out infinite', opacity: 0.08, pointerEvents: 'none' }}>🍽️</span>
+        <span style={{ position: 'absolute', top: '20%', right: '-3%', fontSize: '22px', animation: 'menuItemFloat 10s ease-in-out infinite 1s', opacity: 0.06, pointerEvents: 'none' }}>🥂</span>
+        <span style={{ position: 'absolute', bottom: '5%', left: '5%', fontSize: '20px', animation: 'menuItemFloat 7s ease-in-out infinite 2s', opacity: 0.07, pointerEvents: 'none' }}>🔥</span>
+        <span style={{ position: 'absolute', bottom: '30%', right: '-1%', fontSize: '24px', animation: 'menuItemFloat 9s ease-in-out infinite 0.5s', opacity: 0.06, pointerEvents: 'none' }}>✨</span>
+
+        <h2 style={{ color: '#e5e7eb', marginTop: '48px', fontSize: '22px', fontWeight: 700, animation: 'fadeSlideUp 0.6s ease-out' }}>
+          Restaurants near you ({filteredRestaurants.length})
+        </h2>
 
       <div style={styles.restaurantGrid}>
         {filteredRestaurants.map(restaurant => (
           <RestaurantCard key={restaurant.id} restaurant={restaurant} />
         ))}
       </div>
+
+      {/* Call Info Section */}
+      <div style={styles.callInfoSection}>
+        {/* Decorative background glow */}
+        <div style={{
+          position: 'absolute',
+          top: '-50%',
+          left: '50%',
+          transform: 'translateX(-50%)',
+          width: '600px',
+          height: '400px',
+          background: 'radial-gradient(ellipse, rgba(226,55,68,0.08) 0%, transparent 70%)',
+          pointerEvents: 'none',
+          zIndex: 0,
+        }} />
+        <p style={styles.sectionTitle}>Get in touch</p>
+        <h2 style={styles.sectionHeading}>We're here for you</h2>
+        <div style={styles.callInfoCard}>
+          {[
+            { icon: '📞', iconBg: 'linear-gradient(135deg, rgba(226,55,68,0.3), rgba(226,55,68,0.05))', iconBorder: '1px solid rgba(226,55,68,0.2)', title: 'Call Us', value: '+1 (555) 123-4567', sub: '24/7 customer support' },
+            { icon: '✉️', iconBg: 'linear-gradient(135deg, rgba(251,191,36,0.3), rgba(251,191,36,0.05))', iconBorder: '1px solid rgba(251,191,36,0.2)', title: 'Email', value: 'hello@zomato.com', sub: 'We reply within 2 hours' },
+            { icon: '📍', iconBg: 'linear-gradient(135deg, rgba(34,197,94,0.3), rgba(34,197,94,0.05))', iconBorder: '1px solid rgba(34,197,94,0.2)', title: 'Location', value: 'Bengaluru, India', sub: 'Visit our flagship store' },
+            { icon: '🕐', iconBg: 'linear-gradient(135deg, rgba(99,102,241,0.3), rgba(99,102,241,0.05))', iconBorder: '1px solid rgba(99,102,241,0.2)', title: 'Hours', value: '8:00 AM - 11:00 PM', sub: 'Open all days' },
+          ].map((item, idx) => (
+            <div
+              key={item.title}
+              style={{
+                ...styles.callInfoItem,
+                animation: `fadeSlideUp 0.6s ease-out ${0.1 + idx * 0.12}s both`,
+              }}
+              className="card-glow"
+            >
+              <div style={{ ...styles.callInfoIcon, background: item.iconBg, border: item.iconBorder }}>
+                {item.icon}
+              </div>
+              <div>
+                <div style={styles.callInfoTitle}>{item.title}</div>
+                <div style={styles.callInfoValue}>{item.value}</div>
+                <div style={styles.callInfoSub}>{item.sub}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   );
 
   // Restaurant Menu Page
   const RestaurantPage = () => selectedRestaurant ? (
-    <div style={{ maxWidth: '900px', margin: '0 auto', padding: '24px' }}>
+    <div style={{ maxWidth: '900px', margin: '0 auto', padding: '24px', position: 'relative' as const, zIndex: 2 }}>
+      {/* Decorative floating food emojis */}
+      <span style={{ position: 'absolute', top: '3%', left: '1%', fontSize: '30px', animation: 'menuItemFloat 7s ease-in-out infinite', opacity: 0.12, pointerEvents: 'none' }}>🍕</span>
+      <span style={{ position: 'absolute', top: '8%', right: '2%', fontSize: '24px', animation: 'menuItemFloat 9s ease-in-out infinite 1s', opacity: 0.1, pointerEvents: 'none' }}>🍔</span>
+      <span style={{ position: 'absolute', bottom: '15%', left: '3%', fontSize: '22px', animation: 'menuItemFloat 8s ease-in-out infinite 2s', opacity: 0.1, pointerEvents: 'none' }}>🌮</span>
+      <span style={{ position: 'absolute', bottom: '5%', right: '1%', fontSize: '26px', animation: 'menuItemFloat 6s ease-in-out infinite 0.5s', opacity: 0.12, pointerEvents: 'none' }}>🥗</span>
+
       <button
         style={{
-          background: 'white',
-          border: 'none',
-          padding: '10px 20px',
-          borderRadius: '10px',
+          background: 'rgba(255,255,255,0.06)',
+          border: '1px solid rgba(255,255,255,0.08)',
+          padding: '10px 22px',
+          borderRadius: '12px',
           cursor: 'pointer',
-          marginBottom: '20px',
+          marginBottom: '24px',
           fontWeight: 500,
-          boxShadow: '0 2px 8px rgba(0,0,0,0.08)',
+          color: 'rgba(255,255,255,0.7)',
+          backdropFilter: 'blur(12px)',
+          transition: 'all 0.3s ease',
         }}
         onClick={() => setCurrentPage('home')}
+        onMouseEnter={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.1)'; e.currentTarget.style.color = '#fff'; }}
+        onMouseLeave={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.06)'; e.currentTarget.style.color = 'rgba(255,255,255,0.7)'; }}
       >
         ← Back to Restaurants
       </button>
 
+      {/* Restaurant Hero Card */}
       <div style={{
-        background: 'white',
-        borderRadius: '16px',
+        borderRadius: '24px',
         overflow: 'hidden',
-        marginBottom: '24px',
-        boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
+        marginBottom: '28px',
+        background: 'linear-gradient(135deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.02) 100%)',
+        backdropFilter: 'blur(16px)',
+        WebkitBackdropFilter: 'blur(16px)',
+        border: '1px solid rgba(255,255,255,0.06)',
+        boxShadow: '0 12px 40px rgba(0,0,0,0.3), 0 0 1px rgba(255,255,255,0.05)',
+        animation: 'cardFadeIn 0.5s ease-out',
       }}>
-        <img
-          src={selectedRestaurant.image}
-          alt={selectedRestaurant.name}
-          style={{ width: '100%', height: '250px', objectFit: 'cover' }}
-        />
-        <div style={{ padding: '24px' }}>
-          <h1 style={{ margin: '0 0 8px', fontSize: '28px', color: '#1f2937' }}>{selectedRestaurant.name}</h1>
-          <p style={{ margin: '0 0 12px', color: '#6b7280', fontSize: '16px' }}>{selectedRestaurant.cuisine}</p>
-          <div style={{ display: 'flex', gap: '20px', flexWrap: 'wrap' }}>
-            <span style={styles.badge}>
-              <span style={{
-                ...styles.badge,
-                background: selectedRestaurant.rating >= 4 ? '#22c55e' : '#f59e0b',
-                color: 'white',
-                padding: '4px 10px',
-                borderRadius: '6px',
-              }}>
-                ⭐ {selectedRestaurant.rating}
-              </span>
-            </span>
-            <span style={{ color: '#6b7280' }}>⏱️ {selectedRestaurant.deliveryTime} mins</span>
-            <span style={{ color: '#6b7280' }}>📍 {selectedRestaurant.locality}</span>
-            <span style={{ color: '#6b7280' }}>{formatPrice(selectedRestaurant.costForTwo)} for two</span>
+        <div style={{ position: 'relative' }}>
+          <img
+            src={selectedRestaurant.image}
+            alt={selectedRestaurant.name}
+            style={{ width: '100%', height: '260px', objectFit: 'cover', display: 'block' }}
+          />
+          <div style={{
+            position: 'absolute', inset: 0,
+            background: 'linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 50%)',
+          }} />
+          <div style={{ position: 'absolute', bottom: '20px', left: '24px', right: '24px' }}>
+            <h1 style={{ margin: '0 0 4px', fontSize: '30px', fontWeight: 800, color: '#fff', textShadow: '0 2px 8px rgba(0,0,0,0.3)' }}>{selectedRestaurant.name}</h1>
+            <p style={{ margin: 0, color: 'rgba(255,255,255,0.8)', fontSize: '15px' }}>{selectedRestaurant.cuisine}</p>
           </div>
+        </div>
+        <div style={{ padding: '20px 24px', display: 'flex', gap: '24px', flexWrap: 'wrap', alignItems: 'center' }}>
+          <span style={{ display: 'flex', alignItems: 'center', gap: '6px', background: selectedRestaurant.rating >= 4 ? 'rgba(34,197,94,0.15)' : 'rgba(245,158,11,0.15)', color: selectedRestaurant.rating >= 4 ? '#22c55e' : '#f59e0b', padding: '6px 14px', borderRadius: '10px', fontWeight: 700, fontSize: '14px' }}>
+            ⭐ {selectedRestaurant.rating}
+          </span>
+          <span style={{ color: 'rgba(255,255,255,0.6)', fontSize: '14px', display: 'flex', alignItems: 'center', gap: '4px' }}>⏱️ {selectedRestaurant.deliveryTime} mins</span>
+          <span style={{ color: 'rgba(255,255,255,0.6)', fontSize: '14px', display: 'flex', alignItems: 'center', gap: '4px' }}>📍 {selectedRestaurant.locality}</span>
+          <span style={{ color: '#E23744', fontWeight: 700, fontSize: '14px', marginLeft: 'auto' }}>{formatPrice(selectedRestaurant.costForTwo)} for two</span>
         </div>
       </div>
 
-      <div style={{ display: 'flex', gap: '10px', marginBottom: '20px', flexWrap: 'wrap' }}>
+      {/* Category Pills */}
+      <div style={{ display: 'flex', gap: '10px', marginBottom: '24px', flexWrap: 'wrap' }}>
         {categories.map(cat => (
           <button
             key={cat}
             style={{
-              padding: '8px 16px',
-              background: selectedCategory === cat ? '#ff5c5c' : 'white',
-              color: selectedCategory === cat ? 'white' : '#1f2937',
-              border: 'none',
-              borderRadius: '20px',
+              padding: '10px 22px',
+              background: selectedCategory === cat
+                ? 'linear-gradient(135deg, #E23744, #ff6b6b)'
+                : 'rgba(255,255,255,0.05)',
+              color: selectedCategory === cat ? 'white' : 'rgba(255,255,255,0.7)',
+              border: selectedCategory === cat
+                ? '1px solid transparent'
+                : '1px solid rgba(255,255,255,0.08)',
+              borderRadius: '24px',
               cursor: 'pointer',
-              fontWeight: 500,
+              fontWeight: 600,
               fontSize: '14px',
+              transition: 'all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
+              boxShadow: selectedCategory === cat ? '0 4px 16px rgba(226,55,68,0.3)' : 'none',
             }}
             onClick={() => setSelectedCategory(cat)}
+            onMouseEnter={e => { if (selectedCategory !== cat) { e.currentTarget.style.background = 'rgba(255,255,255,0.1)'; e.currentTarget.style.color = '#fff'; } }}
+            onMouseLeave={e => { if (selectedCategory !== cat) { e.currentTarget.style.background = 'rgba(255,255,255,0.05)'; e.currentTarget.style.color = 'rgba(255,255,255,0.7)'; } }}
           >
             {cat}
           </button>
         ))}
       </div>
 
-      <h2 style={{ color: '#1f2937', marginBottom: '16px' }}>Menu</h2>
-      {filteredMenu.map(item => (
-        <MenuItemCard key={item.id} item={item} />
+      {/* Menu Section */}
+      <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '20px' }}>
+        <span style={{ width: '4px', height: '24px', background: '#E23744', borderRadius: '2px' }} />
+        <h2 style={{ margin: 0, color: '#fff', fontSize: '22px', fontWeight: 700 }}>Menu</h2>
+        <span style={{ color: 'rgba(255,255,255,0.3)', fontSize: '15px' }}>({filteredMenu.length} items)</span>
+      </div>
+
+      {filteredMenu.map((item, idx) => (
+        <div key={item.id} style={{ animation: `cardFadeIn 0.5s ease-out ${0.03 * idx}s both` }}>
+          <MenuItemCard item={item} />
+        </div>
       ))}
 
+      {/* Floating Cart Bar */}
       {cart.length > 0 && cart.some(c => c.restaurantId === selectedRestaurant.id) && (
         <div style={{
           position: 'fixed',
-          bottom: '20px',
-          right: '20px',
-          background: 'white',
-          borderRadius: '16px',
-          padding: '16px 24px',
-          boxShadow: '0 8px 24px rgba(0,0,0,0.15)',
+          bottom: '24px',
+          right: '24px',
+          background: 'linear-gradient(135deg, rgba(16,14,22,0.95) 0%, rgba(20,18,28,0.92) 100%)',
+          backdropFilter: 'blur(24px) saturate(200%)',
+          WebkitBackdropFilter: 'blur(24px) saturate(200%)',
+          borderRadius: '18px',
+          padding: '18px 24px',
+          boxShadow: '0 12px 40px rgba(0,0,0,0.5), 0 0 20px rgba(226,55,68,0.08), inset 0 1px 0 rgba(255,255,255,0.06)',
+          border: '1px solid rgba(255,255,255,0.06)',
           display: 'flex',
           alignItems: 'center',
-          gap: '16px',
+          gap: '18px',
           zIndex: 50,
+          animation: 'slideInRight 0.4s ease-out',
         }}>
           <div>
-            <div style={{ fontWeight: 600, color: '#1f2937' }}>{cart.reduce((sum, i) => sum + i.quantity, 0)} items</div>
-            <div style={{ fontSize: '14px', color: '#6b7280' }}>{formatPrice(cartTotal)}</div>
+            <div style={{ fontWeight: 700, color: '#fff', fontSize: '15px' }}>{cart.reduce((sum, i) => sum + i.quantity, 0)} items</div>
+            <div style={{ fontSize: '13px', color: 'rgba(255,255,255,0.5)' }}>{formatPrice(cartTotal)}</div>
           </div>
           <button
             style={{
-              padding: '10px 24px',
-              background: 'linear-gradient(135deg, #ff5c5c 0%, #ff7b7c 100%)',
+              padding: '12px 28px',
+              background: 'linear-gradient(135deg, #E23744 0%, #ff6b6b 100%)',
               color: 'white',
               border: 'none',
-              borderRadius: '10px',
-              fontWeight: 600,
+              borderRadius: '12px',
+              fontWeight: 700,
               cursor: 'pointer',
+              fontSize: '14px',
+              boxShadow: '0 4px 16px rgba(226,55,68,0.3)',
+              transition: 'all 0.3s ease',
             }}
             onClick={() => setCurrentPage('cart')}
+            onMouseEnter={e => { e.currentTarget.style.transform = 'scale(1.05)'; e.currentTarget.style.boxShadow = '0 6px 24px rgba(226,55,68,0.4)'; }}
+            onMouseLeave={e => { e.currentTarget.style.transform = 'scale(1)'; e.currentTarget.style.boxShadow = '0 4px 16px rgba(226,55,68,0.3)'; }}
           >
             View Cart →
           </button>
@@ -1396,79 +1637,90 @@ const App: React.FC = () => {
     const total = cartTotal + deliveryFee + taxes;
 
     return (
-      <div style={{ maxWidth: '800px', margin: '0 auto', padding: '24px' }}>
+      <div style={{ maxWidth: '800px', margin: '0 auto', padding: '24px', position: 'relative' as const, zIndex: 2 }}>
+        {/* Decorative floating elements */}
+        <span style={{ position: 'absolute', top: '5%', left: '2%', fontSize: '28px', animation: 'menuItemFloat 6s ease-in-out infinite', opacity: 0.15, pointerEvents: 'none' }}>🛒</span>
+        <span style={{ position: 'absolute', top: '15%', right: '3%', fontSize: '22px', animation: 'menuItemFloat 8s ease-in-out infinite 1s', opacity: 0.12, pointerEvents: 'none' }}>🧾</span>
+        <span style={{ position: 'absolute', bottom: '10%', left: '5%', fontSize: '20px', animation: 'menuItemFloat 7s ease-in-out infinite 2s', opacity: 0.1, pointerEvents: 'none' }}>💳</span>
+        <span style={{ position: 'absolute', bottom: '20%', right: '2%', fontSize: '24px', animation: 'menuItemFloat 9s ease-in-out infinite 0.5s', opacity: 0.12, pointerEvents: 'none' }}>🚀</span>
+
         <button
           style={{
-            background: 'white',
-            border: 'none',
-            padding: '10px 20px',
-            borderRadius: '10px',
+            background: 'rgba(255,255,255,0.06)',
+            border: '1px solid rgba(255,255,255,0.08)',
+            padding: '10px 22px',
+            borderRadius: '12px',
             cursor: 'pointer',
-            marginBottom: '20px',
+            marginBottom: '24px',
             fontWeight: 500,
-            boxShadow: '0 2px 8px rgba(0,0,0,0.08)',
+            color: 'rgba(255,255,255,0.7)',
+            backdropFilter: 'blur(12px)',
+            transition: 'all 0.3s ease',
           }}
           onClick={() => selectedRestaurant ? setCurrentPage('restaurant') : setCurrentPage('home')}
+          onMouseEnter={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.1)'; e.currentTarget.style.color = '#fff'; }}
+          onMouseLeave={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.06)'; e.currentTarget.style.color = 'rgba(255,255,255,0.7)'; }}
         >
           ← Back
         </button>
 
-        <h1 style={{ margin: '0 0 24px', color: '#1f2937' }}>Your Cart</h1>
+        <h1 style={{ margin: '0 0 28px', fontSize: '32px', fontWeight: 800, background: 'linear-gradient(135deg, #fff, rgba(255,255,255,0.7))', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
+          Your Cart
+        </h1>
 
         {cart.length === 0 ? (
-          <div style={{ textAlign: 'center', padding: '60px', background: 'white', borderRadius: '16px' }}>
-            <div style={{ fontSize: '64px', marginBottom: '16px' }}>🛒</div>
-            <h3 style={{ color: '#1f2937' }}>Your cart is empty</h3>
-            <p style={{ color: '#6b7280' }}>Add items from a restaurant to get started</p>
+          <div style={{ textAlign: 'center', padding: '80px 40px', background: 'linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%)', borderRadius: '24px', backdropFilter: 'blur(16px)', border: '1px solid rgba(255,255,255,0.06)', animation: 'cardFadeIn 0.5s ease-out' }}>
+            <div style={{ fontSize: '72px', marginBottom: '20px', animation: 'menuItemFloat 4s ease-in-out infinite' }}>🛒</div>
+            <h3 style={{ color: '#fff', fontSize: '22px', margin: '0 0 8px' }}>Your cart is empty</h3>
+            <p style={{ color: 'rgba(255,255,255,0.5)', fontSize: '15px', margin: 0 }}>Add items from a restaurant to get started</p>
           </div>
         ) : (
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 320px', gap: '24px' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 320px', gap: '28px', alignItems: 'start' }}>
             <div>
-              <h3 style={{ color: '#6b7280', marginBottom: '12px', fontSize: '14px', textTransform: 'uppercase' }}>
-                {cart[0]?.restaurantName}
-              </h3>
-              {cart.map(item => (
-                <div key={item.menuItem.id} style={styles.cartItem}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '16px' }}>
+                <span style={{ color: '#E23744', fontSize: '18px' }}>📍</span>
+                <span style={{ color: 'rgba(255,255,255,0.6)', fontSize: '14px', fontWeight: 600, letterSpacing: '0.5px', textTransform: 'uppercase' }}>
+                  {cart[0]?.restaurantName}
+                </span>
+              </div>
+              {cart.map((item, idx) => (
+                <div key={item.menuItem.id} style={{ ...styles.cartItem, animation: `slideInRight 0.5s ease-out ${0.05 * idx}s both` }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
                     <VegIndicator isVeg={item.menuItem.isVeg} />
                     <div>
-                      <div style={{ fontWeight: 500, color: '#1f2937' }}>{item.menuItem.name}</div>
-                      <div style={{ fontSize: '14px', color: '#6b7280' }}>{formatPrice(item.menuItem.price)}</div>
+                      <div style={{ fontWeight: 600, color: '#fff', fontSize: '15px' }}>{item.menuItem.name}</div>
+                      <div style={{ fontSize: '13px', color: 'rgba(255,255,255,0.45)' }}>{formatPrice(item.menuItem.price)} each</div>
                     </div>
                   </div>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
                     <button
                       style={{
-                        width: '28px',
-                        height: '28px',
-                        borderRadius: '6px',
-                        border: '2px solid #ff5c5c',
-                        background: 'white',
-                        color: '#ff5c5c',
-                        cursor: 'pointer',
-                        fontWeight: 'bold',
+                        width: '32px', height: '32px', borderRadius: '10px', border: '1px solid rgba(226,55,68,0.3)',
+                        background: 'rgba(226,55,68,0.1)', color: '#ff6b6b', cursor: 'pointer', fontWeight: 'bold',
+                        fontSize: '16px', transition: 'all 0.2s ease', display: 'flex', alignItems: 'center', justifyContent: 'center',
                       }}
                       onClick={() => removeFromCart(item.menuItem.id)}
+                      onMouseEnter={e => { e.currentTarget.style.background = 'rgba(226,55,68,0.25)'; }}
+                      onMouseLeave={e => { e.currentTarget.style.background = 'rgba(226,55,68,0.1)'; }}
                     >
                       -
                     </button>
-                    <span style={{ fontWeight: 600, minWidth: '24px', textAlign: 'center' }}>{item.quantity}</span>
+                    <span style={{ fontWeight: 700, minWidth: '28px', textAlign: 'center', color: '#fff', fontSize: '16px' }}>{item.quantity}</span>
                     <button
                       style={{
-                        width: '28px',
-                        height: '28px',
-                        borderRadius: '6px',
-                        border: 'none',
-                        background: '#22c55e',
-                        color: 'white',
-                        cursor: 'pointer',
-                        fontWeight: 'bold',
+                        width: '32px', height: '32px', borderRadius: '10px', border: 'none',
+                        background: 'linear-gradient(135deg, #22c55e, #16a34a)', color: 'white', cursor: 'pointer',
+                        fontWeight: 'bold', fontSize: '16px', transition: 'all 0.2s ease',
+                        display: 'flex', alignItems: 'center', justifyContent: 'center',
+                        boxShadow: '0 2px 8px rgba(34,197,94,0.3)',
                       }}
                       onClick={() => selectedRestaurant && addToCart(selectedRestaurant, item.menuItem)}
+                      onMouseEnter={e => { e.currentTarget.style.transform = 'scale(1.1)'; e.currentTarget.style.boxShadow = '0 4px 16px rgba(34,197,94,0.5)'; }}
+                      onMouseLeave={e => { e.currentTarget.style.transform = 'scale(1)'; e.currentTarget.style.boxShadow = '0 2px 8px rgba(34,197,94,0.3)'; }}
                     >
                       +
                     </button>
-                    <span style={{ fontWeight: 600, minWidth: '60px', textAlign: 'right' }}>
+                    <span style={{ fontWeight: 700, minWidth: '70px', textAlign: 'right', color: '#fff', fontSize: '16px' }}>
                       {formatPrice(item.menuItem.price * item.quantity)}
                     </span>
                   </div>
@@ -1476,35 +1728,34 @@ const App: React.FC = () => {
               ))}
             </div>
 
-            <div style={{
-              background: 'white',
-              borderRadius: '16px',
-              padding: '20px',
-              height: 'fit-content',
-              boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
-            }}>
-              <h3 style={{ margin: '0 0 16px', color: '#1f2937' }}>Bill Details</h3>
-              <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '10px', fontSize: '14px' }}>
-                <span style={{ color: '#6b7280' }}>Subtotal</span>
-                <span style={{ fontWeight: 500 }}>{formatPrice(cartTotal)}</span>
+            <div style={styles.cartBillCard}>
+              <h3 style={{ margin: '0 0 20px', color: '#fff', fontSize: '18px', fontWeight: 700 }}>
+                <span style={{ marginRight: '8px' }}>🧾</span> Bill Details
+              </h3>
+              <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '12px', fontSize: '14px' }}>
+                <span style={{ color: 'rgba(255,255,255,0.5)' }}>Subtotal</span>
+                <span style={{ fontWeight: 600, color: '#fff' }}>{formatPrice(cartTotal)}</span>
               </div>
-              <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '10px', fontSize: '14px' }}>
-                <span style={{ color: '#6b7280' }}>Delivery Fee</span>
-                <span style={{ fontWeight: 500 }}>{cartTotal >= 299 ? 'FREE' : formatPrice(deliveryFee)}</span>
+              <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '12px', fontSize: '14px' }}>
+                <span style={{ color: 'rgba(255,255,255,0.5)' }}>Delivery Fee</span>
+                <span style={{ fontWeight: 600, color: cartTotal >= 299 ? '#22c55e' : '#fff' }}>{cartTotal >= 299 ? 'FREE' : formatPrice(deliveryFee)}</span>
               </div>
-              <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '10px', fontSize: '14px' }}>
-                <span style={{ color: '#6b7280' }}>Taxes & Charges</span>
-                <span style={{ fontWeight: 500 }}>{formatPrice(taxes)}</span>
+              <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '12px', fontSize: '14px' }}>
+                <span style={{ color: 'rgba(255,255,255,0.5)' }}>Taxes & Charges</span>
+                <span style={{ fontWeight: 600, color: '#fff' }}>{formatPrice(taxes)}</span>
               </div>
-              <div style={{ borderTop: '2px dashed #e0e0e0', margin: '16px 0' }} />
-              <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '20px' }}>
-                <span style={{ fontWeight: 700, fontSize: '18px', color: '#1f2937' }}>Total</span>
-                <span style={{ fontWeight: 700, fontSize: '18px', color: '#1f2937' }}>{formatPrice(total)}</span>
+              <div style={{ borderTop: '1px solid rgba(255,255,255,0.06)', margin: '16px 0' }} />
+              <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '24px' }}>
+                <span style={{ fontWeight: 700, fontSize: '20px', color: '#fff' }}>Total</span>
+                <span style={{ fontWeight: 700, fontSize: '20px', background: 'linear-gradient(135deg, #E23744, #ff6b6b)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>{formatPrice(total)}</span>
               </div>
               <button
                 style={{
                   ...styles.primaryButton,
                   opacity: user ? 1 : 0.7,
+                  borderRadius: '14px',
+                  padding: '16px',
+                  fontSize: '16px',
                 }}
                 onClick={placeOrder}
               >
@@ -1797,24 +2048,27 @@ const App: React.FC = () => {
       {/* Header */}
       <header style={styles.header}>
         <div style={styles.logo} onClick={() => setCurrentPage('home')}
-          onMouseEnter={e => e.currentTarget.style.opacity = '0.8'}
-          onMouseLeave={e => e.currentTarget.style.opacity = '1'}>
-          <span style={{
-            background: 'linear-gradient(135deg, #E23744, #ff6b6b)',
-            borderRadius: '12px',
-            padding: '5px 10px',
+          onMouseEnter={e => { e.currentTarget.style.transform = 'scale(1.03)'; }}
+          onMouseLeave={e => { e.currentTarget.style.transform = 'scale(1)'; }}>
+          <span className="logo-z" style={{
+            background: 'linear-gradient(135deg, #E23744, #ff6b6b, #ffd700, #ff6b6b, #E23744)',
+            backgroundSize: '200% 100%',
+            borderRadius: '14px',
+            padding: '6px 12px',
             fontSize: '22px',
             lineHeight: '1',
-            boxShadow: '0 2px 12px rgba(226,55,68,0.3)',
+            boxShadow: '0 2px 16px rgba(226,55,68,0.4), 0 0 20px rgba(226,55,68,0.1)',
+            display: 'inline-block',
           }}>Z</span>
-          <span className="text-gradient" style={{ fontSize: '24px', fontWeight: 800 }}>omato</span>
+          <span className="text-gradient" style={{ fontSize: '24px', fontWeight: 800, letterSpacing: '-0.5px' }}>omato</span>
         </div>
         <div style={styles.navButtons}>
           <button
             style={currentPage === 'home' ? { ...styles.navButton, ...styles.navButtonActive } : styles.navButton}
+            className={currentPage === 'home' ? 'nav-btn-active' : ''}
             onClick={() => setCurrentPage('home')}
-            onMouseEnter={e => { if (currentPage !== 'home') { e.currentTarget.style.background = 'rgba(255,255,255,0.08)'; e.currentTarget.style.color = '#fff'; } }}
-            onMouseLeave={e => { if (currentPage !== 'home') { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = 'rgba(255,255,255,0.7)'; } }}
+            onMouseEnter={e => { if (currentPage !== 'home') { e.currentTarget.style.background = 'rgba(255,255,255,0.06)'; e.currentTarget.style.color = '#fff'; e.currentTarget.style.transform = 'translateY(-1px)'; } }}
+            onMouseLeave={e => { if (currentPage !== 'home') { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = 'rgba(255,255,255,0.65)'; e.currentTarget.style.transform = 'translateY(0)'; } }}
           >
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
             Home
@@ -1824,9 +2078,10 @@ const App: React.FC = () => {
               ...(currentPage === 'cart' ? { ...styles.navButton, ...styles.navButtonActive } : styles.navButton),
               position: 'relative',
             }}
+            className={currentPage === 'cart' ? 'nav-btn-active' : ''}
             onClick={() => cart.length > 0 && setCurrentPage('cart')}
-            onMouseEnter={e => { if (currentPage !== 'cart') { e.currentTarget.style.background = 'rgba(255,255,255,0.08)'; e.currentTarget.style.color = '#fff'; } }}
-            onMouseLeave={e => { if (currentPage !== 'cart') { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = 'rgba(255,255,255,0.7)'; } }}
+            onMouseEnter={e => { if (currentPage !== 'cart') { e.currentTarget.style.background = 'rgba(255,255,255,0.06)'; e.currentTarget.style.color = '#fff'; e.currentTarget.style.transform = 'translateY(-1px)'; } }}
+            onMouseLeave={e => { if (currentPage !== 'cart') { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = 'rgba(255,255,255,0.65)'; e.currentTarget.style.transform = 'translateY(0)'; } }}
           >
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
             Cart
@@ -1846,7 +2101,7 @@ const App: React.FC = () => {
                 fontSize: '11px',
                 fontWeight: 700,
                 boxShadow: '0 2px 8px rgba(226,55,68,0.4)',
-                animation: 'scaleIn 0.3s ease',
+                animation: 'badgeBounce 0.4s ease-in-out',
               }}>
                 {cart.reduce((sum, i) => sum + i.quantity, 0)}
               </span>
@@ -1874,10 +2129,10 @@ const App: React.FC = () => {
             </div>
           ) : (
             <button
-              style={{ ...styles.navButton, background: 'rgba(226,55,68,0.15)', color: '#fff', fontWeight: 600, padding: '8px 20px' }}
+              style={{ ...styles.navButton, background: 'linear-gradient(135deg, rgba(226,55,68,0.2), rgba(226,55,68,0.1))', color: '#fff', fontWeight: 600, padding: '10px 24px', border: '1px solid rgba(226,55,68,0.25)', boxShadow: '0 0 12px rgba(226,55,68,0.1)' }}
               onClick={() => setShowLoginModal(true)}
-              onMouseEnter={e => { e.currentTarget.style.background = 'rgba(226,55,68,0.25)'; }}
-              onMouseLeave={e => { e.currentTarget.style.background = 'rgba(226,55,68,0.15)'; }}
+              onMouseEnter={e => { e.currentTarget.style.background = 'linear-gradient(135deg, rgba(226,55,68,0.35), rgba(226,55,68,0.2))'; e.currentTarget.style.transform = 'translateY(-1px)'; e.currentTarget.style.boxShadow = '0 0 20px rgba(226,55,68,0.25)'; }}
+              onMouseLeave={e => { e.currentTarget.style.background = 'linear-gradient(135deg, rgba(226,55,68,0.2), rgba(226,55,68,0.1))'; e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = '0 0 12px rgba(226,55,68,0.1)'; }}
             >
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
               Sign In
