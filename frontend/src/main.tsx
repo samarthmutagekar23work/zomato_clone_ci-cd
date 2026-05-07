@@ -263,7 +263,7 @@ const VegIndicator: React.FC<{ isVeg: boolean }> = ({ isVeg }) => (
 
 // Main App Component
 const App: React.FC = () => {
-  const [currentPage, setCurrentPage] = useState<'home' | 'restaurant' | 'cart' | 'login' | 'tracking'>('home');
+  const [currentPage, setCurrentPage] = useState<'home' | 'restaurant' | 'cart' | 'login' | 'tracking' | 'checkout'>('home');
   const [selectedRestaurant, setSelectedRestaurant] = useState<Restaurant | null>(null);
   const [cart, setCart] = useState<CartItem[]>([]);
   const [user, setUser] = useState<User | null>(null);
@@ -271,6 +271,9 @@ const App: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
   const [showLoginModal, setShowLoginModal] = useState(false);
+  const [deliveryDetails, setDeliveryDetails] = useState({ address: '', phone: '', instructions: '' });
+  const [paymentMethod, setPaymentMethod] = useState<'card' | 'upi' | 'cod'>('card');
+  const [showSuccess, setShowSuccess] = useState(false);
 
   // Map reference
   const mapRef = useRef<L.Map | null>(null);
@@ -361,6 +364,27 @@ const App: React.FC = () => {
     setCurrentOrder(order);
     setCart([]);
     setCurrentPage('tracking');
+  }, [user, cart, cartTotal, selectedRestaurant]);
+
+  const finalizeOrder = useCallback(() => {
+    if (!user) { setShowLoginModal(true); return; }
+    if (cart.length === 0) return;
+    const deliveryFee = cartTotal >= 299 ? 25 : 40;
+    const taxes = Math.round(cartTotal * 0.05);
+    const total = cartTotal + deliveryFee + taxes;
+    const driver = drivers[Math.floor(Math.random() * drivers.length)];
+    const restaurantLocation: [number, number] = [12.9352, 77.6245];
+    const userLocation: [number, number] = [12.9716, 77.5946];
+    const order: Order = {
+      id: generateOrderId(), items: [...cart], total,
+      status: 'preparing', driver,
+      estimatedTime: selectedRestaurant?.deliveryTime || 30,
+      restaurantLocation, userLocation,
+    };
+    setCurrentOrder(order);
+    setCart([]);
+    setShowSuccess(true);
+    setTimeout(() => { setShowSuccess(false); setCurrentPage('tracking'); }, 2500);
   }, [user, cart, cartTotal, selectedRestaurant]);
 
   // Google Sign In simulation
@@ -927,6 +951,70 @@ const App: React.FC = () => {
       WebkitBackgroundClip: 'text',
       WebkitTextFillColor: 'transparent',
       backgroundClip: 'text',
+    },
+    checkoutStep: {
+      display: 'flex',
+      alignItems: 'center',
+      gap: '14px',
+      marginBottom: '20px',
+      padding: '20px',
+      borderRadius: '16px',
+      background: 'rgba(255,255,255,0.03)',
+      border: '1px solid rgba(255,255,255,0.06)',
+    },
+    checkoutStepNumber: {
+      width: '32px',
+      height: '32px',
+      borderRadius: '50%',
+      background: 'linear-gradient(135deg, #E23744, #ff6b6b)',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      fontSize: '14px',
+      fontWeight: 700,
+      color: '#fff',
+      flexShrink: 0,
+    },
+    checkoutInput: {
+      width: '100%',
+      padding: '14px 16px',
+      borderRadius: '12px',
+      border: '1px solid rgba(255,255,255,0.08)',
+      background: 'rgba(255,255,255,0.04)',
+      color: '#fff',
+      fontSize: '14px',
+      outline: 'none',
+      transition: 'all 0.3s ease',
+      boxSizing: 'border-box' as const,
+    },
+    paymentOption: {
+      display: 'flex',
+      alignItems: 'center',
+      gap: '14px',
+      padding: '16px 20px',
+      borderRadius: '14px',
+      border: '1px solid rgba(255,255,255,0.06)',
+      cursor: 'pointer',
+      transition: 'all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
+      background: 'rgba(255,255,255,0.02)',
+    },
+    paymentDot: {
+      width: '20px',
+      height: '20px',
+      borderRadius: '50%',
+      border: '2px solid rgba(255,255,255,0.2)',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      transition: 'all 0.3s ease',
+      flexShrink: 0,
+    },
+    paymentDotInner: {
+      width: '10px',
+      height: '10px',
+      borderRadius: '50%',
+      background: '#E23744',
+      transition: 'all 0.3s ease',
     },
   };
 
@@ -1758,13 +1846,139 @@ const App: React.FC = () => {
                   padding: '16px',
                   fontSize: '16px',
                 }}
-                onClick={placeOrder}
+                onClick={() => { if (!user) setShowLoginModal(true); else setCurrentPage('checkout'); }}
               >
-                {user ? `Place Order • ${formatPrice(total)}` : 'Login to Order'}
+                {user ? `Proceed to Checkout • ${formatPrice(total)}` : 'Login to Order'}
               </button>
             </div>
           </div>
         )}
+      </div>
+    );
+  };
+
+  // Checkout Page
+  const CheckoutPage = () => {
+    const deliveryFee = cartTotal >= 299 ? 25 : 40;
+    const taxes = Math.round(cartTotal * 0.05);
+    const total = cartTotal + deliveryFee + taxes;
+
+    if (showSuccess) {
+      return (
+        <div style={{ maxWidth: '500px', margin: '0 auto', padding: '60px 24px', textAlign: 'center', position: 'relative', zIndex: 2 }}>
+          <div style={{ fontSize: '80px', animation: 'badgeBounce 0.6s ease-in-out' }}>✅</div>
+          <h2 style={{ fontSize: '28px', fontWeight: 800, color: '#fff', margin: '24px 0 12px', animation: 'fadeSlideUp 0.5s ease-out' }}>Order Placed! 🎉</h2>
+          <p style={{ color: 'rgba(255,255,255,0.5)', fontSize: '16px', animation: 'fadeSlideUp 0.5s ease-out 0.2s both' }}>Your delicious food is being prepared</p>
+          <div style={{ width: '60px', height: '4px', background: 'linear-gradient(90deg, #E23744, #ff6b6b)', borderRadius: '2px', margin: '20px auto', animation: 'shimmerSlide 1.5s linear infinite' }} />
+        </div>
+      );
+    }
+
+    return (
+      <div style={{ maxWidth: '700px', margin: '0 auto', padding: '24px', position: 'relative', zIndex: 2 }}>
+        <span style={{ position: 'absolute', top: '2%', left: '1%', fontSize: '24px', animation: 'menuItemFloat 6s ease-in-out infinite', opacity: 0.1, pointerEvents: 'none' }}>📋</span>
+        <span style={{ position: 'absolute', bottom: '10%', right: '2%', fontSize: '22px', animation: 'menuItemFloat 8s ease-in-out infinite 1s', opacity: 0.08, pointerEvents: 'none' }}>💳</span>
+
+        <button style={{ background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.08)', padding: '10px 22px', borderRadius: '12px', cursor: 'pointer', marginBottom: '24px', fontWeight: 500, color: 'rgba(255,255,255,0.7)', backdropFilter: 'blur(12px)', transition: 'all 0.3s ease' }}
+          onClick={() => setCurrentPage('cart')}
+          onMouseEnter={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.1)'; e.currentTarget.style.color = '#fff'; }}
+          onMouseLeave={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.06)'; e.currentTarget.style.color = 'rgba(255,255,255,0.7)'; }}
+        >← Back to Cart</button>
+
+        <h1 style={{ margin: '0 0 8px', fontSize: '28px', fontWeight: 800, background: 'linear-gradient(135deg, #fff, rgba(255,255,255,0.7))', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>Checkout</h1>
+        <p style={{ color: 'rgba(255,255,255,0.4)', fontSize: '14px', margin: '0 0 28px' }}>Fill in your details to complete the order</p>
+
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 340px', gap: '28px', alignItems: 'start' }}>
+          <div>
+            {/* Delivery Details */}
+            <div style={styles.checkoutStep}>
+              <div style={styles.checkoutStepNumber}>1</div>
+              <div style={{ flex: 1 }}>
+                <h3 style={{ margin: '0 0 14px', color: '#fff', fontSize: '16px', fontWeight: 600 }}>Delivery Details</h3>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                  <input style={styles.checkoutInput} placeholder="📍 Delivery Address" value={deliveryDetails.address}
+                    onChange={e => setDeliveryDetails(prev => ({ ...prev, address: e.target.value }))} />
+                  <input style={styles.checkoutInput} placeholder="📞 Phone Number" type="tel" value={deliveryDetails.phone}
+                    onChange={e => setDeliveryDetails(prev => ({ ...prev, phone: e.target.value }))} />
+                  <input style={styles.checkoutInput} placeholder="📝 Delivery Instructions (optional)" value={deliveryDetails.instructions}
+                    onChange={e => setDeliveryDetails(prev => ({ ...prev, instructions: e.target.value }))} />
+                </div>
+              </div>
+            </div>
+
+            {/* Payment Method */}
+            <div style={styles.checkoutStep}>
+              <div style={styles.checkoutStepNumber}>2</div>
+              <div style={{ flex: 1 }}>
+                <h3 style={{ margin: '0 0 14px', color: '#fff', fontSize: '16px', fontWeight: 600 }}>Payment Method</h3>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                  {[
+                    { key: 'card' as const, icon: '💳', label: 'Credit / Debit Card', desc: 'Pay with Visa, Mastercard, or Rupay' },
+                    { key: 'upi' as const, icon: '📱', label: 'UPI', desc: 'Google Pay, PhonePe, Paytm' },
+                    { key: 'cod' as const, icon: '💵', label: 'Cash on Delivery', desc: 'Pay when your food arrives' },
+                  ].map(opt => (
+                    <div key={opt.key} style={{ ...styles.paymentOption, border: paymentMethod === opt.key ? '1px solid rgba(226,55,68,0.4)' : '1px solid rgba(255,255,255,0.06)', background: paymentMethod === opt.key ? 'rgba(226,55,68,0.08)' : 'rgba(255,255,255,0.02)' }}
+                      onClick={() => setPaymentMethod(opt.key)}
+                      onMouseEnter={e => { e.currentTarget.style.transform = 'translateX(4px)'; e.currentTarget.style.borderColor = 'rgba(226,55,68,0.3)'; }}
+                      onMouseLeave={e => { if (paymentMethod !== opt.key) { e.currentTarget.style.transform = 'translateX(0)'; e.currentTarget.style.borderColor = 'rgba(255,255,255,0.06)'; } }}>
+                      <div style={{ ...styles.paymentDot, borderColor: paymentMethod === opt.key ? '#E23744' : 'rgba(255,255,255,0.2)' }}>
+                        {paymentMethod === opt.key && <div style={styles.paymentDotInner} />}
+                      </div>
+                      <span style={{ fontSize: '22px' }}>{opt.icon}</span>
+                      <div>
+                        <div style={{ color: '#fff', fontWeight: 600, fontSize: '14px' }}>{opt.label}</div>
+                        <div style={{ color: 'rgba(255,255,255,0.4)', fontSize: '12px' }}>{opt.desc}</div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Order Summary */}
+          <div style={{ position: 'sticky', top: '100px' }}>
+            <div style={styles.cartBillCard}>
+              <h3 style={{ margin: '0 0 16px', color: '#fff', fontSize: '16px', fontWeight: 700 }}>
+                <span style={{ marginRight: '8px' }}>🛒</span> Order Summary
+              </h3>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', marginBottom: '16px' }}>
+                {cart.slice(0, 3).map(item => (
+                  <div key={item.menuItem.id} style={{ display: 'flex', justifyContent: 'space-between', fontSize: '13px' }}>
+                    <span style={{ color: 'rgba(255,255,255,0.6)' }}>{item.quantity}x {item.menuItem.name}</span>
+                    <span style={{ color: '#fff' }}>{formatPrice(item.menuItem.price * item.quantity)}</span>
+                  </div>
+                ))}
+                {cart.length > 3 && <div style={{ color: 'rgba(255,255,255,0.3)', fontSize: '12px' }}>+{cart.length - 3} more items</div>}
+              </div>
+              <div style={{ borderTop: '1px solid rgba(255,255,255,0.06)', paddingTop: '12px' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px', fontSize: '13px' }}>
+                  <span style={{ color: 'rgba(255,255,255,0.5)' }}>Subtotal</span>
+                  <span style={{ color: '#fff' }}>{formatPrice(cartTotal)}</span>
+                </div>
+                <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px', fontSize: '13px' }}>
+                  <span style={{ color: 'rgba(255,255,255,0.5)' }}>Delivery</span>
+                  <span style={{ color: cartTotal >= 299 ? '#22c55e' : '#fff' }}>{cartTotal >= 299 ? 'FREE' : formatPrice(deliveryFee)}</span>
+                </div>
+                <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px', fontSize: '13px' }}>
+                  <span style={{ color: 'rgba(255,255,255,0.5)' }}>Taxes</span>
+                  <span style={{ color: '#fff' }}>{formatPrice(taxes)}</span>
+                </div>
+                <div style={{ borderTop: '1px solid rgba(255,255,255,0.06)', margin: '12px 0' }} />
+                <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '20px' }}>
+                  <span style={{ fontWeight: 700, fontSize: '18px', color: '#fff' }}>Total</span>
+                  <span style={{ fontWeight: 700, fontSize: '18px', background: 'linear-gradient(135deg, #E23744, #ff6b6b)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>{formatPrice(total)}</span>
+                </div>
+                <button style={{ ...styles.primaryButton, borderRadius: '14px', padding: '16px', fontSize: '16px', opacity: deliveryDetails.address && deliveryDetails.phone ? 1 : 0.5 }}
+                  onClick={finalizeOrder}
+                  disabled={!deliveryDetails.address || !deliveryDetails.phone}
+                  onMouseEnter={e => { if (deliveryDetails.address && deliveryDetails.phone) { e.currentTarget.style.transform = 'scale(1.02)'; } }}
+                  onMouseLeave={e => { e.currentTarget.style.transform = 'scale(1)'; }}
+                >{deliveryDetails.address && deliveryDetails.phone ? 'Place Order' : 'Fill Details to Order'}</button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     );
   };
@@ -2120,11 +2334,12 @@ const App: React.FC = () => {
               </div>
               <span style={{ fontWeight: 500, fontSize: '14px' }}>{user.name}</span>
               <button
-                style={{ ...styles.navButton, color: 'rgba(255,255,255,0.5)', fontSize: '12px', padding: '6px 14px' }}
+                style={{ ...styles.navButton, background: 'rgba(226,55,68,0.08)', color: 'rgba(255,255,255,0.6)', fontSize: '13px', padding: '8px 18px', border: '1px solid rgba(226,55,68,0.15)', borderRadius: '10px', gap: '6px' }}
                 onClick={handleLogout}
-                onMouseEnter={e => { e.currentTarget.style.color = '#fff'; e.currentTarget.style.background = 'rgba(226,55,68,0.2)'; }}
-                onMouseLeave={e => { e.currentTarget.style.color = 'rgba(255,255,255,0.5)'; e.currentTarget.style.background = 'transparent'; }}
+                onMouseEnter={e => { e.currentTarget.style.background = 'rgba(226,55,68,0.2)'; e.currentTarget.style.color = '#fff'; e.currentTarget.style.borderColor = 'rgba(226,55,68,0.4)'; e.currentTarget.style.boxShadow = '0 0 16px rgba(226,55,68,0.2)'; e.currentTarget.style.transform = 'translateY(-1px)'; }}
+                onMouseLeave={e => { e.currentTarget.style.background = 'rgba(226,55,68,0.08)'; e.currentTarget.style.color = 'rgba(255,255,255,0.6)'; e.currentTarget.style.borderColor = 'rgba(226,55,68,0.15)'; e.currentTarget.style.boxShadow = 'none'; e.currentTarget.style.transform = 'translateY(0)'; }}
               >
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
                 Logout
               </button>
             </div>
@@ -2146,6 +2361,7 @@ const App: React.FC = () => {
       {currentPage === 'home' && <HomePage />}
       {currentPage === 'restaurant' && <RestaurantPage />}
       {currentPage === 'cart' && <CartPage />}
+      {currentPage === 'checkout' && <CheckoutPage />}
       {currentPage === 'tracking' && <TrackingPage />}
 
       {/* Login Modal */}
