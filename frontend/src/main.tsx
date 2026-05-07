@@ -476,43 +476,56 @@ const App: React.FC = () => {
   const styles: Record<string, React.CSSProperties> = {
     container: {
       minHeight: '100vh',
-      background: 'linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)',
+      background: 'linear-gradient(135deg, #0f0f0f 0%, #1a0a0a 25%, #0a1a0a 50%, #1a1a0a 75%, #0f0f0f 100%)',
+      backgroundSize: '400% 400%',
+      animation: 'gradientShift 20s ease infinite',
       fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+      position: 'relative' as const,
+      overflow: 'hidden',
     },
     header: {
-      background: 'linear-gradient(135deg, #ff5c5c 0%, #ff7b7c 100%)',
+      background: 'rgba(15, 15, 15, 0.85)',
+      backdropFilter: 'blur(20px)',
+      WebkitBackdropFilter: 'blur(20px)',
+      borderBottom: '1px solid rgba(255,255,255,0.08)',
       color: 'white',
-      padding: '16px 24px',
+      padding: '14px 32px',
       display: 'flex',
       justifyContent: 'space-between',
       alignItems: 'center',
-      boxShadow: '0 4px 12px rgba(255, 92, 92, 0.3)',
+      boxShadow: '0 4px 30px rgba(0,0,0,0.5)',
       position: 'sticky' as const,
       top: 0,
       zIndex: 100,
     },
     logo: {
-      fontSize: '28px',
-      fontWeight: 'bold',
+      fontSize: '26px',
+      fontWeight: 800,
       cursor: 'pointer',
+      letterSpacing: '-1px',
+      display: 'flex',
+      alignItems: 'center',
+      gap: '8px',
     },
     navButtons: {
       display: 'flex',
-      gap: '12px',
+      gap: '10px',
       alignItems: 'center',
     },
     navButton: {
-      background: 'rgba(255,255,255,0.2)',
-      border: 'none',
+      background: 'rgba(255,255,255,0.06)',
+      border: '1px solid rgba(255,255,255,0.1)',
       color: 'white',
-      padding: '8px 16px',
-      borderRadius: '20px',
+      padding: '8px 18px',
+      borderRadius: '24px',
       cursor: 'pointer',
-      fontSize: '14px',
+      fontSize: '13px',
       fontWeight: 500,
       display: 'flex',
       alignItems: 'center',
       gap: '6px',
+      transition: 'all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
+      backdropFilter: 'blur(10px)',
     },
     searchContainer: {
       maxWidth: '1200px',
@@ -521,13 +534,16 @@ const App: React.FC = () => {
     },
     searchInput: {
       width: '100%',
-      padding: '14px 20px',
+      padding: '16px 24px',
       fontSize: '16px',
-      border: '2px solid #e0e0e0',
-      borderRadius: '12px',
+      border: '2px solid rgba(255,255,255,0.1)',
+      borderRadius: '16px',
       outline: 'none',
-      background: 'white',
-      boxShadow: '0 2px 8px rgba(0,0,0,0.08)',
+      background: 'rgba(255,255,255,0.06)',
+      color: 'white',
+      backdropFilter: 'blur(10px)',
+      boxShadow: '0 4px 20px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.1)',
+      transition: 'all 0.3s ease',
     },
     restaurantGrid: {
       display: 'grid',
@@ -536,13 +552,15 @@ const App: React.FC = () => {
       marginTop: '24px',
     },
     restaurantCard: {
-      background: 'white',
-      borderRadius: '16px',
+      background: 'rgba(255,255,255,0.04)',
+      borderRadius: '20px',
       overflow: 'hidden',
-      boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
+      backdropFilter: 'blur(12px)',
+      border: '1px solid rgba(255,255,255,0.06)',
+      boxShadow: '0 8px 32px rgba(0,0,0,0.3)',
       cursor: 'pointer',
-      transition: 'transform 0.2s, box-shadow 0.2s',
-      animation: 'cardFadeIn 0.4s ease-out',
+      transition: 'all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
+      animation: 'cardFadeIn 0.5s ease-out',
     },
     restaurantImage: {
       width: '100%',
@@ -550,14 +568,14 @@ const App: React.FC = () => {
       objectFit: 'cover' as const,
     },
     cardContent: {
-      padding: '16px',
+      padding: '18px',
     },
     badge: {
       display: 'inline-flex',
       alignItems: 'center',
       gap: '4px',
       padding: '4px 10px',
-      borderRadius: '6px',
+      borderRadius: '8px',
       fontSize: '13px',
       fontWeight: 600,
     },
@@ -567,26 +585,31 @@ const App: React.FC = () => {
       left: 0,
       right: 0,
       bottom: 0,
-      background: 'rgba(0,0,0,0.6)',
+      background: 'rgba(0,0,0,0.8)',
+      backdropFilter: 'blur(8px)',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
       zIndex: 1000,
+      animation: 'fadeIn 0.2s ease-out',
     },
     modalContent: {
-      background: 'white',
-      borderRadius: '20px',
-      padding: '32px',
+      background: 'rgba(30,30,30,0.95)',
+      borderRadius: '24px',
+      padding: '36px',
       width: '100%',
       maxWidth: '420px',
-      boxShadow: '0 20px 60px rgba(0,0,0,0.3)',
+      border: '1px solid rgba(255,255,255,0.08)',
+      boxShadow: '0 30px 80px rgba(0,0,0,0.6)',
+      animation: 'scaleIn 0.3s ease-out',
     },
     googleButton: {
       width: '100%',
       padding: '14px',
-      border: '2px solid #e0e0e0',
-      borderRadius: '12px',
-      background: 'white',
+      border: '2px solid rgba(255,255,255,0.12)',
+      borderRadius: '14px',
+      background: 'rgba(255,255,255,0.04)',
+      color: 'white',
       cursor: 'pointer',
       fontSize: '16px',
       fontWeight: 500,
@@ -594,52 +617,59 @@ const App: React.FC = () => {
       alignItems: 'center',
       justifyContent: 'center',
       gap: '12px',
-      transition: 'all 0.2s',
+      transition: 'all 0.3s ease',
     },
     input: {
       width: '100%',
       padding: '14px',
-      border: '2px solid #e0e0e0',
-      borderRadius: '10px',
+      border: '2px solid rgba(255,255,255,0.1)',
+      borderRadius: '12px',
       fontSize: '15px',
       outline: 'none',
-      transition: 'border-color 0.2s',
+      background: 'rgba(255,255,255,0.04)',
+      color: 'white',
+      transition: 'all 0.3s ease',
     },
     primaryButton: {
       width: '100%',
       padding: '14px',
-      background: 'linear-gradient(135deg, #ff5c5c 0%, #ff7b7c 100%)',
+      background: 'linear-gradient(135deg, #E23744 0%, #ff6b6b 100%)',
       color: 'white',
       border: 'none',
-      borderRadius: '12px',
+      borderRadius: '14px',
       fontSize: '16px',
       fontWeight: 600,
       cursor: 'pointer',
+      transition: 'all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
+      boxShadow: '0 4px 20px rgba(226,55,68,0.3)',
     },
     menuItem: {
       display: 'flex',
       gap: '16px',
-      padding: '16px',
-      background: 'white',
-      borderRadius: '12px',
+      padding: '18px',
+      background: 'rgba(255,255,255,0.04)',
+      borderRadius: '16px',
       marginBottom: '12px',
-      boxShadow: '0 2px 8px rgba(0,0,0,0.06)',
+      border: '1px solid rgba(255,255,255,0.06)',
+      backdropFilter: 'blur(12px)',
+      boxShadow: '0 4px 16px rgba(0,0,0,0.2)',
       animation: 'cardFadeIn 0.4s ease-out',
     },
     menuItemImage: {
       width: '120px',
       height: '100px',
-      borderRadius: '12px',
+      borderRadius: '14px',
       objectFit: 'cover' as const,
     },
     cartItem: {
       display: 'flex',
       justifyContent: 'space-between',
       alignItems: 'center',
-      padding: '12px',
-      background: 'white',
-      borderRadius: '10px',
+      padding: '14px',
+      background: 'rgba(255,255,255,0.04)',
+      borderRadius: '14px',
       marginBottom: '10px',
+      border: '1px solid rgba(255,255,255,0.06)',
       animation: 'cardFadeIn 0.4s ease-out',
     },
     trackingContainer: {
@@ -648,10 +678,12 @@ const App: React.FC = () => {
       padding: '24px',
     },
     driverCard: {
-      background: 'white',
-      borderRadius: '16px',
+      background: 'rgba(255,255,255,0.04)',
+      borderRadius: '20px',
       padding: '20px',
-      boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
+      border: '1px solid rgba(255,255,255,0.06)',
+      backdropFilter: 'blur(12px)',
+      boxShadow: '0 8px 32px rgba(0,0,0,0.3)',
       display: 'flex',
       gap: '16px',
       alignItems: 'center',
@@ -663,7 +695,7 @@ const App: React.FC = () => {
       height: '70px',
       borderRadius: '50%',
       objectFit: 'cover' as const,
-      border: '3px solid #ff5c5c',
+      border: '3px solid #E23744',
     },
     progressBar: {
       display: 'flex',
@@ -673,9 +705,10 @@ const App: React.FC = () => {
     },
     mapContainer: {
       height: '400px',
-      borderRadius: '16px',
+      borderRadius: '20px',
       overflow: 'hidden',
-      boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
+      border: '1px solid rgba(255,255,255,0.06)',
+      boxShadow: '0 8px 32px rgba(0,0,0,0.3)',
       marginBottom: '20px',
     },
   };
@@ -685,9 +718,110 @@ const App: React.FC = () => {
     const styleEl = document.createElement('style');
     styleEl.textContent = `
       @keyframes cardFadeIn {
+        from { opacity: 0; transform: translateY(30px) scale(0.95); }
+        to { opacity: 1; transform: translateY(0) scale(1); }
+      }
+      @keyframes cardFadeInLeft {
+        from { opacity: 0; transform: translateX(-30px); }
+        to { opacity: 1; transform: translateX(0); }
+      }
+      @keyframes cardFadeInRight {
+        from { opacity: 0; transform: translateX(30px); }
+        to { opacity: 1; transform: translateX(0); }
+      }
+      @keyframes bgShift {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+      }
+      @keyframes float {
+        0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.5; }
+        25% { transform: translateY(-20px) rotate(5deg); }
+        50% { transform: translateY(-35px) rotate(-3deg); opacity: 0.9; }
+        75% { transform: translateY(-15px) rotate(7deg); }
+      }
+      @keyframes float2 {
+        0%, 100% { transform: translateY(0) rotate(0deg) scale(1); opacity: 0.3; }
+        33% { transform: translateY(-25px) rotate(-5deg) scale(1.1); opacity: 0.7; }
+        66% { transform: translateY(-10px) rotate(4deg) scale(0.95); opacity: 0.5; }
+      }
+      @keyframes shimmer {
+        0% { background-position: -200% center; }
+        100% { background-position: 200% center; }
+      }
+      @keyframes pulseGlow {
+        0%, 100% { box-shadow: 0 4px 15px rgba(255,92,92,0.3); }
+        50% { box-shadow: 0 8px 35px rgba(255,92,92,0.6); }
+      }
+      @keyframes pulseGlowGreen {
+        0%, 100% { box-shadow: 0 4px 15px rgba(34,197,94,0.3); }
+        50% { box-shadow: 0 8px 35px rgba(34,197,94,0.6); }
+      }
+      @keyframes orbFloat {
+        0%, 100% { transform: translate(0, 0) scale(1); }
+        25% { transform: translate(30px, -40px) scale(1.1); }
+        50% { transform: translate(-20px, -70px) scale(0.9); }
+        75% { transform: translate(-40px, -20px) scale(1.05); }
+      }
+      @keyframes orbFloat2 {
+        0%, 100% { transform: translate(0, 0) scale(1); }
+        25% { transform: translate(-30px, 40px) scale(1.15); }
+        50% { transform: translate(20px, 70px) scale(0.85); }
+        75% { transform: translate(40px, 20px) scale(1.1); }
+      }
+      @keyframes twinkle {
+        0%, 100% { opacity: 0; transform: scale(0); }
+        50% { opacity: 0.8; transform: scale(1); }
+      }
+      @keyframes countUp {
         from { opacity: 0; transform: translateY(20px); }
         to { opacity: 1; transform: translateY(0); }
       }
+      @keyframes ripple {
+        0% { box-shadow: 0 0 0 0 rgba(255,92,92,0.4); }
+        100% { box-shadow: 0 0 0 20px rgba(255,92,92,0); }
+      }
+      @keyframes slideInDown {
+        from { opacity: 0; transform: translateY(-50px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      @keyframes pulseRing {
+        0% { transform: scale(0.95); opacity: 0.7; }
+        50% { transform: scale(1.05); opacity: 1; }
+        100% { transform: scale(0.95); opacity: 0.7; }
+      }
+      @keyframes gradientShift {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+      }
+      @keyframes typing {
+        from { width: 0; }
+        to { width: 100%; }
+      }
+      @keyframes blink {
+        50% { border-color: transparent; }
+      }
+      @keyframes scaleIn {
+        from { opacity: 0; transform: scale(0.8); }
+        to { opacity: 1; transform: scale(1); }
+      }
+      @keyframes spin {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+      }
+      @keyframes dash {
+        to { stroke-dashoffset: 0; }
+      }
+      * { scrollbar-width: thin; scrollbar-color: #E23744 #f1f1f1; }
+      ::-webkit-scrollbar { width: 6px; }
+      ::-webkit-scrollbar-track { background: #f1f1f1; }
+      ::-webkit-scrollbar-thumb { background: #E23744; border-radius: 3px; }
+      .btn-glow:hover { animation: pulseGlow 1.5s ease-in-out infinite !important; }
+      .btn-glow-green:hover { animation: pulseGlowGreen 1.5s ease-in-out infinite !important; }
+      .card-hover { transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important; }
+      .card-hover:hover { transform: translateY(-8px) scale(1.02) !important; }
+      .text-gradient { background: linear-gradient(135deg, #E23744, #ff6b6b, #E23744); background-size: 200% 200%; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; animation: gradientShift 3s ease infinite; }
     `;
     document.head.appendChild(styleEl);
     return () => { document.head.removeChild(styleEl); };
@@ -1365,17 +1499,109 @@ const App: React.FC = () => {
     );
   };
 
+  // Immersive animated background
+  const BackgroundParticles = () => {
+    const gradientOrbs = [
+      { size: '600px', color: 'rgba(226,55,68,0.08)', top: '-10%', right: '-5%', anim: 'orbFloat 25s ease-in-out infinite' },
+      { size: '500px', color: 'rgba(255,107,107,0.06)', bottom: '-15%', left: '-8%', anim: 'orbFloat2 30s ease-in-out infinite' },
+      { size: '400px', color: 'rgba(34,197,94,0.05)', top: '40%', left: '50%', anim: 'orbFloat 20s ease-in-out infinite 5s' },
+      { size: '350px', color: 'rgba(251,191,36,0.04)', top: '60%', right: '10%', anim: 'orbFloat2 22s ease-in-out infinite 3s' },
+    ];
+    const foodParticles = [
+      { emoji: '🍕', top: '12%', left: '6%', dur: '7s', delay: '0s', size: '34px' },
+      { emoji: '🍔', top: '22%', right: '10%', dur: '9s', delay: '0.5s', size: '30px' },
+      { emoji: '🍜', bottom: '18%', left: '12%', dur: '8s', delay: '1s', size: '32px' },
+      { emoji: '🥗', bottom: '28%', right: '6%', dur: '10s', delay: '0.3s', size: '26px' },
+      { emoji: '🍦', top: '45%', left: '4%', dur: '9s', delay: '2s', size: '24px' },
+      { emoji: '🌮', top: '65%', right: '4%', dur: '7.5s', delay: '1.5s', size: '28px' },
+      { emoji: '🍣', top: '8%', left: '48%', dur: '10s', delay: '0.8s', size: '22px' },
+      { emoji: '🥤', bottom: '8%', right: '22%', dur: '6.5s', delay: '2.5s', size: '26px' },
+      { emoji: '🍩', top: '78%', left: '3%', dur: '8s', delay: '1.2s', size: '20px' },
+      { emoji: '🧁', bottom: '42%', right: '3%', dur: '9s', delay: '0.6s', size: '22px' },
+      { emoji: '🍝', top: '35%', left: '55%', dur: '11s', delay: '2.2s', size: '20px' },
+      { emoji: '🍛', top: '50%', left: '8%', dur: '8.5s', delay: '1.8s', size: '22px' },
+      { emoji: '🍰', bottom: '10%', left: '35%', dur: '7.2s', delay: '0.4s', size: '20px' },
+      { emoji: '🍪', top: '10%', right: '25%', dur: '9.5s', delay: '3s', size: '18px' },
+      { emoji: '🥟', bottom: '50%', right: '8%', dur: '8.2s', delay: '1.1s', size: '20px' },
+    ];
+    const sparkles = Array.from({ length: 30 }, (_, i) => ({
+      left: `${Math.random() * 100}%`,
+      top: `${Math.random() * 100}%`,
+      size: Math.random() * 4 + 2,
+      delay: `${Math.random() * 5}s`,
+      dur: `${Math.random() * 3 + 3}s`,
+    }));
+    return (
+      <div style={{ position: 'fixed', inset: 0, pointerEvents: 'none', zIndex: 0, overflow: 'hidden' }}>
+        {gradientOrbs.map((orb, i) => (
+          <div key={`orb-${i}`} style={{
+            position: 'absolute',
+            width: orb.size,
+            height: orb.size,
+            borderRadius: '50%',
+            background: `radial-gradient(circle, ${orb.color} 0%, transparent 70%)`,
+            top: orb.top,
+            right: orb.right,
+            left: orb.left,
+            bottom: orb.bottom,
+            animation: orb.anim,
+            filter: 'blur(60px)',
+          }} />
+        ))}
+        {foodParticles.map((p, i) => (
+          <span key={`food-${i}`} style={{
+            position: 'absolute',
+            top: p.top,
+            left: p.left,
+            right: p.right,
+            bottom: p.bottom,
+            fontSize: p.size,
+            animation: `float ${p.dur} ease-in-out infinite`,
+            animationDelay: p.delay,
+            opacity: 0.4,
+            filter: 'drop-shadow(0 0 10px rgba(255,255,255,0.05))',
+            transition: 'opacity 0.3s',
+          }}>{p.emoji}</span>
+        ))}
+        {sparkles.map((s, i) => (
+          <div key={`sparkle-${i}`} style={{
+            position: 'absolute',
+            left: s.left,
+            top: s.top,
+            width: `${s.size}px`,
+            height: `${s.size}px`,
+            borderRadius: '50%',
+            background: 'white',
+            animation: `twinkle ${s.dur} ease-in-out infinite`,
+            animationDelay: s.delay,
+            opacity: 0,
+          }} />
+        ))}
+      </div>
+    );
+  };
+
   return (
     <div style={styles.container}>
+      <BackgroundParticles />
       {/* Header */}
       <header style={styles.header}>
         <div style={styles.logo} onClick={() => setCurrentPage('home')}>
-          🍽️ Zomato
+          <span style={{
+            background: 'linear-gradient(135deg, #E23744, #ff6b6b)',
+            borderRadius: '10px',
+            padding: '4px 8px',
+            fontSize: '22px',
+            lineHeight: '1',
+          }}>Z</span>
+          <span className="text-gradient" style={{ fontSize: '24px', fontWeight: 800 }}>omato</span>
         </div>
         <div style={styles.navButtons}>
           <button
             style={styles.navButton}
             onClick={() => setCurrentPage('home')}
+            onMouseEnter={e => { e.currentTarget.style.transform = 'scale(1.05)'; e.currentTarget.style.background = 'rgba(255,255,255,0.3)'; }}
+            onMouseLeave={e => { e.currentTarget.style.transform = 'scale(1)'; e.currentTarget.style.background = 'rgba(255,255,255,0.2)'; }}
           >
             🏠 Home
           </button>
@@ -1385,6 +1611,8 @@ const App: React.FC = () => {
               position: 'relative',
             }}
             onClick={() => cart.length > 0 && setCurrentPage('cart')}
+            onMouseEnter={e => { e.currentTarget.style.transform = 'scale(1.05)'; e.currentTarget.style.background = 'rgba(255,255,255,0.3)'; }}
+            onMouseLeave={e => { e.currentTarget.style.transform = 'scale(1)'; e.currentTarget.style.background = 'rgba(255,255,255,0.2)'; }}
           >
             🛒 Cart
             {cart.length > 0 && (
@@ -1418,6 +1646,8 @@ const App: React.FC = () => {
               <button
                 style={{ ...styles.navButton, background: 'rgba(255,255,255,0.3)' }}
                 onClick={handleLogout}
+                onMouseEnter={e => { e.currentTarget.style.transform = 'scale(1.05)'; e.currentTarget.style.background = 'rgba(255,255,255,0.4)'; }}
+                onMouseLeave={e => { e.currentTarget.style.transform = 'scale(1)'; e.currentTarget.style.background = 'rgba(255,255,255,0.3)'; }}
               >
                 Logout
               </button>
