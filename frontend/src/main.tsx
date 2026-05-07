@@ -484,48 +484,54 @@ const App: React.FC = () => {
       overflow: 'hidden',
     },
     header: {
-      background: 'rgba(15, 15, 15, 0.85)',
-      backdropFilter: 'blur(20px)',
-      WebkitBackdropFilter: 'blur(20px)',
-      borderBottom: '1px solid rgba(255,255,255,0.08)',
+      background: 'rgba(8, 8, 12, 0.85)',
+      backdropFilter: 'blur(24px) saturate(180%)',
+      WebkitBackdropFilter: 'blur(24px) saturate(180%)',
+      borderBottom: '1px solid rgba(255,255,255,0.06)',
       color: 'white',
-      padding: '14px 32px',
+      padding: '10px 40px',
       display: 'flex',
       justifyContent: 'space-between',
       alignItems: 'center',
-      boxShadow: '0 4px 30px rgba(0,0,0,0.5)',
+      boxShadow: '0 1px 0 rgba(255,255,255,0.05), 0 8px 32px rgba(0,0,0,0.4)',
       position: 'sticky' as const,
       top: 0,
       zIndex: 100,
     },
     logo: {
-      fontSize: '26px',
+      fontSize: '28px',
       fontWeight: 800,
       cursor: 'pointer',
       letterSpacing: '-1px',
       display: 'flex',
       alignItems: 'center',
-      gap: '8px',
+      gap: '10px',
+      transition: 'opacity 0.2s ease',
     },
     navButtons: {
       display: 'flex',
-      gap: '10px',
+      gap: '6px',
       alignItems: 'center',
     },
     navButton: {
-      background: 'rgba(255,255,255,0.06)',
-      border: '1px solid rgba(255,255,255,0.1)',
-      color: 'white',
+      background: 'transparent',
+      border: 'none',
+      color: 'rgba(255,255,255,0.7)',
       padding: '8px 18px',
-      borderRadius: '24px',
+      borderRadius: '10px',
       cursor: 'pointer',
       fontSize: '13px',
       fontWeight: 500,
       display: 'flex',
       alignItems: 'center',
-      gap: '6px',
-      transition: 'all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
-      backdropFilter: 'blur(10px)',
+      gap: '8px',
+      transition: 'all 0.2s ease',
+      letterSpacing: '0.2px',
+      position: 'relative' as const,
+    },
+    navButtonActive: {
+      background: 'rgba(226,55,68,0.15)',
+      color: '#fff',
     },
     searchContainer: {
       maxWidth: '1200px',
@@ -1790,78 +1796,91 @@ const App: React.FC = () => {
       <BackgroundParticles />
       {/* Header */}
       <header style={styles.header}>
-        <div style={styles.logo} onClick={() => setCurrentPage('home')}>
+        <div style={styles.logo} onClick={() => setCurrentPage('home')}
+          onMouseEnter={e => e.currentTarget.style.opacity = '0.8'}
+          onMouseLeave={e => e.currentTarget.style.opacity = '1'}>
           <span style={{
             background: 'linear-gradient(135deg, #E23744, #ff6b6b)',
-            borderRadius: '10px',
-            padding: '4px 8px',
+            borderRadius: '12px',
+            padding: '5px 10px',
             fontSize: '22px',
             lineHeight: '1',
+            boxShadow: '0 2px 12px rgba(226,55,68,0.3)',
           }}>Z</span>
           <span className="text-gradient" style={{ fontSize: '24px', fontWeight: 800 }}>omato</span>
         </div>
         <div style={styles.navButtons}>
           <button
-            style={styles.navButton}
+            style={currentPage === 'home' ? { ...styles.navButton, ...styles.navButtonActive } : styles.navButton}
             onClick={() => setCurrentPage('home')}
-            onMouseEnter={e => { e.currentTarget.style.transform = 'scale(1.05)'; e.currentTarget.style.background = 'rgba(255,255,255,0.3)'; }}
-            onMouseLeave={e => { e.currentTarget.style.transform = 'scale(1)'; e.currentTarget.style.background = 'rgba(255,255,255,0.2)'; }}
+            onMouseEnter={e => { if (currentPage !== 'home') { e.currentTarget.style.background = 'rgba(255,255,255,0.08)'; e.currentTarget.style.color = '#fff'; } }}
+            onMouseLeave={e => { if (currentPage !== 'home') { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = 'rgba(255,255,255,0.7)'; } }}
           >
-            🏠 Home
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            Home
           </button>
           <button
             style={{
-              ...styles.navButton,
+              ...(currentPage === 'cart' ? { ...styles.navButton, ...styles.navButtonActive } : styles.navButton),
               position: 'relative',
             }}
             onClick={() => cart.length > 0 && setCurrentPage('cart')}
-            onMouseEnter={e => { e.currentTarget.style.transform = 'scale(1.05)'; e.currentTarget.style.background = 'rgba(255,255,255,0.3)'; }}
-            onMouseLeave={e => { e.currentTarget.style.transform = 'scale(1)'; e.currentTarget.style.background = 'rgba(255,255,255,0.2)'; }}
+            onMouseEnter={e => { if (currentPage !== 'cart') { e.currentTarget.style.background = 'rgba(255,255,255,0.08)'; e.currentTarget.style.color = '#fff'; } }}
+            onMouseLeave={e => { if (currentPage !== 'cart') { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = 'rgba(255,255,255,0.7)'; } }}
           >
-            🛒 Cart
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+            Cart
             {cart.length > 0 && (
               <span style={{
                 position: 'absolute',
-                top: '-8px',
-                right: '-8px',
-                background: 'white',
-                color: '#ff5c5c',
+                top: '-6px',
+                right: '-6px',
+                background: '#E23744',
+                color: 'white',
                 borderRadius: '50%',
                 width: '20px',
                 height: '20px',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                fontSize: '12px',
+                fontSize: '11px',
                 fontWeight: 700,
+                boxShadow: '0 2px 8px rgba(226,55,68,0.4)',
+                animation: 'scaleIn 0.3s ease',
               }}>
                 {cart.reduce((sum, i) => sum + i.quantity, 0)}
               </span>
             )}
           </button>
           {user ? (
-            <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-              <img
-                src={user.photo}
-                alt={user.name}
-                style={{ width: '36px', height: '36px', borderRadius: '50%', border: '2px solid white' }}
-              />
-              <span style={{ fontWeight: 500 }}>{user.name}</span>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginLeft: '8px', paddingLeft: '16px', borderLeft: '1px solid rgba(255,255,255,0.08)' }}>
+              <div style={{ position: 'relative' }}>
+                <img
+                  src={user.photo}
+                  alt={user.name}
+                  style={{ width: '34px', height: '34px', borderRadius: '50%', border: '2px solid rgba(226,55,68,0.5)', objectFit: 'cover' }}
+                />
+                <span style={{ position: 'absolute', bottom: '-1px', right: '-1px', width: '10px', height: '10px', background: '#22c55e', borderRadius: '50%', border: '2px solid rgba(8,8,12,0.85)' }} />
+              </div>
+              <span style={{ fontWeight: 500, fontSize: '14px' }}>{user.name}</span>
               <button
-                style={{ ...styles.navButton, background: 'rgba(255,255,255,0.3)' }}
+                style={{ ...styles.navButton, color: 'rgba(255,255,255,0.5)', fontSize: '12px', padding: '6px 14px' }}
                 onClick={handleLogout}
-                onMouseEnter={e => { e.currentTarget.style.transform = 'scale(1.05)'; e.currentTarget.style.background = 'rgba(255,255,255,0.4)'; }}
-                onMouseLeave={e => { e.currentTarget.style.transform = 'scale(1)'; e.currentTarget.style.background = 'rgba(255,255,255,0.3)'; }}
+                onMouseEnter={e => { e.currentTarget.style.color = '#fff'; e.currentTarget.style.background = 'rgba(226,55,68,0.2)'; }}
+                onMouseLeave={e => { e.currentTarget.style.color = 'rgba(255,255,255,0.5)'; e.currentTarget.style.background = 'transparent'; }}
               >
                 Logout
               </button>
             </div>
           ) : (
             <button
-              style={styles.navButton}
+              style={{ ...styles.navButton, background: 'rgba(226,55,68,0.15)', color: '#fff', fontWeight: 600, padding: '8px 20px' }}
               onClick={() => setShowLoginModal(true)}
+              onMouseEnter={e => { e.currentTarget.style.background = 'rgba(226,55,68,0.25)'; }}
+              onMouseLeave={e => { e.currentTarget.style.background = 'rgba(226,55,68,0.15)'; }}
             >
-              👤 Login / Sign Up
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+              Sign In
             </button>
           )}
         </div>
