@@ -194,6 +194,86 @@ const restaurants: Restaurant[] = [
       { id: 'm48', name: 'Matcha Ice Cream', description: 'Creamy Japanese green tea ice cream', price: 179, image: 'https://images.unsplash.com/photo-1501443762994-82bd5dace89a?w=300&h=200&fit=crop', category: 'Desserts', isVeg: true, rating: 4.5 },
     ],
   },
+  {
+    id: 'r7',
+    name: 'Tandoori Nights',
+    cuisine: 'North Indian, Mughlai, Kebab',
+    rating: 4.7,
+    deliveryTime: 35,
+    costForTwo: 900,
+    locality: 'Connaught Place',
+    image: 'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=400&h=250&fit=crop',
+    menu: [
+      { id: 'm49', name: 'Tandoori Chicken Platter', description: 'Whole chicken marinated in yogurt and spices, grilled in clay oven', price: 520, image: 'https://images.unsplash.com/photo-1610057099443-fde6c99db9e1?w=300&h=200&fit=crop', category: 'Starters', isVeg: false, rating: 4.8 },
+      { id: 'm50', name: 'Galouti Kebab', description: 'Melt-in-the-mouth minced lamb kebabs with aromatic spices', price: 420, image: 'https://images.unsplash.com/photo-1603360946369-dc9bb6258143?w=300&h=200&fit=crop', category: 'Starters', isVeg: false, rating: 4.9 },
+      { id: 'm51', name: 'Mutton Rogan Josh', description: 'Kashmiri-style lamb curry with rich red gravy', price: 480, image: 'https://images.unsplash.com/photo-1544025162-d76694265947?w=300&h=200&fit=crop', category: 'Main Course', isVeg: false, rating: 4.7 },
+      { id: 'm52', name: 'Dal Tadka', description: 'Yellow lentils tempered with cumin and garlic', price: 220, image: 'https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=300&h=200&fit=crop', category: 'Main Course', isVeg: true, rating: 4.5 },
+      { id: 'm53', name: 'Biryani', description: 'Fragrant basmati rice layered with spiced meat', price: 390, image: 'https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?w=300&h=200&fit=crop', category: 'Biryani', isVeg: false, rating: 4.8 },
+      { id: 'm54', name: 'Garlic Naan', description: 'Soft leavened bread with garlic butter', price: 70, image: 'https://images.unsplash.com/photo-1626074353765-517a681e40be?w=300&h=200&fit=crop', category: 'Breads', isVeg: true, rating: 4.6 },
+      { id: 'm55', name: 'Kheer', description: 'Creamy rice pudding with cardamom and nuts', price: 180, image: 'https://images.unsplash.com/photo-1631452180519-c014fe946bc7?w=300&h=200&fit=crop', category: 'Desserts', isVeg: true, rating: 4.4 },
+      { id: 'm56', name: 'Mango Lassi', description: 'Refreshing yogurt drink with mango pulp', price: 140, image: 'https://images.unsplash.com/photo-1527661591475-527312dd65f5?w=300&h=200&fit=crop', category: 'Beverages', isVeg: true, rating: 4.7 },
+    ],
+  },
+  {
+    id: 'r8',
+    name: 'The Thai House',
+    cuisine: 'Thai, Asian, Seafood',
+    rating: 4.3,
+    deliveryTime: 40,
+    costForTwo: 1100,
+    locality: 'Bandra West',
+    image: 'https://images.unsplash.com/photo-1552566626-52f8b828add9?w=400&h=250&fit=crop',
+    menu: [
+      { id: 'm57', name: 'Pad Thai', description: 'Stir-fried rice noodles with shrimp, peanuts and tamarind sauce', price: 350, image: 'https://images.unsplash.com/photo-1559314809-0d155014e29e?w=300&h=200&fit=crop', category: 'Noodles', isVeg: false, rating: 4.6 },
+      { id: 'm58', name: 'Tom Yum Soup', description: 'Hot and sour Thai soup with shrimp and mushrooms', price: 290, image: 'https://images.unsplash.com/photo-1547592166-23ac45744acd?w=300&h=200&fit=crop', category: 'Soups', isVeg: false, rating: 4.5 },
+      { id: 'm59', name: 'Green Curry', description: 'Aromatic coconut curry with Thai basil and vegetables', price: 380, image: 'https://images.unsplash.com/photo-1455619452474-d2be8b1e70cd?w=300&h=200&fit=crop', category: 'Curry', isVeg: true, rating: 4.4 },
+      { id: 'm60', name: 'Spring Rolls', description: 'Crispy rolls stuffed with glass noodles and vegetables', price: 210, image: 'https://images.unsplash.com/photo-1544025162-d76694265947?w=300&h=200&fit=crop', category: 'Starters', isVeg: true, rating: 4.3 },
+      { id: 'm61', name: 'Massaman Curry', description: 'Rich peanut-based curry with potatoes and chicken', price: 420, image: 'https://images.unsplash.com/photo-1455619452474-d2be8b1e70cd?w=300&h=200&fit=crop', category: 'Curry', isVeg: false, rating: 4.7 },
+      { id: 'm62', name: 'Thai Fried Rice', description: 'Jasmine rice stir-fried with vegetables and Thai spices', price: 280, image: 'https://images.unsplash.com/photo-1512058564366-18510be2db19?w=300&h=200&fit=crop', category: 'Rice', isVeg: true, rating: 4.2 },
+      { id: 'm63', name: 'Satay Chicken', description: 'Grilled chicken skewers with peanut dipping sauce', price: 340, image: 'https://images.unsplash.com/photo-1603360946369-dc9bb6258143?w=300&h=200&fit=crop', category: 'Starters', isVeg: false, rating: 4.6 },
+      { id: 'm64', name: 'Mango Sticky Rice', description: 'Sweet sticky rice with fresh mango and coconut cream', price: 230, image: 'https://images.unsplash.com/photo-1631452180519-c014fe946bc7?w=300&h=200&fit=crop', category: 'Desserts', isVeg: true, rating: 4.8 },
+    ],
+  },
+  {
+    id: 'r9',
+    name: 'Cafe Brew & Bite',
+    cuisine: 'Cafe, Continental, Bakery',
+    rating: 4.1,
+    deliveryTime: 25,
+    costForTwo: 600,
+    locality: 'Koramangala',
+    image: 'https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=400&h=250&fit=crop',
+    menu: [
+      { id: 'm65', name: 'Avocado Toast', description: 'Smashed avocado on sourdough with cherry tomatoes', price: 320, image: 'https://images.unsplash.com/photo-1541519227354-08fa5d50c44d?w=300&h=200&fit=crop', category: 'Breakfast', isVeg: true, rating: 4.4 },
+      { id: 'm66', name: 'Blueberry Pancakes', description: 'Fluffy pancakes with fresh blueberries and maple syrup', price: 350, image: 'https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=300&h=200&fit=crop', category: 'Breakfast', isVeg: true, rating: 4.6 },
+      { id: 'm67', name: 'Club Sandwich', description: 'Triple-decker with chicken, bacon, lettuce and tomato', price: 280, image: 'https://images.unsplash.com/photo-1528735602780-2552fd46c7af?w=300&h=200&fit=crop', category: 'Burgers', isVeg: false, rating: 4.3 },
+      { id: 'm68', name: 'Caesar Salad', description: 'Crisp romaine with parmesan, croutons and Caesar dressing', price: 260, image: 'https://images.unsplash.com/photo-1546793665-c74683f339c1?w=300&h=200&fit=crop', category: 'Salads', isVeg: true, rating: 4.2 },
+      { id: 'm69', name: 'Cold Brew Coffee', description: 'Slow-steeped cold brew served over ice', price: 190, image: 'https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=300&h=200&fit=crop', category: 'Beverages', isVeg: true, rating: 4.7 },
+      { id: 'm70', name: 'Red Velvet Cake', description: 'Moist red velvet with cream cheese frosting', price: 240, image: 'https://images.unsplash.com/photo-1586788680434-30d324b2d46f?w=300&h=200&fit=crop', category: 'Desserts', isVeg: true, rating: 4.5 },
+      { id: 'm71', name: 'Smoothie Bowl', description: 'Acai smoothie topped with granola, berries and banana', price: 350, image: 'https://images.unsplash.com/photo-1590301157890-4810ed352733?w=300&h=200&fit=crop', category: 'Breakfast', isVeg: true, rating: 4.4 },
+      { id: 'm72', name: 'French Fries', description: 'Golden crispy fries with truffle mayo', price: 170, image: 'https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=300&h=200&fit=crop', category: 'Sides', isVeg: true, rating: 4.3 },
+    ],
+  },
+  {
+    id: 'r10',
+    name: 'El Mariachi',
+    cuisine: 'Mexican, Tex-Mex',
+    rating: 4.2,
+    deliveryTime: 30,
+    costForTwo: 750,
+    locality: 'Indiranagar',
+    image: 'https://images.unsplash.com/photo-1553621042-f6e147280480?w=400&h=250&fit=crop',
+    menu: [
+      { id: 'm73', name: 'Tacos Al Pastor', description: 'Spiced pork tacos with pineapple and cilantro', price: 320, image: 'https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=300&h=200&fit=crop', category: 'Tacos', isVeg: false, rating: 4.6 },
+      { id: 'm74', name: 'Burrito Bowl', description: 'Rice bowl with beans, salsa, guacamole and chicken', price: 380, image: 'https://images.unsplash.com/photo-1543352634-a1c51d9f1fa7?w=300&h=200&fit=crop', category: 'Bowls', isVeg: false, rating: 4.5 },
+      { id: 'm75', name: 'Nachos Supreme', description: 'Crispy tortilla chips with cheese, beans and jalapenos', price: 290, image: 'https://images.unsplash.com/photo-1513456852971-30c0b8199d4d?w=300&h=200&fit=crop', category: 'Starters', isVeg: true, rating: 4.4 },
+      { id: 'm76', name: 'Quesadilla', description: 'Grilled tortilla with melted cheese and mushrooms', price: 270, image: 'https://images.unsplash.com/photo-1618040996337-56904b7850b4?w=300&h=200&fit=crop', category: 'Tacos', isVeg: true, rating: 4.3 },
+      { id: 'm77', name: 'Guacamole & Chips', description: 'Fresh mashed avocado with lime and tortilla chips', price: 220, image: 'https://images.unsplash.com/photo-1600335895229-6bf2509e86f6?w=300&h=200&fit=crop', category: 'Starters', isVeg: true, rating: 4.5 },
+      { id: 'm78', name: 'Churros', description: 'Crispy fried dough with cinnamon sugar and chocolate dip', price: 190, image: 'https://images.unsplash.com/photo-1624353363682-586c6326e442?w=300&h=200&fit=crop', category: 'Desserts', isVeg: true, rating: 4.7 },
+      { id: 'm79', name: 'Margarita', description: 'Classic cocktail with tequila, lime and triple sec', price: 450, image: 'https://images.unsplash.com/photo-1514361892635-6b07e31e75f0?w=300&h=200&fit=crop', category: 'Beverages', isVeg: true, rating: 4.6 },
+      { id: 'm80', name: 'Enchiladas', description: 'Rolled tortillas filled with chicken in spicy sauce', price: 360, image: 'https://images.unsplash.com/photo-1534352956036-cd81e27dd615?w=300&h=200&fit=crop', category: 'Main Course', isVeg: false, rating: 4.4 },
+    ],
+  },
 ];
 
 // Mock drivers
@@ -263,7 +343,7 @@ const VegIndicator: React.FC<{ isVeg: boolean }> = ({ isVeg }) => (
 
 // Main App Component
 const App: React.FC = () => {
-  const [currentPage, setCurrentPage] = useState<'home' | 'restaurant' | 'cart' | 'login' | 'tracking' | 'checkout' | 'hyperpure'>('home');
+  const [currentPage, setCurrentPage] = useState<'home' | 'restaurant' | 'cart' | 'login' | 'tracking' | 'checkout' | 'hyperpure' | 'district'>('home');
   const [selectedRestaurant, setSelectedRestaurant] = useState<Restaurant | null>(null);
   const [cart, setCart] = useState<CartItem[]>([]);
   const [user, setUser] = useState<User | null>(null);
@@ -503,15 +583,15 @@ const App: React.FC = () => {
     },
     navButtons: {
       display: 'flex',
-      gap: '6px',
+      gap: '4px',
       alignItems: 'center',
     },
     navButton: {
-      background: 'transparent',
-      border: 'none',
-      color: 'rgba(255,255,255,0.65)',
-      padding: '10px 22px',
-      borderRadius: '12px',
+      background: 'rgba(255,255,255,0.03)',
+      border: '1px solid rgba(255,255,255,0.06)',
+      color: 'rgba(255,255,255,0.7)',
+      padding: '10px 20px',
+      borderRadius: '14px',
       cursor: 'pointer',
       fontSize: '14px',
       fontWeight: 500,
@@ -521,11 +601,13 @@ const App: React.FC = () => {
       transition: 'all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)',
       letterSpacing: '0.3px',
       position: 'relative' as const,
+      backdropFilter: 'blur(8px)',
     },
     navButtonActive: {
-      background: 'rgba(226,55,68,0.12)',
+      background: 'linear-gradient(135deg, rgba(226,55,68,0.2), rgba(226,55,68,0.08))',
+      border: '1px solid rgba(226,55,68,0.3)',
       color: '#fff',
-      boxShadow: '0 0 12px rgba(226,55,68,0.15)',
+      boxShadow: '0 0 20px rgba(226,55,68,0.2), inset 0 0 20px rgba(226,55,68,0.05)',
     },
     searchContainer: {
       maxWidth: '1200px',
@@ -1172,6 +1254,14 @@ const App: React.FC = () => {
         from { opacity: 1; transform: translateX(0); }
         to { opacity: 0; transform: translateX(40px); }
       }
+      @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+      }
+      @keyframes fadeSlideDown {
+        from { opacity: 0; transform: translateX(-50%) translateY(-20px); }
+        to { opacity: 1; transform: translateX(-50%) translateY(0); }
+      }
       .nav-btn-active::after { content: ''; position: absolute; bottom: -1px; left: 50%; transform: translateX(-50%); width: 50%; height: 2px; background: #E23744; border-radius: 1px; box-shadow: 0 0 10px rgba(226,55,68,0.5); }
       .logo-z { background-size: 200% 100% !important; animation: logoShine 3s linear infinite !important; }
       .badge-pop { animation: badgeBounce 0.4s ease-in-out !important; }
@@ -1394,6 +1484,10 @@ const App: React.FC = () => {
     { name: 'Butter Chicken', description: 'Creamy tomato curry with tender chicken pieces', price: 349, rating: 4.7, image: 'https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?w=400&h=250&fit=crop' },
     { name: 'Salmon Sushi Roll', description: 'Fresh salmon with avocado and seasoned rice', price: 449, rating: 4.8, image: 'https://images.unsplash.com/photo-1553621042-f6e147280480?w=400&h=250&fit=crop' },
     { name: 'Classic Cheeseburger', description: 'Juicy beef patty with melted cheddar and fries', price: 249, rating: 4.6, image: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400&h=250&fit=crop' },
+    { name: 'Tandoori Chicken Platter', description: 'Whole chicken marinated in yogurt, grilled in clay oven', price: 520, rating: 4.8, image: 'https://images.unsplash.com/photo-1610057099443-fde6c99db9e1?w=400&h=250&fit=crop' },
+    { name: 'Pad Thai Noodles', description: 'Stir-fried rice noodles with shrimp and tamarind', price: 350, rating: 4.6, image: 'https://images.unsplash.com/photo-1559314809-0d155014e29e?w=400&h=250&fit=crop' },
+    { name: 'Galouti Kebab', description: 'Melt-in-the-mouth minced lamb kebabs', price: 420, rating: 4.9, image: 'https://images.unsplash.com/photo-1603360946369-dc9bb6258143?w=400&h=250&fit=crop' },
+    { name: 'Chicken Biryani', description: 'Aromatic basmati rice with spiced chicken', price: 390, rating: 4.8, image: 'https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?w=400&h=250&fit=crop' },
   ];
 
   // Home Page
@@ -1688,6 +1782,242 @@ const App: React.FC = () => {
                 <div style={{ color: 'rgba(255,255,255,0.5)', fontSize: '14px', fontWeight: 500 }}>{stat.label}</div>
               </div>
             ))}
+          </div>
+        </div>
+
+        {/* Platform Cards Section */}
+        <div style={{ marginTop: '64px', position: 'relative' }}>
+          <div style={{
+            background: 'linear-gradient(135deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.02) 100%)',
+            borderRadius: '28px', padding: '48px 40px',
+            border: '1px solid rgba(255,255,255,0.06)',
+            backdropFilter: 'blur(20px)',
+            boxShadow: '0 20px 60px rgba(0,0,0,0.4), 0 0 40px rgba(226,55,68,0.05)',
+            position: 'relative', overflow: 'hidden',
+          }}>
+            <div style={{ position: 'absolute', top: '-30%', right: '-10%', width: '500px', height: '500px', background: 'radial-gradient(circle, rgba(226,55,68,0.06) 0%, transparent 70%)', pointerEvents: 'none' }} />
+            <div style={{ position: 'absolute', bottom: '-20%', left: '-5%', width: '400px', height: '400px', background: 'radial-gradient(circle, rgba(147,51,234,0.05) 0%, transparent 70%)', pointerEvents: 'none' }} />
+
+            <div style={{ textAlign: 'center', marginBottom: '36px', position: 'relative', zIndex: 1 }}>
+              <p style={{ ...styles.sectionTitle, color: '#E23744' }}>Our Ecosystem</p>
+              <h2 style={{ ...styles.sectionHeading, fontSize: '28px' }}>Explore our platforms</h2>
+              <p style={{ color: 'rgba(255,255,255,0.4)', fontSize: '14px', marginTop: '-4px' }}>Three powerful platforms, one seamless experience</p>
+            </div>
+
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '24px', position: 'relative', zIndex: 1 }}>
+              {/* Zomato Card */}
+              <div style={{
+                background: 'linear-gradient(180deg, rgba(226,55,68,0.08) 0%, rgba(226,55,68,0.02) 100%)',
+                borderRadius: '24px', padding: '32px 24px', textAlign: 'center',
+                border: '1px solid rgba(226,55,68,0.15)',
+                transition: 'all 0.4s ease', cursor: 'pointer',
+                animation: 'cardFadeIn 0.6s ease-out 0s both',
+              }}
+                onClick={() => { setSelectedRestaurant(null); setSearchQuery(''); setCurrentPage('home'); }}
+                onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-8px)'; e.currentTarget.style.boxShadow = '0 20px 40px rgba(226,55,68,0.15)'; e.currentTarget.style.borderColor = 'rgba(226,55,68,0.3)'; }}
+                onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = 'none'; e.currentTarget.style.borderColor = 'rgba(226,55,68,0.15)'; }}
+              >
+                <div style={{
+                  width: '64px', height: '64px', borderRadius: '18px',
+                  background: 'linear-gradient(135deg, #E23744, #ff6b6b)',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  margin: '0 auto 16px', fontSize: '30px', fontWeight: 800, color: '#fff',
+                  boxShadow: '0 8px 24px rgba(226,55,68,0.3)',
+                }}>Z</div>
+                <h3 style={{ fontSize: '22px', fontWeight: 800, color: '#fff', margin: '0 0 8px' }}>Zomato</h3>
+                <p style={{ fontSize: '13px', color: 'rgba(255,255,255,0.5)', margin: '0 0 16px', lineHeight: 1.5 }}>
+                  Order food from your favorite restaurants. 500+ restaurant partners, 25+ cities, 50,000+ orders delivered.
+                </p>
+                <div style={{ display: 'flex', justifyContent: 'center', gap: '10px', flexWrap: 'wrap' }}>
+                  {['🍕 Pizza', '🍔 Burger', '🍛 Biryani', '🥟 Chinese'].map((tag, i) => (
+                    <span key={i} style={{
+                      padding: '4px 12px', background: 'rgba(226,55,68,0.08)',
+                      borderRadius: '20px', border: '1px solid rgba(226,55,68,0.1)',
+                      color: 'rgba(255,255,255,0.6)', fontSize: '11px', fontWeight: 500,
+                    }}>{tag}</span>
+                  ))}
+                </div>
+                <button style={{
+                  marginTop: '18px', padding: '12px 28px', width: '100%',
+                  background: 'linear-gradient(135deg, #E23744, #ff6b6b)',
+                  border: 'none', borderRadius: '12px', color: 'white',
+                  fontSize: '14px', fontWeight: 700, cursor: 'pointer',
+                  transition: 'all 0.3s ease', boxShadow: '0 4px 16px rgba(226,55,68,0.3)',
+                }}
+                  onClick={(e) => { e.stopPropagation(); setCurrentPage('home'); }}
+                  onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.boxShadow = '0 6px 24px rgba(226,55,68,0.45)'; }}
+                  onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = '0 4px 16px rgba(226,55,68,0.3)'; }}
+                >Order Food Now →</button>
+              </div>
+
+              {/* District Card */}
+              <div style={{
+                background: 'linear-gradient(180deg, rgba(147,51,234,0.08) 0%, rgba(147,51,234,0.02) 100%)',
+                borderRadius: '24px', padding: '32px 24px', textAlign: 'center',
+                border: '1px solid rgba(147,51,234,0.15)',
+                transition: 'all 0.4s ease', cursor: 'pointer',
+                animation: 'cardFadeIn 0.6s ease-out 0.1s both',
+              }}
+                onClick={() => setCurrentPage('district')}
+                onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-8px)'; e.currentTarget.style.boxShadow = '0 20px 40px rgba(147,51,234,0.15)'; e.currentTarget.style.borderColor = 'rgba(147,51,234,0.3)'; }}
+                onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = 'none'; e.currentTarget.style.borderColor = 'rgba(147,51,234,0.15)'; }}
+              >
+                <div style={{
+                  width: '64px', height: '64px', borderRadius: '18px',
+                  background: 'linear-gradient(135deg, #9333ea, #E23744)',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  margin: '0 auto 16px', fontSize: '28px',
+                  boxShadow: '0 8px 24px rgba(147,51,234,0.3)',
+                }}>🎭</div>
+                <h3 style={{ fontSize: '22px', fontWeight: 800, color: '#fff', margin: '0 0 8px' }}>District</h3>
+                <p style={{ fontSize: '13px', color: 'rgba(255,255,255,0.5)', margin: '0 0 16px', lineHeight: 1.5 }}>
+                  Movies, events, sports, dining & concerts. Book tickets for IPL, concerts, comedy shows & more.
+                </p>
+                <div style={{ display: 'flex', justifyContent: 'center', gap: '10px', flexWrap: 'wrap' }}>
+                  {['🎬 Movies', '🏏 IPL', '🎵 Concerts', '🎪 Events'].map((tag, i) => (
+                    <span key={i} style={{
+                      padding: '4px 12px', background: 'rgba(147,51,234,0.08)',
+                      borderRadius: '20px', border: '1px solid rgba(147,51,234,0.1)',
+                      color: 'rgba(255,255,255,0.6)', fontSize: '11px', fontWeight: 500,
+                    }}>{tag}</span>
+                  ))}
+                </div>
+                <button style={{
+                  marginTop: '18px', padding: '12px 28px', width: '100%',
+                  background: 'linear-gradient(135deg, #9333ea, #E23744)',
+                  border: 'none', borderRadius: '12px', color: 'white',
+                  fontSize: '14px', fontWeight: 700, cursor: 'pointer',
+                  transition: 'all 0.3s ease', boxShadow: '0 4px 16px rgba(147,51,234,0.3)',
+                }}
+                  onClick={(e) => { e.stopPropagation(); setCurrentPage('district'); }}
+                  onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.boxShadow = '0 6px 24px rgba(147,51,234,0.45)'; }}
+                  onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = '0 4px 16px rgba(147,51,234,0.3)'; }}
+                >Explore District →</button>
+              </div>
+
+              {/* Hyperpure Card */}
+              <div style={{
+                background: 'linear-gradient(180deg, rgba(34,197,94,0.08) 0%, rgba(34,197,94,0.02) 100%)',
+                borderRadius: '24px', padding: '32px 24px', textAlign: 'center',
+                border: '1px solid rgba(34,197,94,0.15)',
+                transition: 'all 0.4s ease', cursor: 'pointer',
+                animation: 'cardFadeIn 0.6s ease-out 0.2s both',
+              }}
+                onClick={() => setCurrentPage('hyperpure')}
+                onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-8px)'; e.currentTarget.style.boxShadow = '0 20px 40px rgba(34,197,94,0.15)'; e.currentTarget.style.borderColor = 'rgba(34,197,94,0.3)'; }}
+                onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = 'none'; e.currentTarget.style.borderColor = 'rgba(34,197,94,0.15)'; }}
+              >
+                <div style={{
+                  width: '64px', height: '64px', borderRadius: '18px',
+                  background: 'linear-gradient(135deg, #22c55e, #16a34a)',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  margin: '0 auto 16px', fontSize: '28px',
+                  boxShadow: '0 8px 24px rgba(34,197,94,0.3)',
+                }}>🏪</div>
+                <h3 style={{ fontSize: '22px', fontWeight: 800, color: '#fff', margin: '0 0 8px' }}>Hyperpure</h3>
+                <p style={{ fontSize: '13px', color: 'rgba(255,255,255,0.5)', margin: '0 0 16px', lineHeight: 1.5 }}>
+                  Wholesale supplies for restaurants. Fresh ingredients, packaging & essentials at wholesale prices.
+                </p>
+                <div style={{ display: 'flex', justifyContent: 'center', gap: '10px', flexWrap: 'wrap' }}>
+                  {['🥬 Produce', '🧀 Dairy', '🍗 Meat', '📦 Supplies'].map((tag, i) => (
+                    <span key={i} style={{
+                      padding: '4px 12px', background: 'rgba(34,197,94,0.08)',
+                      borderRadius: '20px', border: '1px solid rgba(34,197,94,0.1)',
+                      color: 'rgba(255,255,255,0.6)', fontSize: '11px', fontWeight: 500,
+                    }}>{tag}</span>
+                  ))}
+                </div>
+                <button style={{
+                  marginTop: '18px', padding: '12px 28px', width: '100%',
+                  background: 'linear-gradient(135deg, #22c55e, #16a34a)',
+                  border: 'none', borderRadius: '12px', color: 'white',
+                  fontSize: '14px', fontWeight: 700, cursor: 'pointer',
+                  transition: 'all 0.3s ease', boxShadow: '0 4px 16px rgba(34,197,94,0.3)',
+                }}
+                  onClick={(e) => { e.stopPropagation(); setCurrentPage('hyperpure'); }}
+                  onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.boxShadow = '0 6px 24px rgba(34,197,94,0.45)'; }}
+                  onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = '0 4px 16px rgba(34,197,94,0.3)'; }}
+                >Visit Hyperpure →</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Details Summary Card */}
+        <div style={{ marginTop: '40px', marginBottom: '40px' }}>
+          <div style={{
+            background: 'linear-gradient(135deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.01) 100%)',
+            borderRadius: '24px', padding: '36px 32px',
+            border: '1px solid rgba(255,255,255,0.06)',
+            backdropFilter: 'blur(16px)',
+            position: 'relative', overflow: 'hidden',
+          }}>
+            <div style={{ position: 'absolute', top: '0', left: '0', width: '100%', height: '3px', background: 'linear-gradient(90deg, #E23744, #9333ea, #22c55e)' }} />
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '24px', position: 'relative', zIndex: 1 }}>
+              <div>
+                <div style={{ fontSize: '12px', color: 'rgba(255,255,255,0.35)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '12px' }}>About Zomato</div>
+                <p style={{ fontSize: '13px', color: 'rgba(255,255,255,0.5)', lineHeight: 1.7, margin: 0 }}>
+                  Zomato is a leading food delivery platform connecting millions of customers with thousands of restaurant partners across India. 
+                  We also operate District (events & entertainment) and Hyperpure (restaurant supplies).
+                </p>
+              </div>
+              <div>
+                <div style={{ fontSize: '12px', color: 'rgba(255,255,255,0.35)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '12px' }}>Quick Stats</div>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                  {[
+                    { label: 'Restaurant Partners', value: `${restaurants.length}+` },
+                    { label: 'Cities Covered', value: '25+' },
+                    { label: 'Menu Items', value: `${restaurants.reduce((s, r) => s + r.menu.length, 0)}+` },
+                    { label: 'Avg. Delivery Time', value: '30 min' },
+                  ].map((stat, i) => (
+                    <div key={stat.label} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '4px 0', borderBottom: i < 3 ? '1px solid rgba(255,255,255,0.04)' : 'none' }}>
+                      <span style={{ color: 'rgba(255,255,255,0.4)', fontSize: '12px' }}>{stat.label}</span>
+                      <span style={{ color: '#fff', fontSize: '13px', fontWeight: 600 }}>{stat.value}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <div>
+                <div style={{ fontSize: '12px', color: 'rgba(255,255,255,0.35)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '12px' }}>Quick Links</div>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                  {[
+                    { label: 'Order Food', page: 'home', icon: '🍽️' },
+                    { label: 'Book Events', page: 'district', icon: '🎭' },
+                    { label: 'Restaurant Supplies', page: 'hyperpure', icon: '🏪' },
+                    { label: 'View Cart', page: 'cart', icon: '🛒' },
+                  ].map(link => (
+                    <button key={link.label} onClick={() => setCurrentPage(link.page as any)} style={{
+                      display: 'flex', alignItems: 'center', gap: '8px', padding: '8px 12px',
+                      background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.05)',
+                      borderRadius: '10px', color: 'rgba(255,255,255,0.6)', cursor: 'pointer',
+                      fontSize: '13px', transition: 'all 0.3s', textAlign: 'left',
+                    }}
+                      onMouseEnter={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.08)'; e.currentTarget.style.color = '#fff'; e.currentTarget.style.borderColor = 'rgba(226,55,68,0.2)'; }}
+                      onMouseLeave={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.03)'; e.currentTarget.style.color = 'rgba(255,255,255,0.6)'; e.currentTarget.style.borderColor = 'rgba(255,255,255,0.05)'; }}
+                    >
+                      <span>{link.icon}</span> {link.label} <span style={{ marginLeft: 'auto', color: 'rgba(255,255,255,0.2)' }}>→</span>
+                    </button>
+                  ))}
+                </div>
+              </div>
+              <div>
+                <div style={{ fontSize: '12px', color: 'rgba(255,255,255,0.35)', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '12px' }}>Top Cuisines</div>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+                  {['North Indian', 'Italian', 'Chinese', 'South Indian', 'Japanese', 'Mexican', 'Thai', 'American', 'Mughlai', 'Continental'].map(cuisine => (
+                    <span key={cuisine} style={{
+                      padding: '6px 14px', background: 'rgba(255,255,255,0.04)',
+                      borderRadius: '20px', border: '1px solid rgba(255,255,255,0.06)',
+                      color: 'rgba(255,255,255,0.5)', fontSize: '11px', fontWeight: 500,
+                      transition: 'all 0.3s', cursor: 'pointer',
+                    }}
+                      onMouseEnter={e => { e.currentTarget.style.background = 'rgba(226,55,68,0.1)'; e.currentTarget.style.color = '#fff'; e.currentTarget.style.borderColor = 'rgba(226,55,68,0.2)'; }}
+                      onMouseLeave={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.04)'; e.currentTarget.style.color = 'rgba(255,255,255,0.5)'; e.currentTarget.style.borderColor = 'rgba(255,255,255,0.06)'; }}
+                      onClick={() => { setSearchQuery(cuisine); setCurrentPage('home'); }}
+                    >{cuisine}</span>
+                  ))}
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -2698,6 +3028,11 @@ const App: React.FC = () => {
     const [expandedFaq, setExpandedFaq] = useState<number | null>(null);
     const [selectedHpCategory, setSelectedHpCategory] = useState<string>('All');
     const [hpCart, setHpCart] = useState<{ id: string; name: string; price: number; qty: number }[]>([]);
+    const [showHpCart, setShowHpCart] = useState(false);
+    const [selectedProduct, setSelectedProduct] = useState<typeof hpProducts[0] | null>(null);
+    const [hpDelivery, setHpDelivery] = useState({ address: '', phone: '', mode: 'Wholesale' as 'Wholesale' | 'Express' });
+    const [hpOrderPlaced, setHpOrderPlaced] = useState(false);
+    const [showHpDelivery, setShowHpDelivery] = useState(false);
 
     const addToHpCart = (id: string, name: string, price: number) => {
       setHpCart(prev => {
@@ -2705,6 +3040,34 @@ const App: React.FC = () => {
         if (existing) return prev.map(i => i.id === id ? { ...i, qty: i.qty + 1 } : i);
         return [...prev, { id, name, price, qty: 1 }];
       });
+    };
+
+    const removeFromHpCart = (id: string) => {
+      setHpCart(prev => {
+        const existing = prev.find(i => i.id === id);
+        if (existing && existing.qty > 1) return prev.map(i => i.id === id ? { ...i, qty: i.qty - 1 } : i);
+        return prev.filter(i => i.id !== id);
+      });
+    };
+
+    const clearHpCart = () => setHpCart([]);
+
+    const hpCartTotal = hpCart.reduce((sum, i) => sum + i.price * i.qty, 0);
+    const hpCartCount = hpCart.reduce((sum, i) => sum + i.qty, 0);
+
+    const hpDeliveryFee = hpDelivery.mode === 'Express' ? 49 : 0;
+    const hpOrderTotal = hpCartTotal + hpDeliveryFee;
+
+    const placeHpOrder = () => {
+      if (!hpDelivery.address || !hpDelivery.phone || hpCart.length === 0) return;
+      setHpOrderPlaced(true);
+      setShowHpDelivery(false);
+      setShowHpCart(false);
+      setTimeout(() => {
+        setHpOrderPlaced(false);
+        setHpCart([]);
+        setHpDelivery({ address: '', phone: '', mode: 'Wholesale' });
+      }, 3000);
     };
 
     const hpStats = [
@@ -2740,19 +3103,27 @@ const App: React.FC = () => {
     ];
 
     const hpProducts = [
-      { id: 'hp1', name: 'Walnut Brownie (80 gm/pc), 720 gm', price: 262.5, unit: '9 pc', veg: true, img: 'https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=300&h=200&fit=crop' },
-      { id: 'hp2', name: 'Potato Cheese Balls, 1 Kg', price: 241.5, unit: '1 pack', veg: true, img: 'https://images.unsplash.com/photo-1559847844-6a2a21e3f1e1?w=300&h=200&fit=crop' },
-      { id: 'hp3', name: 'Brioche Burger Buns (Pack of 4)', price: 79, unit: '4 pc', veg: true, img: 'https://images.unsplash.com/photo-1549931319-a54575346796?w=300&h=200&fit=crop' },
-      { id: 'hp4', name: 'Crunchy Chicken Popcorn, 1 Kg', price: 409.5, unit: '1 pack', veg: false, img: 'https://images.unsplash.com/photo-1562967914-608f82629710?w=300&h=200&fit=crop' },
-      { id: 'hp5', name: 'Butter Croissant, Handrolled', price: 210, unit: '3 pc', veg: true, img: 'https://images.unsplash.com/photo-1555507036-ab1f4038024a?w=300&h=200&fit=crop' },
-      { id: 'hp6', name: 'Chicken Seekh Kebab, 1 Kg', price: 294, unit: '1 pack', veg: false, img: 'https://images.unsplash.com/photo-1603360946369-dc9bb6258143?w=300&h=200&fit=crop' },
-      { id: 'hp7', name: 'Coriander & Mint Chutney, 1 Kg', price: 168, unit: '1 pack', veg: true, img: 'https://images.unsplash.com/photo-1536304929831-ee1ca9d44906?w=300&h=200&fit=crop' },
-      { id: 'hp8', name: 'Premium Molten Choco Lava (12 pc)', price: 451.5, unit: '12 pc', veg: true, img: 'https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=300&h=200&fit=crop' },
+      { id: 'hp1', name: 'Walnut Brownie (80 gm/pc), 720 gm', price: 262.5, unit: '9 pc', veg: true, category: 'Bakery', img: 'https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=300&h=200&fit=crop' },
+      { id: 'hp2', name: 'Potato Cheese Balls, 1 Kg', price: 241.5, unit: '1 pack', veg: true, category: 'Frozen Food', img: 'https://images.unsplash.com/photo-1559847844-6a2a21e3f1e1?w=300&h=200&fit=crop' },
+      { id: 'hp3', name: 'Brioche Burger Buns (Pack of 4)', price: 79, unit: '4 pc', veg: true, category: 'Bakery', img: 'https://images.unsplash.com/photo-1549931319-a54575346796?w=300&h=200&fit=crop' },
+      { id: 'hp4', name: 'Crunchy Chicken Popcorn, 1 Kg', price: 409.5, unit: '1 pack', veg: false, category: 'Chicken & Eggs', img: 'https://images.unsplash.com/photo-1562967914-608f82629710?w=300&h=200&fit=crop' },
+      { id: 'hp5', name: 'Butter Croissant, Handrolled', price: 210, unit: '3 pc', veg: true, category: 'Bakery', img: 'https://images.unsplash.com/photo-1555507036-ab1f4038024a?w=300&h=200&fit=crop' },
+      { id: 'hp6', name: 'Chicken Seekh Kebab, 1 Kg', price: 294, unit: '1 pack', veg: false, category: 'Chicken & Eggs', img: 'https://images.unsplash.com/photo-1603360946369-dc9bb6258143?w=300&h=200&fit=crop' },
+      { id: 'hp7', name: 'Coriander & Mint Chutney, 1 Kg', price: 168, unit: '1 pack', veg: true, category: 'Sauces', img: 'https://images.unsplash.com/photo-1536304929831-ee1ca9d44906?w=300&h=200&fit=crop' },
+      { id: 'hp8', name: 'Premium Molten Choco Lava (12 pc)', price: 451.5, unit: '12 pc', veg: true, category: 'Bakery', img: 'https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=300&h=200&fit=crop' },
+      { id: 'hp9', name: 'Fresh Carrots (Big), 1 Kg', price: 43, unit: '1 kg', veg: true, category: 'Fruits & Vegetables', img: 'https://images.unsplash.com/photo-1598170845058-32b9d6a5da37?w=300&h=200&fit=crop' },
+      { id: 'hp10', name: 'Amul Butter Salted, 500 gm', price: 282.45, unit: '1 pack', veg: true, category: 'Dairy', img: 'https://images.unsplash.com/photo-1589985270826-4b7bb135bc9d?w=300&h=200&fit=crop' },
+      { id: 'hp11', name: 'Basmati Rice, 5 Kg', price: 525, unit: '5 kg', veg: true, category: 'Rice', img: 'https://images.unsplash.com/photo-1586201375761-83865001e31c?w=300&h=200&fit=crop' },
+      { id: 'hp12', name: 'Toor Dal (Arhar), 1 Kg', price: 145, unit: '1 kg', veg: true, category: 'Pulses', img: 'https://images.unsplash.com/photo-1515543904379-3d0ffe0d5a7e?w=300&h=200&fit=crop' },
     ];
 
-    const filteredHpProducts = selectedHpCategory === 'All' ? hpProducts : hpProducts.filter(p =>
-      hpCategories.find(c => c.name === selectedHpCategory) && p.name.toLowerCase().includes(selectedHpCategory.toLowerCase())
-    );
+    const filteredHpProducts = selectedHpCategory === 'All'
+      ? hpProducts
+      : hpProducts.filter(p => p.category === selectedHpCategory || p.name.toLowerCase().includes(hpSearch.toLowerCase()));
+
+    const searchedHpProducts = hpSearch
+      ? hpProducts.filter(p => p.name.toLowerCase().includes(hpSearch.toLowerCase()) || p.category.toLowerCase().includes(hpSearch.toLowerCase()))
+      : filteredHpProducts;
 
     const hpTestimonials = [
       { name: 'Blue Tokai Coffee Roasters', role: 'Co-Founder', quote: 'Consistent supply of high-quality ingredients, reducing wastage and stockouts. Hyperpure ensures smooth operations, improving planning and maintaining stable pricing.', img: 'https://b.zmtcdn.com/hyperpure_assets/4abefe5c2bd5f43d3d597ec4bd45f8a21742215480.png', logo: 'https://b.zmtcdn.com/hyperpure_assets/97619ca456fe0fb541b6e2ae9e0692f61742215357.png' },
@@ -2888,7 +3259,7 @@ const App: React.FC = () => {
             >See all →</button>
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))', gap: '16px' }}>
-            {hpProducts.map((prod, i) => (
+            {(hpSearch ? searchedHpProducts : filteredHpProducts).map((prod, i) => (
               <div key={prod.id} style={{
                 background: 'linear-gradient(135deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.02) 100%)',
                 borderRadius: '18px', overflow: 'hidden', border: '1px solid rgba(255,255,255,0.06)',
@@ -3030,6 +3401,258 @@ const App: React.FC = () => {
           </div>
         </div>
 
+        {/* Floating Cart Button */}
+        {hpCartCount > 0 && (
+          <div style={{ position: 'fixed', bottom: '24px', right: '24px', zIndex: 1000, display: 'flex', flexDirection: 'column', gap: '10px', alignItems: 'flex-end' }}>
+            <button
+              onClick={() => setShowHpCart(true)}
+              style={{
+                background: 'linear-gradient(135deg, #E23744, #ff6b6b)',
+                border: 'none', borderRadius: '50%', width: '58px', height: '58px',
+                cursor: 'pointer', boxShadow: '0 4px 24px rgba(226,55,68,0.4)',
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                position: 'relative', transition: 'all 0.3s ease',
+              }}
+              onMouseEnter={e => { e.currentTarget.style.transform = 'scale(1.08)'; e.currentTarget.style.boxShadow = '0 6px 32px rgba(226,55,68,0.55)'; }}
+              onMouseLeave={e => { e.currentTarget.style.transform = 'scale(1)'; e.currentTarget.style.boxShadow = '0 4px 24px rgba(226,55,68,0.4)'; }}
+            >
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+              <span style={{
+                position: 'absolute', top: '-6px', right: '-6px',
+                background: '#fff', color: '#E23744', borderRadius: '50%',
+                width: '22px', height: '22px', display: 'flex', alignItems: 'center',
+                justifyContent: 'center', fontSize: '11px', fontWeight: 800,
+                boxShadow: '0 2px 8px rgba(0,0,0,0.3)',
+              }}>{hpCartCount}</span>
+            </button>
+          </div>
+        )}
+
+        {/* Cart Drawer */}
+        {showHpCart && (
+          <div style={{
+            position: 'fixed', inset: 0, zIndex: 2000, display: 'flex',
+            animation: 'fadeIn 0.2s ease-out',
+          }}>
+            <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.6)', backdropFilter: 'blur(4px)' }} onClick={() => setShowHpCart(false)} />
+            <div style={{
+              position: 'absolute', right: 0, top: 0, bottom: 0, width: '400px', maxWidth: '90vw',
+              background: 'linear-gradient(180deg, #12121a 0%, #0a0a10 100%)',
+              borderLeft: '1px solid rgba(255,255,255,0.08)',
+              padding: '24px', display: 'flex', flexDirection: 'column',
+              animation: 'slideInRight 0.3s ease-out',
+              boxShadow: '-8px 0 40px rgba(0,0,0,0.5)',
+            }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
+                <h3 style={{ color: '#fff', margin: 0, fontSize: '20px', fontWeight: 700 }}>Cart ({hpCartCount})</h3>
+                <button onClick={() => setShowHpCart(false)} style={{
+                  background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.08)',
+                  borderRadius: '10px', color: 'rgba(255,255,255,0.5)', cursor: 'pointer',
+                  fontSize: '18px', padding: '6px 12px', lineHeight: 1, transition: 'all 0.3s',
+                }}
+                  onMouseEnter={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.1)'; e.currentTarget.style.color = '#fff'; }}
+                  onMouseLeave={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.06)'; e.currentTarget.style.color = 'rgba(255,255,255,0.5)'; }}
+                >✕</button>
+              </div>
+
+              {hpCart.length === 0 ? (
+                <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', color: 'rgba(255,255,255,0.3)', gap: '12px' }}>
+                  <span style={{ fontSize: '48px' }}>🛒</span>
+                  <p style={{ margin: 0, fontSize: '16px', fontWeight: 500 }}>Your cart is empty</p>
+                  <p style={{ margin: 0, fontSize: '13px' }}>Browse products and add items to your cart</p>
+                </div>
+              ) : (
+                <>
+                  <div style={{ flex: 1, overflowY: 'auto', display: 'flex', flexDirection: 'column', gap: '10px', marginBottom: '16px' }}>
+                    {hpCart.map(item => (
+                      <div key={item.id} style={{
+                        display: 'flex', alignItems: 'center', gap: '12px',
+                        background: 'rgba(255,255,255,0.04)', borderRadius: '14px',
+                        padding: '12px', border: '1px solid rgba(255,255,255,0.06)',
+                      }}>
+                        <div style={{ flex: 1 }}>
+                          <div style={{ fontSize: '13px', fontWeight: 600, color: '#fff', marginBottom: '4px' }}>{item.name}</div>
+                          <div style={{ fontSize: '15px', fontWeight: 700, color: '#22c55e' }}>₹{item.price}</div>
+                        </div>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                          <button onClick={() => removeFromHpCart(item.id)} style={{
+                            width: '30px', height: '30px', borderRadius: '8px',
+                            background: 'rgba(226,55,68,0.15)', border: '1px solid rgba(226,55,68,0.2)',
+                            color: '#E23744', cursor: 'pointer', fontSize: '16px', fontWeight: 700,
+                            display: 'flex', alignItems: 'center', justifyContent: 'center',
+                            transition: 'all 0.2s',
+                          }}
+                            onMouseEnter={e => { e.currentTarget.style.background = 'rgba(226,55,68,0.25)'; }}
+                            onMouseLeave={e => { e.currentTarget.style.background = 'rgba(226,55,68,0.15)'; }}
+                          >−</button>
+                          <span style={{ color: '#fff', fontWeight: 600, fontSize: '15px', minWidth: '20px', textAlign: 'center' }}>{item.qty}</span>
+                          <button onClick={() => addToHpCart(item.id, item.name, item.price)} style={{
+                            width: '30px', height: '30px', borderRadius: '8px',
+                            background: 'rgba(34,197,94,0.15)', border: '1px solid rgba(34,197,94,0.2)',
+                            color: '#22c55e', cursor: 'pointer', fontSize: '16px', fontWeight: 700,
+                            display: 'flex', alignItems: 'center', justifyContent: 'center',
+                            transition: 'all 0.2s',
+                          }}
+                            onMouseEnter={e => { e.currentTarget.style.background = 'rgba(34,197,94,0.25)'; }}
+                            onMouseLeave={e => { e.currentTarget.style.background = 'rgba(34,197,94,0.15)'; }}
+                          >+</button>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                  <div style={{
+                    borderTop: '1px solid rgba(255,255,255,0.06)', paddingTop: '16px',
+                    display: 'flex', flexDirection: 'column', gap: '10px',
+                  }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                      <span style={{ color: 'rgba(255,255,255,0.5)', fontSize: '14px' }}>Subtotal</span>
+                      <span style={{ color: '#fff', fontWeight: 700, fontSize: '16px' }}>₹{hpCartTotal}</span>
+                    </div>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                      <span style={{ color: 'rgba(255,255,255,0.5)', fontSize: '14px' }}>Delivery</span>
+                      <span style={{ color: hpDeliveryFee === 0 ? '#22c55e' : 'rgba(255,255,255,0.6)', fontWeight: 600, fontSize: '14px' }}>
+                        {hpDeliveryFee === 0 ? 'FREE' : `₹${hpDeliveryFee}`}
+                      </span>
+                    </div>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingTop: '10px', borderTop: '1px solid rgba(255,255,255,0.06)' }}>
+                      <span style={{ color: '#fff', fontWeight: 700, fontSize: '16px' }}>Total</span>
+                      <span style={{ color: '#22c55e', fontWeight: 800, fontSize: '20px' }}>₹{hpOrderTotal}</span>
+                    </div>
+                    <button onClick={() => { setShowHpDelivery(true); }} style={{
+                      width: '100%', padding: '14px', marginTop: '8px',
+                      background: 'linear-gradient(135deg, #E23744, #ff6b6b)',
+                      border: 'none', borderRadius: '14px', color: 'white',
+                      fontSize: '15px', fontWeight: 700, cursor: 'pointer',
+                      transition: 'all 0.3s ease', boxShadow: '0 4px 20px rgba(226,55,68,0.3)',
+                    }}
+                      onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.boxShadow = '0 6px 28px rgba(226,55,68,0.45)'; }}
+                      onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = '0 4px 20px rgba(226,55,68,0.3)'; }}
+                    >Proceed to Checkout</button>
+                    <button onClick={clearHpCart} style={{
+                      background: 'none', border: 'none', color: 'rgba(255,255,255,0.3)',
+                      cursor: 'pointer', fontSize: '12px', padding: '6px',
+                      transition: 'color 0.3s',
+                    }}
+                      onMouseEnter={e => { e.currentTarget.style.color = '#E23744'; }}
+                      onMouseLeave={e => { e.currentTarget.style.color = 'rgba(255,255,255,0.3)'; }}
+                    >Clear cart</button>
+                  </div>
+                </>
+              )}
+            </div>
+          </div>
+        )}
+
+        {/* Delivery Form Overlay */}
+        {showHpDelivery && (
+          <div style={{
+            position: 'fixed', inset: 0, zIndex: 2100, display: 'flex',
+            alignItems: 'center', justifyContent: 'center',
+            animation: 'fadeIn 0.2s ease-out',
+          }}>
+            <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.7)', backdropFilter: 'blur(6px)' }} onClick={() => setShowHpDelivery(false)} />
+            <div style={{
+              position: 'relative', width: '420px', maxWidth: '90vw',
+              background: 'linear-gradient(180deg, #1a1a24 0%, #0e0e16 100%)',
+              borderRadius: '24px', border: '1px solid rgba(255,255,255,0.08)',
+              padding: '32px', boxShadow: '0 20px 60px rgba(0,0,0,0.6)',
+            }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px' }}>
+                <h3 style={{ color: '#fff', margin: 0, fontSize: '20px', fontWeight: 700 }}>Delivery Details</h3>
+                <button onClick={() => setShowHpDelivery(false)} style={{
+                  background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.08)',
+                  borderRadius: '10px', color: 'rgba(255,255,255,0.5)', cursor: 'pointer',
+                  fontSize: '18px', padding: '6px 12px', lineHeight: 1,
+                }}
+                  onMouseEnter={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.1)'; e.currentTarget.style.color = '#fff'; }}
+                  onMouseLeave={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.06)'; e.currentTarget.style.color = 'rgba(255,255,255,0.5)'; }}
+                >✕</button>
+              </div>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+                <div>
+                  <label style={{ color: 'rgba(255,255,255,0.5)', fontSize: '13px', fontWeight: 500, display: 'block', marginBottom: '6px' }}>Delivery Address</label>
+                  <input
+                    placeholder="Enter your restaurant/business address"
+                    value={hpDelivery.address}
+                    onChange={e => setHpDelivery({ ...hpDelivery, address: e.target.value })}
+                    style={{
+                      width: '100%', padding: '12px 14px', borderRadius: '12px',
+                      border: '1px solid rgba(255,255,255,0.08)', outline: 'none',
+                      background: 'rgba(255,255,255,0.05)', color: '#fff', fontSize: '14px',
+                      boxSizing: 'border-box',
+                    }}
+                  />
+                </div>
+                <div>
+                  <label style={{ color: 'rgba(255,255,255,0.5)', fontSize: '13px', fontWeight: 500, display: 'block', marginBottom: '6px' }}>Phone Number</label>
+                  <input
+                    placeholder="Enter your phone number"
+                    value={hpDelivery.phone}
+                    onChange={e => setHpDelivery({ ...hpDelivery, phone: e.target.value })}
+                    style={{
+                      width: '100%', padding: '12px 14px', borderRadius: '12px',
+                      border: '1px solid rgba(255,255,255,0.08)', outline: 'none',
+                      background: 'rgba(255,255,255,0.05)', color: '#fff', fontSize: '14px',
+                      boxSizing: 'border-box',
+                    }}
+                  />
+                </div>
+                <div>
+                  <label style={{ color: 'rgba(255,255,255,0.5)', fontSize: '13px', fontWeight: 500, display: 'block', marginBottom: '6px' }}>Delivery Mode</label>
+                  <div style={{ display: 'flex', gap: '10px' }}>
+                    {(['Wholesale', 'Express'] as const).map(mode => (
+                      <button key={mode} onClick={() => setHpDelivery({ ...hpDelivery, mode })}
+                        style={{
+                          flex: 1, padding: '10px', borderRadius: '10px', cursor: 'pointer',
+                          border: hpDelivery.mode === mode ? '1px solid rgba(226,55,68,0.4)' : '1px solid rgba(255,255,255,0.06)',
+                          background: hpDelivery.mode === mode ? 'rgba(226,55,68,0.12)' : 'rgba(255,255,255,0.04)',
+                          color: hpDelivery.mode === mode ? '#fff' : 'rgba(255,255,255,0.5)',
+                          fontWeight: hpDelivery.mode === mode ? 600 : 400,
+                          fontSize: '13px', transition: 'all 0.3s',
+                        }}
+                      >{mode}</button>
+                    ))}
+                  </div>
+                </div>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '12px 0', borderTop: '1px solid rgba(255,255,255,0.06)' }}>
+                  <span style={{ color: 'rgba(255,255,255,0.5)', fontSize: '14px' }}>Order Total</span>
+                  <span style={{ color: '#22c55e', fontWeight: 800, fontSize: '22px' }}>₹{hpOrderTotal}</span>
+                </div>
+                <button onClick={placeHpOrder}
+                  style={{
+                    width: '100%', padding: '14px',
+                    background: hpDelivery.address && hpDelivery.phone ? 'linear-gradient(135deg, #22c55e, #16a34a)' : 'rgba(255,255,255,0.08)',
+                    border: 'none', borderRadius: '14px', color: 'white',
+                    fontSize: '15px', fontWeight: 700, cursor: hpDelivery.address && hpDelivery.phone ? 'pointer' : 'not-allowed',
+                    transition: 'all 0.3s ease', opacity: hpDelivery.address && hpDelivery.phone ? 1 : 0.5,
+                    boxShadow: hpDelivery.address && hpDelivery.phone ? '0 4px 20px rgba(34,197,94,0.3)' : 'none',
+                  }}
+                  onMouseEnter={e => { if (hpDelivery.address && hpDelivery.phone) { e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.boxShadow = '0 6px 28px rgba(34,197,94,0.45)'; } }}
+                  onMouseLeave={e => { if (hpDelivery.address && hpDelivery.phone) { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = '0 4px 20px rgba(34,197,94,0.3)'; } }}
+                >Place Order - ₹{hpOrderTotal}</button>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Order Placed Toast */}
+        {hpOrderPlaced && (
+          <div style={{
+            position: 'fixed', top: '24px', left: '50%', transform: 'translateX(-50%)',
+            zIndex: 3000, background: 'linear-gradient(135deg, #22c55e, #16a34a)',
+            borderRadius: '16px', padding: '16px 28px', display: 'flex',
+            alignItems: 'center', gap: '12px', boxShadow: '0 8px 32px rgba(34,197,94,0.3)',
+            border: '1px solid rgba(255,255,255,0.1)',
+            animation: 'fadeSlideDown 0.4s ease-out',
+          }}>
+            <span style={{ fontSize: '24px' }}>✅</span>
+            <div>
+              <div style={{ color: '#fff', fontWeight: 700, fontSize: '16px' }}>Order Placed Successfully!</div>
+              <div style={{ color: 'rgba(255,255,255,0.8)', fontSize: '13px' }}>Your Hyperpure order has been confirmed. Delivery details have been sent.</div>
+            </div>
+          </div>
+        )}
+
         {/* Footer */}
         <div style={{
           background: 'linear-gradient(180deg, rgba(10,10,16,0.95) 0%, rgba(5,5,10,1) 100%)',
@@ -3105,6 +3728,931 @@ const App: React.FC = () => {
             </div>
           </div>
         </div>
+      </div>
+    );
+  };
+
+  // District Page - Events, Movies, IPL, Dining marketplace
+  const DistrictPage = () => {
+    const [dtTab, setDtTab] = useState<'for-you' | 'dining' | 'movies' | 'events' | 'ipl'>('for-you');
+    const [dtSearch, setDtSearch] = useState('');
+    const [dtLocation, setDtLocation] = useState('Delhi/NCR');
+    const [dtShowLocation, setDtShowLocation] = useState(false);
+    const [dtEventDetail, setDtEventDetail] = useState<any>(null);
+    const [dtBookingStep, setDtBookingStep] = useState<'browse' | 'qty' | 'details' | 'ticket'>('browse');
+    const [dtTicketQty, setDtTicketQty] = useState(1);
+    const [dtBookingInfo, setDtBookingInfo] = useState({ name: '', email: '', phone: '' });
+    const [dtBooked, setDtBooked] = useState<any>(null);
+    const [dtExpandedFaq, setDtExpandedFaq] = useState<number | null>(null);
+    const [dtCategory, setDtCategory] = useState('All');
+    const [dtEventType, setDtEventType] = useState('All');
+
+    const dtLocations = ['Delhi/NCR', 'Mumbai', 'Bengaluru', 'Chennai', 'Hyderabad', 'Kolkata', 'Pune', 'Jaipur', 'Ahmedabad', 'Lucknow', 'Chandigarh', 'Goa'];
+
+    const dtMovies = [
+      { id: 'dm1', title: 'Bhooth Bangla', lang: 'Hindi', rating: 'UA16+', genre: 'Horror, Comedy', img: 'https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=400&h=250&fit=crop', desc: 'A haunted bungalow becomes the stage for a chaotic clash of laughter, fear, and unsettling surprises.', price: 199, duration: '2h 25m' },
+      { id: 'dm2', title: 'Mortal Kombat II', lang: 'English', rating: 'A', genre: 'Action, Fantasy', img: 'https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=400&h=250&fit=crop', desc: 'Earthrealm\'s champions are forced into conflict while resisting the rule of Shao Kahn.', price: 299, duration: '2h 10m' },
+      { id: 'dm3', title: 'The Devil Wears Prada 2', lang: 'English', rating: 'A', genre: 'Drama, Comedy', img: 'https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=400&h=250&fit=crop', desc: 'Meryl Streep and Anne Hathaway return in the eagerly awaited sequel.', price: 349, duration: '2h 15m' },
+      { id: 'dm4', title: 'Krishnavataram Part 1', lang: 'Hindi', rating: 'U', genre: 'Devotional, Drama', img: 'https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?w=400&h=250&fit=crop', desc: 'A mythological narrative reimagining the journey of Lord Krishna.', price: 179, duration: '2h 40m' },
+      { id: 'dm5', title: 'Michael', lang: 'English', rating: 'UA13+', genre: 'Music, Drama', img: 'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=400&h=250&fit=crop', desc: 'An in-depth portrayal of Michael Jackson, the King of Pop.', price: 399, duration: '2h 30m' },
+      { id: 'dm6', title: 'Dhurandhar The Revenge', lang: 'Hindi', rating: 'A', genre: 'Thriller, Action', img: 'https://images.unsplash.com/photo-1509347528160-9a9e33742cdb?w=400&h=250&fit=crop', desc: 'A gripping thriller following Jaskirat Singh Rangi\'s rise deep inside Pakistan.', price: 229, duration: '2h 20m' },
+      { id: 'dm7', title: 'Raja Shivaji', lang: 'Hindi', rating: 'UA16+', genre: 'Historical, Action', img: 'https://images.unsplash.com/photo-1560931684-3bc4aa8c630d?w=400&h=250&fit=crop', desc: 'The epic tale of the legendary Maratha king.', price: 259, duration: '2h 50m' },
+      { id: 'dm8', title: 'Daadi Ki Shaadi', lang: 'Hindi', rating: 'U', genre: 'Comedy, Family', img: 'https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?w=400&h=250&fit=crop', desc: 'A heartwarming family comedy about a grandmother\'s wedding.', price: 189, duration: '2h 05m' },
+    ];
+
+    const dtIplMatches = [
+      { id: 'di1', title: 'DC vs KKR - Match 51', teams: 'Delhi Capitals vs Kolkata Knight Riders', venue: 'Arun Jaitley Stadium, Delhi/NCR', date: 'Fri, 08 May 2026', time: '7:30 PM', price: 1540, img: 'https://images.unsplash.com/photo-1531415074968-036ba1b575da?w=400&h=250&fit=crop' },
+      { id: 'di2', title: 'RR vs LSG - Match 64', teams: 'Rajasthan Royals vs Lucknow Super Giants', venue: 'Sawai Mansingh Stadium, Jaipur', date: 'Tue, 19 May 2026', time: '7:30 PM', price: 2500, img: 'https://images.unsplash.com/photo-1508098682722-e99c643e7f0b?w=400&h=250&fit=crop' },
+      { id: 'di3', title: 'RR vs GT - Match 52', teams: 'Rajasthan Royals vs Gujarat Titans', venue: 'Sawai Mansingh Stadium, Jaipur', date: 'Sat, 09 May 2026', time: '7:30 PM', price: 2800, img: 'https://images.unsplash.com/photo-1511882150382-421056c89033?w=400&h=250&fit=crop' },
+      { id: 'di4', title: 'PBKS vs DC - Match 55', teams: 'Punjab Kings vs Delhi Capitals', venue: 'HPCA Stadium, Dharamshala', date: 'Mon, 11 May 2026', time: '7:30 PM', price: 2500, img: 'https://images.unsplash.com/photo-1567599752821-3fcb5f7b3377?w=400&h=250&fit=crop' },
+      { id: 'di5', title: 'CSK vs LSG - Match 53', teams: 'Chennai Super Kings vs Lucknow Super Giants', venue: 'M. A. Chidambaram Stadium, Chennai', date: 'Sun, 10 May 2026', time: '3:30 PM', price: 4700, img: 'https://images.unsplash.com/photo-1575542625447-7e8e1b157d6a?w=400&h=250&fit=crop' },
+      { id: 'di6', title: 'MI vs RCB - Match 60', teams: 'Mumbai Indians vs Royal Challengers Bengaluru', venue: 'Wankhede Stadium, Mumbai', date: 'Thu, 14 May 2026', time: '7:30 PM', price: 3200, img: 'https://images.unsplash.com/photo-1590650516494-0c8e4a4dd67e?w=400&h=250&fit=crop' },
+    ];
+
+    const dtEvents = [
+      { id: 'de1', title: 'Ye Live in India', type: 'Music', venue: 'Jawaharlal Nehru Stadium, Delhi/NCR', date: 'Sat, 23 May', time: '8:00 PM', price: 7500, img: 'https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=400&h=250&fit=crop' },
+      { id: 'de2', title: 'TATA IPL 2026: DC vs KKR', type: 'Sports', venue: 'Arun Jaitley Stadium, Delhi/NCR', date: 'Fri, 08 May', time: '7:30 PM', price: 1540, img: 'https://images.unsplash.com/photo-1531415074968-036ba1b575da?w=400&h=250&fit=crop' },
+      { id: 'de3', title: 'Anime India | Delhi', type: 'Exhibition', venue: 'Yashobhoomi, Delhi/NCR', date: 'Sat, 06 Jun – Sun, 07 Jun', time: '10:00 AM', price: 399, img: 'https://images.unsplash.com/photo-1618336753974-aae8e04506aa?w=400&h=250&fit=crop' },
+      { id: 'de4', title: 'Music & Masala Fest | Delhi', type: 'Festival', venue: 'JLN Stadium, Delhi/NCR', date: 'Sat, 09 May – Sun, 10 May', time: '2:00 PM', price: 499, img: 'https://images.unsplash.com/photo-1459749411175-04bf5292ceea?w=400&h=250&fit=crop' },
+      { id: 'de5', title: 'BUDX NBA House 2026', type: 'Sports', venue: 'Bharat Mandapam, Delhi/NCR', date: 'Sat, 09 May – Sun, 10 May', time: '4:00 PM', price: 1999, img: 'https://images.unsplash.com/photo-1546512565-1fc5f9e5e1e9?w=400&h=250&fit=crop' },
+      { id: 'de6', title: 'Diet Coke Party - Edition 2', type: 'Nightlife', venue: 'Marièta, Gurugram', date: 'Fri, 15 May', time: '5:00 PM', price: 1499, img: 'https://images.unsplash.com/photo-1576016772010-5d2e22a46761?w=400&h=250&fit=crop' },
+      { id: 'de7', title: 'Noida Comedy Show | Sec-18', type: 'Comedy', venue: 'Comedy Club Sector 18 Noida', date: 'Fri, 8 May – Fri, 15 May', time: 'Multiple slots', price: 299, img: 'https://images.unsplash.com/photo-1527224538127-2104bb71c51b?w=400&h=250&fit=crop' },
+      { id: 'de8', title: 'ISL 2025-26: SC Delhi vs Odisha FC', type: 'Sports', venue: 'JLN Stadium, Delhi/NCR', date: 'Fri, 08 May', time: '5:00 PM', price: 50, img: 'https://images.unsplash.com/photo-1459865264687-595d652de67e?w=400&h=250&fit=crop' },
+      { id: 'de9', title: 'Kaahe Mose India Tour', type: 'Music', venue: 'The Piano Man, Delhi/NCR', date: 'Sun, 24 May', time: '8:30 PM', price: 799, img: 'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=400&h=250&fit=crop' },
+      { id: 'de10', title: 'Arz Kiya Hai India Tour - Mukul Sharma', type: 'Music', venue: 'Aiwan-e-Ghalib Auditorium, Delhi/NCR', date: 'Sun, 19 Jul', time: '7:00 PM', price: 499, img: 'https://images.unsplash.com/photo-1506157786151-b8491531f063?w=400&h=250&fit=crop' },
+      { id: 'de11', title: 'Maithili Thakur Live', type: 'Music', venue: 'Yashobhoomi, Delhi/NCR', date: 'Sat, 20 Jun', time: '7:00 PM', price: 1100, img: 'https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=400&h=250&fit=crop' },
+      { id: 'de12', title: 'Eden of Sounds | Mussoorie', type: 'Festival', venue: 'Venue TBA, Mussoorie', date: 'Fri, 05 Jun', time: '3:00 PM', price: 6969, img: 'https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=400&h=250&fit=crop' },
+    ];
+
+    const dtArtists = [
+      { name: 'Papon', genre: 'Music', img: 'https://images.unsplash.com/photo-1516280440614-37939bbacd81?w=100&h=100&fit=crop' },
+      { name: 'Ye', genre: 'Music', img: 'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=100&h=100&fit=crop' },
+      { name: 'Mukul Sharma', genre: 'Comedy', img: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop' },
+      { name: 'Karma', genre: 'Music', img: 'https://images.unsplash.com/photo-1511367461989-f85a21fda167?w=100&h=100&fit=crop' },
+      { name: 'NAV', genre: 'Music', img: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop' },
+      { name: 'Rakesh Chaurasia', genre: 'Music', img: 'https://images.unsplash.com/photo-1510915361894-db8b60106cb1?w=100&h=100&fit=crop' },
+      { name: 'Mannara Chopra', genre: 'Music', img: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop' },
+      { name: 'Shah Rule', genre: 'Music', img: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=100&h=100&fit=crop' },
+      { name: 'Atul Khatri', genre: 'Comedy', img: 'https://images.unsplash.com/photo-1541167760496-1628856ab772?w=100&h=100&fit=crop' },
+      { name: 'Priyam Pandey', genre: 'Comedy', img: 'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=100&h=100&fit=crop' },
+    ];
+
+    const dtDining = [
+      { id: 'dd1', name: 'Spice Paradise', cuisine: 'North Indian, Mughlai', rating: 4.5, price: 600, locality: 'Koramangala', img: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=400&h=250&fit=crop' },
+      { id: 'dd2', name: 'Pizza Paradise', cuisine: 'Italian, Pizza', rating: 4.3, price: 800, locality: 'Indiranagar', img: 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=400&h=250&fit=crop' },
+      { id: 'dd3', name: 'Dragon Wok', cuisine: 'Chinese, Thai', rating: 4.2, price: 500, locality: 'HSR Layout', img: 'https://images.unsplash.com/photo-1552566626-52f8b828add9?w=400&h=250&fit=crop' },
+      { id: 'dd4', name: 'Burger Barn', cuisine: 'American, Burgers', rating: 4.1, price: 400, locality: 'Whitefield', img: 'https://images.unsplash.com/photo-1466978913421-dad2ebd01d17?w=400&h=250&fit=crop' },
+      { id: 'dd5', name: 'Dosa Delight', cuisine: 'South Indian', rating: 4.6, price: 350, locality: 'Jayanagar', img: 'https://images.unsplash.com/photo-1601050690597-df0568f70950?w=400&h=250&fit=crop' },
+      { id: 'dd6', name: 'Sushi House', cuisine: 'Japanese, Sushi', rating: 4.4, price: 1200, locality: 'MG Road', img: 'https://images.unsplash.com/photo-1579871494447-9811cf80d66c?w=400&h=250&fit=crop' },
+    ];
+
+    const dtFaqs = [
+      { q: 'How do I book tickets on District?', a: 'Simply browse events, movies, or matches, select your preferred option, choose quantity, enter your details, and confirm your booking. Your ticket will be generated instantly.' },
+      { q: 'Can I cancel my booking?', a: 'Cancellation policies vary by event. Most tickets can be cancelled up to 24 hours before the event for a full refund. Check the specific event page for details.' },
+      { q: 'How will I receive my tickets?', a: 'Tickets are delivered digitally via email and SMS. You can also view all your bookings in the "My Tickets" section of your account.' },
+      { q: 'Is there a booking fee?', a: 'A nominal convenience fee may apply to certain bookings. The total amount including all fees is displayed before you confirm your purchase.' },
+      { q: 'Can I transfer my tickets to someone else?', a: 'Yes, most tickets can be transferred. Please contact our support team for assistance with ticket transfers.' },
+    ];
+
+    const dtCategories = ['All', 'Now Showing', 'Coming Soon', 'Hindi', 'English', 'Regional'];
+
+    const handleDtBook = (item: any) => {
+      setDtEventDetail(item);
+      setDtBookingStep('qty');
+      setDtTicketQty(1);
+      setDtBookingInfo({ name: '', email: '', phone: '' });
+    };
+
+    const handleDtConfirmBooking = () => {
+      const booking = {
+        id: `DT${Date.now()}`,
+        event: dtEventDetail,
+        qty: dtTicketQty,
+        info: dtBookingInfo,
+        total: dtEventDetail.price * dtTicketQty,
+        date: new Date().toISOString(),
+        status: 'confirmed' as const,
+      };
+      setDtBooked(booking);
+      setDtBookingStep('ticket');
+    };
+
+    const filteredMovies = dtMovies.filter(m => {
+      if (dtCategory === 'All') return true;
+      if (dtCategory === 'Now Showing') return true;
+      if (dtCategory === 'Hindi') return m.lang === 'Hindi';
+      if (dtCategory === 'English') return m.lang === 'English';
+      return true;
+    }).filter(m => dtSearch ? m.title.toLowerCase().includes(dtSearch.toLowerCase()) || m.genre.toLowerCase().includes(dtSearch.toLowerCase()) : true);
+
+    const filteredEvents = dtEvents.filter(e => {
+      if (dtEventType === 'All') return true;
+      return e.type === dtEventType;
+    }).filter(e => dtSearch ? e.title.toLowerCase().includes(dtSearch.toLowerCase()) || e.venue.toLowerCase().includes(dtSearch.toLowerCase()) : true);
+
+    const filteredIpl = dtIplMatches.filter(m => dtSearch ? m.title.toLowerCase().includes(dtSearch.toLowerCase()) || m.teams.toLowerCase().includes(dtSearch.toLowerCase()) || m.venue.toLowerCase().includes(dtSearch.toLowerCase()) : true);
+
+    const filteredDining = dtDining.filter(d => dtSearch ? d.name.toLowerCase().includes(dtSearch.toLowerCase()) || d.cuisine.toLowerCase().includes(dtSearch.toLowerCase()) : true);
+
+    const dtSectionTitle: React.CSSProperties = { fontSize: '12px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '2px', color: '#E23744', marginBottom: '6px' };
+    const dtSectionHeading: React.CSSProperties = { fontSize: '28px', fontWeight: 800, color: '#fff', margin: '0 0 8px' };
+
+    return (
+      <div style={{ position: 'relative', zIndex: 2 }}>
+        {/* Hero */}
+        <div style={{
+          background: 'linear-gradient(135deg, #0a0a1a 0%, #1a0a2e 50%, #0a0a1a 100%)',
+          padding: '56px 24px 40px', textAlign: 'center', position: 'relative', overflow: 'hidden',
+          borderBottom: '1px solid rgba(226,55,68,0.12)',
+        }}>
+          <div style={{ position: 'absolute', top: '-30%', left: '-5%', width: '600px', height: '600px', background: 'radial-gradient(circle, rgba(147,51,234,0.08) 0%, transparent 70%)', borderRadius: '50%', animation: 'orbFloat 20s ease-in-out infinite', pointerEvents: 'none' }} />
+          <div style={{ position: 'absolute', bottom: '-20%', right: '-10%', width: '400px', height: '400px', background: 'radial-gradient(circle, rgba(226,55,68,0.06) 0%, transparent 70%)', borderRadius: '50%', animation: 'orbFloat2 25s ease-in-out infinite 3s', pointerEvents: 'none' }} />
+          <span style={{ position: 'absolute', top: '8%', left: '3%', fontSize: '40px', animation: 'heroFloat1 7s ease-in-out infinite', opacity: 0.1 }}>🎬</span>
+          <span style={{ position: 'absolute', top: '12%', right: '6%', fontSize: '36px', animation: 'heroFloat2 9s ease-in-out infinite 1s', opacity: 0.08 }}>🎵</span>
+          <span style={{ position: 'absolute', bottom: '15%', left: '5%', fontSize: '32px', animation: 'heroFloat1 8s ease-in-out infinite 2s', opacity: 0.07 }}>🏏</span>
+          <span style={{ position: 'absolute', bottom: '8%', right: '3%', fontSize: '34px', animation: 'heroFloat2 10s ease-in-out infinite 0.5s', opacity: 0.09 }}>🍽️</span>
+
+          <div style={{ maxWidth: '800px', margin: '0 auto', position: 'relative', zIndex: 2 }}>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px', marginBottom: '8px' }}>
+              <span style={{ fontSize: '24px' }}>🎭</span>
+              <span style={{ fontSize: '26px', fontWeight: 800, background: 'linear-gradient(135deg, #9333ea, #E23744, #f59e0b)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>District</span>
+              <span style={{ fontSize: '13px', color: 'rgba(255,255,255,0.3)', fontWeight: 300 }}>by</span>
+              <span style={{ fontSize: '18px', fontWeight: 700, color: '#fff' }}>Zomato</span>
+            </div>
+            <h1 style={{ fontSize: '32px', fontWeight: 800, color: '#fff', margin: '0 0 6px', lineHeight: 1.2 }}>
+              Movies, Events, Sports & More
+            </h1>
+            <p style={{ fontSize: '16px', color: 'rgba(255,255,255,0.45)', margin: '0 0 24px' }}>in {dtLocation}</p>
+
+            {/* Location selector */}
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '12px', marginBottom: '16px' }}>
+              <div style={{ position: 'relative' }}>
+                <button onClick={() => setDtShowLocation(!dtShowLocation)} style={{
+                  display: 'flex', alignItems: 'center', gap: '6px', padding: '8px 16px',
+                  background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.08)',
+                  borderRadius: '10px', color: 'rgba(255,255,255,0.7)', cursor: 'pointer',
+                  fontSize: '13px', transition: 'all 0.3s',
+                }}
+                  onMouseEnter={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.1)'; }}
+                  onMouseLeave={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.06)'; }}
+                >
+                  <span>📍</span> {dtLocation} <span style={{ fontSize: '10px' }}>▼</span>
+                </button>
+                {dtShowLocation && (
+                  <div style={{
+                    position: 'absolute', top: '100%', left: '50%', transform: 'translateX(-50%)', marginTop: '8px',
+                    background: '#1a1a24', borderRadius: '14px', border: '1px solid rgba(255,255,255,0.08)',
+                    padding: '8px', width: '200px', boxShadow: '0 12px 40px rgba(0,0,0,0.5)', zIndex: 100,
+                    display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4px',
+                  }}>
+                    {dtLocations.map(loc => (
+                      <button key={loc} onClick={() => { setDtLocation(loc); setDtShowLocation(false); }} style={{
+                        padding: '8px 10px', background: dtLocation === loc ? 'rgba(147,51,234,0.15)' : 'transparent',
+                        border: 'none', borderRadius: '8px', color: dtLocation === loc ? '#fff' : 'rgba(255,255,255,0.5)',
+                        cursor: 'pointer', fontSize: '12px', fontWeight: dtLocation === loc ? 600 : 400, transition: 'all 0.2s',
+                      }}
+                        onMouseEnter={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.06)'; }}
+                        onMouseLeave={e => { e.currentTarget.style.background = dtLocation === loc ? 'rgba(147,51,234,0.15)' : 'transparent'; }}
+                      >{loc}</button>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </div>
+
+            {/* Search */}
+            <div style={{
+              display: 'flex', alignItems: 'center', gap: '10px', maxWidth: '520px', margin: '0 auto',
+              background: 'rgba(255,255,255,0.06)', borderRadius: '16px', padding: '4px 6px 4px 16px',
+              border: '1px solid rgba(255,255,255,0.06)',
+            }}>
+              <span style={{ fontSize: '16px' }}>🔍</span>
+              <input type="text" placeholder="Search events, movies, restaurants..."
+                value={dtSearch} onChange={e => setDtSearch(e.target.value)}
+                style={{ flex: 1, padding: '12px 10px', border: 'none', outline: 'none', background: 'transparent', color: '#fff', fontSize: '14px' }} />
+              <button style={{
+                padding: '10px 22px', background: 'linear-gradient(135deg, #9333ea, #E23744)',
+                color: 'white', border: 'none', borderRadius: '12px', fontSize: '13px', fontWeight: 600, cursor: 'pointer',
+              }}
+                onMouseEnter={e => { e.currentTarget.style.transform = 'scale(1.03)'; e.currentTarget.style.boxShadow = '0 4px 20px rgba(147,51,234,0.4)'; }}
+                onMouseLeave={e => { e.currentTarget.style.transform = 'scale(1)'; e.currentTarget.style.boxShadow = 'none'; }}
+              >Search</button>
+            </div>
+          </div>
+        </div>
+
+        {/* Tab Navigation */}
+        <div style={{
+          display: 'flex', justifyContent: 'center', gap: '4px', padding: '16px 24px',
+          background: 'rgba(10,10,16,0.8)', borderBottom: '1px solid rgba(255,255,255,0.04)',
+          position: 'sticky', top: '0', zIndex: 50, backdropFilter: 'blur(12px)',
+        }}>
+          {[
+            { key: 'for-you', label: 'For You', icon: '🎯' },
+            { key: 'dining', label: 'Dining', icon: '🍽️' },
+            { key: 'movies', label: 'Movies', icon: '🎬' },
+            { key: 'events', label: 'Events', icon: '🎉' },
+            { key: 'ipl', label: 'IPL', icon: '🏏' },
+          ].map(tab => (
+            <button key={tab.key} onClick={() => setDtTab(tab.key as typeof dtTab)}
+              style={{
+                display: 'flex', alignItems: 'center', gap: '6px', padding: '10px 20px',
+                background: dtTab === tab.key ? 'linear-gradient(135deg, rgba(147,51,234,0.15), rgba(226,55,68,0.1))' : 'transparent',
+                border: dtTab === tab.key ? '1px solid rgba(147,51,234,0.2)' : '1px solid transparent',
+                borderRadius: '12px', color: dtTab === tab.key ? '#fff' : 'rgba(255,255,255,0.5)',
+                cursor: 'pointer', fontSize: '14px', fontWeight: dtTab === tab.key ? 600 : 400,
+                transition: 'all 0.3s',
+              }}
+              onMouseEnter={e => { if (dtTab !== tab.key) { e.currentTarget.style.background = 'rgba(255,255,255,0.04)'; e.currentTarget.style.color = 'rgba(255,255,255,0.7)'; } }}
+              onMouseLeave={e => { if (dtTab !== tab.key) { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = 'rgba(255,255,255,0.5)'; } }}
+            >
+              <span>{tab.icon}</span> {tab.label}
+            </button>
+          ))}
+        </div>
+
+        {/* FOR YOU TAB */}
+        {dtTab === 'for-you' && (
+          <div>
+            {/* IPL matches spotlight */}
+            <div style={{ maxWidth: '1100px', margin: '0 auto', padding: '40px 24px 24px' }}>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '20px' }}>
+                <div>
+                  <p style={dtSectionTitle}>Live Action</p>
+                  <h2 style={dtSectionHeading}>TATA IPL 2026 🏏</h2>
+                </div>
+                <button onClick={() => setDtTab('ipl')} style={{
+                  padding: '8px 18px', background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.08)',
+                  borderRadius: '10px', color: 'rgba(255,255,255,0.6)', cursor: 'pointer', fontSize: '12px', fontWeight: 500,
+                }}
+                  onMouseEnter={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.1)'; e.currentTarget.style.color = '#fff'; }}
+                  onMouseLeave={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.06)'; e.currentTarget.style.color = 'rgba(255,255,255,0.6)'; }}
+                >View all →</button>
+              </div>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '16px' }}>
+                {dtIplMatches.slice(0, 4).map((match, i) => (
+                  <div key={match.id} style={{
+                    background: 'linear-gradient(135deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.02) 100%)',
+                    borderRadius: '18px', overflow: 'hidden', border: '1px solid rgba(255,255,255,0.06)',
+                    animation: `cardFadeIn 0.5s ease-out ${0.05 * i}s both`, transition: 'all 0.3s ease', cursor: 'pointer',
+                  }} className="card-glow"
+                    onClick={() => handleDtBook(match)}
+                    onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-4px)'; }}
+                    onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)'; }}
+                  >
+                    <div style={{ height: '160px', backgroundImage: `url(${match.img})`, backgroundSize: 'cover', backgroundPosition: 'center', position: 'relative' }}>
+                      <div style={{ position: 'absolute', top: '10px', left: '10px', background: 'linear-gradient(135deg, #9333ea, #E23744)', borderRadius: '8px', padding: '4px 12px', fontSize: '11px', fontWeight: 700, color: '#fff' }}>LIVE</div>
+                      <div style={{ position: 'absolute', bottom: '0', left: '0', right: '0', height: '50%', background: 'linear-gradient(to top, rgba(0,0,0,0.6), transparent)' }} />
+                    </div>
+                    <div style={{ padding: '16px' }}>
+                      <div style={{ fontSize: '11px', color: 'rgba(255,255,255,0.35)', marginBottom: '4px' }}>{match.date} • {match.time}</div>
+                      <div style={{ fontSize: '16px', fontWeight: 700, color: '#fff', marginBottom: '4px' }}>{match.title}</div>
+                      <div style={{ fontSize: '13px', color: 'rgba(255,255,255,0.5)', marginBottom: '8px' }}>{match.venue}</div>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                        <span style={{ fontWeight: 700, fontSize: '18px', color: '#22c55e' }}>₹{match.price}</span>
+                        <button style={{
+                          padding: '8px 18px', borderRadius: '10px', border: 'none',
+                          background: 'linear-gradient(135deg, #9333ea, #E23744)', color: 'white',
+                          fontSize: '12px', fontWeight: 600, cursor: 'pointer',
+                        }}
+                          onClick={(e) => { e.stopPropagation(); handleDtBook(match); }}
+                          onMouseEnter={e => { e.currentTarget.style.transform = 'scale(1.05)'; }}
+                          onMouseLeave={e => { e.currentTarget.style.transform = 'scale(1)'; }}
+                        >Book Now</button>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Movies section */}
+            <div style={{ maxWidth: '1100px', margin: '0 auto', padding: '24px 24px' }}>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '20px' }}>
+                <div>
+                  <p style={dtSectionTitle}>Now Showing</p>
+                  <h2 style={dtSectionHeading}>Top Movies 🎬</h2>
+                </div>
+                <button onClick={() => setDtTab('movies')} style={{
+                  padding: '8px 18px', background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.08)',
+                  borderRadius: '10px', color: 'rgba(255,255,255,0.6)', cursor: 'pointer', fontSize: '12px', fontWeight: 500,
+                }}
+                  onMouseEnter={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.1)'; e.currentTarget.style.color = '#fff'; }}
+                  onMouseLeave={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.06)'; e.currentTarget.style.color = 'rgba(255,255,255,0.6)'; }}
+                >View all →</button>
+              </div>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))', gap: '16px' }}>
+                {dtMovies.slice(0, 6).map((movie, i) => (
+                  <div key={movie.id} style={{
+                    background: 'linear-gradient(135deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.02) 100%)',
+                    borderRadius: '18px', overflow: 'hidden', border: '1px solid rgba(255,255,255,0.06)',
+                    animation: `cardFadeIn 0.5s ease-out ${0.05 * i}s both`, transition: 'all 0.3s ease', cursor: 'pointer',
+                  }} className="card-glow"
+                    onClick={() => handleDtBook(movie)}
+                    onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-4px)'; }}
+                    onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)'; }}
+                  >
+                    <div style={{ height: '150px', backgroundImage: `url(${movie.img})`, backgroundSize: 'cover', backgroundPosition: 'center', position: 'relative' }}>
+                      <div style={{ position: 'absolute', top: '10px', left: '10px', background: 'rgba(0,0,0,0.6)', borderRadius: '6px', padding: '3px 8px', fontSize: '11px', fontWeight: 600, color: '#fff' }}>{movie.rating}</div>
+                      <div style={{ position: 'absolute', bottom: '0', left: '0', right: '0', height: '40%', background: 'linear-gradient(to top, rgba(0,0,0,0.5), transparent)' }} />
+                    </div>
+                    <div style={{ padding: '14px' }}>
+                      <div style={{ fontSize: '11px', color: 'rgba(255,255,255,0.35)', marginBottom: '4px' }}>{movie.genre}</div>
+                      <div style={{ fontSize: '14px', fontWeight: 600, color: '#fff', marginBottom: '6px', lineHeight: 1.3 }}>{movie.title}</div>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                        <span style={{ fontWeight: 700, fontSize: '17px', color: '#22c55e' }}>₹{movie.price}</span>
+                        <button style={{
+                          padding: '7px 16px', borderRadius: '9px', border: 'none',
+                          background: 'linear-gradient(135deg, #9333ea, #E23744)', color: 'white',
+                          fontSize: '12px', fontWeight: 600, cursor: 'pointer',
+                        }}
+                          onClick={(e) => { e.stopPropagation(); handleDtBook(movie); }}
+                          onMouseEnter={e => { e.currentTarget.style.transform = 'scale(1.05)'; }}
+                          onMouseLeave={e => { e.currentTarget.style.transform = 'scale(1)'; }}
+                        >Book</button>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Events section */}
+            <div style={{ maxWidth: '1100px', margin: '0 auto', padding: '24px' }}>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '20px' }}>
+                <div>
+                  <p style={dtSectionTitle}>Upcoming</p>
+                  <h2 style={dtSectionHeading}>Best of Nightlife & Events 🎉</h2>
+                </div>
+                <button onClick={() => setDtTab('events')} style={{
+                  padding: '8px 18px', background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.08)',
+                  borderRadius: '10px', color: 'rgba(255,255,255,0.6)', cursor: 'pointer', fontSize: '12px', fontWeight: 500,
+                }}
+                  onMouseEnter={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.1)'; e.currentTarget.style.color = '#fff'; }}
+                  onMouseLeave={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.06)'; e.currentTarget.style.color = 'rgba(255,255,255,0.6)'; }}
+                >View all →</button>
+              </div>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '16px' }}>
+                {dtEvents.slice(0, 4).map((event, i) => (
+                  <div key={event.id} style={{
+                    background: 'linear-gradient(135deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.02) 100%)',
+                    borderRadius: '18px', overflow: 'hidden', border: '1px solid rgba(255,255,255,0.06)',
+                    animation: `cardFadeIn 0.5s ease-out ${0.05 * i}s both`, transition: 'all 0.3s ease', cursor: 'pointer',
+                  }} className="card-glow"
+                    onClick={() => handleDtBook(event)}
+                    onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-4px)'; }}
+                    onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)'; }}
+                  >
+                    <div style={{ height: '160px', backgroundImage: `url(${event.img})`, backgroundSize: 'cover', backgroundPosition: 'center', position: 'relative' }}>
+                      <div style={{ position: 'absolute', top: '10px', left: '10px', background: 'linear-gradient(135deg, #9333ea, #E23744)', borderRadius: '8px', padding: '4px 12px', fontSize: '11px', fontWeight: 700, color: '#fff' }}>{event.type}</div>
+                      <div style={{ position: 'absolute', bottom: '0', left: '0', right: '0', height: '40%', background: 'linear-gradient(to top, rgba(0,0,0,0.6), transparent)' }} />
+                    </div>
+                    <div style={{ padding: '16px' }}>
+                      <div style={{ fontSize: '11px', color: 'rgba(255,255,255,0.35)', marginBottom: '4px' }}>{event.date} • {event.time}</div>
+                      <div style={{ fontSize: '15px', fontWeight: 700, color: '#fff', marginBottom: '4px' }}>{event.title}</div>
+                      <div style={{ fontSize: '13px', color: 'rgba(255,255,255,0.5)', marginBottom: '8px' }}>{event.venue}</div>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                        <span style={{ fontWeight: 700, fontSize: '18px', color: '#22c55e' }}>₹{event.price}</span>
+                        <button style={{
+                          padding: '8px 18px', borderRadius: '10px', border: 'none',
+                          background: 'linear-gradient(135deg, #9333ea, #E23744)', color: 'white',
+                          fontSize: '12px', fontWeight: 600, cursor: 'pointer',
+                        }}
+                          onClick={(e) => { e.stopPropagation(); handleDtBook(event); }}
+                          onMouseEnter={e => { e.currentTarget.style.transform = 'scale(1.05)'; }}
+                          onMouseLeave={e => { e.currentTarget.style.transform = 'scale(1)'; }}
+                        >Book Now</button>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Artists */}
+            <div style={{
+              maxWidth: '1100px', margin: '0 auto', padding: '24px 24px 40px',
+            }}>
+              <p style={dtSectionTitle}>Featured</p>
+              <h2 style={dtSectionHeading}>Artists in your District 🎤</h2>
+              <div style={{
+                display: 'flex', gap: '16px', overflowX: 'auto', padding: '8px 4px 12px',
+                scrollbarWidth: 'thin', scrollbarColor: '#9333ea transparent',
+              }}>
+                {dtArtists.map((artist, i) => (
+                  <div key={artist.name} style={{
+                    display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px',
+                    minWidth: '90px', cursor: 'pointer', transition: 'all 0.3s ease',
+                    animation: `fadeSlideUp 0.4s ease-out ${0.03 * i}s both`,
+                  }}
+                    onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-4px)'; }}
+                    onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)'; }}
+                  >
+                    <div style={{
+                      width: '72px', height: '72px', borderRadius: '50%', overflow: 'hidden',
+                      border: '2px solid rgba(147,51,234,0.3)', boxShadow: '0 0 20px rgba(147,51,234,0.1)',
+                    }}>
+                      <img src={artist.img} alt={artist.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                    </div>
+                    <span style={{ fontSize: '12px', fontWeight: 500, color: 'rgba(255,255,255,0.7)', textAlign: 'center' }}>{artist.name}</span>
+                    <span style={{ fontSize: '10px', color: 'rgba(255,255,255,0.3)' }}>{artist.genre}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* MOVIES TAB */}
+        {dtTab === 'movies' && (
+          <div style={{ maxWidth: '1100px', margin: '0 auto', padding: '32px 24px' }}>
+            <div style={{ display: 'flex', gap: '10px', marginBottom: '24px', flexWrap: 'wrap', justifyContent: 'center' }}>
+              {dtCategories.map(cat => (
+                <button key={cat} onClick={() => setDtCategory(cat)}
+                  style={{
+                    padding: '8px 18px', borderRadius: '20px', border: 'none',
+                    background: dtCategory === cat ? 'linear-gradient(135deg, #9333ea, #E23744)' : 'rgba(255,255,255,0.06)',
+                    color: dtCategory === cat ? '#fff' : 'rgba(255,255,255,0.5)',
+                    cursor: 'pointer', fontSize: '13px', fontWeight: dtCategory === cat ? 600 : 400,
+                    transition: 'all 0.3s',
+                  }}
+                  onMouseEnter={e => { if (dtCategory !== cat) e.currentTarget.style.background = 'rgba(255,255,255,0.1)'; }}
+                  onMouseLeave={e => { if (dtCategory !== cat) e.currentTarget.style.background = 'rgba(255,255,255,0.06)'; }}
+                >{cat}</button>
+              ))}
+            </div>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(230px, 1fr))', gap: '20px' }}>
+              {filteredMovies.map((movie, i) => (
+                <div key={movie.id} style={{
+                  background: 'linear-gradient(135deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.02) 100%)',
+                  borderRadius: '18px', overflow: 'hidden', border: '1px solid rgba(255,255,255,0.06)',
+                  animation: `cardFadeIn 0.5s ease-out ${0.04 * i}s both`, transition: 'all 0.3s ease', cursor: 'pointer',
+                }} className="card-glow"
+                  onClick={() => handleDtBook(movie)}
+                  onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-4px)'; }}
+                  onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)'; }}
+                >
+                  <div style={{ height: '160px', backgroundImage: `url(${movie.img})`, backgroundSize: 'cover', backgroundPosition: 'center', position: 'relative' }}>
+                    <div style={{ position: 'absolute', top: '10px', left: '10px', background: 'rgba(0,0,0,0.6)', borderRadius: '6px', padding: '3px 8px', fontSize: '11px', fontWeight: 600, color: '#fff' }}>{movie.rating}</div>
+                  </div>
+                  <div style={{ padding: '14px' }}>
+                    <div style={{ fontSize: '11px', color: 'rgba(255,255,255,0.35)', marginBottom: '4px' }}>{movie.lang} • {movie.duration}</div>
+                    <div style={{ fontSize: '14px', fontWeight: 600, color: '#fff', marginBottom: '4px', lineHeight: 1.3 }}>{movie.title}</div>
+                    <div style={{ fontSize: '12px', color: 'rgba(255,255,255,0.4)', marginBottom: '8px' }}>{movie.genre}</div>
+                    <p style={{ fontSize: '12px', color: 'rgba(255,255,255,0.35)', margin: '0 0 10px', lineHeight: 1.4, display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>{movie.desc}</p>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                      <span style={{ fontWeight: 700, fontSize: '17px', color: '#22c55e' }}>₹{movie.price}</span>
+                      <button style={{
+                        padding: '7px 18px', borderRadius: '9px', border: 'none',
+                        background: 'linear-gradient(135deg, #9333ea, #E23744)', color: 'white',
+                        fontSize: '12px', fontWeight: 600, cursor: 'pointer',
+                      }}
+                        onClick={(e) => { e.stopPropagation(); handleDtBook(movie); }}
+                        onMouseEnter={e => { e.currentTarget.style.transform = 'scale(1.05)'; }}
+                        onMouseLeave={e => { e.currentTarget.style.transform = 'scale(1)'; }}
+                      >Book</button>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* EVENTS TAB */}
+        {dtTab === 'events' && (
+          <div style={{ maxWidth: '1100px', margin: '0 auto', padding: '32px 24px' }}>
+            <div style={{ display: 'flex', gap: '10px', marginBottom: '24px', flexWrap: 'wrap', justifyContent: 'center' }}>
+              {['All', 'Music', 'Sports', 'Comedy', 'Nightlife', 'Festival', 'Exhibition'].map(type => (
+                <button key={type} onClick={() => setDtEventType(type)}
+                  style={{
+                    padding: '8px 18px', borderRadius: '20px', border: 'none',
+                    background: dtEventType === type ? 'linear-gradient(135deg, #9333ea, #E23744)' : 'rgba(255,255,255,0.06)',
+                    color: dtEventType === type ? '#fff' : 'rgba(255,255,255,0.5)',
+                    cursor: 'pointer', fontSize: '13px', fontWeight: dtEventType === type ? 600 : 400,
+                    transition: 'all 0.3s',
+                  }}
+                  onMouseEnter={e => { if (dtEventType !== type) e.currentTarget.style.background = 'rgba(255,255,255,0.1)'; }}
+                  onMouseLeave={e => { if (dtEventType !== type) e.currentTarget.style.background = 'rgba(255,255,255,0.06)'; }}
+                >{type}</button>
+              ))}
+            </div>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: '20px' }}>
+              {filteredEvents.map((event, i) => (
+                <div key={event.id} style={{
+                  background: 'linear-gradient(135deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.02) 100%)',
+                  borderRadius: '18px', overflow: 'hidden', border: '1px solid rgba(255,255,255,0.06)',
+                  animation: `cardFadeIn 0.5s ease-out ${0.04 * i}s both`, transition: 'all 0.3s ease', cursor: 'pointer',
+                }} className="card-glow"
+                  onClick={() => handleDtBook(event)}
+                  onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-4px)'; }}
+                  onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)'; }}
+                >
+                  <div style={{ height: '170px', backgroundImage: `url(${event.img})`, backgroundSize: 'cover', backgroundPosition: 'center', position: 'relative' }}>
+                    <div style={{ position: 'absolute', top: '10px', left: '10px', background: 'linear-gradient(135deg, #9333ea, #E23744)', borderRadius: '8px', padding: '4px 12px', fontSize: '11px', fontWeight: 700, color: '#fff' }}>{event.type}</div>
+                    <div style={{ position: 'absolute', bottom: '0', left: '0', right: '0', height: '40%', background: 'linear-gradient(to top, rgba(0,0,0,0.6), transparent)' }} />
+                  </div>
+                  <div style={{ padding: '16px' }}>
+                    <div style={{ fontSize: '11px', color: 'rgba(255,255,255,0.35)', marginBottom: '4px' }}>{event.date} • {event.time}</div>
+                    <div style={{ fontSize: '16px', fontWeight: 700, color: '#fff', marginBottom: '4px' }}>{event.title}</div>
+                    <div style={{ fontSize: '13px', color: 'rgba(255,255,255,0.5)', marginBottom: '10px' }}>{event.venue}</div>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                      <span style={{ fontWeight: 700, fontSize: '18px', color: '#22c55e' }}>From ₹{event.price}</span>
+                      <button style={{
+                        padding: '8px 18px', borderRadius: '10px', border: 'none',
+                        background: 'linear-gradient(135deg, #9333ea, #E23744)', color: 'white',
+                        fontSize: '12px', fontWeight: 600, cursor: 'pointer',
+                      }}
+                        onClick={(e) => { e.stopPropagation(); handleDtBook(event); }}
+                        onMouseEnter={e => { e.currentTarget.style.transform = 'scale(1.05)'; }}
+                        onMouseLeave={e => { e.currentTarget.style.transform = 'scale(1)'; }}
+                      >Book Now</button>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* IPL TAB */}
+        {dtTab === 'ipl' && (
+          <div style={{ maxWidth: '1100px', margin: '0 auto', padding: '32px 24px' }}>
+            <div style={{ textAlign: 'center', marginBottom: '32px' }}>
+              <span style={{ fontSize: '48px', display: 'block', marginBottom: '8px' }}>🏏</span>
+              <p style={dtSectionTitle}>TATA Indian Premier League 2026</p>
+              <h2 style={{ ...dtSectionHeading, fontSize: '32px' }}>IPL Ticket Booking</h2>
+              <p style={{ color: 'rgba(255,255,255,0.4)', fontSize: '14px', marginTop: '-4px' }}>Book your seats for the biggest cricket extravaganza</p>
+            </div>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(340px, 1fr))', gap: '20px' }}>
+              {filteredIpl.map((match, i) => (
+                <div key={match.id} style={{
+                  background: 'linear-gradient(135deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.02) 100%)',
+                  borderRadius: '18px', overflow: 'hidden', border: '1px solid rgba(255,255,255,0.06)',
+                  animation: `cardFadeIn 0.5s ease-out ${0.05 * i}s both`, transition: 'all 0.3s ease', cursor: 'pointer',
+                }} className="card-glow"
+                  onClick={() => handleDtBook(match)}
+                  onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-4px)'; }}
+                  onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)'; }}
+                >
+                  <div style={{ height: '180px', backgroundImage: `url(${match.img})`, backgroundSize: 'cover', backgroundPosition: 'center', position: 'relative' }}>
+                    <div style={{ position: 'absolute', top: '12px', left: '12px', background: 'linear-gradient(135deg, #9333ea, #E23744)', borderRadius: '8px', padding: '4px 14px', fontSize: '11px', fontWeight: 700, color: '#fff' }}>IPL 2026</div>
+                    <div style={{ position: 'absolute', bottom: '0', left: '0', right: '0', height: '50%', background: 'linear-gradient(to top, rgba(0,0,0,0.6), transparent)' }} />
+                    <div style={{ position: 'absolute', bottom: '10px', left: '12px', color: '#fff', fontSize: '13px', fontWeight: 600 }}>{match.teams}</div>
+                  </div>
+                  <div style={{ padding: '16px' }}>
+                    <div style={{ fontSize: '11px', color: 'rgba(255,255,255,0.35)', marginBottom: '4px' }}>{match.date} • {match.time}</div>
+                    <div style={{ fontSize: '16px', fontWeight: 700, color: '#fff', marginBottom: '6px' }}>{match.title}</div>
+                    <div style={{ fontSize: '12px', color: 'rgba(255,255,255,0.45)', marginBottom: '10px' }}>📍 {match.venue}</div>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                      <div>
+                        <span style={{ fontSize: '12px', color: 'rgba(255,255,255,0.4)' }}>Starting from </span>
+                        <span style={{ fontWeight: 800, fontSize: '20px', color: '#22c55e' }}>₹{match.price}</span>
+                      </div>
+                      <button style={{
+                        padding: '10px 22px', borderRadius: '10px', border: 'none',
+                        background: 'linear-gradient(135deg, #9333ea, #E23744)', color: 'white',
+                        fontSize: '13px', fontWeight: 700, cursor: 'pointer',
+                        boxShadow: '0 4px 16px rgba(147,51,234,0.3)',
+                      }}
+                        onClick={(e) => { e.stopPropagation(); handleDtBook(match); }}
+                        onMouseEnter={e => { e.currentTarget.style.transform = 'scale(1.05)'; e.currentTarget.style.boxShadow = '0 6px 24px rgba(147,51,234,0.45)'; }}
+                        onMouseLeave={e => { e.currentTarget.style.transform = 'scale(1)'; e.currentTarget.style.boxShadow = '0 4px 16px rgba(147,51,234,0.3)'; }}
+                      >Book Tickets</button>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* DINING TAB */}
+        {dtTab === 'dining' && (
+          <div style={{ maxWidth: '1100px', margin: '0 auto', padding: '32px 24px' }}>
+            <div style={{ textAlign: 'center', marginBottom: '28px' }}>
+              <p style={dtSectionTitle}>Restaurants</p>
+              <h2 style={dtSectionHeading}>Best Dining Spots Nearby 🍽️</h2>
+              <p style={{ color: 'rgba(255,255,255,0.4)', fontSize: '14px', marginTop: '-4px' }}>Discover the finest restaurants in {dtLocation}</p>
+            </div>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '20px' }}>
+              {filteredDining.map((d, i) => (
+                <div key={d.id} style={{
+                  background: 'linear-gradient(135deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.02) 100%)',
+                  borderRadius: '18px', overflow: 'hidden', border: '1px solid rgba(255,255,255,0.06)',
+                  animation: `cardFadeIn 0.5s ease-out ${0.05 * i}s both`, transition: 'all 0.3s ease', cursor: 'pointer',
+                }} className="card-glow"
+                  onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-4px)'; }}
+                  onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)'; }}
+                >
+                  <div style={{ height: '160px', backgroundImage: `url(${d.img})`, backgroundSize: 'cover', backgroundPosition: 'center' }} />
+                  <div style={{ padding: '16px' }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '6px' }}>
+                      <div style={{ fontSize: '16px', fontWeight: 700, color: '#fff' }}>{d.name}</div>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '4px', background: 'rgba(34,197,94,0.15)', padding: '2px 8px', borderRadius: '6px' }}>
+                        <span style={{ color: '#22c55e', fontSize: '12px' }}>★</span>
+                        <span style={{ color: '#22c55e', fontSize: '12px', fontWeight: 600 }}>{d.rating}</span>
+                      </div>
+                    </div>
+                    <div style={{ fontSize: '13px', color: 'rgba(255,255,255,0.5)', marginBottom: '4px' }}>{d.cuisine}</div>
+                    <div style={{ fontSize: '12px', color: 'rgba(255,255,255,0.35)' }}>{d.locality} • ₹{d.price} for two</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* FAQ */}
+        <div style={{ maxWidth: '800px', margin: '0 auto', padding: '40px 24px' }}>
+          <div style={{ textAlign: 'center', marginBottom: '28px' }}>
+            <p style={dtSectionTitle}>Help Center</p>
+            <h2 style={dtSectionHeading}>Frequently Asked Questions ❓</h2>
+          </div>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+            {dtFaqs.map((faq, i) => (
+              <div key={i} style={{
+                background: 'rgba(255,255,255,0.04)', borderRadius: '16px',
+                border: '1px solid rgba(255,255,255,0.06)', overflow: 'hidden',
+                animation: `fadeSlideUp 0.4s ease-out ${0.05 * i}s both`,
+                cursor: 'pointer', transition: 'all 0.3s ease',
+              }}
+                onClick={() => setDtExpandedFaq(dtExpandedFaq === i ? null : i)}
+                onMouseEnter={e => { e.currentTarget.style.borderColor = 'rgba(147,51,234,0.15)'; }}
+                onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.06)'; }}
+              >
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '16px 20px' }}>
+                  <span style={{ color: '#fff', fontWeight: 600, fontSize: '14px' }}>{faq.q}</span>
+                  <span style={{ color: 'rgba(255,255,255,0.3)', fontSize: '18px', transition: 'transform 0.3s ease', transform: dtExpandedFaq === i ? 'rotate(180deg)' : 'rotate(0)', display: 'inline-block' }}>▼</span>
+                </div>
+                {dtExpandedFaq === i && (
+                  <div style={{ padding: '0 20px 16px', color: 'rgba(255,255,255,0.5)', fontSize: '14px', lineHeight: 1.6, animation: 'fadeSlideUp 0.3s ease-out' }}>
+                    {faq.a}
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Footer */}
+        <div style={{
+          background: 'linear-gradient(180deg, rgba(10,10,16,0.95) 0%, rgba(5,5,10,1) 100%)',
+          borderTop: '1px solid rgba(147,51,234,0.1)', padding: '40px 24px 24px',
+        }}>
+          <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '32px', marginBottom: '32px' }}>
+              <div>
+                <div style={{ fontSize: '20px', fontWeight: 800, color: '#fff', marginBottom: '12px' }}>
+                  <span style={{ background: 'linear-gradient(135deg, #9333ea, #E23744, #f59e0b)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>District</span>
+                </div>
+                <p style={{ color: 'rgba(255,255,255,0.4)', fontSize: '13px', lineHeight: 1.6, margin: '0 0 16px' }}>
+                  Your one-stop destination for movies, events, sports, concerts & dining.
+                </p>
+                <div style={{ display: 'flex', gap: '12px' }}>
+                  {['📘', '📸', '🐦', '▶️'].map((icon, i) => (
+                    <span key={i} style={{ fontSize: '18px', opacity: 0.5, cursor: 'pointer', transition: 'opacity 0.3s' }}
+                      onMouseEnter={e => { e.currentTarget.style.opacity = '1'; }}
+                      onMouseLeave={e => { e.currentTarget.style.opacity = '0.5'; }}
+                    >{icon}</span>
+                  ))}
+                </div>
+              </div>
+              <div>
+                <div style={{ color: 'rgba(255,255,255,0.6)', fontSize: '13px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '16px' }}>Know More</div>
+                {['Terms & Conditions', 'Privacy Policy', 'Contact Us', 'About District', 'Careers'].map(link => (
+                  <div key={link} style={{ color: 'rgba(255,255,255,0.35)', fontSize: '13px', marginBottom: '10px', cursor: 'pointer', transition: 'color 0.3s' }}
+                    onMouseEnter={e => { e.currentTarget.style.color = '#fff'; }}
+                    onMouseLeave={e => { e.currentTarget.style.color = 'rgba(255,255,255,0.35)'; }}
+                  >{link}</div>
+                ))}
+              </div>
+              <div>
+                <div style={{ color: 'rgba(255,255,255,0.6)', fontSize: '13px', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '16px' }}>Download the app</div>
+                <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
+                  {['Play Store', 'App Store'].map(store => (
+                    <div key={store} style={{
+                      padding: '8px 14px', background: 'rgba(255,255,255,0.06)', borderRadius: '10px',
+                      border: '1px solid rgba(255,255,255,0.06)', cursor: 'pointer', fontSize: '12px',
+                      color: 'rgba(255,255,255,0.5)', transition: 'all 0.3s',
+                    }}
+                      onMouseEnter={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.1)'; e.currentTarget.style.color = '#fff'; }}
+                      onMouseLeave={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.06)'; e.currentTarget.style.color = 'rgba(255,255,255,0.5)'; }}
+                    >{store}</div>
+                  ))}
+                </div>
+              </div>
+            </div>
+            <div style={{ borderTop: '1px solid rgba(255,255,255,0.06)', paddingTop: '16px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '12px' }}>
+              <span style={{ color: 'rgba(255,255,255,0.25)', fontSize: '12px' }}>© 2026 District by Zomato. All rights reserved.</span>
+              <span style={{ color: 'rgba(255,255,255,0.15)', fontSize: '11px' }}>Movies • Events • Sports • Dining</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Booking Modal - Qty Selection */}
+        {dtBookingStep === 'qty' && dtEventDetail && (
+          <div style={{ position: 'fixed', inset: 0, zIndex: 2000, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.7)', backdropFilter: 'blur(6px)' }} onClick={() => setDtBookingStep('browse')} />
+            <div style={{
+              position: 'relative', width: '440px', maxWidth: '90vw',
+              background: 'linear-gradient(180deg, #1a1a2e 0%, #0e0e16 100%)',
+              borderRadius: '24px', border: '1px solid rgba(255,255,255,0.08)',
+              padding: '32px', boxShadow: '0 20px 60px rgba(0,0,0,0.6)',
+              animation: 'fadeScaleIn 0.3s ease-out',
+            }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '20px' }}>
+                <div style={{ flex: 1 }}>
+                  <div style={{ fontSize: '18px', fontWeight: 700, color: '#fff', marginBottom: '4px' }}>{dtEventDetail.title}</div>
+                  <div style={{ fontSize: '12px', color: 'rgba(255,255,255,0.4)' }}>{dtEventDetail.venue || dtEventDetail.genre} • ₹{dtEventDetail.price}/ticket</div>
+                </div>
+                <button onClick={() => setDtBookingStep('browse')} style={{
+                  background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.08)',
+                  borderRadius: '10px', color: 'rgba(255,255,255,0.5)', cursor: 'pointer',
+                  fontSize: '18px', padding: '6px 12px', lineHeight: 1, height: 'fit-content',
+                }}
+                  onMouseEnter={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.1)'; e.currentTarget.style.color = '#fff'; }}
+                  onMouseLeave={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.06)'; e.currentTarget.style.color = 'rgba(255,255,255,0.5)'; }}
+                >✕</button>
+              </div>
+              <div style={{ textAlign: 'center', padding: '16px 0' }}>
+                <div style={{ color: 'rgba(255,255,255,0.5)', fontSize: '14px', marginBottom: '12px' }}>Select number of tickets</div>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '20px' }}>
+                  <button onClick={() => setDtTicketQty(Math.max(1, dtTicketQty - 1))} style={{
+                    width: '44px', height: '44px', borderRadius: '12px',
+                    background: 'rgba(226,55,68,0.15)', border: '1px solid rgba(226,55,68,0.2)',
+                    color: '#E23744', cursor: 'pointer', fontSize: '22px', fontWeight: 700,
+                    display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'all 0.2s',
+                  }}
+                    onMouseEnter={e => { e.currentTarget.style.background = 'rgba(226,55,68,0.25)'; }}
+                    onMouseLeave={e => { e.currentTarget.style.background = 'rgba(226,55,68,0.15)'; }}
+                  >−</button>
+                  <span style={{ fontSize: '48px', fontWeight: 800, color: '#fff', minWidth: '60px', textAlign: 'center' }}>{dtTicketQty}</span>
+                  <button onClick={() => setDtTicketQty(Math.min(10, dtTicketQty + 1))} style={{
+                    width: '44px', height: '44px', borderRadius: '12px',
+                    background: 'rgba(34,197,94,0.15)', border: '1px solid rgba(34,197,94,0.2)',
+                    color: '#22c55e', cursor: 'pointer', fontSize: '22px', fontWeight: 700,
+                    display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'all 0.2s',
+                  }}
+                    onMouseEnter={e => { e.currentTarget.style.background = 'rgba(34,197,94,0.25)'; }}
+                    onMouseLeave={e => { e.currentTarget.style.background = 'rgba(34,197,94,0.15)'; }}
+                  >+</button>
+                </div>
+                <div style={{ marginTop: '16px', color: '#22c55e', fontWeight: 700, fontSize: '24px' }}>₹{dtEventDetail.price * dtTicketQty}</div>
+                <div style={{ color: 'rgba(255,255,255,0.3)', fontSize: '12px', marginTop: '4px' }}>₹{dtEventDetail.price} × {dtTicketQty} ticket{dtTicketQty > 1 ? 's' : ''}</div>
+              </div>
+              <button onClick={() => setDtBookingStep('details')} style={{
+                width: '100%', padding: '14px', marginTop: '16px',
+                background: 'linear-gradient(135deg, #9333ea, #E23744)',
+                border: 'none', borderRadius: '14px', color: 'white',
+                fontSize: '15px', fontWeight: 700, cursor: 'pointer',
+                transition: 'all 0.3s ease', boxShadow: '0 4px 20px rgba(147,51,234,0.3)',
+              }}
+                onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.boxShadow = '0 6px 28px rgba(147,51,234,0.45)'; }}
+                onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = '0 4px 20px rgba(147,51,234,0.3)'; }}
+              >Continue - ₹{dtEventDetail.price * dtTicketQty}</button>
+            </div>
+          </div>
+        )}
+
+        {/* Booking Modal - Details Form */}
+        {dtBookingStep === 'details' && dtEventDetail && (
+          <div style={{ position: 'fixed', inset: 0, zIndex: 2000, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.7)', backdropFilter: 'blur(6px)' }} onClick={() => setDtBookingStep('qty')} />
+            <div style={{
+              position: 'relative', width: '440px', maxWidth: '90vw',
+              background: 'linear-gradient(180deg, #1a1a2e 0%, #0e0e16 100%)',
+              borderRadius: '24px', border: '1px solid rgba(255,255,255,0.08)',
+              padding: '32px', boxShadow: '0 20px 60px rgba(0,0,0,0.6)',
+              animation: 'fadeScaleIn 0.3s ease-out',
+            }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '20px' }}>
+                <h3 style={{ color: '#fff', margin: 0, fontSize: '18px', fontWeight: 700 }}>Your Details</h3>
+                <button onClick={() => setDtBookingStep('qty')} style={{
+                  background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.08)',
+                  borderRadius: '10px', color: 'rgba(255,255,255,0.5)', cursor: 'pointer',
+                  fontSize: '18px', padding: '6px 12px', lineHeight: 1, height: 'fit-content',
+                }}
+                  onMouseEnter={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.1)'; e.currentTarget.style.color = '#fff'; }}
+                  onMouseLeave={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.06)'; e.currentTarget.style.color = 'rgba(255,255,255,0.5)'; }}
+                >✕</button>
+              </div>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
+                <div>
+                  <label style={{ color: 'rgba(255,255,255,0.5)', fontSize: '13px', fontWeight: 500, display: 'block', marginBottom: '6px' }}>Full Name</label>
+                  <input placeholder="Enter your full name" value={dtBookingInfo.name}
+                    onChange={e => setDtBookingInfo({ ...dtBookingInfo, name: e.target.value })}
+                    style={{ width: '100%', padding: '12px 14px', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.08)', outline: 'none', background: 'rgba(255,255,255,0.05)', color: '#fff', fontSize: '14px', boxSizing: 'border-box' }} />
+                </div>
+                <div>
+                  <label style={{ color: 'rgba(255,255,255,0.5)', fontSize: '13px', fontWeight: 500, display: 'block', marginBottom: '6px' }}>Email Address</label>
+                  <input placeholder="Enter your email" type="email" value={dtBookingInfo.email}
+                    onChange={e => setDtBookingInfo({ ...dtBookingInfo, email: e.target.value })}
+                    style={{ width: '100%', padding: '12px 14px', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.08)', outline: 'none', background: 'rgba(255,255,255,0.05)', color: '#fff', fontSize: '14px', boxSizing: 'border-box' }} />
+                </div>
+                <div>
+                  <label style={{ color: 'rgba(255,255,255,0.5)', fontSize: '13px', fontWeight: 500, display: 'block', marginBottom: '6px' }}>Phone Number</label>
+                  <input placeholder="Enter your phone number" value={dtBookingInfo.phone}
+                    onChange={e => setDtBookingInfo({ ...dtBookingInfo, phone: e.target.value })}
+                    style={{ width: '100%', padding: '12px 14px', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.08)', outline: 'none', background: 'rgba(255,255,255,0.05)', color: '#fff', fontSize: '14px', boxSizing: 'border-box' }} />
+                </div>
+                <div style={{ display: 'flex', justifyContent: 'space-between', padding: '12px 0', borderTop: '1px solid rgba(255,255,255,0.06)' }}>
+                  <span style={{ color: 'rgba(255,255,255,0.5)', fontSize: '14px' }}>{dtTicketQty} ticket{dtTicketQty > 1 ? 's' : ''}</span>
+                  <span style={{ color: '#22c55e', fontWeight: 800, fontSize: '22px' }}>₹{dtEventDetail.price * dtTicketQty}</span>
+                </div>
+                <button onClick={handleDtConfirmBooking}
+                  style={{
+                    width: '100%', padding: '14px',
+                    background: dtBookingInfo.name && dtBookingInfo.email && dtBookingInfo.phone ? 'linear-gradient(135deg, #22c55e, #16a34a)' : 'rgba(255,255,255,0.08)',
+                    border: 'none', borderRadius: '14px', color: 'white',
+                    fontSize: '15px', fontWeight: 700, cursor: dtBookingInfo.name && dtBookingInfo.email && dtBookingInfo.phone ? 'pointer' : 'not-allowed',
+                    opacity: dtBookingInfo.name && dtBookingInfo.email && dtBookingInfo.phone ? 1 : 0.5,
+                    boxShadow: dtBookingInfo.name && dtBookingInfo.email && dtBookingInfo.phone ? '0 4px 20px rgba(34,197,94,0.3)' : 'none',
+                    transition: 'all 0.3s ease',
+                  }}
+                  onMouseEnter={e => { if (dtBookingInfo.name && dtBookingInfo.email && dtBookingInfo.phone) { e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.boxShadow = '0 6px 28px rgba(34,197,94,0.45)'; } }}
+                  onMouseLeave={e => { if (dtBookingInfo.name && dtBookingInfo.email && dtBookingInfo.phone) { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = '0 4px 20px rgba(34,197,94,0.3)'; } }}
+                >Confirm & Pay - ₹{dtEventDetail.price * dtTicketQty}</button>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Ticket Confirmation Modal */}
+        {dtBookingStep === 'ticket' && dtBooked && (
+          <div style={{ position: 'fixed', inset: 0, zIndex: 2000, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.7)', backdropFilter: 'blur(6px)' }} />
+            <div style={{
+              position: 'relative', width: '480px', maxWidth: '90vw',
+              background: 'linear-gradient(180deg, #0a2e1a 0%, #0e0e16 100%)',
+              borderRadius: '24px', border: '1px solid rgba(34,197,94,0.2)',
+              padding: '36px 32px', boxShadow: '0 20px 60px rgba(0,0,0,0.6), 0 0 40px rgba(34,197,94,0.05)',
+              animation: 'fadeScaleIn 0.4s ease-out', textAlign: 'center',
+            }}>
+              <div style={{
+                width: '72px', height: '72px', borderRadius: '50%',
+                background: 'rgba(34,197,94,0.15)', display: 'flex', alignItems: 'center',
+                justifyContent: 'center', margin: '0 auto 16px',
+                border: '2px solid rgba(34,197,94,0.3)',
+              }}>
+                <span style={{ fontSize: '36px' }}>🎫</span>
+              </div>
+              <h2 style={{ color: '#22c55e', fontSize: '24px', fontWeight: 800, margin: '0 0 4px' }}>Booking Confirmed! 🎉</h2>
+              <p style={{ color: 'rgba(255,255,255,0.4)', fontSize: '14px', margin: '0 0 20px' }}>Your tickets have been booked successfully</p>
+
+              <div style={{
+                background: 'rgba(255,255,255,0.04)', borderRadius: '16px',
+                border: '1px solid rgba(255,255,255,0.06)', padding: '20px', textAlign: 'left', marginBottom: '20px',
+              }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '12px', paddingBottom: '12px', borderBottom: '1px dashed rgba(255,255,255,0.08)' }}>
+                  <span style={{ color: 'rgba(255,255,255,0.4)', fontSize: '12px' }}>Booking ID</span>
+                  <span style={{ color: '#fff', fontSize: '13px', fontWeight: 700, fontFamily: 'monospace' }}>{dtBooked.id}</span>
+                </div>
+                <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px' }}>
+                  <span style={{ color: 'rgba(255,255,255,0.4)', fontSize: '12px' }}>Event</span>
+                  <span style={{ color: '#fff', fontSize: '13px', fontWeight: 600, textAlign: 'right', maxWidth: '60%' }}>{dtBooked.event.title}</span>
+                </div>
+                <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px' }}>
+                  <span style={{ color: 'rgba(255,255,255,0.4)', fontSize: '12px' }}>Tickets</span>
+                  <span style={{ color: '#fff', fontSize: '13px', fontWeight: 600 }}>{dtBooked.qty} × ₹{dtBooked.event.price}</span>
+                </div>
+                <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px' }}>
+                  <span style={{ color: 'rgba(255,255,255,0.4)', fontSize: '12px' }}>Attendee</span>
+                  <span style={{ color: '#fff', fontSize: '13px', fontWeight: 600 }}>{dtBooked.info.name}</span>
+                </div>
+                <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px' }}>
+                  <span style={{ color: 'rgba(255,255,255,0.4)', fontSize: '12px' }}>Status</span>
+                  <span style={{ color: '#22c55e', fontSize: '13px', fontWeight: 700 }}>✅ Confirmed</span>
+                </div>
+                <div style={{ display: 'flex', justifyContent: 'space-between', paddingTop: '12px', borderTop: '1px dashed rgba(255,255,255,0.08)' }}>
+                  <span style={{ color: 'rgba(255,255,255,0.4)', fontSize: '12px' }}>Total Paid</span>
+                  <span style={{ color: '#22c55e', fontSize: '20px', fontWeight: 800 }}>₹{dtBooked.total}</span>
+                </div>
+              </div>
+
+              <div style={{ display: 'flex', gap: '10px' }}>
+                <button onClick={() => { setDtBookingStep('browse'); setDtEventDetail(null); setDtBooked(null); }} style={{
+                  flex: 1, padding: '12px',
+                  background: 'linear-gradient(135deg, #9333ea, #E23744)',
+                  border: 'none', borderRadius: '12px', color: 'white',
+                  fontSize: '14px', fontWeight: 700, cursor: 'pointer',
+                }}
+                  onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-2px)'; }}
+                  onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)'; }}
+                >Browse More</button>
+                <button onClick={() => { setDtBookingStep('browse'); setDtEventDetail(null); }}
+                  style={{
+                    padding: '12px 20px', background: 'rgba(255,255,255,0.06)',
+                    border: '1px solid rgba(255,255,255,0.08)', borderRadius: '12px',
+                    color: 'rgba(255,255,255,0.6)', cursor: 'pointer', fontSize: '14px', fontWeight: 500,
+                  }}
+                  onMouseEnter={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.1)'; e.currentTarget.style.color = '#fff'; }}
+                  onMouseLeave={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.06)'; e.currentTarget.style.color = 'rgba(255,255,255,0.6)'; }}
+                >Download Ticket</button>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     );
   };
@@ -3266,6 +4814,16 @@ const App: React.FC = () => {
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
             Hyperpure
           </button>
+          <button
+            style={currentPage === 'district' ? { ...styles.navButton, ...styles.navButtonActive } : styles.navButton}
+            className={currentPage === 'district' ? 'nav-btn-active' : ''}
+            onClick={() => setCurrentPage('district')}
+            onMouseEnter={e => { if (currentPage !== 'district') { e.currentTarget.style.background = 'rgba(255,255,255,0.06)'; e.currentTarget.style.color = '#fff'; e.currentTarget.style.transform = 'translateY(-1px)'; } }}
+            onMouseLeave={e => { if (currentPage !== 'district') { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = 'rgba(255,255,255,0.65)'; e.currentTarget.style.transform = 'translateY(0)'; } }}
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/><path d="M12 3a4 4 0 0 1 4 4"/><path d="M12 7h.01"/></svg>
+            District
+          </button>
           {user ? (
             <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginLeft: '8px', paddingLeft: '16px', borderLeft: '1px solid rgba(255,255,255,0.08)' }}>
               <div style={{ position: 'relative' }}>
@@ -3308,6 +4866,7 @@ const App: React.FC = () => {
       {currentPage === 'checkout' && <CheckoutPage />}
       {currentPage === 'tracking' && <TrackingPage />}
       {currentPage === 'hyperpure' && <HyperpurePage />}
+      {currentPage === 'district' && <DistrictPage />}
 
       {/* Login Modal */}
       <LoginModal />
