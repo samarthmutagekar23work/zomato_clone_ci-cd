@@ -6,7 +6,7 @@
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
     <meta http-equiv="X-Frame-Options" content="DENY">
     <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://unpkg.com https://cdn.tailwindcss.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://unpkg.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://source.unsplash.com https://images.unsplash.com https://www.themealdb.com https://api.dicebear.com; connect-src 'self' https://nominatim.openstreetmap.org https://overpass-api.de https://www.themealdb.com https://ipapi.co; frame-src 'none'; object-src 'none';">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://unpkg.com https://cdn.tailwindcss.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://unpkg.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://source.unsplash.com https://images.unsplash.com https://images.pexels.com https://www.themealdb.com https://api.dicebear.com; connect-src 'self' https://nominatim.openstreetmap.org https://overpass-api.de https://www.themealdb.com https://ipapi.co; frame-src 'none'; object-src 'none';">
     <title>Zomato — Discover the best food</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@700;800&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
@@ -171,12 +171,99 @@ const getRatingColor = (rating) => {
     return 'red';
 };
 
+const RESTAURANT_PHOTOS = [
+    'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600&h=400&fit=crop',
+    'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=600&h=400&fit=crop',
+    'https://images.unsplash.com/photo-1552566626-52f8b828add9?w=600&h=400&fit=crop',
+    'https://images.unsplash.com/photo-1559329007-40df8a9345d8?w=600&h=400&fit=crop',
+    'https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=600&h=400&fit=crop',
+    'https://images.unsplash.com/photo-1466978913421-dad2ebd01d17?w=600&h=400&fit=crop',
+    'https://images.unsplash.com/photo-1537047902294-62a40c20a6ae?w=600&h=400&fit=crop',
+    'https://images.unsplash.com/photo-1579027989536-b7b1f875659b?w=600&h=400&fit=crop',
+    'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&h=400&fit=crop',
+    'https://images.unsplash.com/photo-1482049016688-2d3e1b311543?w=600&h=400&fit=crop',
+    'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=600&h=400&fit=crop',
+    'https://images.unsplash.com/photo-1544025162-d76694265947?w=600&h=400&fit=crop',
+    'https://images.unsplash.com/photo-1513104890138-7c749659a591?w=600&h=400&fit=crop',
+    'https://images.unsplash.com/photo-1467446884851-400897639765?w=600&h=400&fit=crop',
+    'https://images.unsplash.com/photo-1476224203421-9ac39bcb3327?w=600&h=400&fit=crop',
+    'https://images.unsplash.com/photo-1469371670807-013ccf25f16a?w=600&h=400&fit=crop',
+    'https://images.unsplash.com/photo-1579871494447-9811cf80d66c?w=600&h=400&fit=crop',
+    'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=600&h=400&fit=crop',
+    'https://images.unsplash.com/photo-1470337458703-46ad1756a187?w=600&h=400&fit=crop',
+    'https://images.unsplash.com/photo-1473093295043-cdd812d0e601?w=600&h=400&fit=crop',
+];
+
+const MUMBAI_RESTAURANT_PHOTOS = [
+    'https://images.pexels.com/photos/2347311/pexels-photo-2347311.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop',
+    'https://images.pexels.com/photos/2442882/pexels-photo-2442882.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop',
+    'https://images.pexels.com/photos/5560763/pexels-photo-5560763.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop',
+    'https://images.pexels.com/photos/9635051/pexels-photo-9635051.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop',
+    'https://images.pexels.com/photos/1099680/pexels-photo-1099680.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop',
+    'https://images.pexels.com/photos/7253611/pexels-photo-7253611.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop',
+    'https://images.pexels.com/photos/5560791/pexels-photo-5560791.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop',
+    'https://images.pexels.com/photos/9635050/pexels-photo-9635050.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop',
+    'https://images.pexels.com/photos/2347313/pexels-photo-2347313.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop',
+    'https://images.pexels.com/photos/2442883/pexels-photo-2442883.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop',
+];
+
 const getRestaurantImage = (restaurant) => {
-    const keyword = CUISINE_KEYWORDS[restaurant.cuisines[0]] || CUISINE_KEYWORDS['default'];
-    return 'https://source.unsplash.com/600x400/?restaurant,' + keyword + '&sig=' + restaurant.id;
+    const idNum = parseInt((restaurant && restaurant.id) ? restaurant.id.replace('r', '') : '1');
+    if (restaurant && restaurant.city === 'Mumbai') {
+        return MUMBAI_RESTAURANT_PHOTOS[(idNum - 1) % MUMBAI_RESTAURANT_PHOTOS.length];
+    }
+    return RESTAURANT_PHOTOS[(idNum - 1) % RESTAURANT_PHOTOS.length];
 };
 
-const getCityImage = (cityName) => 'https://source.unsplash.com/600x400/?city,' + cityName.toLowerCase() + ',india&sig=' + cityName;
+const CITY_IMAGES = {
+    'Bangalore': 'https://images.pexels.com/photos/3889820/pexels-photo-3889820.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop',
+    'Mumbai': 'https://images.pexels.com/photos/26595923/pexels-photo-26595923.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop',
+    'Delhi': 'https://images.pexels.com/photos/30915614/pexels-photo-30915614.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop',
+    'Pune': 'https://images.pexels.com/photos/18455701/pexels-photo-18455701.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop',
+    'Hyderabad': 'https://images.pexels.com/photos/1888730/pexels-photo-1888730.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop',
+    'Chennai': 'https://images.pexels.com/photos/1486223/pexels-photo-1486223.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop',
+    'Kolkata': 'https://images.pexels.com/photos/260922/pexels-photo-260922.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop',
+    'Ahmedabad': 'https://images.pexels.com/photos/14036706/pexels-photo-14036706.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop',
+};
+
+const getCityImage = (cityName) => CITY_IMAGES[cityName] || CITY_IMAGES['Bangalore'];
+
+const MENU_ITEM_IMAGES = {
+    'biryani': 'https://www.themealdb.com/images/media/meals/vptqpw1614433589.jpg',
+    'paneer': 'https://images.unsplash.com/photo-1567188040759-fb8a883dc6d8?w=300&h=200&fit=crop',
+    'dal': 'https://www.themealdb.com/images/media/meals/uuxwvq1483907861.jpg',
+    'naan': 'https://images.unsplash.com/photo-1601050690597-df0568f70950?w=300&h=200&fit=crop',
+    'gulab-jamun': 'https://www.themealdb.com/images/media/meals/1549542900.jpg',
+    'chicken-tikka': 'https://images.unsplash.com/photo-1603360946369-dc9bb6258143?w=300&h=200&fit=crop',
+    'paneer-tikka': 'https://images.unsplash.com/photo-1567188040759-fb8a883dc6d8?w=300&h=200&fit=crop',
+    'spring-rolls': 'https://images.unsplash.com/photo-1544025162-d76694265947?w=300&h=200&fit=crop',
+    'tandoori': 'https://images.unsplash.com/photo-1610057099443-fde6c99db9e1?w=300&h=200&fit=crop',
+    'kebab': 'https://images.unsplash.com/photo-1603360946369-dc9bb6258143?w=300&h=200&fit=crop',
+    'mutton': 'https://images.unsplash.com/photo-1574484284002-952d92456975?w=300&h=200&fit=crop',
+    'palak-paneer': 'https://images.unsplash.com/photo-1567188040759-fb8a883dc6d8?w=300&h=200&fit=crop',
+    'fish-curry': 'https://www.themealdb.com/images/media/meals/1550441275.jpg',
+    'chicken': 'https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?w=300&h=200&fit=crop',
+    'chole': 'https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=300&h=200&fit=crop',
+    'keema': 'https://images.unsplash.com/photo-1603360946369-dc9bb6258143?w=300&h=200&fit=crop',
+    'kofta': 'https://images.unsplash.com/photo-1567188040759-fb8a883dc6d8?w=300&h=200&fit=crop',
+    'roti': 'https://images.unsplash.com/photo-1601050690597-df0568f70950?w=300&h=200&fit=crop',
+    'rice': 'https://images.unsplash.com/photo-1512058564366-18510be2db19?w=300&h=200&fit=crop',
+    'rasmalai': 'https://www.themealdb.com/images/media/meals/1549542900.jpg',
+    'kulfi': 'https://www.themealdb.com/images/media/meals/1549542900.jpg',
+    'lassi': 'https://www.themealdb.com/images/media/meals/1550441275.jpg',
+    'coffee': 'https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=300&h=200&fit=crop',
+    'chai': 'https://images.unsplash.com/photo-1571934811356-5cc061b6821f?w=300&h=200&fit=crop',
+    'icecream': 'https://images.unsplash.com/photo-1501443762994-82bd5dace89a?w=300&h=200&fit=crop',
+    'burger': 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=300&h=200&fit=crop',
+    'pizza': 'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=300&h=200&fit=crop',
+    'pasta': 'https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?w=300&h=200&fit=crop',
+    'cake': 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=300&h=200&fit=crop',
+    'noodles': 'https://images.unsplash.com/photo-1612929633738-8fe44f7ec841?w=300&h=200&fit=crop',
+    'corn': 'https://images.unsplash.com/photo-1551754655-cd27e38d2076?w=300&h=200&fit=crop',
+    'indian food': 'https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=300&h=200&fit=crop',
+};
+
+const getMenuItemImage = (keyword) => MENU_ITEM_IMAGES[keyword] || MENU_ITEM_IMAGES['indian food'];
 const RESTAURANTS = [
     {id:'r1',name:'Meghana Foods',cuisines:['Biryani','North Indian'],city:'Bangalore',locality:'Koramangala',rating:4.5,totalRatings:12453,deliveryTime:30,costForTwo:400,isVeg:false,isOpen:true,isPromoted:true,offers:['50% off up to ₹100'],imageKeyword:'biryani',phone:'080-12345678'},
     {id:'r2',name:'Truffles',cuisines:['Italian','American'],city:'Bangalore',locality:'Indiranagar',rating:4.2,totalRatings:8921,deliveryTime:25,costForTwo:600,isVeg:false,isOpen:true,isPromoted:true,offers:['20% off'],imageKeyword:'pizza',phone:'080-23456789'},
@@ -401,19 +488,11 @@ const NavBar = () => {
                     }, '🔍')
                 )
             ),
-            React.createElement('div', { className: 'flex items-center gap-4' },
-                React.createElement('button', { onClick: () => setShowLocation(true), className: 'text-sm text-gray-600 hover:text-red-500 flex items-center gap-1' },
-                    detecting ? '📡 Detecting...' : '📍 Detect'),
-                React.createElement('button', {
-                    onClick: () => window.location.hash = '#/cart',
-                    className: 'relative text-2xl hover:scale-110 transition-transform cart-icon' + (cartCount > 0 ? ' has-items' : '')
-                }, '🛒',
-                    cartCount > 0 && React.createElement('span', { className: 'cart-badge' }, cartCount)
-                ),
-                React.createElement('button', {
-                    onClick: () => window.location.hash = '#/profile',
-                    className: 'w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center text-sm hover:bg-gray-300'
-                }, '👤')
+            React.createElement('div', { className: 'flex items-center gap-2' },
+                React.createElement('button', { onClick: () => window.location.hash = '#/', className: 'px-4 py-2 rounded-xl text-sm font-semibold text-white transition-all hover:scale-105', style: { backgroundColor: '#E23744', boxShadow: '0 4px 12px rgba(226,55,68,0.3)' } }, '🏠 Home'),
+                React.createElement('button', { onClick: () => window.location.hash = '#/restaurants', className: 'px-4 py-2 rounded-xl text-sm font-semibold text-white transition-all hover:scale-105', style: { backgroundColor: '#3B82F6', boxShadow: '0 4px 12px rgba(59,130,246,0.3)' } }, '🏪 District'),
+                React.createElement('button', { onClick: () => window.location.hash = '#/cart', className: 'px-4 py-2 rounded-xl text-sm font-semibold text-white transition-all hover:scale-105 relative', style: { backgroundColor: '#10B981', boxShadow: '0 4px 12px rgba(16,185,129,0.3)' } }, '🛒 Cart', cartCount > 0 && React.createElement('span', { className: 'cart-badge' }, cartCount)),
+                React.createElement('button', { onClick: () => { safeStorage.setJSON('zomato_user', null); window.location.hash = '#/'; }, className: 'px-4 py-2 rounded-xl text-sm font-semibold text-white transition-all hover:scale-105', style: { backgroundColor: '#6B7280', boxShadow: '0 4px 12px rgba(107,114,128,0.3)' } }, '🚪 Logout')
             )
         ),
         showLocation && React.createElement('div', { className: 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50', onClick: () => setShowLocation(false) },
@@ -518,7 +597,7 @@ const HomePage = () => {
                         style: { animationDelay: (i * 0.1) + 's' }
                     },
                         React.createElement('img', {
-                            src: 'https://source.unsplash.com/400x300/?' + ['new-restaurant','trending-food','top-rated','budget-food'][i] + '&sig=' + title,
+                            src: ['https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=400&h=300&fit=crop','https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400&h=300&fit=crop','https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=400&h=300&fit=crop','https://images.unsplash.com/photo-1482049016688-2d3e1b311543?w=400&h=300&fit=crop'][i],
                             alt: title, className: 'w-full h-full',
                             style: { objectFit: 'cover' }
                         }),
@@ -973,9 +1052,10 @@ const RestaurantDetail = () => {
                         ),
                         React.createElement('div', { className: 'relative' },
                             React.createElement('img', {
-                                src: getRestaurantImage({ imageKeyword: item.imageKeyword || 'indian food' }),
+                                src: getMenuItemImage(item.imageKeyword || 'indian food'),
                                 alt: item.name, keyword: item.imageKeyword || 'indian food',
-                                className: 'w-24 h-24 rounded-xl object-cover'
+                                className: 'w-24 h-24 rounded-xl object-cover',
+                                onError: (e) => { e.target.src = getMenuItemImage('indian food'); }
                             }),
                             React.createElement('button', {
                                 className: 'add-btn',
@@ -995,11 +1075,11 @@ const RestaurantDetail = () => {
 };
 const CheckoutPage = () => {
     const [cart, setCart] = useState(() => safeStorage.getJSON('zomato_cart', { restaurantId: null, restaurantName: '', items: [], coupon: null }));
-    const [step, setStep] = useState(1);
     const [orderPlaced, setOrderPlaced] = useState(false);
     const [orderId, setOrderId] = useState('');
     const [form, setForm] = useState({ name: '', phone: '', address: '', city: '', pincode: '' });
     const [errors, setErrors] = useState({});
+    const [selectedPayment, setSelectedPayment] = useState('Cash on Delivery');
     const [couponCode, setCouponCode] = useState('');
     const [appliedCoupon, setAppliedCoupon] = useState(cart.coupon || null);
     const addToast = React.useContext(ToastContext);
@@ -1055,7 +1135,7 @@ const CheckoutPage = () => {
     }
 
     if (orderPlaced) {
-        return React.createElement('div', { className: 'text-center py-20 animate-fadeSlideUp' },
+        return React.createElement('div', { className: 'text-center py-20' },
             React.createElement('div', { className: 'text-6xl mb-4' }, '🎉'),
             React.createElement('h2', { className: 'text-2xl font-bold mb-2' }, 'Order Placed Successfully!'),
             React.createElement('p', { className: 'text-gray-600 mb-4' }, 'Order ID: ', React.createElement('span', { className: 'font-mono font-bold' }, orderId)),
@@ -1064,70 +1144,65 @@ const CheckoutPage = () => {
     }
 
     return React.createElement('div', { className: 'max-w-4xl mx-auto px-4 py-8' },
-        React.createElement('div', { className: 'flex gap-2 mb-8' },
-            [1, 2, 3].map(s =>
-                React.createElement('div', {
-                    key: s, className: 'flex-1 py-2 text-center rounded-full text-sm font-semibold ' +
-                    (s < step ? 'bg-green-500 text-white' : s === step ? 'bg-red-500 text-white' : 'bg-gray-200 text-gray-500')
-                }, s === 1 ? 'Delivery' : s === 2 ? 'Payment' : 'Review')
-            )
-        ),
-        step === 1 && React.createElement('div', { className: 'bg-white rounded-2xl shadow p-6' },
-            React.createElement('h3', { className: 'text-xl font-bold mb-4' }, 'Delivery Details'),
-            React.createElement('div', { className: 'grid grid-cols-1 md:grid-cols-2 gap-4' },
-                ['name', 'phone', 'address', 'city', 'pincode'].map(field =>
-                    React.createElement('div', { key: field, className: field === 'address' ? 'md:col-span-2' : '' },
-                        React.createElement('label', { className: 'form-label' }, field.charAt(0).toUpperCase() + field.slice(1)),
-                        React.createElement('input', {
-                            type: 'text', value: form[field], onChange: (e) => setForm({ ...form, [field]: e.target.value }),
-                            placeholder: 'Enter ' + field, className: 'form-input' + (errors[field] ? ' border-red-500' : '')
-                        }),
-                        errors[field] && React.createElement('p', { className: 'form-error' }, errors[field])
+        React.createElement('div', { className: 'bg-white rounded-2xl shadow-lg p-8' },
+            React.createElement('h2', { className: 'text-2xl font-bold mb-6 text-center', style: { color: '#E23744' } }, 'Checkout'),
+            
+            React.createElement('div', { className: 'mb-6' },
+                React.createElement('h3', { className: 'text-lg font-bold mb-4 pb-2', style: { borderBottom: '2px solid #E23744', color: '#1F2937' } }, '📍 Delivery Details'),
+                React.createElement('div', { className: 'grid grid-cols-1 md:grid-cols-2 gap-4' },
+                    ['name', 'phone', 'address', 'city', 'pincode'].map(field =>
+                        React.createElement('div', { key: field, className: field === 'address' || field === 'name' ? 'md:col-span-2' : '' },
+                            React.createElement('label', { className: 'text-sm font-semibold text-gray-600 mb-1 block' }, field.charAt(0).toUpperCase() + field.slice(1)),
+                            React.createElement('input', {
+                                type: 'text', value: form[field], onChange: (e) => setForm({ ...form, [field]: e.target.value }),
+                                placeholder: 'Enter ' + field, className: 'w-full p-3 border-2 rounded-xl text-sm outline-none transition-all' + (errors[field] ? ' border-red-500' : ' border-gray-200 focus:border-red-500')
+                            }),
+                            errors[field] && React.createElement('p', { className: 'text-red-500 text-xs mt-1' }, errors[field])
+                        )
                     )
                 )
             ),
-            React.createElement('button', { className: 'btn-red w-full mt-6', onClick: () => validate() && setStep(2) }, 'Continue to Payment →')
-        ),
-        step === 2 && React.createElement('div', { className: 'bg-white rounded-2xl shadow p-6' },
-            React.createElement('h3', { className: 'text-xl font-bold mb-4' }, 'Payment Method'),
-            React.createElement('div', { className: 'space-y-3' },
-                ['Cash on Delivery', 'UPI', 'Credit/Debit Card'].map(method =>
-                    React.createElement('div', { key: method, className: 'p-4 border-2 border-gray-200 rounded-xl cursor-pointer hover:border-red-500 transition-colors' },
-                        React.createElement('span', { className: 'font-semibold' }, method)
+
+            React.createElement('div', { className: 'mb-6' },
+                React.createElement('h3', { className: 'text-lg font-bold mb-4 pb-2', style: { borderBottom: '2px solid #E23744', color: '#1F2937' } }, '💳 Payment Method'),
+                React.createElement('div', { className: 'flex flex-wrap gap-3' },
+                    ['Cash on Delivery', 'UPI', 'Credit/Debit Card'].map(method =>
+                        React.createElement('div', { key: method, className: 'flex-1 min-w-[140px] p-4 border-2 rounded-xl cursor-pointer transition-all text-center', style: { borderColor: selectedPayment === method ? '#E23744' : '#E5E7EB', backgroundColor: selectedPayment === method ? '#FEF2F2' : 'white' }, onClick: () => setSelectedPayment(method) },
+                            React.createElement('span', { className: 'font-semibold text-sm', style: { color: selectedPayment === method ? '#E23744' : '#374151' } }, method)
+                        )
                     )
                 )
             ),
-            React.createElement('div', { className: 'flex gap-4 mt-6' },
-                React.createElement('button', { className: 'btn-outline flex-1', onClick: () => setStep(1) }, '← Back'),
-                React.createElement('button', { className: 'btn-red flex-1', onClick: () => setStep(3) }, 'Review Order →')
-            )
-        ),
-        step === 3 && React.createElement('div', { className: 'bg-white rounded-2xl shadow p-6' },
-            React.createElement('h3', { className: 'text-xl font-bold mb-4' }, 'Order Summary'),
-            cart.items.map(item =>
-                React.createElement('div', { key: item.id, className: 'flex justify-between py-3 border-b border-gray-100' },
-                    React.createElement('span', {}, item.qty, 'x ', item.name),
-                    React.createElement('span', { className: 'font-semibold' }, '₹', item.price * item.qty)
-                )
-            ),
-            React.createElement('div', { className: 'my-4 p-4 bg-gray-50 rounded-xl' },
-                React.createElement('div', { className: 'flex gap-2' },
-                    React.createElement('input', { type: 'text', value: couponCode, onChange: (e) => setCouponCode(e.target.value), placeholder: 'Coupon code', className: 'form-input flex-1' }),
-                    React.createElement('button', { className: 'btn-outline', onClick: applyCoupon }, 'Apply')
+
+            React.createElement('div', { className: 'mb-6' },
+                React.createElement('h3', { className: 'text-lg font-bold mb-4 pb-2', style: { borderBottom: '2px solid #E23744', color: '#1F2937' } }, '🛒 Order Summary'),
+                cart.items.map(item =>
+                    React.createElement('div', { key: item.id, className: 'flex justify-between py-3 border-b border-gray-100' },
+                        React.createElement('span', { className: 'text-gray-700' }, item.qty, 'x ', item.name),
+                        React.createElement('span', { className: 'font-semibold' }, '₹', item.price * item.qty)
+                    )
                 ),
-                appliedCoupon && React.createElement('p', { className: 'text-green-600 text-sm mt-2' }, '✓ ', appliedCoupon.label, ' applied!')
+                React.createElement('div', { className: 'my-4 p-4 bg-gray-50 rounded-xl' },
+                    React.createElement('div', { className: 'flex gap-2' },
+                        React.createElement('input', { type: 'text', value: couponCode, onChange: (e) => setCouponCode(e.target.value), placeholder: 'Enter coupon code', className: 'flex-1 p-3 border-2 rounded-xl text-sm outline-none transition-all border-gray-200 focus:border-red-500' }),
+                        React.createElement('button', { className: 'px-6 py-2 rounded-xl font-semibold text-sm cursor-pointer border-2', style: { color: '#E23744', borderColor: '#E23744', backgroundColor: 'white' }, onClick: applyCoupon }, 'Apply')
+                    ),
+                    appliedCoupon && React.createElement('p', { className: 'text-green-600 text-sm mt-2 font-semibold' }, '✓ ', appliedCoupon.label, ' applied!')
+                ),
+                React.createElement('div', { className: 'space-y-2 py-2' },
+                    React.createElement('div', { className: 'flex justify-between text-sm' }, React.createElement('span', { className: 'text-gray-600' }, 'Subtotal'), React.createElement('span', {}, '₹', subtotal)),
+                    discount > 0 && React.createElement('div', { className: 'flex justify-between text-sm text-green-600' }, React.createElement('span', {}, 'Discount'), React.createElement('span', {}, '-₹', discount)),
+                    React.createElement('div', { className: 'flex justify-between text-sm' }, React.createElement('span', { className: 'text-gray-600' }, 'Delivery Fee'), React.createElement('span', {}, deliveryFee === 0 ? 'FREE' : '₹' + deliveryFee)),
+                    React.createElement('div', { className: 'flex justify-between text-sm' }, React.createElement('span', { className: 'text-gray-600' }, 'Taxes & Charges'), React.createElement('span', {}, '₹', taxes)),
+                    React.createElement('div', { className: 'flex justify-between font-bold text-lg pt-3 border-t-2 border-gray-200', style: { color: '#E23744' } }, React.createElement('span', {}, 'Total'), React.createElement('span', {}, '₹', total))
+                )
             ),
-            React.createElement('div', { className: 'space-y-2 py-4' },
-                React.createElement('div', { className: 'flex justify-between' }, React.createElement('span', {}, 'Subtotal'), React.createElement('span', {}, '₹', subtotal)),
-                discount > 0 && React.createElement('div', { className: 'flex justify-between text-green-600' }, React.createElement('span', {}, 'Discount'), React.createElement('span', {}, '-₹', discount)),
-                React.createElement('div', { className: 'flex justify-between' }, React.createElement('span', {}, 'Delivery Fee'), React.createElement('span', {}, deliveryFee === 0 ? 'FREE' : '₹' + deliveryFee)),
-                React.createElement('div', { className: 'flex justify-between' }, React.createElement('span', {}, 'Taxes & Charges'), React.createElement('span', {}, '₹', taxes)),
-                React.createElement('div', { className: 'flex justify-between font-bold text-lg pt-2 border-t border-gray-200' }, React.createElement('span', {}, 'Total'), React.createElement('span', {}, '₹', total))
-            ),
-            React.createElement('div', { className: 'flex gap-4' },
-                React.createElement('button', { className: 'btn-outline flex-1', onClick: () => setStep(2) }, '← Back'),
-                React.createElement('button', { className: 'btn-red flex-1', onClick: placeOrder }, 'Place Order • ₹', total)
-            )
+
+            React.createElement('button', {
+                className: 'w-full py-4 rounded-xl font-bold text-lg text-white cursor-pointer transition-all hover:scale-[1.02]',
+                style: { backgroundColor: '#E23744', boxShadow: '0 8px 24px rgba(226,55,68,0.4)' },
+                onClick: placeOrder
+            }, 'Place Order • ₹', total)
         )
     );
 };
@@ -1226,10 +1301,10 @@ const ProfilePage = () => {
                     React.createElement('div', { className: 'space-y-4' },
                         ['name', 'phone', 'email'].map(field =>
                             React.createElement('div', { key: field },
-                                React.createElement('label', { className: 'form-label' }, field.charAt(0).toUpperCase() + field.slice(1)),
+                                React.createElement('label', { className: 'text-sm font-semibold text-gray-600 mb-1 block' }, field.charAt(0).toUpperCase() + field.slice(1)),
                                 React.createElement('input', {
                                     type: 'text', value: user[field] || '', onChange: (e) => setUser({ ...user, [field]: e.target.value }),
-                                    className: 'form-input'
+                                    className: 'w-full p-3 border-2 rounded-xl text-sm outline-none transition-all border-gray-200 focus:border-red-500'
                                 })
                             )
                         ),
@@ -1271,7 +1346,7 @@ const FoodImage = ({ src, alt, keyword, className, ...props }) => {
         const nextLevel = fallbackLevel + 1;
         setFallbackLevel(nextLevel);
         if (nextLevel === 1) {
-            setImgSrc('https://source.unsplash.com/400x300/?' + encodeURIComponent(keyword || 'indian food'));
+            setImgSrc(getMenuItemImage(keyword || 'indian food'));
         } else if (nextLevel === 2) {
             setImgSrc('https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=400&h=300&fit=crop');
         } else {
