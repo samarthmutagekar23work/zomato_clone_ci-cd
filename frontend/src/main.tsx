@@ -450,6 +450,7 @@ const App: React.FC = () => {
   const [currentOrder, setCurrentOrder] = useState<Order | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
+  const [selectedCuisine, setSelectedCuisine] = useState<string>('All');
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [deliveryDetails, setDeliveryDetails] = useState({ address: '', phone: '', instructions: '' });
   const [paymentMethod, setPaymentMethod] = useState<'card' | 'upi' | 'cod'>('card');
@@ -468,12 +469,16 @@ const App: React.FC = () => {
 
   // Filter restaurants
   const filteredRestaurants = useMemo(() => {
-    return restaurants.filter(r =>
-      r.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      r.cuisine.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      r.locality.toLowerCase().includes(searchQuery.toLowerCase())
-    );
-  }, [searchQuery]);
+    return restaurants.filter(r => {
+      const matchesSearch = !searchQuery ||
+        r.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        r.cuisine.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        r.locality.toLowerCase().includes(searchQuery.toLowerCase());
+      const matchesCuisine = selectedCuisine === 'All' ||
+        r.cuisine.toLowerCase().includes(selectedCuisine.toLowerCase());
+      return matchesSearch && matchesCuisine;
+    });
+  }, [searchQuery, selectedCuisine]);
 
   // Get cart total
   const cartTotal = useMemo(() => {
@@ -1646,21 +1651,17 @@ const App: React.FC = () => {
         {/* Cities Section */}
         <div style={{ marginTop: '40px', position: 'relative', zIndex: 2 }}>
           <h3 style={{ color: 'rgba(255,255,255,0.8)', fontSize: '18px', fontWeight: 600, margin: '0 0 16px', textAlign: 'center' }}>
-            🌆 Popular localities
+            🌆 Popular cities
           </h3>
           <div className="cities-grid" style={styles.citiesGrid}>
             {[
-              { name: 'Koramangala', img: 'https://images.unsplash.com/photo-1599761230913-1ec5c01255d4?w=300&h=180&fit=crop&q=80', count: restaurants.filter(r => r.locality === 'Koramangala').length },
-              { name: 'Indiranagar', img: 'https://images.unsplash.com/photo-1587474260584-136574528ed5?w=300&h=180&fit=crop&q=80', count: restaurants.filter(r => r.locality === 'Indiranagar').length },
-              { name: 'HSR Layout', img: 'https://images.unsplash.com/photo-1577415124269-fc114f0f4c2e?w=300&h=180&fit=crop&q=80', count: restaurants.filter(r => r.locality === 'HSR Layout').length },
-              { name: 'Whitefield', img: 'https://images.unsplash.com/photo-1523731407965-2430cd12f5e4?w=300&h=180&fit=crop&q=80', count: restaurants.filter(r => r.locality === 'Whitefield').length },
-              { name: 'Jayanagar', img: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=300&h=180&fit=crop&q=80', count: restaurants.filter(r => r.locality === 'Jayanagar').length },
-              { name: 'MG Road', img: 'https://images.unsplash.com/photo-1580584127374-9276b1e9959b?w=300&h=180&fit=crop&q=80', count: restaurants.filter(r => r.locality === 'MG Road').length },
-              { name: 'Connaught Place', img: 'https://images.unsplash.com/photo-1598951235041-5e8f7a9ae440?w=300&h=180&fit=crop&q=80', count: restaurants.filter(r => r.locality === 'Connaught Place').length },
-              { name: 'Bandra West', img: 'https://images.unsplash.com/photo-1570168007204-dfb528c6958f?w=300&h=180&fit=crop&q=80', count: restaurants.filter(r => r.locality === 'Bandra West').length },
-              { name: 'Hitech City', img: 'https://images.unsplash.com/photo-1596178060671-7a80dc8053ed?w=300&h=180&fit=crop&q=80', count: restaurants.filter(r => r.locality === 'Hitech City').length },
-              { name: 'T Nagar', img: 'https://images.unsplash.com/photo-1589802829985-817e51171b92?w=300&h=180&fit=crop&q=80', count: restaurants.filter(r => r.locality === 'T Nagar').length },
-              { name: 'Salt Lake', img: 'https://images.unsplash.com/photo-1560931684-3bc4aa8c630d?w=300&h=180&fit=crop&q=80', count: restaurants.filter(r => r.locality === 'Salt Lake').length },
+              { name: 'Mumbai', img: 'https://images.unsplash.com/photo-1570168007204-dfb528c6958f?w=300&h=180&fit=crop&q=80', count: restaurants.filter(r => ['Bandra West'].includes(r.locality)).length },
+              { name: 'Pune', img: 'https://images.unsplash.com/photo-1523731407965-2430cd12f5e4?w=300&h=180&fit=crop&q=80', count: 12 },
+              { name: 'Bengaluru', img: 'https://images.unsplash.com/photo-1599761230913-1ec5c01255d4?w=300&h=180&fit=crop&q=80', count: restaurants.filter(r => ['Koramangala', 'Indiranagar', 'HSR Layout', 'Whitefield', 'Jayanagar', 'MG Road'].includes(r.locality)).length },
+              { name: 'Delhi', img: 'https://images.unsplash.com/photo-1598951235041-5e8f7a9ae440?w=300&h=180&fit=crop&q=80', count: restaurants.filter(r => ['Connaught Place'].includes(r.locality)).length },
+              { name: 'Chennai', img: 'https://images.unsplash.com/photo-1589802829985-817e51171b92?w=300&h=180&fit=crop&q=80', count: restaurants.filter(r => ['T Nagar'].includes(r.locality)).length },
+              { name: 'Hyderabad', img: 'https://images.unsplash.com/photo-1596178060671-7a80dc8053ed?w=300&h=180&fit=crop&q=80', count: restaurants.filter(r => ['Hitech City'].includes(r.locality)).length },
+              { name: 'Kolkata', img: 'https://images.unsplash.com/photo-1560931684-3bc4aa8c630d?w=300&h=180&fit=crop&q=80', count: restaurants.filter(r => ['Salt Lake'].includes(r.locality)).length },
             ].map((city, idx) => (
               <div
                 key={city.name}
@@ -1689,6 +1690,63 @@ const App: React.FC = () => {
         </div>
       </div>
 
+      {/* Cuisine Categories */}
+      <div style={{ marginTop: '32px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '20px' }}>
+          <span style={{ width: '4px', height: '24px', background: '#E23744', borderRadius: '2px' }} />
+          <h2 style={{ margin: 0, color: '#e5e7eb', fontSize: '22px', fontWeight: 700 }}>Categories</h2>
+          <span style={{ color: 'rgba(255,255,255,0.3)', fontSize: '14px' }}>— What's on your mind?</span>
+        </div>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(140px, 1fr))', gap: '12px' }}>
+          {[
+            { name: 'All', icon: '🍽️', desc: 'All restaurants' },
+            { name: 'North Indian', icon: '🍛', desc: 'Curries & breads' },
+            { name: 'Chinese', icon: '🥟', desc: 'Noodles & dumplings' },
+            { name: 'South Indian', icon: '🥞', desc: 'Dosa & idli' },
+            { name: 'Italian', icon: '🍕', desc: 'Pizza & pasta' },
+            { name: 'Mughlai', icon: '🍗', desc: 'Rich & creamy' },
+            { name: 'Burgers', icon: '🍔', desc: 'American fast food' },
+            { name: 'Thai', icon: '🍜', desc: 'Curries & noodles' },
+            { name: 'Bakery', icon: '🥐', desc: 'Cafe & desserts' },
+            { name: 'Mexican', icon: '🌮', desc: 'Tacos & nachos' },
+            { name: 'Hyderabadi', icon: '🍚', desc: 'Biryani & kebabs' },
+            { name: 'Bengali', icon: '🐟', desc: 'Fish & sweets' },
+          ].map((cuisine, i) => (
+            <div
+              key={cuisine.name}
+              onClick={() => setSelectedCuisine(cuisine.name)}
+              style={{
+                background: selectedCuisine === cuisine.name
+                  ? 'linear-gradient(135deg, rgba(226,55,68,0.15), rgba(226,55,68,0.05))'
+                  : 'linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02))',
+                borderRadius: '16px', padding: '16px 12px', textAlign: 'center',
+                cursor: 'pointer', border: selectedCuisine === cuisine.name
+                  ? '1px solid rgba(226,55,68,0.3)' : '1px solid rgba(255,255,255,0.06)',
+                transition: 'all 0.3s ease', animation: `cardFadeIn 0.4s ease-out ${0.03 * i}s both`,
+              }}
+              onMouseEnter={e => {
+                e.currentTarget.style.transform = 'translateY(-4px)';
+                e.currentTarget.style.borderColor = 'rgba(226,55,68,0.2)';
+                if (selectedCuisine !== cuisine.name) {
+                  e.currentTarget.style.background = 'rgba(255,255,255,0.08)';
+                }
+              }}
+              onMouseLeave={e => {
+                e.currentTarget.style.transform = 'translateY(0)';
+                e.currentTarget.style.borderColor = selectedCuisine === cuisine.name ? 'rgba(226,55,68,0.3)' : 'rgba(255,255,255,0.06)';
+                if (selectedCuisine !== cuisine.name) {
+                  e.currentTarget.style.background = 'linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02))';
+                }
+              }}
+            >
+              <div style={{ fontSize: '32px', marginBottom: '6px', lineHeight: 1 }}>{cuisine.icon}</div>
+              <div style={{ fontSize: '13px', fontWeight: 600, color: selectedCuisine === cuisine.name ? '#fff' : 'rgba(255,255,255,0.8)', marginBottom: '2px' }}>{cuisine.name}</div>
+              <div style={{ fontSize: '10px', color: 'rgba(255,255,255,0.35)' }}>{cuisine.desc}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+
       {/* Restaurants section */}
       <div style={{ position: 'relative' as const }}>
         <span style={{ position: 'absolute', top: '-10%', left: '-2%', fontSize: '28px', animation: 'menuItemFloat 8s ease-in-out infinite', opacity: 0.08, pointerEvents: 'none' }}>🍽️</span>
@@ -1696,9 +1754,24 @@ const App: React.FC = () => {
         <span style={{ position: 'absolute', bottom: '5%', left: '5%', fontSize: '20px', animation: 'menuItemFloat 7s ease-in-out infinite 2s', opacity: 0.07, pointerEvents: 'none' }}>🔥</span>
         <span style={{ position: 'absolute', bottom: '30%', right: '-1%', fontSize: '24px', animation: 'menuItemFloat 9s ease-in-out infinite 0.5s', opacity: 0.06, pointerEvents: 'none' }}>✨</span>
 
-        <h2 style={{ color: '#e5e7eb', marginTop: '48px', fontSize: '22px', fontWeight: 700, animation: 'fadeSlideUp 0.6s ease-out' }}>
-          Restaurants near you ({filteredRestaurants.length})
-        </h2>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginTop: '32px', marginBottom: '0' }}>
+          <span style={{ width: '4px', height: '24px', background: '#E23744', borderRadius: '2px' }} />
+          <h2 style={{ margin: 0, color: '#e5e7eb', fontSize: '22px', fontWeight: 700 }}>
+            Restaurants near you
+          </h2>
+          {selectedCuisine !== 'All' && (
+            <span style={{
+              padding: '4px 12px', borderRadius: '8px', fontSize: '12px', fontWeight: 600,
+              background: 'rgba(226,55,68,0.15)', color: '#E23744',
+              border: '1px solid rgba(226,55,68,0.2)',
+            }}>
+              {selectedCuisine}
+            </span>
+          )}
+          <span style={{ color: 'rgba(255,255,255,0.3)', fontSize: '14px', marginLeft: 'auto' }}>
+            {filteredRestaurants.length} {filteredRestaurants.length === 1 ? 'restaurant' : 'restaurants'}
+          </span>
+        </div>
 
       <div style={styles.restaurantGrid}>
         {filteredRestaurants.map(restaurant => (
@@ -3221,15 +3294,72 @@ const App: React.FC = () => {
       { id: 'hp10', name: 'Amul Butter Salted, 500 gm', price: 282.45, unit: '1 pack', veg: true, category: 'Dairy', img: 'https://images.unsplash.com/photo-1589985270826-4b7bb135bc9d?w=300&h=200&fit=crop' },
       { id: 'hp11', name: 'Basmati Rice, 5 Kg', price: 525, unit: '5 kg', veg: true, category: 'Rice', img: 'https://images.unsplash.com/photo-1586201375761-83865001e31c?w=300&h=200&fit=crop' },
       { id: 'hp12', name: 'Toor Dal (Arhar), 1 Kg', price: 145, unit: '1 kg', veg: true, category: 'Pulses', img: 'https://images.unsplash.com/photo-1515543904379-3d0ffe0d5a7e?w=300&h=200&fit=crop' },
+      { id: 'hp13', name: 'Fresh Tomatoes (Red), 1 Kg', price: 38, unit: '1 kg', veg: true, category: 'Fruits & Vegetables', img: 'https://images.unsplash.com/photo-1592924357228-91a4daadcfea?w=300&h=200&fit=crop' },
+      { id: 'hp14', name: 'Fresh Onions (Big), 1 Kg', price: 32, unit: '1 kg', veg: true, category: 'Fruits & Vegetables', img: 'https://images.unsplash.com/photo-1508747703725-4f849b0af0f0?w=300&h=200&fit=crop' },
+      { id: 'hp15', name: 'Fresh Potatoes (Big), 1 Kg', price: 28, unit: '1 kg', veg: true, category: 'Fruits & Vegetables', img: 'https://images.unsplash.com/photo-1518977676601-b53f82aba655?w=300&h=200&fit=crop' },
+      { id: 'hp16', name: 'Fresh Whole Milk, 1 Ltr', price: 56, unit: '1 Ltr', veg: true, category: 'Dairy', img: 'https://images.unsplash.com/photo-1563636619-e9143da7973b?w=300&h=200&fit=crop' },
+      { id: 'hp17', name: 'Mozzarella Cheese Block, 1 Kg', price: 420, unit: '1 kg', veg: true, category: 'Dairy', img: 'https://images.unsplash.com/photo-1634487359989-3e90c9432133?w=300&h=200&fit=crop' },
+      { id: 'hp18', name: 'Fresh Paneer, 1 Kg', price: 340, unit: '1 kg', veg: true, category: 'Dairy', img: 'https://images.unsplash.com/photo-1631451095765-2c91616fc9e6?w=300&h=200&fit=crop' },
+      { id: 'hp19', name: 'Farm Fresh Eggs (Tray of 30)', price: 195, unit: '30 pc', veg: false, category: 'Chicken & Eggs', img: 'https://images.unsplash.com/photo-1582722872445-44dc5f7e3c8f?w=300&h=200&fit=crop' },
+      { id: 'hp20', name: 'Boneless Chicken Breast, 1 Kg', price: 350, unit: '1 kg', veg: false, category: 'Chicken & Eggs', img: 'https://images.unsplash.com/photo-1604503468506-a8da13d82791?w=300&h=200&fit=crop' },
+      { id: 'hp21', name: 'Tomato Ketchup, 1 Kg Pouch', price: 115, unit: '1 kg', veg: true, category: 'Sauces', img: 'https://images.unsplash.com/photo-1608392604478-5bb58e0c5e1b?w=300&h=200&fit=crop' },
+      { id: 'hp22', name: 'Mayonnaise (Veg), 1 Kg', price: 210, unit: '1 kg', veg: true, category: 'Sauces', img: 'https://images.unsplash.com/photo-1623131670774-ff06c0b7d922?w=300&h=200&fit=crop' },
+      { id: 'hp23', name: 'Soy Sauce, 1 Ltr', price: 95, unit: '1 Ltr', veg: true, category: 'Sauces', img: 'https://images.unsplash.com/photo-1472476443507-c7a5948772fc?w=300&h=200&fit=crop' },
+      { id: 'hp24', name: 'Canned Peeled Tomatoes, 2.5 Kg', price: 245, unit: '1 can', veg: true, category: 'Canned Items', img: 'https://images.unsplash.com/photo-1580597153911-e284dc2b3f43?w=300&h=200&fit=crop' },
+      { id: 'hp25', name: 'Canned Sweet Corn, 850 gm', price: 135, unit: '1 can', veg: true, category: 'Canned Items', img: 'https://images.unsplash.com/photo-1551754655-cd27e38d2076?w=300&h=200&fit=crop' },
+      { id: 'hp26', name: 'Canned Kidney Beans, 400 gm', price: 85, unit: '1 can', veg: true, category: 'Canned Items', img: 'https://images.unsplash.com/photo-1515543904379-3d0ffe0d5a7e?w=300&h=200&fit=crop' },
+      { id: 'hp27', name: 'Disposable Food Container (100 pc)', price: 299, unit: '100 pc', veg: true, category: 'Packaging', img: 'https://images.unsplash.com/photo-1587293852726-70cdb56c2866?w=300&h=200&fit=crop' },
+      { id: 'hp28', name: 'Eco-Friendly Carry Bags (200 pc)', price: 349, unit: '200 pc', veg: true, category: 'Packaging', img: 'https://images.unsplash.com/photo-1544027993-37dbfe43562a?w=300&h=200&fit=crop' },
+      { id: 'hp29', name: 'Cling Wrap (300 mtr)', price: 225, unit: '1 roll', veg: true, category: 'Packaging', img: 'https://images.unsplash.com/photo-1585386959984-a4155224a1ad?w=300&h=200&fit=crop' },
+      { id: 'hp30', name: 'Custom Printed Food Boxes (50 pc)', price: 599, unit: '50 pc', veg: true, category: 'Custom Packaging', img: 'https://images.unsplash.com/photo-1612815154858-60aa4c59eaa4?w=300&h=200&fit=crop' },
+      { id: 'hp31', name: 'Brown Kraft Boxes (100 pc)', price: 449, unit: '100 pc', veg: true, category: 'Custom Packaging', img: 'https://images.unsplash.com/photo-1607623814075-e51df1bdc82f?w=300&h=200&fit=crop' },
+      { id: 'hp32', name: 'Sticker Labels (500 pc)', price: 199, unit: '500 pc', veg: true, category: 'Custom Packaging', img: 'https://images.unsplash.com/photo-1597848212624-a19eb35e2651?w=300&h=200&fit=crop' },
+      { id: 'hp33', name: 'Refined Sunflower Oil, 15 Ltr', price: 1545, unit: '15 Ltr', veg: true, category: 'Edible Oils', img: 'https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=300&h=200&fit=crop' },
+      { id: 'hp34', name: 'Extra Virgin Olive Oil, 1 Ltr', price: 650, unit: '1 Ltr', veg: true, category: 'Edible Oils', img: 'https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=300&h=200&fit=crop' },
+      { id: 'hp35', name: 'Mustard Oil, 5 Ltr', price: 595, unit: '5 Ltr', veg: true, category: 'Edible Oils', img: 'https://images.unsplash.com/photo-1519368358672-25b03afee3bf?w=300&h=200&fit=crop' },
+      { id: 'hp36', name: 'Frozen French Fries, 2 Kg', price: 345, unit: '2 kg', veg: true, category: 'Frozen Food', img: 'https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=300&h=200&fit=crop' },
+      { id: 'hp37', name: 'Frozen Mixed Vegetables, 1 Kg', price: 120, unit: '1 kg', veg: true, category: 'Frozen Food', img: 'https://images.unsplash.com/photo-1580915411954-282cb1b0d780?w=300&h=200&fit=crop' },
+      { id: 'hp38', name: 'Frozen Paratha (Aloo, 30 pc)', price: 310, unit: '30 pc', veg: true, category: 'Frozen Food', img: 'https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=300&h=200&fit=crop' },
+      { id: 'hp39', name: 'White Bread Loaf, 600 gm', price: 45, unit: '1 loaf', veg: true, category: 'Bakery', img: 'https://images.unsplash.com/photo-1509365465985-25d11c17e812?w=300&h=200&fit=crop' },
+      { id: 'hp40', name: 'Pizza Base (10 inch, Pack of 10)', price: 285, unit: '10 pc', veg: true, category: 'Bakery', img: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?w=300&h=200&fit=crop' },
+      { id: 'hp41', name: 'Garlic Bread Stick (Pack of 12)', price: 195, unit: '12 pc', veg: true, category: 'Bakery', img: 'https://images.unsplash.com/photo-1619535860434-ba1d8fa12584?w=300&h=200&fit=crop' },
+      { id: 'hp42', name: 'Commercial Dish Soap, 5 Ltr', price: 375, unit: '5 Ltr', veg: true, category: 'Cleaning', img: 'https://images.unsplash.com/photo-1585421514284-efb74c2b69ba?w=300&h=200&fit=crop' },
+      { id: 'hp43', name: 'Floor Cleaner Concentrate, 5 Ltr', price: 290, unit: '5 Ltr', veg: true, category: 'Cleaning', img: 'https://images.unsplash.com/photo-1585421514284-efb74c2b69ba?w=300&h=200&fit=crop' },
+      { id: 'hp44', name: 'Professional Hand Wash, 5 Ltr', price: 345, unit: '5 Ltr', veg: true, category: 'Cleaning', img: 'https://images.unsplash.com/photo-1559827291-f3a896284a8a?w=300&h=200&fit=crop' },
+      { id: 'hp45', name: 'Coca-Cola Can (24 x 330 ml)', price: 720, unit: '24 pc', veg: true, category: 'Beverages', img: 'https://images.unsplash.com/photo-1554866585-cd94860890b7?w=300&h=200&fit=crop' },
+      { id: 'hp46', name: 'Packaged Drinking Water (24 x 1 Ltr)', price: 360, unit: '24 pc', veg: true, category: 'Beverages', img: 'https://images.unsplash.com/photo-1544145945-f90425340c7e?w=300&h=200&fit=crop' },
+      { id: 'hp47', name: 'Orange Juice Concentrate, 5 Ltr', price: 525, unit: '5 Ltr', veg: true, category: 'Beverages', img: 'https://images.unsplash.com/photo-1600271886742-f049cd451bba?w=300&h=200&fit=crop' },
+      { id: 'hp48', name: 'Whole Wheat Flour (Atta), 10 Kg', price: 320, unit: '10 kg', veg: true, category: 'Flours', img: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?w=300&h=200&fit=crop' },
+      { id: 'hp49', name: 'Besan (Gram Flour), 5 Kg', price: 285, unit: '5 kg', veg: true, category: 'Flours', img: 'https://images.unsplash.com/photo-1515543904379-3d0ffe0d5a7e?w=300&h=200&fit=crop' },
+      { id: 'hp50', name: 'Maida (All Purpose Flour), 10 Kg', price: 335, unit: '10 kg', veg: true, category: 'Flours', img: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?w=300&h=200&fit=crop' },
+      { id: 'hp51', name: 'Moong Dal (Split), 1 Kg', price: 155, unit: '1 kg', veg: true, category: 'Pulses', img: 'https://images.unsplash.com/photo-1515543904379-3d0ffe0d5a7e?w=300&h=200&fit=crop' },
+      { id: 'hp52', name: 'Chana Dal (Split), 1 Kg', price: 105, unit: '1 kg', veg: true, category: 'Pulses', img: 'https://images.unsplash.com/photo-1515543904379-3d0ffe0d5a7e?w=300&h=200&fit=crop' },
+      { id: 'hp53', name: 'Urad Dal (Whole), 1 Kg', price: 195, unit: '1 kg', veg: true, category: 'Pulses', img: 'https://images.unsplash.com/photo-1515543904379-3d0ffe0d5a7e?w=300&h=200&fit=crop' },
+      { id: 'hp54', name: 'Almonds (Badam), 1 Kg', price: 850, unit: '1 kg', veg: true, category: 'Dry Fruits', img: 'https://images.unsplash.com/photo-1604068549290-dea0e4a305ca?w=300&h=200&fit=crop' },
+      { id: 'hp55', name: 'Cashew Nuts (Whole), 1 Kg', price: 950, unit: '1 kg', veg: true, category: 'Dry Fruits', img: 'https://images.unsplash.com/photo-1559496417-e7f25cb247f3?w=300&h=200&fit=crop' },
+      { id: 'hp56', name: 'Raisins (Kishmish), 1 Kg', price: 295, unit: '1 kg', veg: true, category: 'Dry Fruits', img: 'https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=300&h=200&fit=crop' },
+      { id: 'hp57', name: 'Sona Masoori Rice, 10 Kg', price: 480, unit: '10 kg', veg: true, category: 'Rice', img: 'https://images.unsplash.com/photo-1586201375761-83865001e31c?w=300&h=200&fit=crop' },
+      { id: 'hp58', name: 'Brown Rice, 5 Kg', price: 350, unit: '5 kg', veg: true, category: 'Rice', img: 'https://images.unsplash.com/photo-1586201375761-83865001e31c?w=300&h=200&fit=crop' },
+      { id: 'hp59', name: 'Poha (Flattened Rice), 5 Kg', price: 215, unit: '5 kg', veg: true, category: 'Rice', img: 'https://images.unsplash.com/photo-1586201375761-83865001e31c?w=300&h=200&fit=crop' },
+      { id: 'hp60', name: 'Mutton Curry Cut, 1 Kg', price: 620, unit: '1 kg', veg: false, category: 'Mutton & Lamb', img: 'https://images.unsplash.com/photo-1603048297171-925c0d9b958e?w=300&h=200&fit=crop' },
+      { id: 'hp61', name: 'Lamb Chops (Rack), 1 Kg', price: 780, unit: '1 kg', veg: false, category: 'Mutton & Lamb', img: 'https://images.unsplash.com/photo-1603048297171-925c0d9b958e?w=300&h=200&fit=crop' },
+      { id: 'hp62', name: 'Mutton Mince (Keema), 1 Kg', price: 580, unit: '1 kg', veg: false, category: 'Mutton & Lamb', img: 'https://images.unsplash.com/photo-1603360946369-dc9bb6258143?w=300&h=200&fit=crop' },
+      { id: 'hp63', name: 'Fresh Salmon Fillet, 500 gm', price: 650, unit: '500 gm', veg: false, category: 'Seafood', img: 'https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?w=300&h=200&fit=crop' },
+      { id: 'hp64', name: 'Large Prawns (Cleaned), 1 Kg', price: 520, unit: '1 kg', veg: false, category: 'Seafood', img: 'https://images.unsplash.com/photo-1565680018434-513a5aa48134?w=300&h=200&fit=crop' },
+      { id: 'hp65', name: 'Pomfret Fish (Whole), 1 Kg', price: 450, unit: '1 kg', veg: false, category: 'Seafood', img: 'https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?w=300&h=200&fit=crop' },
+      { id: 'hp66', name: 'Chef Knife (8 inch)', price: 450, unit: '1 pc', veg: true, category: 'Kitchenware', img: 'https://images.unsplash.com/photo-1556909114-44e3e70034e2?w=300&h=200&fit=crop' },
+      { id: 'hp67', name: 'Cutting Board (Plastic, Large)', price: 180, unit: '1 pc', veg: true, category: 'Kitchenware', img: 'https://images.unsplash.com/photo-1594226801341-41427b4c6b27?w=300&h=200&fit=crop' },
+      { id: 'hp68', name: 'Stainless Steel Mixing Bowls (Set of 5)', price: 650, unit: '5 pc', veg: true, category: 'Kitchenware', img: 'https://images.unsplash.com/photo-1556909114-44e3e70034e2?w=300&h=200&fit=crop' },
+      { id: 'hp69', name: 'Commercial Mixer Grinder, 3 Jars', price: 4500, unit: '1 pc', veg: true, category: 'Appliances', img: 'https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=300&h=200&fit=crop' },
+      { id: 'hp70', name: 'OTG Oven, 60 Ltr', price: 8500, unit: '1 pc', veg: true, category: 'Appliances', img: 'https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=300&h=200&fit=crop' },
+      { id: 'hp71', name: 'Induction Cooktop, 2000W', price: 3200, unit: '1 pc', veg: true, category: 'Appliances', img: 'https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=300&h=200&fit=crop' },
     ];
 
-    const filteredHpProducts = selectedHpCategory === 'All'
-      ? hpProducts
-      : hpProducts.filter(p => p.category === selectedHpCategory || p.name.toLowerCase().includes(hpSearch.toLowerCase()));
-
-    const searchedHpProducts = hpSearch
-      ? hpProducts.filter(p => p.name.toLowerCase().includes(hpSearch.toLowerCase()) || p.category.toLowerCase().includes(hpSearch.toLowerCase()))
-      : filteredHpProducts;
+    const filteredHpProducts = hpProducts.filter(p => {
+      const matchesCategory = selectedHpCategory === 'All' || p.category === selectedHpCategory;
+      const matchesSearch = !hpSearch || p.name.toLowerCase().includes(hpSearch.toLowerCase()) || p.category.toLowerCase().includes(hpSearch.toLowerCase());
+      return matchesCategory && matchesSearch;
+    });
 
     const hpTestimonials = [
       { name: 'Blue Tokai Coffee Roasters', role: 'Co-Founder', quote: 'Consistent supply of high-quality ingredients, reducing wastage and stockouts. Hyperpure ensures smooth operations, improving planning and maintaining stable pricing.', img: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face', logo: 'https://images.unsplash.com/photo-1559526324-593bc073d938?w=64&h=64&fit=crop' },
@@ -3365,7 +3495,7 @@ const App: React.FC = () => {
             >See all →</button>
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))', gap: '16px' }}>
-            {(hpSearch ? searchedHpProducts : filteredHpProducts).map((prod, i) => (
+            {filteredHpProducts.map((prod, i) => (
               <div key={prod.id} style={{
                 background: 'linear-gradient(135deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.02) 100%)',
                 borderRadius: '18px', overflow: 'hidden', border: '1px solid rgba(255,255,255,0.06)',
@@ -3994,6 +4124,7 @@ const App: React.FC = () => {
     const [dtTicketQty, setDtTicketQty] = useState(1);
     const [dtBookingInfo, setDtBookingInfo] = useState({ name: '', email: '', phone: '' });
     const [dtBooked, setDtBooked] = useState<any>(null);
+    const [dtShowSuccess, setDtShowSuccess] = useState(false);
     const [dtExpandedFaq, setDtExpandedFaq] = useState<number | null>(null);
     const [dtCategory, setDtCategory] = useState('All');
     const [dtEventType, setDtEventType] = useState('All');
@@ -4085,6 +4216,8 @@ const App: React.FC = () => {
         status: 'confirmed' as const,
       };
       setDtBooked(booking);
+      setDtShowSuccess(true);
+      setTimeout(() => setDtShowSuccess(false), 4000);
       setDtBookingStep('ticket');
     };
 
@@ -4830,6 +4963,33 @@ const App: React.FC = () => {
         )}
 
         {/* Ticket Confirmation Modal */}
+        {/* Success Toast */}
+        {dtShowSuccess && (
+          <div style={{
+            position: 'fixed', top: '24px', left: '50%', transform: 'translateX(-50%)',
+            zIndex: 3000, background: 'linear-gradient(135deg, #22c55e, #16a34a)',
+            borderRadius: '16px', padding: '16px 28px', display: 'flex',
+            alignItems: 'center', gap: '14px', boxShadow: '0 8px 32px rgba(34,197,94,0.3)',
+            border: '1px solid rgba(255,255,255,0.1)',
+            animation: 'fadeSlideDown 0.5s ease-out',
+          }}>
+            <div style={{
+              width: '44px', height: '44px', borderRadius: '50%',
+              background: 'rgba(255,255,255,0.2)', display: 'flex',
+              alignItems: 'center', justifyContent: 'center', fontSize: '22px',
+              animation: 'badgeBounce 0.6s ease-in-out',
+            }}>🎬</div>
+            <div>
+              <div style={{ color: '#fff', fontWeight: 700, fontSize: '16px' }}>
+                🎉 Booking Confirmed! Enjoy the show!
+              </div>
+              <div style={{ color: 'rgba(255,255,255,0.85)', fontSize: '13px' }}>
+                📧 E-tickets sent to {dtBooked?.info?.email || 'your email'}
+              </div>
+            </div>
+          </div>
+        )}
+
         {dtBookingStep === 'ticket' && dtBooked && (
           <div style={{ position: 'fixed', inset: 0, zIndex: 2000, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
             <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.7)', backdropFilter: 'blur(6px)' }} />
@@ -4849,7 +5009,9 @@ const App: React.FC = () => {
                 <span style={{ fontSize: '36px' }}>🎫</span>
               </div>
               <h2 style={{ color: '#22c55e', fontSize: '24px', fontWeight: 800, margin: '0 0 4px' }}>Booking Confirmed! 🎉</h2>
-              <p style={{ color: 'rgba(255,255,255,0.4)', fontSize: '14px', margin: '0 0 20px' }}>Your tickets have been booked successfully</p>
+              <p style={{ color: 'rgba(255,255,255,0.4)', fontSize: '14px', margin: '0 0 4px' }}>Your tickets have been booked successfully</p>
+              <p style={{ color: '#facc15', fontSize: '18px', fontWeight: 700, margin: '0 0 4px' }}>🎬 Enjoy the show! 🍿</p>
+              <p style={{ color: 'rgba(255,255,255,0.35)', fontSize: '13px', margin: '0 0 20px' }}>📧 E-tickets sent to {dtBooked.info.email}</p>
 
               <div style={{
                 background: 'rgba(255,255,255,0.04)', borderRadius: '16px',
@@ -5056,14 +5218,56 @@ const App: React.FC = () => {
             )}
           </button>
           <button
-            style={currentPage === 'hyperpure' ? { ...styles.navButton, ...styles.navButtonActive } : styles.navButton}
+            style={{
+              ...styles.navButton,
+              ...(currentPage === 'hyperpure'
+                ? {
+                    background: 'linear-gradient(135deg, rgba(34,197,94,0.25), rgba(16,185,129,0.12))',
+                    border: '1px solid rgba(34,197,94,0.35)',
+                    color: '#fff',
+                    boxShadow: '0 0 24px rgba(34,197,94,0.25), inset 0 0 20px rgba(34,197,94,0.06)',
+                  }
+                : {
+                    background: 'linear-gradient(135deg, rgba(34,197,94,0.08), rgba(16,185,129,0.04))',
+                    border: '1px solid rgba(34,197,94,0.12)',
+                    color: 'rgba(34,197,94,0.85)',
+                  }),
+            }}
             className={currentPage === 'hyperpure' ? 'nav-btn-active' : ''}
             onClick={() => setCurrentPage('hyperpure')}
-            onMouseEnter={e => { if (currentPage !== 'hyperpure') { e.currentTarget.style.background = 'rgba(255,255,255,0.06)'; e.currentTarget.style.color = '#fff'; e.currentTarget.style.transform = 'translateY(-1px)'; } }}
-            onMouseLeave={e => { if (currentPage !== 'hyperpure') { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = 'rgba(255,255,255,0.65)'; e.currentTarget.style.transform = 'translateY(0)'; } }}
+            onMouseEnter={e => {
+              e.currentTarget.style.background = 'linear-gradient(135deg, rgba(34,197,94,0.18), rgba(16,185,129,0.1))';
+              e.currentTarget.style.color = '#fff';
+              e.currentTarget.style.transform = 'translateY(-2px)';
+              e.currentTarget.style.boxShadow = '0 4px 20px rgba(34,197,94,0.2)';
+              e.currentTarget.style.borderColor = 'rgba(34,197,94,0.3)';
+            }}
+            onMouseLeave={e => {
+              if (currentPage !== 'hyperpure') {
+                e.currentTarget.style.background = 'linear-gradient(135deg, rgba(34,197,94,0.08), rgba(16,185,129,0.04))';
+                e.currentTarget.style.color = 'rgba(34,197,94,0.85)';
+                e.currentTarget.style.transform = 'translateY(0)';
+                e.currentTarget.style.boxShadow = 'none';
+                e.currentTarget.style.borderColor = 'rgba(34,197,94,0.12)';
+              } else {
+                e.currentTarget.style.background = 'linear-gradient(135deg, rgba(34,197,94,0.25), rgba(16,185,129,0.12))';
+                e.currentTarget.style.color = '#fff';
+                e.currentTarget.style.transform = 'translateY(0)';
+                e.currentTarget.style.boxShadow = '0 0 24px rgba(34,197,94,0.25)';
+                e.currentTarget.style.borderColor = 'rgba(34,197,94,0.35)';
+              }
+            }}
           >
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
-            Hyperpure
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ filter: 'drop-shadow(0 0 4px rgba(34,197,94,0.4))' }}>
+              <path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/>
+              <path d="M12 3l8 4v10l-8 4-8-4V7z" fill="none"/>
+            </svg>
+            <span style={{ fontWeight: 600 }}>Hyperpure</span>
+            <span style={{
+              fontSize: '9px', padding: '2px 6px', borderRadius: '6px',
+              background: 'rgba(34,197,94,0.2)', color: '#22c55e',
+              fontWeight: 700, letterSpacing: '0.5px', marginLeft: '2px',
+            }}>B2B</span>
           </button>
           <button
             style={currentPage === 'district' ? { ...styles.navButton, ...styles.navButtonActive } : styles.navButton}
