@@ -970,7 +970,7 @@ const CartPage = () => {
 const RestaurantDetail = () => {
     const [hash] = useState(() => window.location.hash);
     const id = hash.split('/')[2];
-    const restaurant = restaurants.find(r => r.id === id);
+    const restaurant = RESTAURANTS.find(r => r.id === id);
     const [activeCategory, setActiveCategory] = useState('Recommended');
     const [cart, setCart] = useState(() => safeStorage.getJSON('zomato_cart', { restaurantId: null, restaurantName: '', items: [] }));
     const addToast = React.useContext(ToastContext);
