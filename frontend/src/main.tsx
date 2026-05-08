@@ -274,6 +274,106 @@ const restaurants: Restaurant[] = [
       { id: 'm80', name: 'Enchiladas', description: 'Rolled tortillas filled with chicken in spicy sauce', price: 360, image: 'https://images.unsplash.com/photo-1534352956036-cd81e27dd615?w=300&h=200&fit=crop', category: 'Main Course', isVeg: false, rating: 4.4 },
     ],
   },
+  {
+    id: 'r11',
+    name: 'Hyderabad Biryani House',
+    cuisine: 'Hyderabadi, Mughlai, Kebab',
+    rating: 4.8,
+    deliveryTime: 35,
+    costForTwo: 700,
+    locality: 'Hitech City',
+    image: 'https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?w=400&h=250&fit=crop',
+    menu: [
+      { id: 'm81', name: 'Hyderabadi Biryani', description: 'Fragrant dum-cooked biryani with tender mutton', price: 450, image: 'https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?w=300&h=200&fit=crop', category: 'Biryani', isVeg: false, rating: 4.9 },
+      { id: 'm82', name: 'Chicken 65', description: 'Crispy deep-fried chicken with South Indian spices', price: 280, image: 'https://images.unsplash.com/photo-1603360946369-dc9bb6258143?w=300&h=200&fit=crop', category: 'Starters', isVeg: false, rating: 4.6 },
+      { id: 'm83', name: 'Mirchi ka Salan', description: 'Spicy curry made with long green chilies and peanuts', price: 200, image: 'https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=300&h=200&fit=crop', category: 'Main Course', isVeg: true, rating: 4.4 },
+      { id: 'm84', name: 'Double Ka Meetha', description: 'Hyderabadi bread pudding with dry fruits', price: 180, image: 'https://images.unsplash.com/photo-1631452180519-c014fe946bc7?w=300&h=200&fit=crop', category: 'Desserts', isVeg: true, rating: 4.5 },
+      { id: 'm85', name: 'Haleem', description: 'Slow-cooked meat and wheat porridge with spices', price: 350, image: 'https://images.unsplash.com/photo-1603360946369-dc9bb6258143?w=300&h=200&fit=crop', category: 'Main Course', isVeg: false, rating: 4.7 },
+      { id: 'm86', name: 'Nihari', description: 'Slow-cooked beef shank stew with rich gravy', price: 380, image: 'https://images.unsplash.com/photo-1544025162-d76694265947?w=300&h=200&fit=crop', category: 'Main Course', isVeg: false, rating: 4.6 },
+      { id: 'm87', name: 'Khubani ka Meetha', description: 'Apricot dessert with cream and dry fruits', price: 200, image: 'https://images.unsplash.com/photo-1551024506-0bccd828d307?w=300&h=200&fit=crop', category: 'Desserts', isVeg: true, rating: 4.7 },
+      { id: 'm88', name: 'Irani Chai', description: 'Traditional Hyderabadi tea with milk and spices', price: 60, image: 'https://images.unsplash.com/photo-1571934811356-5cc061b6821f?w=300&h=200&fit=crop', category: 'Beverages', isVeg: true, rating: 4.5 },
+    ],
+  },
+  {
+    id: 'r12',
+    name: 'Madras Cafe',
+    cuisine: 'South Indian, Chettinad, Kerala',
+    rating: 4.5,
+    deliveryTime: 25,
+    costForTwo: 400,
+    locality: 'T Nagar',
+    image: 'https://images.unsplash.com/photo-1601050690597-df0568f70950?w=400&h=250&fit=crop',
+    menu: [
+      { id: 'm89', name: 'Chettinad Chicken', description: 'Spicy chicken curry with Chettinad masala', price: 320, image: 'https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?w=300&h=200&fit=crop', category: 'Main Course', isVeg: false, rating: 4.7 },
+      { id: 'm90', name: 'Meals', description: 'Traditional South Indian full meal on banana leaf', price: 250, image: 'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?w=300&h=200&fit=crop', category: 'Main Course', isVeg: true, rating: 4.6 },
+      { id: 'm91', name: 'Fish Curry', description: 'Tangy Kerala-style fish curry with coconut', price: 350, image: 'https://images.unsplash.com/photo-1544025162-d76694265947?w=300&h=200&fit=crop', category: 'Main Course', isVeg: false, rating: 4.5 },
+      { id: 'm92', name: 'Appam with Stew', description: 'Soft lacy rice pancakes with vegetable stew', price: 220, image: 'https://images.unsplash.com/photo-1630383249896-424e484df988?w=300&h=200&fit=crop', category: 'Main Course', isVeg: true, rating: 4.4 },
+      { id: 'm93', name: 'Medu Vada', description: 'Crispy lentil donuts with coconut chutney', price: 80, image: 'https://images.unsplash.com/photo-1668236555542-83bd53e4f957?w=300&h=200&fit=crop', category: 'Starters', isVeg: true, rating: 4.5 },
+      { id: 'm94', name: 'Rava Dosa', description: 'Crispy semolina crepe with onion and chutney', price: 130, image: 'https://images.unsplash.com/photo-1610192244261-3f33de3f55e4?w=300&h=200&fit=crop', category: 'Dosa', isVeg: true, rating: 4.6 },
+      { id: 'm95', name: 'Payasam', description: 'Sweet Kerala-style rice pudding with cardamom', price: 120, image: 'https://images.unsplash.com/photo-1631452180519-c014fe946bc7?w=300&h=200&fit=crop', category: 'Desserts', isVeg: true, rating: 4.3 },
+      { id: 'm96', name: 'Filter Coffee', description: 'Traditional South Indian filter coffee', price: 50, image: 'https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=300&h=200&fit=crop', category: 'Beverages', isVeg: true, rating: 4.8 },
+    ],
+  },
+  {
+    id: 'r13',
+    name: 'Kolkata Street Food Hub',
+    cuisine: 'Bengali, Street Food, Chinese',
+    rating: 4.4,
+    deliveryTime: 30,
+    costForTwo: 500,
+    locality: 'Salt Lake',
+    image: 'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=400&h=250&fit=crop',
+    menu: [
+      { id: 'm97', name: 'Kathi Roll', description: 'Flaky paratha wrapped with spiced chicken and onions', price: 180, image: 'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=300&h=200&fit=crop', category: 'Street Food', isVeg: false, rating: 4.6 },
+      { id: 'm98', name: 'Macher Jhol', description: 'Traditional Bengali fish curry with rice', price: 320, image: 'https://images.unsplash.com/photo-1544025162-d76694265947?w=300&h=200&fit=crop', category: 'Main Course', isVeg: false, rating: 4.7 },
+      { id: 'm99', name: 'Phuchka', description: 'Crispy hollow puri filled with spicy tamarind water', price: 60, image: 'https://images.unsplash.com/photo-1601050690597-df0568f70950?w=300&h=200&fit=crop', category: 'Street Food', isVeg: true, rating: 4.5 },
+      { id: 'm100', name: 'Chicken Biryani', description: 'Kolkata-style biryani with potato and egg', price: 350, image: 'https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?w=300&h=200&fit=crop', category: 'Biryani', isVeg: false, rating: 4.6 },
+      { id: 'm101', name: 'Chingri Malai Curry', description: 'Prawns in creamy coconut milk gravy', price: 420, image: 'https://images.unsplash.com/photo-1563379926898-05f4575a45d8?w=300&h=200&fit=crop', category: 'Main Course', isVeg: false, rating: 4.8 },
+      { id: 'm102', name: 'Luchi & Cholar Dal', description: 'Deep-fried puffed bread with Bengal gram curry', price: 140, image: 'https://images.unsplash.com/photo-1630383249896-424e484df988?w=300&h=200&fit=crop', category: 'Main Course', isVeg: true, rating: 4.4 },
+      { id: 'm103', name: 'Rosogolla', description: 'Soft spongy cottage cheese balls in sugar syrup', price: 100, image: 'https://images.unsplash.com/photo-1631452180519-c014fe946bc7?w=300&h=200&fit=crop', category: 'Desserts', isVeg: true, rating: 4.7 },
+      { id: 'm104', name: 'Misti Doi', description: 'Sweet Bengali yogurt in earthen pot', price: 90, image: 'https://images.unsplash.com/photo-1551024506-0bccd828d307?w=300&h=200&fit=crop', category: 'Desserts', isVeg: true, rating: 4.5 },
+    ],
+  },
+  {
+    id: 'r14',
+    name: 'Punjab Grill & Dhaba',
+    cuisine: 'Punjabi, North Indian, Dhaba',
+    rating: 4.6,
+    deliveryTime: 30,
+    costForTwo: 600,
+    locality: 'Sector 17',
+    image: 'https://images.unsplash.com/photo-1606491956689-2ea866880c84?w=400&h=250&fit=crop',
+    menu: [
+      { id: 'm105', name: 'Amritsari Kulcha', description: 'Stuffed bread with chole and chutney', price: 180, image: 'https://images.unsplash.com/photo-1626074353765-517a681e40be?w=300&h=200&fit=crop', category: 'Breads', isVeg: true, rating: 4.7 },
+      { id: 'm106', name: 'Sarson ka Saag', description: 'Winter specialty of mustard greens with butter', price: 250, image: 'https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=300&h=200&fit=crop', category: 'Main Course', isVeg: true, rating: 4.5 },
+      { id: 'm107', name: 'Makki di Roti', description: 'Corn flour flatbread served with saag', price: 60, image: 'https://images.unsplash.com/photo-1626074353765-517a681e40be?w=300&h=200&fit=crop', category: 'Breads', isVeg: true, rating: 4.4 },
+      { id: 'm108', name: 'Butter Chicken', description: 'Creamy tomato gravy with tender chicken', price: 380, image: 'https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?w=300&h=200&fit=crop', category: 'Main Course', isVeg: false, rating: 4.8 },
+      { id: 'm109', name: 'Dal Makhani', description: 'Slow-cooked black lentils with cream and butter', price: 240, image: 'https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=300&h=200&fit=crop', category: 'Main Course', isVeg: true, rating: 4.6 },
+      { id: 'm110', name: 'Paneer Tikka', description: 'Grilled cottage cheese with bell peppers and spices', price: 290, image: 'https://images.unsplash.com/photo-1567188040759-fb8a883dc6d8?w=300&h=200&fit=crop', category: 'Starters', isVeg: true, rating: 4.4 },
+      { id: 'm111', name: 'Lassi', description: 'Thick creamy yogurt drink with a hint of cardamom', price: 120, image: 'https://images.unsplash.com/photo-1527661591475-527312dd65f5?w=300&h=200&fit=crop', category: 'Beverages', isVeg: true, rating: 4.6 },
+      { id: 'm112', name: 'Gulab Jamun', description: 'Soft fried milk dumplings in rose syrup', price: 140, image: 'https://images.unsplash.com/photo-1666190077588-55b0f5a3d585?w=300&h=200&fit=crop', category: 'Desserts', isVeg: true, rating: 4.5 },
+    ],
+  },
+  {
+    id: 'r15',
+    name: 'Wok & Roll Chinese',
+    cuisine: 'Chinese, Tibetan, Asian',
+    rating: 4.3,
+    deliveryTime: 25,
+    costForTwo: 450,
+    locality: 'CG Road',
+    image: 'https://images.unsplash.com/photo-1552566626-52f8b828add9?w=400&h=250&fit=crop',
+    menu: [
+      { id: 'm113', name: 'Kung Pao Chicken', description: 'Spicy stir-fried chicken with peanuts and veggies', price: 320, image: 'https://images.unsplash.com/photo-1525755662778-929ea6083e29?w=300&h=200&fit=crop', category: 'Main Course', isVeg: false, rating: 4.5 },
+      { id: 'm114', name: 'Dim Sum Basket', description: 'Assorted steamed dumplings with 3 dips', price: 350, image: 'https://images.unsplash.com/photo-1496116218417-1a781b1c416c?w=300&h=200&fit=crop', category: 'Starters', isVeg: false, rating: 4.6 },
+      { id: 'm115', name: 'Schezwan Noodles', description: 'Spicy stir-fried noodles with vegetables', price: 220, image: 'https://images.unsplash.com/photo-1612929633738-8fe44f7ec841?w=300&h=200&fit=crop', category: 'Noodles', isVeg: true, rating: 4.4 },
+      { id: 'm116', name: 'Manchow Soup', description: 'Hot and spicy soup with crispy noodles', price: 150, image: 'https://images.unsplash.com/photo-1547592166-23ac45744acd?w=300&h=200&fit=crop', category: 'Soups', isVeg: true, rating: 4.3 },
+      { id: 'm117', name: 'Chilli Garlic Prawns', description: 'Crispy prawns tossed in chilli garlic sauce', price: 420, image: 'https://images.unsplash.com/photo-1553621042-f6e147280480?w=300&h=200&fit=crop', category: 'Starters', isVeg: false, rating: 4.7 },
+      { id: 'm118', name: 'Fried Rice', description: 'Classic Chinese fried rice with egg and veggies', price: 190, image: 'https://images.unsplash.com/photo-1512058564366-18510be2db19?w=300&h=200&fit=crop', category: 'Rice', isVeg: true, rating: 4.3 },
+      { id: 'm119', name: 'Spring Rolls', description: 'Crispy vegetable spring rolls with sweet chili dip', price: 170, image: 'https://images.unsplash.com/photo-1544025162-d76694265947?w=300&h=200&fit=crop', category: 'Starters', isVeg: true, rating: 4.2 },
+      { id: 'm120', name: 'Hot & Sour Soup', description: 'Tangy and spicy soup with tofu and mushrooms', price: 140, image: 'https://images.unsplash.com/photo-1547592166-23ac45744acd?w=300&h=200&fit=crop', category: 'Soups', isVeg: true, rating: 4.4 },
+    ],
+  },
 ];
 
 // Mock drivers
@@ -1556,6 +1656,11 @@ const App: React.FC = () => {
               { name: 'Whitefield', img: 'https://images.unsplash.com/photo-1523731407965-2430cd12f5e4?w=300&h=180&fit=crop&q=80', count: restaurants.filter(r => r.locality === 'Whitefield').length },
               { name: 'Jayanagar', img: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=300&h=180&fit=crop&q=80', count: restaurants.filter(r => r.locality === 'Jayanagar').length },
               { name: 'MG Road', img: 'https://images.unsplash.com/photo-1580584127374-9276b1e9959b?w=300&h=180&fit=crop&q=80', count: restaurants.filter(r => r.locality === 'MG Road').length },
+              { name: 'Connaught Place', img: 'https://images.unsplash.com/photo-1598951235041-5e8f7a9ae440?w=300&h=180&fit=crop&q=80', count: restaurants.filter(r => r.locality === 'Connaught Place').length },
+              { name: 'Bandra West', img: 'https://images.unsplash.com/photo-1570168007204-dfb528c6958f?w=300&h=180&fit=crop&q=80', count: restaurants.filter(r => r.locality === 'Bandra West').length },
+              { name: 'Hitech City', img: 'https://images.unsplash.com/photo-1596178060671-7a80dc8053ed?w=300&h=180&fit=crop&q=80', count: restaurants.filter(r => r.locality === 'Hitech City').length },
+              { name: 'T Nagar', img: 'https://images.unsplash.com/photo-1589802829985-817e51171b92?w=300&h=180&fit=crop&q=80', count: restaurants.filter(r => r.locality === 'T Nagar').length },
+              { name: 'Salt Lake', img: 'https://images.unsplash.com/photo-1560931684-3bc4aa8c630d?w=300&h=180&fit=crop&q=80', count: restaurants.filter(r => r.locality === 'Salt Lake').length },
             ].map((city, idx) => (
               <div
                 key={city.name}
@@ -3033,6 +3138,8 @@ const App: React.FC = () => {
     const [hpDelivery, setHpDelivery] = useState({ address: '', phone: '', mode: 'Wholesale' as 'Wholesale' | 'Express' });
     const [hpOrderPlaced, setHpOrderPlaced] = useState(false);
     const [showHpDelivery, setShowHpDelivery] = useState(false);
+    const [hpShowPayment, setHpShowPayment] = useState(false);
+    const [hpPaymentMethod, setHpPaymentMethod] = useState<'card' | 'upi' | 'cod'>('card');
 
     const addToHpCart = (id: string, name: string, price: number) => {
       setHpCart(prev => {
@@ -3063,6 +3170,7 @@ const App: React.FC = () => {
       setHpOrderPlaced(true);
       setShowHpDelivery(false);
       setShowHpCart(false);
+      setHpShowPayment(false);
       setTimeout(() => {
         setHpOrderPlaced(false);
         setHpCart([]);
@@ -3078,28 +3186,26 @@ const App: React.FC = () => {
     ];
 
     const hpCategories = [
-      { name: 'Menu Add-ons', icon: '📋', img: 'https://assets.hyperpure.com/data/icons/categories/d37fffcf2451fb226eefc50c0fffe4b8.png' },
-      { name: 'Fruits & Vegetables', icon: '🥬', img: 'https://assets.hyperpure.com/data/icons/categories/3c4694cd02bdfedb4adfcc77cf706178.png' },
-      { name: 'Dairy', icon: '🥛', img: 'https://assets.hyperpure.com/data/icons/categories/fea707e922a716db067ebb5495acb67d.png' },
-      { name: 'Spices', icon: '🧂', img: 'https://assets.hyperpure.com/data/icons/categories/929728dc8bcd670de3ae0d1f902a7daf.png' },
-      { name: 'Chicken & Eggs', icon: '🍗', img: 'https://assets.hyperpure.com/data/icons/categories/1d42861d2e7260e23b8084afdc77ff8e.png' },
-      { name: 'Sauces', icon: '🥫', img: 'https://assets.hyperpure.com/data/icons/categories/e08691031f5d85b6b3be389c330a74bc.png' },
-      { name: 'Canned Items', icon: '🥫', img: 'https://assets.hyperpure.com/data/icons/categories/9e42403bd8b5bd782542d9791a1f43cd.png' },
-      { name: 'Packaging', icon: '📦', img: 'https://assets.hyperpure.com/data/icons/categories/359c8273d2278c387b68758a6ea93dda.png' },
-      { name: 'Custom Packaging', icon: '🎨', img: 'https://assets.hyperpure.com/data/icons/categories/ceef68083b330c5e779fe4a8d0f8fa10.png' },
-      { name: 'Edible Oils', icon: '🫒', img: 'https://assets.hyperpure.com/data/icons/categories/89f429ad3bb6bd0f68b946634a14ee79.png' },
-      { name: 'Frozen Food', icon: '❄️', img: 'https://assets.hyperpure.com/data/icons/categories/b61738ae0d47e5c92f6dd406c5f97502.png' },
-      { name: 'Bakery', icon: '🥐', img: 'https://assets.hyperpure.com/data/icons/categories/017312ad31c5863f21acf80e1567988d.png' },
-      { name: 'Cleaning', icon: '🧹', img: 'https://assets.hyperpure.com/data/icons/categories/1283972d2dc21fb528143342a86a7a60.png' },
-      { name: 'Beverages', icon: '🥤', img: 'https://assets.hyperpure.com/data/icons/categories/5f604a33272e55045febefb36c6c7041.png' },
-      { name: 'Flours', icon: '🌾', img: 'https://assets.hyperpure.com/data/icons/categories/527fff707684bb3d4563f96c995cd9be.png' },
-      { name: 'Pulses', icon: '🫘', img: 'https://assets.hyperpure.com/data/icons/categories/91a9324d7ef705984f85e51c93f0e8a2.png' },
-      { name: 'Dry Fruits', icon: '🥜', img: 'https://assets.hyperpure.com/data/icons/categories/0744fa9a1467c81216af97256eea2ec3.png' },
-      { name: 'Rice', icon: '🍚', img: 'https://assets.hyperpure.com/data/icons/categories/4bc36685cecf53d08b6ba45cc1462e94.png' },
-      { name: 'Mutton & Lamb', icon: '🥩', img: 'https://assets.hyperpure.com/data/icons/categories/8c4ddb307c2fafce5eafa3370f6a5daa.png' },
-      { name: 'Seafood', icon: '🐟', img: 'https://assets.hyperpure.com/data/icons/categories/cf9eb74d809d301eef83ec92b88a9452.png' },
-      { name: 'Kitchenware', icon: '🍳', img: 'https://assets.hyperpure.com/data/icons/categories/252b19b92e7ef250d067aaf326f43b5a.png' },
-      { name: 'Appliances', icon: '⚡', img: 'https://assets.hyperpure.com/data/icons/categories/e811f4d609e5ca8a5b0d0ea17f5ad99d.png' },
+      { name: 'Fruits & Vegetables', icon: '🥬', img: 'https://images.unsplash.com/photo-1597362925123-77861d2fbac7?w=64&h=64&fit=crop' },
+      { name: 'Dairy', icon: '🧀', img: 'https://images.unsplash.com/photo-1624806992066-5ffcf7ca186b?w=64&h=64&fit=crop' },
+      { name: 'Chicken & Eggs', icon: '🍗', img: 'https://images.unsplash.com/photo-1604503468506-a8da13d82791?w=64&h=64&fit=crop' },
+      { name: 'Sauces', icon: '🥫', img: 'https://images.unsplash.com/photo-1472476443507-c7a5948772fc?w=64&h=64&fit=crop' },
+      { name: 'Canned Items', icon: '🥫', img: 'https://images.unsplash.com/photo-1580597153911-e284dc2b3f43?w=64&h=64&fit=crop' },
+      { name: 'Packaging', icon: '📦', img: 'https://images.unsplash.com/photo-1587293852726-70cdb56c2866?w=64&h=64&fit=crop' },
+      { name: 'Custom Packaging', icon: '🎨', img: 'https://images.unsplash.com/photo-1612815154858-60aa4c59eaa4?w=64&h=64&fit=crop' },
+      { name: 'Edible Oils', icon: '🫒', img: 'https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=64&h=64&fit=crop' },
+      { name: 'Frozen Food', icon: '❄️', img: 'https://images.unsplash.com/photo-1580915411954-282cb1b0d780?w=64&h=64&fit=crop' },
+      { name: 'Bakery', icon: '🥐', img: 'https://images.unsplash.com/photo-1509365465985-25d11c17e812?w=64&h=64&fit=crop' },
+      { name: 'Cleaning', icon: '🧹', img: 'https://images.unsplash.com/photo-1585421514284-efb74c2b69ba?w=64&h=64&fit=crop' },
+      { name: 'Beverages', icon: '🥤', img: 'https://images.unsplash.com/photo-1544145945-f90425340c7e?w=64&h=64&fit=crop' },
+      { name: 'Flours', icon: '🌾', img: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?w=64&h=64&fit=crop' },
+      { name: 'Pulses', icon: '🫘', img: 'https://images.unsplash.com/photo-1515543904379-3d0ffe0d5a7e?w=64&h=64&fit=crop' },
+      { name: 'Dry Fruits', icon: '🥜', img: 'https://images.unsplash.com/photo-1604068549290-dea0e4a305ca?w=64&h=64&fit=crop' },
+      { name: 'Rice', icon: '🍚', img: 'https://images.unsplash.com/photo-1586201375761-83865001e31c?w=64&h=64&fit=crop' },
+      { name: 'Mutton & Lamb', icon: '🥩', img: 'https://images.unsplash.com/photo-1603048297171-925c0d9b958e?w=64&h=64&fit=crop' },
+      { name: 'Seafood', icon: '🐟', img: 'https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?w=64&h=64&fit=crop' },
+      { name: 'Kitchenware', icon: '🍳', img: 'https://images.unsplash.com/photo-1556909114-44e3e70034e2?w=64&h=64&fit=crop' },
+      { name: 'Appliances', icon: '⚡', img: 'https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=64&h=64&fit=crop' },
     ];
 
     const hpProducts = [
@@ -3126,12 +3232,12 @@ const App: React.FC = () => {
       : filteredHpProducts;
 
     const hpTestimonials = [
-      { name: 'Blue Tokai Coffee Roasters', role: 'Co-Founder', quote: 'Consistent supply of high-quality ingredients, reducing wastage and stockouts. Hyperpure ensures smooth operations, improving planning and maintaining stable pricing.', img: 'https://b.zmtcdn.com/hyperpure_assets/4abefe5c2bd5f43d3d597ec4bd45f8a21742215480.png', logo: 'https://b.zmtcdn.com/hyperpure_assets/97619ca456fe0fb541b6e2ae9e0692f61742215357.png' },
-      { name: 'Meghana Foods', role: 'Founder', quote: 'Their top-quality products and timely deliveries have greatly enhanced our culinary offerings. Their professional and responsive team has made collaboration seamless.', img: 'https://b.zmtcdn.com/hyperpure_assets/c51eb681c72d08f8187a0a47a0117bdc1750665903.webp', logo: 'https://b.zmtcdn.com/hyperpure_assets/d751ad52504794fc8fdca6b21a03b9a21742215455.png' },
-      { name: 'Marrakesh', role: 'Founder', quote: 'They stand out by focusing on the smallest details and aligning with our brand\'s needs. Their customised food solutions exceeded our expectations.', img: 'https://b.zmtcdn.com/hyperpure_assets/1c408cd07c148c5abb6f2d4d244582f41742215676.png', logo: 'https://b.zmtcdn.com/hyperpure_assets/f6e8fe9baa657ff55f5d7500de6795931742215734.png' },
-      { name: 'Charcoal Eats', role: 'Founder', quote: 'Their tech-enabled platform simplifies the entire process, tracking expenses, managing inventory, and boosting efficiency.', img: 'https://b.zmtcdn.com/hyperpure_assets/babcfdd1606b330d7ffcf58f1cc936ca1742215766.png', logo: 'https://b.zmtcdn.com/hyperpure_assets/b8385b2df953f2cebfcac72a78c465b11742215864.png' },
-      { name: 'The Pizza Bakery', role: 'Founder', quote: 'Their service has never let us down—with on-time deliveries every time. Many key ingredients are sourced through Hyperpure at economical rates.', img: 'https://b.zmtcdn.com/hyperpure_assets/3aca479a922d3b8817461ae79a4eb1bb1742215900.png', logo: 'https://b.zmtcdn.com/hyperpure_assets/d4f5b6efc61f3c024fabd108ac6de9181742215997.png' },
-      { name: 'Mad Momos', role: 'Founder & CEO', quote: 'Achieved a 15% reduction in purchasing costs. Their transparent pricing structure and discounts have helped us tremendously.', img: 'https://b.zmtcdn.com/hyperpure_assets/a20812cecef1c098f112680cafa7dd4c1742216018.png', logo: 'https://b.zmtcdn.com/hyperpure_assets/95e702b36aefe7331b457c490dcf14e71742216095.png' },
+      { name: 'Blue Tokai Coffee Roasters', role: 'Co-Founder', quote: 'Consistent supply of high-quality ingredients, reducing wastage and stockouts. Hyperpure ensures smooth operations, improving planning and maintaining stable pricing.', img: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face', logo: 'https://images.unsplash.com/photo-1559526324-593bc073d938?w=64&h=64&fit=crop' },
+      { name: 'Meghana Foods', role: 'Founder', quote: 'Their top-quality products and timely deliveries have greatly enhanced our culinary offerings. Their professional and responsive team has made collaboration seamless.', img: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop&crop=face', logo: 'https://images.unsplash.com/photo-1559526324-593bc073d938?w=64&h=64&fit=crop' },
+      { name: 'Marrakesh', role: 'Founder', quote: 'They stand out by focusing on the smallest details and aligning with our brand\'s needs. Their customised food solutions exceeded our expectations.', img: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face', logo: 'https://images.unsplash.com/photo-1559526324-593bc073d938?w=64&h=64&fit=crop' },
+      { name: 'Charcoal Eats', role: 'Founder', quote: 'Their tech-enabled platform simplifies the entire process, tracking expenses, managing inventory, and boosting efficiency.', img: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=100&h=100&fit=crop&crop=face', logo: 'https://images.unsplash.com/photo-1559526324-593bc073d938?w=64&h=64&fit=crop' },
+      { name: 'The Pizza Bakery', role: 'Founder', quote: 'Their service has never let us down—with on-time deliveries every time. Many key ingredients are sourced through Hyperpure at economical rates.', img: 'https://images.unsplash.com/photo-1541167760496-1628856ab772?w=100&h=100&fit=crop&crop=face', logo: 'https://images.unsplash.com/photo-1559526324-593bc073d938?w=64&h=64&fit=crop' },
+      { name: 'Mad Momos', role: 'Founder & CEO', quote: 'Achieved a 15% reduction in purchasing costs. Their transparent pricing structure and discounts have helped us tremendously.', img: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop&crop=face', logo: 'https://images.unsplash.com/photo-1559526324-593bc073d938?w=64&h=64&fit=crop' },
     ];
 
     const hpFaqs = [
@@ -3307,8 +3413,8 @@ const App: React.FC = () => {
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '24px' }}>
             {[
-              { title: 'Wholesale Delivery', desc: 'Next-day restocking for your regular supplies. Order in bulk and save more with our wholesale pricing.', icon: '🚛', color: '#E23744', img: 'https://b.zmtcdn.com/hyperpure_assets/0cfa013f4515f6a9b6d0e6494d5f01ce1740827806.webp' },
-              { title: 'Express Delivery', desc: 'Need it urgently? Same-day delivery for specialty products and emergency restocking.', icon: '🏍️', color: '#22c55e', img: 'https://b.zmtcdn.com/hyperpure_assets/bd5129e51cdad0adf5c902717613955f1740827807.webp' },
+              { title: 'Wholesale Delivery', desc: 'Next-day restocking for your regular supplies. Order in bulk and save more with our wholesale pricing.', icon: '🚛', color: '#E23744', img: 'https://images.unsplash.com/photo-1580674285054-bed31e145f59?w=400&h=250&fit=crop' },
+              { title: 'Express Delivery', desc: 'Need it urgently? Same-day delivery for specialty products and emergency restocking.', icon: '🏍️', color: '#22c55e', img: 'https://images.unsplash.com/photo-1529068755536-a5ade0dcb4e2?w=400&h=250&fit=crop' },
             ].map((model, i) => (
               <div key={model.title} style={{
                 background: 'linear-gradient(135deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.02) 100%)',
@@ -3618,19 +3724,164 @@ const App: React.FC = () => {
                   <span style={{ color: 'rgba(255,255,255,0.5)', fontSize: '14px' }}>Order Total</span>
                   <span style={{ color: '#22c55e', fontWeight: 800, fontSize: '22px' }}>₹{hpOrderTotal}</span>
                 </div>
-                <button onClick={placeHpOrder}
+                <button onClick={() => { setHpShowPayment(true); }}
                   style={{
                     width: '100%', padding: '14px',
-                    background: hpDelivery.address && hpDelivery.phone ? 'linear-gradient(135deg, #22c55e, #16a34a)' : 'rgba(255,255,255,0.08)',
+                    background: hpDelivery.address && hpDelivery.phone ? 'linear-gradient(135deg, #9333ea, #E23744)' : 'rgba(255,255,255,0.08)',
                     border: 'none', borderRadius: '14px', color: 'white',
                     fontSize: '15px', fontWeight: 700, cursor: hpDelivery.address && hpDelivery.phone ? 'pointer' : 'not-allowed',
                     transition: 'all 0.3s ease', opacity: hpDelivery.address && hpDelivery.phone ? 1 : 0.5,
-                    boxShadow: hpDelivery.address && hpDelivery.phone ? '0 4px 20px rgba(34,197,94,0.3)' : 'none',
+                    boxShadow: hpDelivery.address && hpDelivery.phone ? '0 4px 20px rgba(147,51,234,0.3)' : 'none',
                   }}
-                  onMouseEnter={e => { if (hpDelivery.address && hpDelivery.phone) { e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.boxShadow = '0 6px 28px rgba(34,197,94,0.45)'; } }}
-                  onMouseLeave={e => { if (hpDelivery.address && hpDelivery.phone) { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = '0 4px 20px rgba(34,197,94,0.3)'; } }}
-                >Place Order - ₹{hpOrderTotal}</button>
+                  onMouseEnter={e => { if (hpDelivery.address && hpDelivery.phone) { e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.boxShadow = '0 6px 28px rgba(147,51,234,0.45)'; } }}
+                  onMouseLeave={e => { if (hpDelivery.address && hpDelivery.phone) { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = '0 4px 20px rgba(147,51,234,0.3)'; } }}
+                >Continue to Payment — ₹{hpOrderTotal}</button>
               </div>
+            </div>
+          </div>
+        )}
+
+        {/* Payment Overlay */}
+        {hpShowPayment && (
+          <div style={{
+            position: 'fixed', inset: 0, zIndex: 2200, display: 'flex',
+            alignItems: 'center', justifyContent: 'center',
+            animation: 'fadeIn 0.2s ease-out',
+          }}>
+            <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.7)', backdropFilter: 'blur(6px)' }} onClick={() => setHpShowPayment(false)} />
+            <div style={{
+              position: 'relative', width: '460px', maxWidth: '90vw',
+              background: 'linear-gradient(180deg, #1a1a2e 0%, #0e0e16 100%)',
+              borderRadius: '24px', border: '1px solid rgba(255,255,255,0.08)',
+              padding: '32px', boxShadow: '0 20px 60px rgba(0,0,0,0.6)',
+              animation: 'fadeScaleIn 0.3s ease-out',
+            }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px' }}>
+                <h3 style={{ color: '#fff', margin: 0, fontSize: '20px', fontWeight: 700 }}>💳 Payment</h3>
+                <button onClick={() => setHpShowPayment(false)} style={{
+                  background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.08)',
+                  borderRadius: '10px', color: 'rgba(255,255,255,0.5)', cursor: 'pointer',
+                  fontSize: '18px', padding: '6px 12px', lineHeight: 1,
+                }}
+                  onMouseEnter={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.1)'; e.currentTarget.style.color = '#fff'; }}
+                  onMouseLeave={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.06)'; e.currentTarget.style.color = 'rgba(255,255,255,0.5)'; }}
+                >✕</button>
+              </div>
+
+              {/* Order summary */}
+              <div style={{
+                background: 'rgba(255,255,255,0.04)', borderRadius: '14px',
+                padding: '14px 16px', marginBottom: '20px',
+                border: '1px solid rgba(255,255,255,0.06)',
+              }}>
+                <div style={{ fontSize: '13px', fontWeight: 600, color: 'rgba(255,255,255,0.6)', marginBottom: '8px' }}>Order Summary</div>
+                <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '4px', fontSize: '13px' }}>
+                  <span style={{ color: 'rgba(255,255,255,0.4)' }}>Items ({hpCartCount})</span>
+                  <span style={{ color: '#fff' }}>₹{hpCartTotal}</span>
+                </div>
+                <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '4px', fontSize: '13px' }}>
+                  <span style={{ color: 'rgba(255,255,255,0.4)' }}>Delivery ({hpDelivery.mode})</span>
+                  <span style={{ color: hpDeliveryFee === 0 ? '#22c55e' : '#fff' }}>{hpDeliveryFee === 0 ? 'FREE' : `₹${hpDeliveryFee}`}</span>
+                </div>
+                <div style={{ borderTop: '1px solid rgba(255,255,255,0.06)', marginTop: '8px', paddingTop: '8px', display: 'flex', justifyContent: 'space-between' }}>
+                  <span style={{ color: '#fff', fontWeight: 700 }}>Total</span>
+                  <span style={{ color: '#22c55e', fontWeight: 800, fontSize: '18px' }}>₹{hpOrderTotal}</span>
+                </div>
+              </div>
+
+              {/* Payment methods */}
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', marginBottom: '20px' }}>
+                <div style={{ fontSize: '13px', fontWeight: 600, color: 'rgba(255,255,255,0.6)', marginBottom: '4px' }}>Select Payment Method</div>
+                {[
+                  { id: 'card' as const, label: 'Credit / Debit Card', icon: '💳', desc: 'Pay with Visa, Mastercard, RuPay' },
+                  { id: 'upi' as const, label: 'UPI', icon: '📱', desc: 'Google Pay, PhonePe, Paytm' },
+                  { id: 'cod' as const, label: 'Cash on Delivery', icon: '💵', desc: 'Pay when you receive your order' },
+                ].map(method => (
+                  <button key={method.id} onClick={() => setHpPaymentMethod(method.id)}
+                    style={{
+                      display: 'flex', alignItems: 'center', gap: '14px', padding: '14px 16px',
+                      background: hpPaymentMethod === method.id ? 'rgba(147,51,234,0.12)' : 'rgba(255,255,255,0.03)',
+                      border: hpPaymentMethod === method.id ? '1px solid rgba(147,51,234,0.3)' : '1px solid rgba(255,255,255,0.06)',
+                      borderRadius: '14px', cursor: 'pointer', width: '100%',
+                      transition: 'all 0.3s', textAlign: 'left',
+                    }}
+                    onMouseEnter={e => { e.currentTarget.style.background = hpPaymentMethod === method.id ? 'rgba(147,51,234,0.15)' : 'rgba(255,255,255,0.06)'; }}
+                    onMouseLeave={e => { e.currentTarget.style.background = hpPaymentMethod === method.id ? 'rgba(147,51,234,0.12)' : 'rgba(255,255,255,0.03)'; }}
+                  >
+                    <span style={{ fontSize: '24px' }}>{method.icon}</span>
+                    <div style={{ flex: 1 }}>
+                      <div style={{ color: hpPaymentMethod === method.id ? '#fff' : 'rgba(255,255,255,0.7)', fontWeight: 600, fontSize: '14px' }}>{method.label}</div>
+                      <div style={{ color: 'rgba(255,255,255,0.35)', fontSize: '12px' }}>{method.desc}</div>
+                    </div>
+                    {hpPaymentMethod === method.id && (
+                      <span style={{ color: '#22c55e', fontSize: '18px' }}>✓</span>
+                    )}
+                  </button>
+                ))}
+              </div>
+
+              {/* Card details for card payment */}
+              {hpPaymentMethod === 'card' && (
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', marginBottom: '16px' }}>
+                  <div>
+                    <label style={{ color: 'rgba(255,255,255,0.5)', fontSize: '12px', fontWeight: 500, display: 'block', marginBottom: '4px' }}>Card Number</label>
+                    <input placeholder="1234 5678 9012 3456" style={{
+                      width: '100%', padding: '11px 14px', borderRadius: '10px',
+                      border: '1px solid rgba(255,255,255,0.08)', outline: 'none',
+                      background: 'rgba(255,255,255,0.05)', color: '#fff', fontSize: '13px',
+                      boxSizing: 'border-box',
+                    }} />
+                  </div>
+                  <div style={{ display: 'flex', gap: '12px' }}>
+                    <div style={{ flex: 1 }}>
+                      <label style={{ color: 'rgba(255,255,255,0.5)', fontSize: '12px', fontWeight: 500, display: 'block', marginBottom: '4px' }}>Expiry</label>
+                      <input placeholder="MM/YY" style={{
+                        width: '100%', padding: '11px 14px', borderRadius: '10px',
+                        border: '1px solid rgba(255,255,255,0.08)', outline: 'none',
+                        background: 'rgba(255,255,255,0.05)', color: '#fff', fontSize: '13px',
+                        boxSizing: 'border-box',
+                      }} />
+                    </div>
+                    <div style={{ flex: 1 }}>
+                      <label style={{ color: 'rgba(255,255,255,0.5)', fontSize: '12px', fontWeight: 500, display: 'block', marginBottom: '4px' }}>CVV</label>
+                      <input placeholder="123" type="password" maxLength={4} style={{
+                        width: '100%', padding: '11px 14px', borderRadius: '10px',
+                        border: '1px solid rgba(255,255,255,0.08)', outline: 'none',
+                        background: 'rgba(255,255,255,0.05)', color: '#fff', fontSize: '13px',
+                        boxSizing: 'border-box',
+                      }} />
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* UPI details */}
+              {hpPaymentMethod === 'upi' && (
+                <div style={{ marginBottom: '16px' }}>
+                  <label style={{ color: 'rgba(255,255,255,0.5)', fontSize: '12px', fontWeight: 500, display: 'block', marginBottom: '4px' }}>UPI ID</label>
+                  <input placeholder="example@upi" style={{
+                    width: '100%', padding: '11px 14px', borderRadius: '10px',
+                    border: '1px solid rgba(255,255,255,0.08)', outline: 'none',
+                    background: 'rgba(255,255,255,0.05)', color: '#fff', fontSize: '13px',
+                    boxSizing: 'border-box',
+                  }} />
+                </div>
+              )}
+
+              <button onClick={placeHpOrder}
+                style={{
+                  width: '100%', padding: '14px',
+                  background: 'linear-gradient(135deg, #22c55e, #16a34a)',
+                  border: 'none', borderRadius: '14px', color: 'white',
+                  fontSize: '15px', fontWeight: 700, cursor: 'pointer',
+                  boxShadow: '0 4px 20px rgba(34,197,94,0.3)',
+                  transition: 'all 0.3s ease',
+                }}
+                onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-2px)'; e.currentTarget.style.boxShadow = '0 6px 28px rgba(34,197,94,0.45)'; }}
+                onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = '0 4px 20px rgba(34,197,94,0.3)'; }}
+              >
+                Pay ₹{hpOrderTotal} • Place Order
+              </button>
             </div>
           </div>
         )}
